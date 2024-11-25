@@ -18,10 +18,10 @@
     .poem-container {
       max-width: 800px;
       padding: 20px;
-      background-color: #222222;
+      background-color: #000000;
       border-radius: 5px;
-      border: 1px solid #444444;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      border: 1px solid #000000;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       line-height: 1.4;
     }
 
@@ -127,7 +127,7 @@
             ||||||||||
           ||||||||||||
           ||||||||||||
-       ||||||||||||||
+       |||||||||||||||
 </pre>`;
           } else if (poemLines[i] === "ASCII_BIRD") {
             container.innerHTML += `<pre class="ascii-art">
@@ -140,8 +140,18 @@
           } else {
             container.innerHTML += poemLines[i] + '<br>';
           }
+          
           i++;
-          setTimeout(typePoem, Math.floor(Math.random() * 100) + 80); // Random speed between 80 and 180 ms
+          
+          // Introduce random delay to create a more human-like typing effect
+          let delay = Math.floor(Math.random() * 100) + 80; // Random speed between 80 and 180 ms
+          
+          // Add a longer delay for punctuation marks to simulate human typing pauses
+          if (poemLines[i - 1].endsWith('.') || poemLines[i - 1].endsWith(',') || poemLines[i - 1].endsWith('—')) {
+            delay += 300; // Add extra delay after punctuation
+          }
+
+          setTimeout(typePoem, delay);
         }
       }
 
