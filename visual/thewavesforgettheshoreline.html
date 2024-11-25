@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated ASCII Poem</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .poem {
+      font-family: 'Courier New', Courier, monospace;
+      white-space: pre-wrap;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #333;
+      background-color: #f5f5f5;
+      padding: 20px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <ul>
+      <b><li><a href="../index.html">Home</a></li></b>
+      <b><li><a href="../textual.html">Textual</a></li></b>
+      <b><li><a href="../visual.html">Visual</a></li></b>
+      <b><li><a href="mailto:glenn.ritchey@ucf.edu">Contact</a></li></b>
+    </ul>
+  </nav>
+  
+  <div class="container">
+    <h1>Animated ASCII Poem</h1>
+    <div id="poem-container" class="poem">
+      <pre id="poem-text"></pre>
+    </div>
+  </div>
+
+  <!-- JavaScript for Typing Effect -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const poem = `The Waves Forget the Shoreline
+here, before the smoke painted the sky
+with shadows, before stone towers rose
+to watch over the sand like sentinels.
+No room remains for the sea’s slow song—
+edges cutting across the sky, blind
+to the waves.
+
+             Paths carve where sand once shifted
+             beneath unsteady feet. Iron holds firm,
+             sharp lines drawn into the earth,
+             a geometry leading forward.
+             The weight of time falls in rhythm,
+             not like waves that forget what they touch.
+~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~ ~~~~~~~~ ~~~~ ~~~~~ ~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~
+Clocks replace the pulse of the shore,
+eyes shifting toward rising smoke,
+toward fires held behind doors, where light bends
+against walls built of stone and air grows heavy.
+Feet forget the softness beneath them—
+now the sky is laced with shadows,
+and the wind carries only whispers
+through spaces drawn by hands dreaming of steel.
+
+             Towers rise to be followed, engines hum
+             in hours marked by invisible hands.
+             Wheels spin in the air,
+             the hum surrounds,
+             carrying a rhythm only steel can hear.
+      ||||||||      ||||||||    ||||||||||    ||||||||||  ||||||||||||  ||||||||||||||||||||||||||||
+
+The first sound of waves breaking on the shore,
+the pull of the tide soft as breath,
+small hands once reached for shells as if to hold the sea.
+Now the wind moves like a thought, caught
+between the spaces where light once fell freely.
+The air carries only shadows now—
+a world remade in silence.
+
+
+
+
+
+
+    __    __(o'\\   <     \\    \\_    \\        \`----'
+    `;
+      
+      let i = 0;
+
+      function typePoem() {
+        const container = document.getElementById('poem-text');
+        if (i < poem.length) {
+          container.textContent += poem.charAt(i);
+          i++;
+          setTimeout(typePoem, 20); // Adjust typing speed as needed
+        }
+      }
+
+      typePoem();
+    });
+  </script>
+</body>
+</html>
