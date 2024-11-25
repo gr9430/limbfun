@@ -18,10 +18,10 @@
     .poem-container {
       max-width: 800px;
       padding: 20px;
-      background-color: #000000;
+      background-color: #222222;
       border-radius: 5px;
-      border: 1px solid #000000;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border: 1px solid #444444;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
       line-height: 1.4;
     }
 
@@ -62,65 +62,40 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      const poemLines = [
-        "here, before the smoke painted the sky",
-        "with shadows, before stone towers rose",
-        "to watch over the sand like sentinels.",
-        "No room remains for the sea’s slow song—",
-        "edges cutting across the sky, blind",
-        "to the waves.",
-        "",
-        "             Paths carve where sand once shifted",
-        "             beneath unsteady feet. Iron holds firm,",
-        "             sharp lines drawn into the earth,",
-        "             a geometry leading forward.",
-        "             The weight of time falls in rhythm,",
-        "             not like waves that forget what they touch.",
-        "",
-        "ASCII_WAVES",
-        "",
-        "Clocks replace the pulse of the shore,",
-        "eyes shifting toward rising smoke,",
-        "toward fires held behind doors, where light bends",
-        "against walls built of stone and air grows heavy.",
-        "Feet forget the softness beneath them—",
-        "now the sky is laced with shadows,",
-        "and the wind carries only whispers",
-        "through spaces drawn by hands dreaming of steel.",
-        "",
-        "             Towers rise to be followed, engines hum",
-        "             in hours marked by invisible hands.",
-        "             Wheels spin in the air,",
-        "             the hum surrounds,",
-        "             carrying a rhythm only steel can hear.",
-        "",
-        "ASCII_BUILDING",
-        "",
-        "The first sound of waves breaking on the shore,",
-        "the pull of the tide soft as breath,",
-        "small hands once reached for shells as if to hold the sea.",
-        "Now the wind moves like a thought, caught",
-        "between the spaces where light once fell freely.",
-        "The air carries only shadows now—",
-        "a world remade in silence.",
-        "",
-        "ASCII_BIRD"
-      ];
+      const poem = `here, before the smoke painted the sky
+with shadows, before stone towers rose
+to watch over the sand like sentinels.
+No room remains for the sea’s slow song—
+edges cutting across the sky, blind
+to the waves.
 
-      let i = 0;
+             Paths carve where sand once shifted
+             beneath unsteady feet. Iron holds firm,
+             sharp lines drawn into the earth,
+             a geometry leading forward.
+             The weight of time falls in rhythm,
+             not like waves that forget what they touch.
 
-      function typePoem() {
-        const container = document.getElementById('poem-text');
-        if (i < poemLines.length) {
-          if (poemLines[i] === "ASCII_WAVES") {
-            container.innerHTML += `<pre class="ascii-art">
 ~~~~~~~~~~~~~~~~~~~~
  ~~~~~~~~ ~~~~~~~~
  ~~~~ ~~~~~ ~~~~~ ~~~~~
 ~~~~~~~~~~~~~~~~~~~~
-</pre>`;
-          } else if (poemLines[i] === "ASCII_BUILDING") {
-            container.innerHTML += `<pre class="ascii-art">
+
+Clocks replace the pulse of the shore,
+eyes shifting toward rising smoke,
+toward fires held behind doors, where light bends
+against walls built of stone and air grows heavy.
+Feet forget the softness beneath them—
+now the sky is laced with shadows,
+and the wind carries only whispers
+through spaces drawn by hands dreaming of steel.
+
+             Towers rise to be followed, engines hum
+             in hours marked by invisible hands.
+             Wheels spin in the air,
+             the hum surrounds,
+             carrying a rhythm only steel can hear.
+
               ||||||||
               ||||||||
             ||||||||||
@@ -128,29 +103,35 @@
           ||||||||||||
           ||||||||||||
        |||||||||||||||
-</pre>`;
-          } else if (poemLines[i] === "ASCII_BIRD") {
-            container.innerHTML += `<pre class="ascii-art">
+
+The first sound of waves breaking on the shore,
+the pull of the tide soft as breath,
+small hands once reached for shells as if to hold the sea.
+Now the wind moves like a thought, caught
+between the spaces where light once fell freely.
+The air carries only shadows now—
+a world remade in silence.
+
        __    
      __(o'\\
      <    \\    
       \\_   \\
-      \`----'
-</pre>`;
-          } else {
-            container.innerHTML += poemLines[i] + '<br>';
-          }
-          
-          i++;
-          
-          // Introduce random delay to create a more human-like typing effect
-          let delay = Math.floor(Math.random() * 100) + 80; // Random speed between 80 and 180 ms
-          
-          // Add a longer delay for punctuation marks to simulate human typing pauses
-          if (poemLines[i - 1].endsWith('.') || poemLines[i - 1].endsWith(',') || poemLines[i - 1].endsWith('—')) {
-            delay += 300; // Add extra delay after punctuation
-          }
+      \`----'`;
 
+      let i = 0;
+
+      function typePoem() {
+        const container = document.getElementById('poem-text');
+        if (i < poem.length) {
+          if (poem.charAt(i) === '\n') {
+            container.innerHTML += '<br>';
+          } else if (poem.charAt(i) === ' ') {
+            container.innerHTML += '&nbsp;';
+          } else {
+            container.innerHTML += poem.charAt(i);
+          }
+          i++;
+          let delay = Math.floor(Math.random() * 100) + 80; // Random speed between 80 and 180 ms
           setTimeout(typePoem, delay);
         }
       }
