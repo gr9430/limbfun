@@ -57,29 +57,91 @@
   <div class="poem-container">
     <h1 class="poem-title">The Waves Forget the Shoreline</h1>
     <div id="poem-text" class="poem-body"></div>
-
-    <!-- Waves -->
-    <pre class="ascii-art">
-~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~ ~~~~~~~~ ~~~~ ~~~~~ ~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~
-    </pre>
-
-    <!-- Building/Tower -->
-    <pre class="ascii-art">
-               ||||||               
-               ||||||               
-               ||||||               
-               ||||||               
-               ||||||               
-               ||||||               
-               ||||||               
-               ||||||               
-                  l
-    </pre>
-
-    <!-- Bird -->
-    <pre class="ascii-art">
-    __    __(o'&#92;)   &lt;     &#92;    &#92;_    &#92;        &#96;----'
-    </pre>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const poem = `here, before the smoke painted the sky
+with shadows, before stone towers rose
+to watch over the sand like sentinels.
+No room remains for the sea’s slow song—
+edges cutting across the sky, blind
+to the waves.
+
+             Paths carve where sand once shifted
+             beneath unsteady feet. Iron holds firm,
+             sharp lines drawn into the earth,
+             a geometry leading forward.
+             The weight of time falls in rhythm,
+             not like waves that forget what they touch.
+
+<pre class="ascii-art">
+~~~~~~~~~~~~~~~~~~~~
+ ~~~~~~~~ ~~~~~~~~
+ ~~~~ ~~~~~ ~~~~~ ~~~~~
+~~~~~~~~~~~~~~~~~~~~
+</pre>
+
+
+Clocks replace the pulse of the shore,
+eyes shifting toward rising smoke,
+toward fires held behind doors, where light bends
+against walls built of stone and air grows heavy.
+Feet forget the softness beneath them—
+now the sky is laced with shadows,
+and the wind carries only whispers
+through spaces drawn by hands dreaming of steel.
+
+             Towers rise to be followed, engines hum
+             in hours marked by invisible hands.
+             Wheels spin in the air,
+             the hum surrounds,
+             carrying a rhythm only steel can hear.
+
+<pre class="ascii-art">
+              ||||||||
+              ||||||||
+            ||||||||||
+            ||||||||||
+          ||||||||||||
+          ||||||||||||
+       ||||||||||||||||
+</pre>
+
+The first sound of waves breaking on the shore,
+the pull of the tide soft as breath,
+small hands once reached for shells as if to hold the sea.
+Now the wind moves like a thought, caught
+between the spaces where light once fell freely.
+The air carries only shadows now—
+a world remade in silence.
+
+<pre class="ascii-art">
+       __    
+     __(o'\
+     <    \    
+      \_   \
+      `----'
+</pre>
+      let i = 0;
+
+      function typePoem() {
+        const container = document.getElementById('poem-text');
+        if (i < poem.length) {
+          if (poem.charAt(i) === '\n') {
+            container.innerHTML += '<br>';
+          } else if (poem.charAt(i) === ' ') {
+            container.innerHTML += '&nbsp;';
+          } else {
+            container.innerHTML += poem.charAt(i);
+          }
+          i++;
+          setTimeout(typePoem, Math.floor(Math.random() * 100) + 80); // Random speed between 80 and 180 ms
+        }
+      }
+
+      typePoem();
+    });
+  </script>
 </body>
 </html>
