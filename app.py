@@ -1,8 +1,7 @@
-import markovify
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request
+import markovify
 
-# Initialize Flask app
 app = Flask(__name__)
 
 print("Loading texts...")
@@ -43,35 +42,13 @@ print("\nBuilding Markov model...")
 text_model = markovify.Text(combined_text, state_size=2)
 print("Markov model built successfully.")
 
-# Flask route to generate sentences
-@app.route('/generate', methods=['GET'])
-def generate():
-    try:
-        sentence = text_model.make_sentence(tries=100)
-        if sentence:
-            return jsonify({"sentence": sentence})
-        else:
-            return jsonify({"error": "Unable to generate a sentence"}), 500
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-# Flask route to generate multiple sentences (e.g., paragraphs)
 @app.route('/generate_paragraph', methods=['GET'])
 def generate_paragraph():
-    try:
-        sentences = []
-        num_sentences = int(request.args.get('num_sentences', 5))
-        for _ in range(num_sentences):
-            sentence = text_model.make_sentence(tries=100)
-            if sentence:
-                sentences.append(sentence)
-        if sentences:
-            return jsonify({"paragraph": " ".join(sentences)})
-        else:
-            return jsonify({"error": "Unable to generate a paragraph"}), 500
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    num_sentences = int(request.args.get('num_sentences', 5))
+    paragraph = ' '.join([text_model.make_sentence() for _ in range(num_sentences)])
+    return {'paragraph': paragraph}
 
-# Run the app
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # Get the port from the environment variable or default to 5000
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
