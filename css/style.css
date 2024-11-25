@@ -1,121 +1,133 @@
 /* Global Styles */
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #000000; /* Black background */
+  color: #ffffff; /* White text */
+  line-height: 1.6;
+}
+
+/* Navigation Bar */
+.navbar {
+  background-color: #000000; /* Black background */
+  color: #FFFFFF; /* White text */
+  padding: 1em;
+  text-align: center; /* Center aligns the navbar items */
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* Adds a subtle shadow for separation */
+}
+
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Align links in the center */
+  align-items: center; /* Vertically align links */
+  gap: 20px; /* Space between each link */
+}
+
+.navbar li {
+  margin: 0; /* Removed margin to rely solely on flex gap */
+}
+
+.navbar a {
+  color: #FFFFFF; /* White text */
+  text-decoration: none;
+  font-weight: bold; /* Makes the links bold without using <b> tag */
+  padding: 10px 15px; /* Adds padding to make links more clickable */
+  transition: color 0.2s ease, background-color 0.2s ease; /* Smooth transition for hover effect */
+}
+
+.navbar a:hover {
+  color: #cccccc; /* Light gray text on hover */
+  background-color: #333333; /* Adds a subtle background highlight on hover */
+  border-radius: 4px; /* Rounds the edges of the hover effect */
+}
+
+/* Single-Column Layout */
+
+.container {
+  max-width: 800px; /* Adjust the width as needed */
+  margin: 40px auto;
+  padding: 25px;
+  background-color: #222222; /* Dark background for container */
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Two-Column Layout */
+
+.container {
+  max-width: 800px; /* Adjust the width as needed */
+  margin: 40px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.column {
+  flex-basis: 45%; /* Adjust the width as needed */
+  padding: 25px;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+ .column {
+    flex-basis: 100%;
   }
-  
-  body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: #000000; /* Black background */
-    color: #ffffff; /* White text */
-    line-height: 1.6;
-  }
-  .tab {
-    margin-left: 40px;
-  }
-  
-  blockquote {
-    background-color: #000000;
-    border-left: 4px solid #ccc;
-    padding: 20px;
-    margin: 20px;
-    font-size: 18px;
-    font-style: normal;
-  }
-  
-  blockquote p {
-    margin-bottom: 10px;
-  }
-  
-  cite {
-    font-size: 16px;
-    font-style: normal;
-    color: #FFFFFF;
-    display: block;
-    margin-top: 10px;
-  }
-  
-  /* Navigation Bar */
-  
-  .navbar {
-    background-color: #000000; /* Black background */
-    color: #FFFFFF; /* White text */
-    padding: 1em;
-    text-align: left;
-  }
-  
-  .navbar ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: no-space-between;
-  }
-  
-  .navbar li {
-    margin-right: 20px;
-  }
-  
-  .navbar a {
-    color: #FFFFFF; /* White text */
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
-  
-  .navbar a:hover {
-    color: #cccccc; /* Light gray text on hover */
-  }
-  
-  /* Single-Column Layout */
-  
-  .container {
-    max-width: 800px; /* Adjust the width as needed */
-    margin: 40px auto;
-    padding: 25px;
-  }
-  
-  /* Two-Column Layout */
-  
-  .container {
-    max-width: 800px; /* Adjust the width as needed */
-    margin: 40px auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .column {
-    flex-basis: 45%; /* Adjust the width as needed */
-    padding: 25px;
-  }
-  
-  /* Responsive Design */
-  
-  @media (max-width: 768px) {
-   .column {
-      flex-basis: 100%;
-    }
-  }
-  
-  /* Additional Styles */
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: bold;
-    margin-bottom: 0px;
-  }
-  
-  p {
-    margin-bottom: 15px;
-  }
-  
-  a {
-    color: #337ab7; /* Blue text for links */
-    text-decoration: none;
-  }
-  
-  a:hover {
-    color: #23527c; /* Darker blue text on hover */
-  }
-     
+}
+
+/* Additional Styles */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+a {
+  color: #337ab7; /* Blue text for links */
+  text-decoration: none;
+}
+
+a:hover {
+  color: #23527c; /* Darker blue text on hover */
+}
+
+blockquote {
+  background-color: #000000;
+  border-left: 4px solid #ccc;
+  padding: 20px;
+  margin: 20px;
+  font-size: 18px;
+  font-style: normal;
+}
+
+blockquote p {
+  margin-bottom: 10px;
+}
+
+cite {
+  font-size: 16px;
+  font-style: normal;
+  color: #FFFFFF;
+  display: block;
+  margin-top: 10px;
+}
+
+/* Tab Class for Indentation */
+
+.tab {
+  margin-left: 40px;
+}
