@@ -35,12 +35,12 @@
       font-weight: bold;
       font-size: 1.5em;
       text-align: left;
+      margin-bottom: 20px;
     }
 
     .poem-body {
       white-space: pre-wrap;
       font-size: 16px;
-      margin-top: 20px;
     }
 
     /* Navigation Bar */
@@ -96,15 +96,14 @@
 
   <!-- Poem Container -->
   <div class="poem-container">
-    <h1 class="poem-title">The Waves Forget the Shoreline</h1>
+    <h1 id="poem-title" class="poem-title"></h1>
     <div id="poem-text" class="poem-body"></div>
   </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // Corrected to use backticks for multiline string
-      const poem = `The Waves Forget the Shoreline
-here, before the smoke painted the sky
+      const poemTitle = "The Waves Forget the Shoreline";
+      const poemBody = `here, before the smoke painted the sky
 with shadows, before stone towers rose
 to watch over the sand like sentinels.
 No room remains for the sea’s slow song—
@@ -160,24 +159,40 @@ a world remade in silence.
       \\_   \\
       \`----'`;
 
-      let i = 0;
+      let titleIndex = 0;
+      let bodyIndex = 0;
 
+      // Function to type out the title
+      function typeTitle() {
+        const container = document.getElementById('poem-title');
+
+        if (titleIndex < poemTitle.length) {
+          container.innerHTML += poemTitle.charAt(titleIndex);
+          titleIndex++;
+          setTimeout(typeTitle, Math.floor(Math.random() * 100) + 50); // Random speed between 50 and 150 ms
+        } else {
+          // Once title is finished, start typing the body
+          setTimeout(typePoem, 500); // Short delay before starting the body
+        }
+      }
+
+      // Function to type out the poem body
       function typePoem() {
         const container = document.getElementById('poem-text');
 
-        if (i < poem.length) {
-          if (poem.charAt(i) === '\n') {
+        if (bodyIndex < poemBody.length) {
+          if (poemBody.charAt(bodyIndex) === '\n') {
             container.innerHTML += '<br>';
-          } else if (poem.charAt(i) === ' ') {
+          } else if (poemBody.charAt(bodyIndex) === ' ') {
             container.innerHTML += '&nbsp;';
           } else {
-            container.innerHTML += poem.charAt(i);
+            container.innerHTML += poemBody.charAt(bodyIndex);
           }
-          i++;
+          bodyIndex++;
 
           // Randomize delay to make typing more human-like
           let delay;
-          const char = poem.charAt(i - 1);
+          const char = poemBody.charAt(bodyIndex - 1);
 
           if (char === ',' || char === '.' || char === '—' || char === '\n') {
             // Longer delay after punctuation marks to simulate pauses
@@ -194,7 +209,8 @@ a world remade in silence.
         }
       }
 
-      typePoem();
+      // Start typing the title first
+      typeTitle();
     });
   </script>
 </body>
