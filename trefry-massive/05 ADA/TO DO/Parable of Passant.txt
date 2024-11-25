@@ -1,0 +1,3 @@
+Passant: a coplanar straight line that does not touch the circle.
+
+Man wandering between zones of exile forever

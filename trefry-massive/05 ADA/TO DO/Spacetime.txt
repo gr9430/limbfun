@@ -1,0 +1,75 @@
+free particles move along paths of "the shortest possible distance," or geodesics, in other words, particles try their best to move on straight lines, but in a curved spacetime there might not be any straight lines--in the sense we are familiar with from Euclidean geometry--so they do the next best thing,
+
+once we become more familiar with the spirit of GR, it will make perfect sense to think of a ball flying through the air as being more truly "unaccelerated" than one sitting on a table--the one sitting on a table is being deflected away from the geodesic it would like to be on--which is why we feel a force on our feet as we stand on the Earth,
+
+we live in a world in which spacetime curvature is very small, and particles are for the most part moving quite slowly compared to the speed of light, consequently, the mechanics of Galileo and Newton comes very naturally to us, even though it is only an approximation to the deeper story, so we will set about learning the deeper story by gradually stripping away the layers of useful but misleading Newtonian intuition, 
+
+spacetime is a fourdimensional set, with elements labeled by three dimensions of space and one of time, an individual point in spacetime is called an event, the path of a particle is a curve through spacetime, a parameterized onedimensional set of events, called the worldline
+
+there is no well-defined notion of two separated events occurring the same time, that is not to say that spacetime is completely structureless, rather, at any event we can define a light cone, which is the locus of paths through spacetime that could conceivably be taken by light rays passing through this event, the absolute division, in Newtonian mechanics, of spacetime into unique slices of space parameterized by time, is replaced by a rule that says that physical particles cannot travel faster than light, and consequently move alone paths that always remain inside these light cones, 
+
+it is useful to think of a plane as an intrinsically twodimensional space, rather than as two fundamentally distinct onedimensional spaces brought arbitrarily together, although we use two distinct numbers to label each point, the numbers are not the essence of the geometry, since we can rotate axes into each other while leaving distances unchanged, 
+
+we can construct any number of inertial frames via this procedure, differing from the first one by an offset in initial position and time, angle, and--constant--velocity
+
+a set of points that are all connected to a single event by straight lines moving at the speed of light is the light cone, since if we imagine including one more spatial coordinate, the two diagonal lines get completed into a cone, light cones are naturally divided into future and past--the set of all points inside the future and past light cones of a point p are called timelike separated from p, while those outside the light cones are spacelike separated and those on the cones are lightlike or null separated from p,
+
+in relativity, t is just a convenient coordinate, and the elapsed time depends on the path along which you travel, an important distinction is that the nonstraight path has a shorter proper time, in space, the shortest distance between two points is a straight line--in spacetime, the longest proper time between two events is a straight trajectory
+
+to each point p in spacetime we associate the set of all possible vectors located at that point--this set is known as the tangent space at p, or tp
+
+just as a dual vector is a linear map from vectors to R, a tensor T of type--or rank--k or l is a multilinear map from a collection of dual vectors and vectors to R
+
+another tensor is the Kronecker delta, of type--1,1--, thought of as a map from vectors to vectors--or oneforms to oneforms--the Kronecker delta is simply the identity map, 
+
+a remarkable property of the above tensors--the metric, the inverse metric, the Kronecker delta, and the Levi-Civita symbol--is that, even though they all transform accordning to the tensor transformation law, their components remain unchanged in any inertial coordinate system in flat spacetime,
+
+notice that round and square brackets denote symmetrization and assymetrization,
+
+let's review how physics works in Minkowski spactime, start with the worldline of a single particle, this is specified by a map R to M, where M is the manifold representing spacetime, we usually think of the path as a parameterized curve, as mentioned earlier, the tangent vector to this path is dx over dy--note that it depends on parameterization--
+
+the paths of massive particles--which will always be timelike--since proper time is measured by a clock traveling on a timelike worldline, it is convenient to use tau as the parameter along the path, the tangent vector in this paramterization is known as the fourvelocity--the fourvelocity is automatically normalized--this abolute normalization is a reflection of the fact that the fourvelocity is not a velocity through space, which can of course take on different magnitudes, but a <<velocity through spacetime>>, through which one will always travel at the same rate,
+
+rather than specify the individual momentum vectors of each particle, we instead describe the system as a fluid--a continuum characterized by macroscopic quantities such as density, pressure, entropy, viscosity, and so on, although such a fluid may be composed of many individual particles with different fourvelocities, the fluid itself has an overall fourvelocity field, just think of everyday fluids like air or water, where it makes sense to define a velocity for each individual fluid element even though nearby molecules may have appreciable relative velocities,
+
+let's start with the simple example of dust--cosmologists tend to use <<matter>> as a synonym for dust--dust may be defined in flat spacetime as a collection of particles at rest with respect to each other, the fourvelocity field Uu--x--is clearly going to be the constant fourvelocity of the individual particles, indeed, its components will be the same at each point, define the numberflux fourvector to be the number density of the particles as measured in their rest frame,
+
+a perfect fluid is one that can be completely specified by two quantities, the restframe energy density specifying the pressure in every direction, and an isotropic restframe pressure,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
