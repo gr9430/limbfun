@@ -1,8 +1,6 @@
-import os
-from flask import Flask, request
 import markovify
-
-app = Flask(__name__)
+import os
+from flask import Flask, request, jsonify
 
 print("Loading texts...")
 
@@ -42,13 +40,20 @@ print("\nBuilding Markov model...")
 text_model = markovify.Text(combined_text, state_size=2)
 print("Markov model built successfully.")
 
+# Flask app setup
+app = Flask(__name__)
+
 @app.route('/generate_paragraph', methods=['GET'])
 def generate_paragraph():
-    num_sentences = int(request.args.get('num_sentences', 5))
-    paragraph = ' '.join([text_model.make_sentence() for _ in range(num_sentences)])
-    return {'paragraph': paragraph}
+    num_sentences = int(request.args.get("num_sentences", 5))
+    paragraph = ""
+    for _ in range(num_sentences):
+        sentence = text_model.make_sentence(tries=100)
+        if sentence:
+            paragraph += sentence + " "
 
-if __name__ == '__main__':
-    # Get the port from the environment variable or default to 5000
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    return jsonify({"paragraph": paragraph.strip()})
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
