@@ -23,9 +23,9 @@
     .poem-container {
       max-width: 800px;
       padding: 20px;
-      background-color: #222222;
+      background-color: #000000;
       border-radius: 5px;
-      border: 1px solid #444444;
+      border: 1px solid #000000;
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
       line-height: 1.4;
       margin-top: 20px;
@@ -101,7 +101,6 @@
     <h1 class="poem-title">The Waves Forget the Shoreline</h1>
     <div id="poem-text" class="poem-body"></div>
   </div>
-
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const poem = `here, before the smoke painted the sky
@@ -164,6 +163,7 @@ a world remade in silence.
 
       function typePoem() {
         const container = document.getElementById('poem-text');
+        
         if (i < poem.length) {
           if (poem.charAt(i) === '\n') {
             container.innerHTML += '<br>';
@@ -173,13 +173,28 @@ a world remade in silence.
             container.innerHTML += poem.charAt(i);
           }
           i++;
-          let delay = Math.floor(Math.random() * 100) + 80; // Random speed between 80 and 180 ms
+
+          // Randomize delay to make typing more human-like
+          let delay;
+          const char = poem.charAt(i - 1);
+
+          if (char === ',' || char === '.' || char === '—' || char === '\n') {
+            // Longer delay after punctuation marks to simulate pauses
+            delay = Math.floor(Math.random() * 300) + 200; // Between 200 and 500 ms
+          } else if (Math.random() < 0.15) {
+            // Occasionally add a longer pause
+            delay = Math.floor(Math.random() * 300) + 200; // Between 200 and 500 ms
+          } else {
+            // Standard typing speed with more variation
+            delay = Math.floor(Math.random() * 60) + 40; // Between 40 and 100 ms
+          }
+
           setTimeout(typePoem, delay);
         }
       }
 
       typePoem();
     });
-  </script>
+</script>
 </body>
 </html>
