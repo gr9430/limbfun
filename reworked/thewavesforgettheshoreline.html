@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animating The Waves Forget the Shoreline</title>
   <link rel="stylesheet" href="css/style.css">
+  <title>Animating The Waves Forget the Shoreline</title>
   <style>
     /* Page-specific styles */
     body {
@@ -43,45 +43,43 @@
       margin-top: 20px;
     }
 
+    /* Navigation Bar */
+    .navbar {
+      background-color: #000000; /* Black background */
+      color: #FFFFFF; /* White text */
+      padding: 1em;
+      text-align: center; /* Center aligns the navbar items */
+      width: 100%;
+      box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* Adds a subtle shadow for separation */
+    }
 
-/* Navigation Bar */
-.navbar {
-  background-color: #000000; /* Black background */
-  color: #FFFFFF; /* White text */
-  padding: 1em;
-  text-align: center; /* Center aligns the navbar items */
-  width: 100%;
-  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* Adds a subtle shadow for separation */
-}
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center; /* Align links in the center */
+      align-items: center; /* Vertically align links */
+      gap: 20px; /* Space between each link */
+    }
 
-.navbar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center; /* Align links in the center */
-  align-items: center; /* Vertically align links */
-  gap: 20px; /* Space between each link */
-}
+    .navbar li {
+      margin: 0; /* Removed margin to rely solely on flex gap */
+    }
 
-.navbar li {
-  margin: 0; /* Removed margin to rely solely on flex gap */
-}
+    .navbar a {
+      color: #FFFFFF; /* White text */
+      text-decoration: none;
+      font-weight: bold; /* Makes the links bold without using <b> tag */
+      padding: 10px 15px; /* Adds padding to make links more clickable */
+      transition: color 0.2s ease, background-color 0.2s ease; /* Smooth transition for hover effect */
+    }
 
-.navbar a {
-  color: #FFFFFF; /* White text */
-  text-decoration: none;
-  font-weight: bold; /* Makes the links bold without using <b> tag */
-  padding: 10px 15px; /* Adds padding to make links more clickable */
-  transition: color 0.2s ease, background-color 0.2s ease; /* Smooth transition for hover effect */
-}
-
-.navbar a:hover {
-  color: #cccccc; /* Light gray text on hover */
-  background-color: #333333; /* Adds a subtle background highlight on hover */
-  border-radius: 4px; /* Rounds the edges of the hover effect */
-}
-
+    .navbar a:hover {
+      color: #cccccc; /* Light gray text on hover */
+      background-color: #333333; /* Adds a subtle background highlight on hover */
+      border-radius: 4px; /* Rounds the edges of the hover effect */
+    }
   </style>
 </head>
 <body>
@@ -101,9 +99,12 @@
     <h1 class="poem-title">The Waves Forget the Shoreline</h1>
     <div id="poem-text" class="poem-body"></div>
   </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      const poem = `here, before the smoke painted the sky
+      // Corrected to use backticks for multiline string
+      const poem = `The Waves Forget the Shoreline
+here, before the smoke painted the sky
 with shadows, before stone towers rose
 to watch over the sand like sentinels.
 No room remains for the sea’s slow song—
@@ -163,7 +164,7 @@ a world remade in silence.
 
       function typePoem() {
         const container = document.getElementById('poem-text');
-        
+
         if (i < poem.length) {
           if (poem.charAt(i) === '\n') {
             container.innerHTML += '<br>';
@@ -195,6 +196,6 @@ a world remade in silence.
 
       typePoem();
     });
-</script>
+  </script>
 </body>
 </html>
