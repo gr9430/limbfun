@@ -18,10 +18,10 @@
     .poem-container {
       max-width: 800px;
       padding: 20px;
-      background-color: #222222; /* Slightly lighter black for contrast */
+      background-color: #000000;
       border-radius: 5px;
-      border: 1px solid #444444; /* Dark grey for subtle border effect */
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* White shadow to create glow */
+      border: 1px solid #000000;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       line-height: 1.4;
     }
 
@@ -56,7 +56,7 @@
     }
 
     a {
-      color: #ffffff; /* Ensures links are visible on dark background */
+      color: #ffffff;
       text-decoration: none;
     }
 
@@ -68,80 +68,65 @@
 <body>
   <div class="poem-container">
     <h1 class="poem-title">The Waves Forget the Shoreline</h1>
-    <div class="poem-body">
-      here, before the smoke painted the sky<br>
-      with shadows, before stone towers rose<br>
-      to watch over the sand like sentinels.<br>
-      No room remains for the sea’s slow song—<br>
-      edges cutting across the sky, blind<br>
-      to the waves.<br><br>
-
-      <div class="indented">
-        Paths carve where sand once shifted<br>
-        beneath unsteady feet. Iron holds firm,<br>
-        sharp lines drawn into the earth,<br>
-        a geometry leading forward.<br>
-        The weight of time falls in rhythm,<br>
-        not like waves that forget what they touch.
-      </div>
-
-      <div class="graphic-line">
-~~~~~~~~~~~~~~~~~~~~<br>
- ~~~~~~~~ ~~~~~~~~<br>
-  ~~~~ ~~~~~ ~~~~~ ~~~~<br>
-~~~~~~~~~~~~~~~~~~~~
-      </div>
-
-      Clocks replace the pulse of the shore,<br>
-      eyes shifting toward rising smoke,<br>
-      toward fires held behind doors, where light bends<br>
-      against walls built of stone and air grows heavy.<br>
-      Feet forget the softness beneath them—<br>
-      now the sky is laced with shadows,<br>
-      and the wind carries only whispers<br>
-      through spaces drawn by hands dreaming of steel.<br><br>
-
-      <div class="indented">
-        Towers rise to be followed, engines hum<br>
-        in hours marked by invisible hands.<br>
-        Wheels spin in the air,<br>
-        the hum surrounds,<br>
-        carrying a rhythm only steel can hear.
-      </div>
-
-      <div class="ascii-art">
-          ||||||||<br>
-          ||||||||<br>
-        ||||||||||<br>
-        ||||||||||<br>
-      ||||||||||||
-      ||||||||||||||||||||||||<br>
-        ||||||||      ||||||||    ||||||||||    ||||||||||  ||||||||||||  ||||||<br>
-        <br>
-               ||||||<br>
-               ||||||<br>
-               ||||||<br>
-               ||||||<br>
-               ||||||<br>
-               ||||||<br>
-               ||||||<br>
-               ||||||<br>
-                  l<br>
-      </div>
-
-      <br>
-      The first sound of waves breaking on the shore,<br>
-      the pull of the tide soft as breath,<br>
-      small hands once reached for shells as if to hold the sea.<br>
-      Now the wind moves like a thought, caught<br>
-      between the spaces where light once fell freely.<br>
-      The air carries only shadows now—<br>
-      a world remade in silence.<br><br>
-
-      <div class="ascii-art">
-        __    __(o'\\   &lt;     \\    \\_    \\        \`----'
-      </div>
-    </div>
+    <div id="poem-text" class="poem-body"></div>
   </div>
+
+  <script>
+    // JavaScript to animate typing effect
+    const poem = `The Waves Forget the Shoreline
+here, before the smoke painted the sky
+with shadows, before stone towers rose
+to watch over the sand like sentinels.
+No room remains for the sea’s slow song—
+edges cutting across the sky, blind
+to the waves.
+
+             Paths carve where sand once shifted
+             beneath unsteady feet. Iron holds firm,
+             sharp lines drawn into the earth,
+             a geometry leading forward.
+             The weight of time falls in rhythm,
+             not like waves that forget what they touch.
+~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~ ~~~~~~~~ ~~~~ ~~~~~ ~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~
+Clocks replace the pulse of the shore,
+eyes shifting toward rising smoke,
+toward fires held behind doors, where light bends
+against walls built of stone and air grows heavy.
+Feet forget the softness beneath them—
+now the sky is laced with shadows,
+and the wind carries only whispers
+through spaces drawn by hands dreaming of steel.
+
+             Towers rise to be followed, engines hum
+             in hours marked by invisible hands.
+             Wheels spin in the air,
+             the hum surrounds,
+             carrying a rhythm only steel can hear.
+||||||||      ||||||||    ||||||||||    ||||||||||  ||||||||||||  ||||||||||||||||||||||||||||
+
+The first sound of waves breaking on the shore,
+the pull of the tide soft as breath,
+small hands once reached for shells as if to hold the sea.
+Now the wind moves like a thought, caught
+between the spaces where light once fell freely.
+The air carries only shadows now—
+a world remade in silence.
+
+    __    __(o'\\   <     \\    \\_    \\        \`----'`;
+
+    let i = 0;
+
+    function typePoem() {
+      const container = document.getElementById('poem-text');
+      if (i < poem.length) {
+        container.textContent += poem.charAt(i);
+        i++;
+        setTimeout(typePoem, 20); // Adjust typing speed as needed
+      }
+    }
+
+    // Start typing animation once the script is loaded
+    typePoem();
+  </script>
 </body>
 </html>
