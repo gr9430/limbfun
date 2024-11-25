@@ -1,3 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Animating The Waves Forget the Shoreline</title>
+  <style>
+    /* Page-specific styles */
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #000000; /* Black background */
+      color: #ffffff; /* White text */
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .poem-container {
+      max-width: 800px;
+      padding: 20px;
+      background-color: #000000;
+      border-radius: 5px;
+      border: 1px solid #000000;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      line-height: 1.4;
+      margin-top: 20px;
+    }
+
+    .poem-title {
+      font-weight: bold;
+      font-size: 1.5em;
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .poem-body {
+      white-space: pre-wrap;
+      font-size: 16px;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      background-color: #000000; /* Black background */
+      color: #FFFFFF; /* White text */
+      padding: 1em;
+      text-align: center; /* Center aligns the navbar items */
+      width: 100%;
+      box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* Adds a subtle shadow for separation */
+    }
+
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center; /* Align links in the center */
+      align-items: center; /* Vertically align links */
+      gap: 20px; /* Space between each link */
+    }
+
+    .navbar li {
+      margin: 0; /* Removed margin to rely solely on flex gap */
+    }
+
+    .navbar a {
+      color: #FFFFFF; /* White text */
+      text-decoration: none;
+      font-weight: bold; /* Makes the links bold without using <b> tag */
+      padding: 10px 15px; /* Adds padding to make links more clickable */
+      transition: color 0.2s ease, background-color 0.2s ease; /* Smooth transition for hover effect */
+    }
+
+    .navbar a:hover {
+      color: #cccccc; /* Light gray text on hover */
+      background-color: #333333; /* Adds a subtle background highlight on hover */
+      border-radius: 4px; /* Rounds the edges of the hover effect */
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="https://gr9430.github.io/ENG6806/">Home</a></li>
+      <li><a href="textual.html">Textual</a></li>
+      <li><a href="visual.html">Visual</a></li>
+      <li><a href="reworked.html">Reworked</a></li>
+      <li><a href="mailto:glenn.ritchey@ucf.edu">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Poem Container -->
+  <div class="poem-container">
+    <h1 id="poem-title" class="poem-title"></h1>
+    <div id="poem-text" class="poem-body"></div>
+  </div>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const poemTitle = "The Waves Forget the Shoreline";
