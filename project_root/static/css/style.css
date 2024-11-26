@@ -14,6 +14,21 @@ body {
   margin: 0; /* Remove default browser margin */
 }
 
+/* Alignment for Header Outside Container */
+.aligned-header {
+  max-width: 800px; /* Align with container width */
+  margin: 40px auto; /* Center it horizontally with spacing */
+  padding: 0 25px; /* Match the padding of the container */
+  text-align: left; /* Left-align text */
+}
+
+.aligned-header h1 {
+  font-size: 2.5rem; /* Adjust font size for emphasis */
+  color: #ffffff; /* White text */
+  text-align: left; /* Ensure alignment */
+  margin-bottom: 20px;
+}
+
 /* Navigation Bar */
 .navbar {
   background-color: #000000; /* Black background */
