@@ -1,10 +1,14 @@
 import markovify
 import os
 from flask import Flask, request, jsonify, render_template
+import logging
+
+# Set up logging for debugging and tracking the application flow
+logging.basicConfig(level=logging.INFO)
 
 app = Flask(__name__)
 
-print("Loading texts...")
+logging.info("Loading texts...")
 
 # Directory containing your collection of text files
 text_directory = "trefry-massive"  # Relative path so that it works in Docker/Render
@@ -29,23 +33,18 @@ for root, _, files in os.walk(text_directory):
                         combined_text += file.read() + "\n"
                 except Exception as e:
                     unprocessed_files.append(file_path)
-                    print(f"Warning: Could not process file {file_path} due to error: {e}")
+                    logging.warning(f"Warning: Could not process file {file_path} due to error: {e}")
             file_count += 1
 
-print(f"\nCompleted processing files. {len(unprocessed_files)} files were skipped.")
-print(f"Length of combined text: {len(combined_text)}")
+logging.info(f"\nCompleted processing files. {len(unprocessed_files)} files were skipped.")
+logging.info(f"Length of combined text: {len(combined_text)}")
 
 if len(combined_text) == 0:
     raise ValueError("No text data found to build the Markov model. Please ensure text files are present.")
 
-print("\nBuilding Markov model...")
+logging.info("\nBuilding Markov model...")
 text_model = markovify.Text(combined_text, state_size=2)
-print("Markov model built successfully.")
-
-# Home route to render the HTML page
-@app.route('/')
-def home():
-    return render_template('index.html')
+logging.info("Markov model built successfully.")
 
 # Flask route to generate a paragraph with a specified number of sentences
 @app.route("/generate_paragraph", methods=["GET"])
@@ -55,10 +54,17 @@ def generate_paragraph():
         paragraph = " ".join(text_model.make_sentence() for _ in range(num_sentences))
         return jsonify({"paragraph": paragraph})
     except Exception as e:
+        logging.error(f"Error occurred while generating paragraph: {e}")
         return jsonify({"error": str(e)}), 500
+
+# Home route to render an HTML page
+@app.route("/")
+def home():
+    return render_template("index.html")
 
 # Main entry point to run the application
 if __name__ == "__main__":
+    logging.info("Starting Flask application")
     # Get the PORT from environment variable, or use 5000 as a default
     port = int(os.environ.get("PORT", 5000))
 
