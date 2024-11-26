@@ -1,6 +1,6 @@
 import markovify
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
@@ -41,6 +41,11 @@ if len(combined_text) == 0:
 print("\nBuilding Markov model...")
 text_model = markovify.Text(combined_text, state_size=2)
 print("Markov model built successfully.")
+
+# Home route to render the HTML page
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 # Flask route to generate a paragraph with a specified number of sentences
 @app.route("/generate_paragraph", methods=["GET"])
