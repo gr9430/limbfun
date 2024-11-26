@@ -82,3 +82,7 @@ def generate_paragraph():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
+import logging
+logging.basicConfig(level=logging.INFO)
+logging.info(f"Starting Flask server on port {port}")
