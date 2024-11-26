@@ -41,13 +41,12 @@ for root, _, files in os.walk(text_directory):
                     with open(file_path, "r", encoding=encoding) as file:
                         combined_text += file.read() + "\n"
                         success = True
-                        break  # Exit the loop if the file was successfully read
+                        break
                 except Exception as e:
-                    continue  # Try the next encoding
+                    logging.warning(f"File {file_path} failed with encoding {encoding}: {e}")
 
             if not success:
                 unprocessed_files.append(file_path)
-                logging.warning(f"Warning: Could not process file {file_path} due to encoding issues.")
             file_count += 1
 
 logging.info(f"Completed processing files. {file_count} files were processed. {len(unprocessed_files)} files were skipped.")
@@ -64,36 +63,34 @@ logging.info("Markov model built successfully.")
 # Define Flask routes
 @app.route("/")
 def home():
-    return render_template("index.html")
+    try:
+        return render_template("index.html")
+    except Exception as e:
+        logging.error(f"Error rendering template: {e}")
+        return "<h1>Welcome to Recapitating Massive!</h1><p>Ensure the templates folder contains index.html.</p>", 500
 
 @app.route("/generate_paragraph", methods=["GET"])
 def generate_paragraph():
     try:
-        # Get the number of sentences to generate from the request (default: 5)
         num_sentences = int(request.args.get("num_sentences", 5))
-        sentences = []
+        sentences = [text_model.make_sentence() for _ in range(num_sentences) if text_model.make_sentence()]
 
-        # Generate the specified number of sentences
-        for _ in range(num_sentences):
-            sentence = text_model.make_sentence()
-            if sentence:
-                sentences.append(sentence)
-
-        # If no sentences could be generated, return an error
         if len(sentences) == 0:
             return jsonify({"error": "Unable to generate sentences."}), 500
 
-        # Combine sentences into a paragraph
         paragraph = " ".join(sentences)
         return jsonify({"paragraph": paragraph})
 
     except Exception as e:
-        # Handle any exceptions and return an error message
         logging.error(f"Error generating paragraph: {e}")
         return jsonify({"error": str(e)}), 500
+
+@app.route("/health", methods=["GET"])
+def health():
+    return jsonify({"status": "ok", "message": "Flask app is running!"})
 
 # Main entry point to run the application
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     logging.info(f"Starting Flask server on port {port}")
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port, debug=True)

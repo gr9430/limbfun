@@ -39,37 +39,34 @@
     <!-- JavaScript -->
     <script>
         document.getElementById("generateBtn").addEventListener("click", function () {
-            const apiURL = "https://recapitating-massive.onrender.com/"; 
-            const loading = document.getElementById("loading");
-            const output = document.getElementById("output");
+            // Backend URL
+            const apiURL = "https://recapitating-massive.onrender.com/generate_paragraph?num_sentences=5";
     
-            // Show the loading message and clear previous output
-            loading.style.display = "block";
-            output.innerText = "";
+            // Show loading message
+            document.getElementById("output").innerText = "Generating paragraph...";
     
+            // Fetch data from the backend
             fetch(apiURL)
-                .then(response => {
+                .then((response) => {
                     if (!response.ok) {
-                        throw new Error("Network response was not ok");
+                        throw new Error(`HTTP error! Status: ${response.status}`);
                     }
                     return response.json();
                 })
-                .then(data => {
-                    // Hide the loading message and display the generated paragraph
-                    loading.style.display = "none";
-    
+                .then((data) => {
                     if (data.paragraph) {
-                        output.innerText = data.paragraph;
+                        // Display the generated paragraph
+                        document.getElementById("output").innerText = data.paragraph;
                     } else {
-                        output.innerText = "Error generating text.";
+                        // Handle case where paragraph generation failed
+                        document.getElementById("output").innerText = "Error: Unable to generate paragraph.";
                     }
                 })
-                .catch(error => {
-                    // Hide the loading message and display the error
-                    loading.style.display = "none";
-                    output.innerText = "Error: " + error.message;
+                .catch((error) => {
+                    console.error("Error:", error);
+                    document.getElementById("output").innerText = "Error: Unable to fetch data from the backend.";
                 });
         });
-    </script>    
-</body>
+    </script>
+    </body>
 </html>
