@@ -36,31 +36,48 @@ for root, _, files in os.walk(text_directory):
                     logging.warning(f"Warning: Could not process file {file_path} due to error: {e}")
             file_count += 1
 
+#Log the summary of file processing
 logging.info(f"\nCompleted processing files. {len(unprocessed_files)} files were skipped.")
 logging.info(f"Length of combined text: {len(combined_text)}")
 
+#If no text is loaded, raise an error
 if len(combined_text) == 0:
     raise ValueError("No text data found to build the Markov model. Please ensure text files are present.")
 
+#Build the Markov model
 logging.info("\nBuilding Markov model...")
 text_model = markovify.Text(combined_text, state_size=2)
 logging.info("Markov model built successfully.")
+
+#Define the home rout
+@app.route("/")
+def home():
+        return render_template("index.html")
 
 # Flask route to generate a paragraph with a specified number of sentences
 @app.route("/generate_paragraph", methods=["GET"])
 def generate_paragraph():
     try:
         num_sentences = int(request.args.get("num_sentences", 5))
-        paragraph = " ".join(text_model.make_sentence() for _ in range(num_sentences))
+        sentences = []
+
+        for _ in range(num_sentences):
+            sentence = None
+            attempts = 0
+            while sentence is None and attempts < 5:
+                sentence = text_model.make_sentence()
+                attempts += 1
+
+            if sentence:
+                sentences.append(sentence)
+
+        if len(sentences) == 0:
+            return jsonify({"error": "Unable to generate sentences."}), 500
+
+        paragraph = " ".join(sentences)
         return jsonify({"paragraph": paragraph})
     except Exception as e:
-        logging.error(f"Error occurred while generating paragraph: {e}")
         return jsonify({"error": str(e)}), 500
-
-# Home route to render an HTML page
-@app.route("/")
-def home():
-    return render_template("index.html")
 
 # Main entry point to run the application
 if __name__ == "__main__":
