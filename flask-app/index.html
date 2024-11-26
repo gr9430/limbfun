@@ -8,20 +8,34 @@
     <!-- favicon -->
     <link rel="icon" href="images/itc.ico" type="image/x-icon">
 
-    <!-- Link to CSS -->
-    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Recapitating Massive: A Markov Model of John Trefry's <i>Massive</i></h1>
+  <link rel="stylesheet" href="project_root/static/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <ul>
+      <b><li><a href="https://gr9430.github.io/ENG6806/index.html">Home</a></li></b>
+      <b><li><a href="https://gr9430.github.io/ENG6806/originalprojects.html">Original Projects</a></li></b>
+      <b><li><a href="https://gr9430.github.io/ENG6806/enhancedprojects.html">Enhanced Projects</a></li></b>
+      <b><li><a href="https://gr9430.github.io/ENG6806/flask-app/index.html">Public Humanities Prototype</a></li>
+      <b><li><a href="mailto:glenn.ritchey@ucf.edu">Contact</a></li></b>
+    </ul>
+  </nav>
+  
+        <h1>Recapitating Massive: A Markov Model of John Trefry's <i>Massive</i></h1>
     <p>
         This basic web application allows the reader to become an automatic author.<br>
         By pressing the 'Generate Paragraph' button, you will develop a unique paragraph based on the 1,000,000+ words that make up <i>Massive</i>.<br>
         Use this model as often as you need to build your novel.
     </p>
+    <div class="container">
     <section><button id="generateBtn">Generate Paragraph</button></section>
     <p id="loading" style="display: none;">Loading...</p>
     <!-- Output for generated paragraph-->
     <section> <p id="output"></p></section>
+    </div>
+    <div class="container">
  <section><h1>About <i>Massive</i></h1>
     <p>
         The 4th book by John Trefry, concerning the life of Osip Mandelstam
@@ -31,11 +45,13 @@
         actualized by reading, does not sit inertly as a complete work within its
         closed covers.
     </p></section>
+    
    <section><p>Read an excerpt from <a href="https://minorliteratures.com/2024/03/14/massive-excerpt-john-trefry" target="_blank"><i>Massive</i></a></p></section>
     <br>
 <section>
     <p><i>Massive</i> at <a href="https://asterismbooks.com/product/massive">Asterism Books</a>.</p>
 </section>
+</div>
     <!-- JavaScript -->
     <script>
         document.getElementById("generateBtn").addEventListener("click", function () {
