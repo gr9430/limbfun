@@ -43,6 +43,10 @@ print("Markov model built successfully.")
 # Flask app setup
 app = Flask(__name__)
 
+@app.route('/')
+def index():
+    return "Welcome to the Markov Text Generator API!"
+
 @app.route('/generate_paragraph', methods=['GET'])
 def generate_paragraph():
     num_sentences = int(request.args.get("num_sentences", 5))
@@ -55,5 +59,7 @@ def generate_paragraph():
     return jsonify({"paragraph": paragraph.strip()})
 
 if __name__ == "__main__":
+    # Get the port from environment variable or set default to 5000
     port = int(os.environ.get("PORT", 5000))
+    # Run the application, binding to all available IP addresses
     app.run(host="0.0.0.0", port=port, debug=True)
