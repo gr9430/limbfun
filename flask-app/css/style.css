@@ -11,6 +11,7 @@ body {
   background-color: #000000; /* Black background */
   color: #ffffff; /* White text */
   line-height: 1.6;
+  margin: 0; /* Remove default browser margin */
 }
 
 /* Navigation Bar */
@@ -21,6 +22,9 @@ body {
   text-align: center; /* Center aligns the navbar items */
   width: 100%;
   box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* Adds a subtle shadow for separation */
+  position: sticky;
+  top: 0; /* Makes navbar sticky at the top */
+  z-index: 1000;
 }
 
 .navbar ul {
@@ -51,49 +55,60 @@ body {
   border-radius: 4px; /* Rounds the edges of the hover effect */
 }
 
-/* Single-Column Layout */
-
+/* Containers */
 .container {
   max-width: 800px; /* Adjust the width as needed */
   margin: 40px auto;
   padding: 25px;
-  background-color: #000000; /* Dark background for container */
+  background-color: #111111; /* Slightly lighter dark background */
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
-/* Two-Column Layout */
-
-.container {
-  max-width: 800px; /* Adjust the width as needed */
-  margin: 40px auto;
+/* Two-column layout */
+.two-columns {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  flex-wrap: wrap; /* Allows columns to wrap on smaller screens */
+  gap: 20px; /* Spacing between columns */
 }
 
-.column {
-  flex-basis: 45%; /* Adjust the width as needed */
-  padding: 25px;
+.two-columns .column {
+  flex: 1; /* Each column takes up equal space */
+  min-width: 300px; /* Minimum width for columns */
+  padding: 15px;
+  background-color: #222222; /* Slightly darker for better contrast */
+  color: #ffffff;
+  border: 1px solid #444444; /* Subtle border for separation */
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Subtle shadow for depth */
+}
+
+.two-columns .column a {
+  color: #337ab7; /* Links in columns */
+  text-decoration: none;
+}
+
+.two-columns .column a:hover {
+  color: #23527c;
 }
 
 /* Responsive Design */
-
 @media (max-width: 768px) {
- .column {
-    flex-basis: 100%;
+  .two-columns {
+    flex-direction: column; /* Stack columns vertically */
   }
 }
 
-/* Additional Styles */
-
+/* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
-  margin-bottom: 0px;
+  margin-bottom: 15px;
+  color: #ffffff; /* White headers */
 }
 
 p {
   margin-bottom: 15px;
+  color: #dddddd; /* Light gray text for better contrast */
 }
 
 a {
@@ -106,12 +121,12 @@ a:hover {
 }
 
 blockquote {
-  background-color: #000000;
-  border-left: 4px solid #ccc;
+  background-color: #111111; /* Dark background for quotes */
+  border-left: 4px solid #cccccc; /* Subtle border for quotes */
   padding: 20px;
-  margin: 20px;
+  margin: 20px 0;
   font-size: 18px;
-  font-style: normal;
+  font-style: italic;
 }
 
 blockquote p {
@@ -121,13 +136,40 @@ blockquote p {
 cite {
   font-size: 16px;
   font-style: normal;
-  color: #FFFFFF;
+  color: #cccccc;
   display: block;
   margin-top: 10px;
 }
 
 /* Tab Class for Indentation */
-
 .tab {
   margin-left: 40px;
+}
+
+/* Buttons */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff; /* White text */
+  background-color: #333333; /* Dark gray button */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #555555; /* Slightly lighter gray on hover */
+  transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+#output {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #f9f9f9;
+  padding: 10px;
+  background-color: #222222; /* Background for output text */
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
 }
