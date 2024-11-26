@@ -1,6 +1,7 @@
 import markovify
 import os
 from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS  # Import flask-cors for handling CORS
 import logging
 
 # Set up logging for debugging and tracking the application flow
@@ -8,6 +9,9 @@ logging.basicConfig(level=logging.INFO)
 
 # Initialize Flask app
 app = Flask(__name__)
+
+# Enable CORS for specific origins (adjust to match your frontend URL)
+CORS(app, origins=["https://gr9430.github.io"])  # Allow requests from your GitHub Pages
 
 # Set the correct path to the text directory
 current_directory = os.path.dirname(os.path.abspath(__file__))
@@ -65,20 +69,27 @@ def home():
 @app.route("/generate_paragraph", methods=["GET"])
 def generate_paragraph():
     try:
+        # Get the number of sentences to generate from the request (default: 5)
         num_sentences = int(request.args.get("num_sentences", 5))
         sentences = []
 
+        # Generate the specified number of sentences
         for _ in range(num_sentences):
             sentence = text_model.make_sentence()
             if sentence:
                 sentences.append(sentence)
 
+        # If no sentences could be generated, return an error
         if len(sentences) == 0:
             return jsonify({"error": "Unable to generate sentences."}), 500
 
+        # Combine sentences into a paragraph
         paragraph = " ".join(sentences)
         return jsonify({"paragraph": paragraph})
+
     except Exception as e:
+        # Handle any exceptions and return an error message
+        logging.error(f"Error generating paragraph: {e}")
         return jsonify({"error": str(e)}), 500
 
 # Main entry point to run the application
