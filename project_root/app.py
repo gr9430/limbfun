@@ -10,8 +10,8 @@ logging.basicConfig(level=logging.INFO)
 # Initialize Flask app
 app = Flask(__name__)
 
-# Enable CORS for specific origins (adjust to match your frontend URL)
-CORS(app, origins=["https://gr9430.github.io"])  # Allow requests from your GitHub Pages
+# Enable CORS for specific origins
+CORS(app, origins=["https://gr9430.github.io/ENG6806/flask-app/index.html"])  # Allow requests from your GitHub Pages
 
 # Set the correct path to the text directory
 current_directory = os.path.dirname(os.path.abspath(__file__))
