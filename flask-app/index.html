@@ -8,7 +8,7 @@
     <!-- Favicon -->
     <link rel="icon" href="images/itc.ico" type="image/x-icon">
 
-    <!-- CSS Link (Update path based on deployment) -->
+    <!-- CSS Link -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -25,16 +25,17 @@
 
     <!-- Header Section -->
     <header>
-        <h1>Recapitating Massive: A Markov Model of John Trefry's <i>Massive</i></h1>
+        <h1>Recapitating <i>Massive</i>:<br>A Markov Model of John Trefry's <i>Massive</i></h1>
     </header>
 
     <!-- Description Section -->
-    <section class="description">
+    <section class="description container">
         <p>
             This basic web application allows the reader to become an automatic author.<br>
-            By pressing the 'Generate Paragraph' button, you will develop a unique paragraph based on the 1,000,000+ words that make up <i>Massive</i>.<br>
+            By pressing the 'Generate Paragraph' button, you will develop a unique paragraph based on the 1,000,000+ words that make up <i>Massive</i>.
         </p>
-    <p>Use this model as often as you need to build your novel. If you run into any issues, please click the 'Generate Paragraph' button again.
+        <p>
+            Use this model as often as you need to build your novel. If you run into any issues, please click the 'Generate Paragraph' button again.
         </p>
     </section>
 
@@ -43,7 +44,10 @@
         <button id="generateBtn">Generate Paragraph</button>
         <p id="output"></p>
     </section>
+
+    <!-- Two-Column Layout -->
     <div class="container two-columns">
+        <!-- Column 1: About the Book -->
         <section class="column">
             <h2>About <i>Massive</i></h2>
             <p>
@@ -54,15 +58,18 @@
                 actualized by reading, does not sit inertly as a complete work within its
                 closed covers.
             </p>
-<p>            Read an excerpt from 
-            <a href="https://minorliteratures.com/2024/03/14/massive-excerpt-john-trefry" target="_blank">
-                <i>Massive</i>
-            </a>
-        </p>
-        <p><i>Massive</i> at <a href="https://asterismbooks.com/product/massive">Asterism Books</a>.</p>
+            <p>
+                Read an excerpt from 
+                <a href="https://minorliteratures.com/2024/03/14/massive-excerpt-john-trefry" target="_blank">
+                    <i>Massive</i>
+                </a>
+            </p>
+            <p><i>Massive</i> at <a href="https://asterismbooks.com/product/massive">Asterism Books</a>.</p>
         </section>
+
+        <!-- Column 2: Cover Image -->
         <section class="column">
-            <p><img src="/image/massive.jpg" alt="massive_cover">
+            <img src="images/massive.jpg" alt="Massive Cover" style="width:100%; border-radius:5px;">
         </section>
     </div>
 

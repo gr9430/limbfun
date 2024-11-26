@@ -58,7 +58,7 @@ body {
 /* Containers */
 .container {
   max-width: 800px; /* Adjust the width as needed */
-  margin: 40px auto;
+  margin: 40px auto; /* Center containers */
   padding: 25px;
   background-color: #111111; /* Slightly lighter dark background */
   border-radius: 5px;
@@ -83,6 +83,12 @@ body {
   box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Subtle shadow for depth */
 }
 
+.two-columns .column img {
+  width: 100%; /* Ensure image fits column width */
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Add shadow to images */
+}
+
 .two-columns .column a {
   color: #337ab7; /* Links in columns */
   text-decoration: none;
@@ -96,6 +102,9 @@ body {
 @media (max-width: 768px) {
   .two-columns {
     flex-direction: column; /* Stack columns vertically */
+  }
+  .two-columns .column {
+    margin-bottom: 20px; /* Add spacing between stacked columns */
   }
 }
 
