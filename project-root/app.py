@@ -79,11 +79,6 @@ def generate_paragraph():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# Main entry point to run the application
 if __name__ == "__main__":
-    logging.info("Starting Flask application")
-    # Get the PORT from environment variable, or use 5000 as a default
     port = int(os.environ.get("PORT", 5000))
-
-    # Run the app on 0.0.0.0 to listen for all incoming connections
     app.run(host="0.0.0.0", port=port)
