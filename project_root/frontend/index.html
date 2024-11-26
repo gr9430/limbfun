@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recapitating Massive</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/itc.ico" type="image/x-icon">
+
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="https://gr9430.github.io/ENG6806/index.html"><b>Home</b></a></li>
+            <li><a href="https://gr9430.github.io/ENG6806/originalprojects.html"><b>Original Projects</b></a></li>
+            <li><a href="https://gr9430.github.io/ENG6806/enhancedprojects.html"><b>Enhanced Projects</b></a></li>
+            <li><a href="https://gr9430.github.io/ENG6806/flask-app/index.html"><b>Public Humanities Prototype</b></a></li>
+            <li><a href="mailto:glenn.ritchey@ucf.edu"><b>Contact</b></a></li>
+        </ul>
+    </nav>
+
+
+    <!-- Description Section -->
+    <section class="description container">
+            <p> <h1>Recapitating <i>Massive</i>: A Markov Model of John Trefry's <i>Massive</i></h1></p>
+        <p>
+            <h2>About this Project</h2>
+            This basic web application allows the reader to become an automatic author.<br>
+            By pressing the 'Generate Paragraph' button, you will develop a unique paragraph based on the 1,000,000+ words that make up <i>Massive</i>.
+        </p>
+        <p>
+            Use this model as often as you need to build your novel. If you run into any issues, please click the 'Generate Paragraph' button again.
+        </p>
+    </section>
+
+    <!-- Interactive Section -->
+    <section class="generator container">
+        <button id="generateBtn">Generate Paragraph</button>
+        <p id="output"></p>
+    </section>
+
+    <!-- Two-Column Layout -->
+    <div class="container two-columns">
+        <!-- Column 1: About the Book -->
+        <section class="column">
+            <h2>About <i>Massive</i></h2>
+            <p>
+                The 4th book by John Trefry, concerning the life of Osip Mandelstam
+                between his first arrest in 1933 and his death in 1938 transposed into the
+                eternalist block time of a vast nationstate called the ADA and composed in
+                such a way that the text can be read an infinite number of ways and is only
+                actualized by reading, does not sit inertly as a complete work within its
+                closed covers.
+            </p>
+            <p>
+                Read an excerpt from 
+                <a href="https://minorliteratures.com/2024/03/14/massive-excerpt-john-trefry" target="_blank">
+                    <i>Massive</i>
+                </a>
+            </p>
+            <p><i>Massive</i> at <a href="https://asterismbooks.com/product/massive">Asterism Books</a>.</p>
+        </section>
+
+        <!-- Column 2: Cover Image -->
+        <section class="column">
+            <img src="images/massive.jpg" alt="Massive Cover" style="width:100%; border-radius:5px;">
+        </section>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.getElementById("generateBtn").addEventListener("click", function () {
+            // Backend URL
+            const apiURL = "https://recapitating-massive.onrender.com/generate_paragraph?num_sentences=5";
+
+            // Show loading message
+            document.getElementById("output").innerText = "Generating paragraph...";
+
+            // Fetch data from the backend
+            fetch(apiURL)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    if (data.paragraph) {
+                        // Display the generated paragraph
+                        document.getElementById("output").innerText = data.paragraph;
+                    } else {
+                        // Handle case where paragraph generation failed
+                        document.getElementById("output").innerText = "Error: Unable to generate paragraph.";
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    document.getElementById("output").innerText = "Error: Unable to fetch data from the backend.";
+                });
+        });
+    </script>
+</body>
+</html>
