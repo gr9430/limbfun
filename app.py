@@ -2,6 +2,8 @@ import markovify
 import os
 from flask import Flask, request, jsonify
 
+app = Flask(__name__)
+
 print("Loading texts...")
 
 # Directory containing your collection of text files
@@ -40,26 +42,20 @@ print("\nBuilding Markov model...")
 text_model = markovify.Text(combined_text, state_size=2)
 print("Markov model built successfully.")
 
-# Flask app setup
-app = Flask(__name__)
-
-@app.route('/')
-def index():
-    return "Welcome to the Markov Text Generator API!"
-
-@app.route('/generate_paragraph', methods=['GET'])
+# Flask route to generate a paragraph with a specified number of sentences
+@app.route("/generate_paragraph", methods=["GET"])
 def generate_paragraph():
-    num_sentences = int(request.args.get("num_sentences", 5))
-    paragraph = ""
-    for _ in range(num_sentences):
-        sentence = text_model.make_sentence(tries=100)
-        if sentence:
-            paragraph += sentence + " "
+    try:
+        num_sentences = int(request.args.get("num_sentences", 5))
+        paragraph = " ".join(text_model.make_sentence() for _ in range(num_sentences))
+        return jsonify({"paragraph": paragraph})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
-    return jsonify({"paragraph": paragraph.strip()})
-
+# Main entry point to run the application
 if __name__ == "__main__":
-    # Get the port from environment variable or set default to 5000
+    # Get the PORT from environment variable, or use 5000 as a default
     port = int(os.environ.get("PORT", 5000))
-    # Run the application, binding to all available IP addresses
-    app.run(host="0.0.0.0", port=port, debug=True)
+
+    # Run the app on 0.0.0.0 to listen for all incoming connections
+    app.run(host="0.0.0.0", port=port)
