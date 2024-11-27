@@ -5,6 +5,7 @@ function loadComponent(filePath, elementId) {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
+            console.log(`Loading component from ${filePath} into #${elementId}`);
             return response.text();
         })
         .then(data => {
@@ -25,6 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
     loadComponent("/ENG6806/banner.html", "banner-container");
     loadComponent("/ENG6806/navbar.html", "navbar-container");
     loadComponent("/ENG6806/footer.html", "footer-container");
+});
+
 
     // Carousel Functionality
     let currentIndex = 0;
@@ -184,3 +187,4 @@ document.addEventListener("DOMContentLoaded", () => {
     const proceedButton = document.getElementById("proceed-button");
     if (proceedButton) proceedButton.addEventListener("click", displayRecommendations);
 });
+
