@@ -5,7 +5,9 @@ const totalInteractions = 5; // Number of interactive zones
 let revealedMessages = [];
 
 function preload() {
-    img = loadImage('https://gr9430.github.io/ENG6806/enhancedprojects/wavesgame/images/canvas.jpg');
+    img = loadImage('https://gr9430.github.io/ENG6806/enhancedprojects/wavesgame/images/canvas.jpg',
+        () => console.log('Image loaded successfully'),
+        () => console.error('Failed to load image'));
 }
 
 function setup() {
@@ -13,6 +15,7 @@ function setup() {
     canvas.parent('canvas-container');
     textAlign(LEFT, BOTTOM);
     textSize(16);
+    console.log('Setup completed');
 }
 
 function draw() {
@@ -111,4 +114,4 @@ function endGame() {
     } else {
         text("The story remains incomplete. Try again.", width / 2, height / 2);
     }
-}
+} 
