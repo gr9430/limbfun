@@ -186,18 +186,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (proceedButton) proceedButton.addEventListener("click", displayRecommendations);
 });
 
-// Function to add a CSS stylesheet dynamically to the page
-function addGlobalStylesheet(stylesheetPath) {
-    const linkElement = document.createElement('link');
-    linkElement.rel = 'stylesheet';
-    linkElement.href = stylesheetPath;
-    linkElement.type = 'text/css';
-    linkElement.onload = () => console.log(`Stylesheet loaded: ${stylesheetPath}`);
-    linkElement.onerror = () => console.error(`Failed to load stylesheet: ${stylesheetPath}`);
-    document.head.appendChild(linkElement);
+// Function to load a CSS file dynamically
+function loadCSS(filePath) {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = filePath;
+    link.type = "text/css";
+    link.onload = () => console.log(`CSS Loaded: ${filePath}`);
+    link.onerror = () => console.error(`Failed to load CSS: ${filePath}`);
+    document.head.appendChild(link);
 }
 
-// Add the global stylesheet once the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", () => {
-    addGlobalStylesheet('/ENG6806/project_root/static/css/style.css');  // Update with the correct path to your CSS file
+// Load the CSS once DOM is ready
+document.addEventListener("DOMContentLoaded", function() {
+    loadCSS("/ENG6806/project_root/static/css/style.css"); // Correct path to your CSS
 });
