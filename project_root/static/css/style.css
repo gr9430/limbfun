@@ -80,46 +80,68 @@ body {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
-/* Two-column layout */
-.two-columns {
+/* Carousel Styling */
+.carousel-container {
+  position: relative;
+  width: 100%; /* Full-width carousel */
+  max-width: 800px; /* Optional: limit maximum width */
+  margin: 20px auto; /* Center carousel on the page */
+  overflow: hidden; /* Hide overflow for smooth transitions */
+  border-radius: 10px; /* Rounded corners for a modern look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.carousel-wrapper {
   display: flex;
-  flex-wrap: wrap; /* Allows columns to wrap on smaller screens */
-  gap: 20px; /* Spacing between columns */
+  transition: transform 0.5s ease-in-out; /* Smooth slide effect */
 }
 
-.two-columns .column {
-  flex: 1; /* Each column takes up equal space */
-  min-width: 300px; /* Minimum width for columns */
-  padding: 15px;
-  background-color: #222222; /* Slightly darker for better contrast */
-  color: #ffffff;
-  border: 1px solid #444444; /* Subtle border for separation */
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Subtle shadow for depth */
+.carousel-image {
+  min-width: 100%; /* Ensure each image takes up full container width */
+  transition: opacity 0.5s ease; /* Fade effect for transitions */
+  display: none; /* Initially hide all images */
 }
 
-.two-columns .column img {
-  width: 100%; /* Ensure image fits column width */
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Add shadow to images */
+.carousel-image.active {
+  display: block; /* Show only the active image */
 }
 
-.two-columns .column a {
-  color: #337ab7; /* Links in columns */
-  text-decoration: none;
+.carousel-btn {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for exact centering */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: white; /* White arrow color */
+  border: none;
+  font-size: 2rem; /* Large arrow size */
+  cursor: pointer;
+  padding: 10px 15px; /* Button padding */
+  border-radius: 50%; /* Round buttons */
+  z-index: 10; /* Place buttons on top */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
-.two-columns .column a:hover {
-  color: #23527c;
+.carousel-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
 }
 
-/* Responsive Design */
+.carousel-btn.left {
+  left: 10px; /* Position on the left */
+}
+
+.carousel-btn.right {
+  right: 10px; /* Position on the right */
+}
+
+/* Responsive Design for Carousel */
 @media (max-width: 768px) {
-  .two-columns {
-    flex-direction: column; /* Stack columns vertically */
+  .carousel-container {
+    max-width: 100%; /* Ensure it remains responsive */
   }
-  .two-columns .column {
-    margin-bottom: 20px; /* Add spacing between stacked columns */
+
+  .carousel-btn {
+    font-size: 1.5rem; /* Adjust button size for smaller screens */
+    padding: 8px 12px; /* Adjust padding */
   }
 }
 
