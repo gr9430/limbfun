@@ -14,6 +14,14 @@ body {
   margin: 0; /* Remove default browser margin */
 }
 
+/* === Banner Image Styles === */
+.banner {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+}
+
 /* Alignment for Header Outside Container */
 .aligned-header {
   max-width: 800px; /* Align with container width */
