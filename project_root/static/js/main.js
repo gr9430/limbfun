@@ -22,6 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
     loadComponent("footer.html", "footer-container");
 });
 
+footer {
+    text-align: center; /* Horizontally center the text */
+    padding: 10px; /* Add some spacing inside the footer */
+    background-color: #111111; /* Optional: Add a background color */
+    color: #ffffff; /* Optional: Set text color */
+    font-size: 14px; /* Optional: Adjust font size */
+}
+
 // Carousel Functionality
 let currentIndex = 0;
 let isThrottled = false;
