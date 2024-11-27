@@ -164,7 +164,8 @@ a world remade in silence.
 
     // Start typing animation and load components
     document.addEventListener("DOMContentLoaded", () => {
-      loadComponent("../banner.html", "banner-container");
+      // Adjust paths for components
+      loadComponent("../banner.html", "banner-container"); // Points to the parent directory
       loadComponent("../navbar.html", "navbar-container");
       loadComponent("../footer.html", "footer-container");
       typeTitle();
