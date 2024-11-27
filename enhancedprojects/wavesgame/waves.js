@@ -12,12 +12,13 @@ function preload() {
 }
 
 function setup() {
-    let canvas = createCanvas(1000, 1000);
+    let canvas = createCanvas(800, 800);
     canvas.parent('canvas-container');
+    canvas.style('max-width', '100%');
+    canvas.style('height', 'auto');
     textAlign(LEFT, BOTTOM);
     textSize(16);
     console.log('Setup completed');
-}
 
 function draw() {
     if (img) {
