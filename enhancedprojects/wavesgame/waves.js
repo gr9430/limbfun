@@ -19,6 +19,7 @@ function setup() {
     textAlign(LEFT, BOTTOM);
     textSize(16);
     console.log('Setup completed');
+}
 
 function draw() {
     if (img) {
@@ -121,3 +122,6 @@ function endGame() {
         text("The story remains incomplete. Try again.", width / 2, height / 2);
     }
 }
+
+// Ensure no code is left unclosed
+console.log('Script loaded successfully');
