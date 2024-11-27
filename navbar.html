@@ -1,38 +1,88 @@
-<nav class="navbar">
-  <ul>
-    <li>
-      <a href="#">Original Projects</a>
-      <ul class="dropdown-menu">
-        <li>
-          <a href="#">Procedural</a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Interface Critique</a></li>
-            <li><a href="#">Meaningful Images</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">Visual</a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Project A</a></li>
-            <li><a href="#">Project B</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">Textual</a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Essay 1</a></li>
-            <li><a href="#">Essay 2</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <a href="#">Enhanced Projects</a>
-      <ul class="dropdown-menu">
-        <li><a href="#">The Waves Forget the Shoreline</a></li>
-      </ul>
-    </li>
-    <li><a href="#">Public Humanities Prototype</a></li>
-    <li><a href="#">Contact</a></li>
-  </ul>
-</nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENG6806 - Nested Dropdown Navigation</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Link to the updated CSS -->
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <ul>
+      <li>
+        <a href="#">Original Projects</a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#">Procedural</a>
+            <ul class="dropdown-menu">
+              <li><a href="interfacecritique.html">Interface Critique</a></li>
+              <li><a href="meaningfulimages.html">Meaningful Images</a></li>
+              <li><a href="playfulgeneration.html">Playful Generation</a></li>
+              <li><a href="expansiveimaginaries.html">Expansive Imaginaries</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Visual</a>
+            <ul class="dropdown-menu">
+              <li><a href="projectA.html">Project A</a></li>
+              <li><a href="projectB.html">Project B</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Textual</a>
+            <ul class="dropdown-menu">
+              <li><a href="essay1.html">Essay 1</a></li>
+              <li><a href="essay2.html">Essay 2</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Enhanced Projects</a>
+        <ul class="dropdown-menu">
+          <li><a href="thewavesforgettheshoreline.html">The Waves Forget the Shoreline</a></li>
+        </ul>
+      </li>
+      <li><a href="flask-app/index.html">Public Humanities Prototype</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Banner Section -->
+  <div class="banner">
+    <img src="banner.jpg" alt="ENG6806 Banner Image">
+    <div class="banner-overlay">
+      <h1>Welcome to ENG6806</h1>
+      <p>Explore Our Projects and Resources</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1>Main Content</h1>
+    <p>This is where your primary content will go. Use this area to showcase your projects, links, and additional resources.</p>
+  </div>
+
+  <!-- Carousel Section -->
+  <div class="carousel-container">
+    <button class="carousel-btn left" onclick="prevImage()">&#8249;</button>
+    <div class="carousel-wrapper">
+      <img src="image1.jpg" alt="Image 1" class="carousel-image active">
+      <img src="image2.jpg" alt="Image 2" class="carousel-image">
+      <img src="image3.jpg" alt="Image 3" class="carousel-image">
+    </div>
+    <button class="carousel-btn right" onclick="nextImage()">&#8250;</button>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 ENG6806. All rights reserved.</p>
+    <a href="#" class="back-to-top">Back to Top</a>
+  </footer>
+
+  <!-- Script -->
+  <script src="script.js"></script> <!-- Link to your updated JavaScript -->
+</body>
+</html>

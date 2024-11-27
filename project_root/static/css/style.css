@@ -1,5 +1,4 @@
 /* Global Styles */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -22,7 +21,6 @@ body {
   object-fit: cover;
 }
 
-/* Banner Text Overlay */
 .banner-overlay {
   position: absolute;
   top: 0;
@@ -40,29 +38,29 @@ body {
 
 /* Alignment for Header Outside Container */
 .aligned-header {
-  max-width: 800px; /* Align with container width */
-  margin: 40px auto; /* Center it horizontally with spacing */
-  padding: 0 25px; /* Match the padding of the container */
-  text-align: left; /* Left-align text */
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 25px;
+  text-align: left;
 }
 
 .aligned-header h1 {
-  font-size: 2.5rem; /* Adjust font size for emphasis */
-  color: #ffffff; /* White text */
-  text-align: left; /* Ensure alignment */
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-align: left;
   margin-bottom: 20px;
 }
 
 /* Navigation Bar */
 .navbar {
-  background-color: #000000; /* Black background */
-  color: #FFFFFF; /* White text */
+  background-color: #000000;
+  color: #FFFFFF;
   padding: 1em;
-  text-align: center; /* Center aligns the navbar items */
+  text-align: center;
   width: 100%;
-  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* Adds a subtle shadow for separation */
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
   position: sticky;
-  top: 0; /* Makes navbar sticky at the top */
+  top: 0;
   z-index: 1000;
 }
 
@@ -71,41 +69,43 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center; /* Align links in the center */
-  gap: 20px; /* Space between each link */
+  justify-content: center;
+  gap: 20px;
 }
 
 .navbar li {
-  position: relative; /* Position for dropdown functionality */
+  position: relative;
 }
 
 .navbar a {
-  color: #FFFFFF; /* White text */
+  color: #FFFFFF;
   text-decoration: none;
-  font-weight: bold; /* Makes the links bold without using <b> tag */
-  padding: 10px 15px; /* Adds padding to make links more clickable */
-  transition: color 0.2s ease, background-color 0.2s ease; /* Smooth transition for hover effect */
+  font-weight: bold;
+  padding: 10px 15px;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-.navbar a:hover, .navbar a:focus {
-  color: #cccccc; /* Light gray text on hover */
-  background-color: #333333; /* Adds a subtle background highlight on hover */
-  border-radius: 4px; /* Rounds the edges of the hover effect */
+.navbar a:hover,
+.navbar a:focus {
+  color: #cccccc;
+  background-color: #333333;
+  border-radius: 4px;
   outline: none;
 }
 
 /* Dropdown Styles */
 .navbar .dropdown-menu {
-  display: none; /* Hidden by default */
+  display: none;
   position: absolute;
-  top: 100%; /* Position below the parent link */
+  top: 100%;
   left: 0;
-  background-color: #111111; /* Dark background for dropdown */
+  background-color: #111111;
   padding: 10px 0;
   list-style: none;
-  min-width: 200px; /* Minimum width for dropdown */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  border-radius: 5px; /* Rounded edges */
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 1000;
 }
 
 .navbar .dropdown-menu li {
@@ -113,24 +113,38 @@ body {
 }
 
 .navbar .dropdown-menu li a {
-  display: block; /* Make links fill the width */
+  display: block;
   padding: 10px 15px;
-  color: #FFFFFF; /* White text */
+  color: #FFFFFF;
 }
 
 .navbar .dropdown-menu li a:hover {
-  background-color: #555555; /* Highlight on hover */
+  background-color: #555555;
 }
 
 /* Show dropdown on hover */
-.navbar li:hover .dropdown-menu {
-  display: block; /* Display the dropdown */
+.navbar li:hover > .dropdown-menu {
+  display: block;
+}
+
+/* Nested Dropdown Menu */
+.navbar .dropdown-menu .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: 5px;
+  background-color: #222222; /* Slightly darker for nested menus */
+}
+
+.navbar .dropdown-menu li:hover > .dropdown-menu {
+  display: block;
 }
 
 /* Responsive Dropdown */
 @media (max-width: 768px) {
   .navbar ul {
-    flex-direction: column; /* Stack items vertically */
+    flex-direction: column;
   }
 
   .navbar li {
@@ -138,44 +152,58 @@ body {
   }
 
   .navbar .dropdown-menu {
-    position: static; /* Change positioning for smaller screens */
+    position: static;
+  }
+
+  .navbar .dropdown-menu .dropdown-menu {
+    position: static;
+    margin-left: 0;
   }
 }
 
 /* Containers */
 .container {
-  max-width: 800px; /* Adjust the width as needed */
-  margin: 40px auto; /* Center containers */
+  max-width: 800px;
+  margin: 40px auto;
   padding: 25px;
-  background-color: #111111; /* Slightly lighter dark background */
+  background-color: #111111;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #111111;
+  color: #ffffff;
+  font-size: 14px;
 }
 
 /* Carousel Styling */
 .carousel-container {
   position: relative;
-  width: 100%; /* Adjust the width of the carousel */
-  max-width: 800px; /* Optional: limit maximum width */
-  margin: 20px auto; /* Center the carousel */
-  overflow: hidden; /* Hide overflow for smooth transitions */
-  border-radius: 10px; /* Rounded corners */
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 .carousel-wrapper {
-  display: flex; /* Use flexbox for horizontal layout */
-  transition: transform 0.5s ease-in-out; /* Smooth slide effect */
-  width: 100%; /* Ensure the wrapper takes full width */
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
 }
 
 .carousel-image {
-  min-width: 100%; /* Each image takes up full carousel width */
-  display: none; /* Hide all images initially */
-  object-fit: cover; /* Ensure images scale properly */
+  min-width: 100%;
+  display: none;
+  object-fit: cover;
 }
 
 .carousel-image.active {
-  display: block; /* Show only the active image */
+  display: block;
   animation: fadeIn 0.5s ease-in-out;
 }
 
@@ -191,41 +219,41 @@ body {
 /* Carousel Buttons */
 .carousel-btn {
   position: absolute;
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Adjust for exact centering */
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-  color: white; /* White arrow color */
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
   border: none;
-  font-size: 2rem; /* Large arrow size */
+  font-size: 2rem;
   cursor: pointer;
-  padding: 10px 15px; /* Button padding */
-  border-radius: 50%; /* Round buttons */
-  z-index: 10; /* Place buttons on top */
-  transition: background-color 0.3s ease; /* Smooth hover effect */
+  padding: 10px 15px;
+  border-radius: 50%;
+  z-index: 10;
+  transition: background-color 0.3s ease;
 }
 
 .carousel-btn:hover {
-  background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .carousel-btn.left {
-  left: 10px; /* Position on the left */
+  left: 10px;
 }
 
 .carousel-btn.right {
-  right: 10px; /* Position on the right */
+  right: 10px;
 }
 
 /* Fullscreen Overlay */
 .fullscreen-overlay {
-  display: none; /* Initially hide the overlay */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw; /* Fullscreen width */
-  height: 100vh; /* Fullscreen height */
-  background-color: rgba(0, 0, 0, 0.8); /* Dark transparent background */
-  justify-content: center; /* Center the image */
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
   align-items: center;
   z-index: 1000;
 }
@@ -237,29 +265,34 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: bold;
   margin-bottom: 15px;
-  color: #ffffff; /* White headers */
+  color: #ffffff;
 }
 
 p {
   margin-bottom: 15px;
-  color: #dddddd; /* Light gray text for better contrast */
+  color: #dddddd;
 }
 
 a {
-  color: #337ab7; /* Blue text for links */
+  color: #337ab7;
   text-decoration: none;
 }
 
 a:hover {
-  color: #23527c; /* Darker blue text on hover */
+  color: #23527c;
 }
 
 blockquote {
-  background-color: #111111; /* Dark background for quotes */
-  border-left: 4px solid #cccccc; /* Subtle border for quotes */
+  background-color: #111111;
+  border-left: 4px solid #cccccc;
   padding: 20px;
   margin: 20px 0;
   font-size: 18px;
@@ -283,8 +316,8 @@ button {
   padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
-  color: #ffffff; /* White text */
-  background-color: #333333; /* Dark gray button */
+  color: #ffffff;
+  background-color: #333333;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -292,18 +325,8 @@ button {
 }
 
 button:hover {
-  background-color: #555555; /* Slightly lighter gray on hover */
-  transform: scale(1.05); /* Slightly enlarge button on hover */
-}
-
-#output {
-  margin-top: 20px;
-  font-size: 18px;
-  color: #f9f9f9;
-  padding: 10px;
-  background-color: #222222; /* Background for output text */
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+  background-color: #555555;
+  transform: scale(1.05);
 }
 
 /* Back-to-Top Button */
@@ -319,25 +342,10 @@ button:hover {
   cursor: pointer;
   font-size: 16px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-  display: none; /* Initially hidden */
+  display: none;
   z-index: 1000;
 }
 
 .back-to-top:hover {
   background-color: #555555;
-}
-
-@media (max-width: 768px) {
-  .back-to-top {
-    padding: 8px 12px;
-    font-size: 14px;
-  }
-}
-
-footer {
-  text-align: center;
-  padding: 10px;
-  background-color: #111111;
-  color: #ffffff;
-  font-size: 14px;
 }
