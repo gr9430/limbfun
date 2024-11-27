@@ -342,3 +342,31 @@ button:hover {
     align-items: center;
     height: 100vh;
 }
+
+/* Game Specific Styling */
+#game-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 25px;
+    background-color: #111111; /* Matching container color with the rest of the site */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#canvas-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensure no overflow from the canvas */
+}
+
+canvas {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #ffffff; /* Add border if desired */
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
