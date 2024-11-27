@@ -1,35 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Expansive Imaginaries</title>
-  <link rel="stylesheet" href="/ENG6806/project_root/static/css/style.css">
+   <link rel="icon" href="data:,">
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav class="navbar">
-    <ul>
-      <li><a href="https://gr9430.github.io/ENG6806/index.html">Home</a></li>
-      <li>
-        <a href="https://gr9430.github.io/ENG6806/originalprojects.html">Original Projects</a>
-        <ul class="dropdown-menu">
-          <li><a href="https://gr9430.github.io/ENG6806/originalprojects/interfacecritique.html">Interface Critique</a></li>
-          <li><a href="https://gr9430.github.io/ENG6806/originalprojects/meaningfulimages.html">Meaningful Images</a></li>
-          <li><a href="https://gr9430.github.io/ENG6806/originalprojects/playfulgeneration.html">Playful Generation</a></li>
-          <li><a href="https://gr9430.github.io/ENG6806/originalprojects/expansiveimaginaries.html">Expansive Imaginaries</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="https://gr9430.github.io/ENG6806/enhancedprojects.html">Enhanced Projects</a>
-        <ul class="dropdown-menu">
-          <li><a href="https://gr9430.github.io/ENG6806/enhancedprojects/thewavesforgettheshoreline.html">The Waves Forget the Shoreline</a></li>
-        </ul>
-      </li>
-      <li><a href="https://gr9430.github.io/ENG6806/flask-app/index.html">Public Humanities Prototype</a></li>
-      <li><a href="/contact.html">Contact</a></li>
-    </ul>
-  </nav>
+    <!-- Placeholder for Banner -->
+    <div id="banner-container"></div>
+
+    <!-- Placeholder for Navbar -->
+    <div id="navbar-container"></div>
+
+    <!-- Game Container -->
+    <div id="game-container">
+        <!-- Canvas for the game -->
+        <div id="canvas-container"></div>
+    </div>
+
+    <!-- Placeholder for Footer -->
+    <div id="footer-container"></div>
+
+    <!-- Load CSS dynamically -->
+    <script>
+        // Load CSS using JavaScript
+        function loadCSS(filePath) {
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = filePath;
+            link.type = "text/css";
+            link.onload = () => console.log(`CSS Loaded: ${filePath}`);
+            link.onerror = () => console.error(`Failed to load CSS: ${filePath}`);
+            document.head.appendChild(link);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            loadCSS("/ENG6806/project_root/static/css/style.css"); // Correct path to your CSS
+        });
+    </script>
   
   <div class="container">
     <h1><b>Expansive Imaginaries</b>: Rethinking Visual Media and Research Trajectories through Generative Video and My Failed Experimental Novel</h1>
