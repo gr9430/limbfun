@@ -22,6 +22,24 @@
     <!-- Placeholder for Footer -->
     <div id="footer-container"></div>
 
+    <!-- Load CSS dynamically -->
+    <script>
+        // Load CSS using JavaScript
+        function loadCSS(filePath) {
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = filePath;
+            link.type = "text/css";
+            link.onload = () => console.log(`CSS Loaded: ${filePath}`);
+            link.onerror = () => console.error(`Failed to load CSS: ${filePath}`);
+            document.head.appendChild(link);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            loadCSS("/ENG6806/project_root/static/css/style.css"); // Correct path to your CSS
+        });
+    </script>
+
     <!-- Load P5.js library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <!-- Load global JavaScript for site functionality -->
