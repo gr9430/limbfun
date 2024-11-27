@@ -44,12 +44,6 @@ function draw() {
 function displayCoordinates() {
     fill(0);
     text(`X: ${mouseX}, Y: ${mouseY}`, 10, height - 10);
-}
-
-function displayScore() {
-    fill(0);
-    text(`Score: ${score}`, width - 100, 30);
-}
 
 function displayRevealedMessages() {
     fill(0);
