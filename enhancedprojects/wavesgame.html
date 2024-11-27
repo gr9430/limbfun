@@ -4,44 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple P5.js Game</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        #canvas-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
+    <link rel="stylesheet" href="project_root/static/css/main.css">
     <link rel="icon" href="data:,">
 </head>
 <body>
+    <header id="banner"></header>
+    <nav id="navbar"></nav>
+
     <div id="canvas-container"></div>
+    
+    <footer id="footer"></footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script>
-        let img;
-
-        function preload() {
-            img = loadImage('https://gr9430.github.io/ENG6806/enhancedprojects/wavesgame/images/canvas.jpg');
-        }
-
-        function setup() {
-            let canvas = createCanvas(1000, 1000);
-            canvas.parent('canvas-container');
-        }
-
-        function draw() {
-            background(img);
-            // You can add your game logic here.
-            fill(255, 0, 0);
-            ellipse(width / 2, height / 2, 100, 100);
-        }
-    </script>
+    <script src="enhancedprojects/wavesgame/js/wavesgame.js"></script>
+    <script src="enhancedprojects/main.js"></script>
 </body>
 </html>
