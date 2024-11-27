@@ -83,35 +83,30 @@ body {
 /* Carousel Styling */
 .carousel-container {
   position: relative;
-  width: 100%; /* Full-width carousel */
+  width: 100%; /* Adjust the width of the carousel */
   max-width: 800px; /* Optional: limit maximum width */
-  margin: 20px auto; /* Center carousel on the page */
+  margin: 20px auto; /* Center the carousel */
   overflow: hidden; /* Hide overflow for smooth transitions */
-  border-radius: 10px; /* Rounded corners for a modern look */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  border-radius: 10px; /* Rounded corners */
 }
 
 .carousel-wrapper {
-  display: flex;
+  display: flex; /* Use flexbox for horizontal layout */
   transition: transform 0.5s ease-in-out; /* Smooth slide effect */
+  width: 100%; /* Ensure the wrapper takes full width */
 }
 
 .carousel-image {
-  min-width: 65%; /* Scale down to 65% of the container width */
-  max-width: 65%; /* Ensure consistent scaling */
-  cursor: pointer; /* Change cursor to pointer to indicate interactivity */
-  transition: transform 0.3s ease; /* Smooth transition for zoom effect */
-}
-
-.carousel-image:hover {
-  transform: scale(1.05); /* Slight zoom-in effect on hover */
+  min-width: 100%; /* Each image takes up full carousel width */
+  display: none; /* Hide all images initially */
+  object-fit: cover; /* Ensure images scale properly */
 }
 
 .carousel-image.active {
   display: block; /* Show only the active image */
 }
 
-/* Navigation Buttons */
+/* Carousel Buttons */
 .carousel-btn {
   position: absolute;
   top: 50%; /* Center vertically */
@@ -139,43 +134,24 @@ body {
   right: 10px; /* Position on the right */
 }
 
-/* Fullscreen Overlay for Enlarged Images */
+/* Fullscreen Overlay */
 .fullscreen-overlay {
+  display: none; /* Initially hide the overlay */
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
-  display: none; /* Hidden by default */
-  justify-content: center;
+  width: 100vw; /* Fullscreen width */
+  height: 100vh; /* Fullscreen height */
+  background-color: rgba(0, 0, 0, 0.8); /* Dark transparent background */
+  justify-content: center; /* Center the image */
   align-items: center;
-  z-index: 2000; /* Ensure it appears above everything else */
+  z-index: 1000;
 }
 
 .fullscreen-overlay img {
-  max-width: 100%; /* Scale image to fit screen */
-  max-height: 100%; /* Prevent image from exceeding screen height */
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
-  cursor: zoom-out; /* Change cursor to indicate zoom-out functionality */
-}
-
-/* Responsive Design for Carousel */
-@media (max-width: 768px) {
-  .carousel-container {
-    max-width: 100%; /* Ensure it remains responsive */
-  }
-
-  .carousel-btn {
-    font-size: 1.5rem; /* Adjust button size for smaller screens */
-    padding: 8px 12px; /* Adjust padding */
-  }
-
-  .carousel-image {
-    min-width: 100%; /* Expand to full width on smaller screens */
-    max-width: 100%;
-  }
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
 }
 
 /* Typography */
