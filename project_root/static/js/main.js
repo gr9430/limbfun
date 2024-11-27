@@ -8,52 +8,55 @@ function loadComponent(filePath, elementId) {
             return response.text();
         })
         .then(data => {
-            document.getElementById(elementId).innerHTML = data;
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.innerHTML = data;
+            } else {
+                console.error(`Element with ID '${elementId}' not found.`);
+            }
         })
         .catch(error => {
             console.error(`Error loading ${filePath}:`, error);
         });
 }
 
-// Load the banner, navbar, and footer
+// Load components once DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-    loadComponent("banner.html", "banner-container");
-    loadComponent("navbar.html", "navbar-container");
-    loadComponent("footer.html", "footer-container");
-});
+    loadComponent("/ENG6806/banner.html", "banner-container");
+    loadComponent("/ENG6806/navbar.html", "navbar-container");
+    loadComponent("/ENG6806/footer.html", "footer-container");
 
-// Carousel Functionality
-let currentIndex = 0;
-let isThrottled = false;
+    // Carousel Functionality
+    let currentIndex = 0;
+    let isThrottled = false;
 
-function showImage(index) {
-    const images = document.querySelectorAll('.carousel-image');
-    if (!images.length) return;
-    images.forEach((img, i) => {
-        img.classList.toggle('active', i === index);
-        img.setAttribute('aria-hidden', i !== index); // Accessibility
-    });
-}
+    function showImage(index) {
+        const images = document.querySelectorAll('.carousel-image');
+        if (!images.length) return;
+        images.forEach((img, i) => {
+            img.classList.toggle('active', i === index);
+            img.setAttribute('aria-hidden', i !== index); // Accessibility
+        });
+    }
 
-function prevImage() {
-    if (isThrottled) return;
-    isThrottled = true;
-    const images = document.querySelectorAll('.carousel-image');
-    currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
-    showImage(currentIndex);
-    setTimeout(() => (isThrottled = false), 500);
-}
+    function prevImage() {
+        if (isThrottled) return;
+        isThrottled = true;
+        const images = document.querySelectorAll('.carousel-image');
+        currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+        showImage(currentIndex);
+        setTimeout(() => (isThrottled = false), 500);
+    }
 
-function nextImage() {
-    if (isThrottled) return;
-    isThrottled = true;
-    const images = document.querySelectorAll('.carousel-image');
-    currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
-    showImage(currentIndex);
-    setTimeout(() => (isThrottled = false), 500);
-}
+    function nextImage() {
+        if (isThrottled) return;
+        isThrottled = true;
+        const images = document.querySelectorAll('.carousel-image');
+        currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+        showImage(currentIndex);
+        setTimeout(() => (isThrottled = false), 500);
+    }
 
-document.addEventListener('DOMContentLoaded', () => {
     showImage(currentIndex);
 
     const overlay = document.querySelector('.fullscreen-overlay');
@@ -102,112 +105,82 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-});
 
-// Function to load a component into a specific element
-function loadComponent(filePath, elementId) {
-    fetch(filePath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.text();
-        })
-        .then(data => {
-            document.getElementById(elementId).innerHTML = data;
-        })
-        .catch(error => {
-            console.error(`Error loading ${filePath}:`, error);
-        });
-}
+    // Fetch JSON data for books
+    let jsonData;
+    let allRatedBooks = new Set();
 
-// Load components
-document.addEventListener("DOMContentLoaded", () => {
-    loadComponent("/ENG6806/banner.html", "banner-container");
-    loadComponent("/ENG6806/navbar.html", "navbar-container");
-    loadComponent("/ENG6806/footer.html", "footer-container");
-});
-
-// Fetch JSON data for books
-let jsonData;
-let ratedBooksCount = 0;
-let totalBooksRated = 0;
-let genreRatings = {
-    "Proto-New Novel": 0,
-    "New Novel Core Works": 0,
-    "Post-New Novel": 0
-};
-let topAuthors = [];
-let topGenres = [];
-let displayedBooks = [];
-let allRatedBooks = new Set();
-
-async function fetchJsonData() {
-    try {
-        const response = await fetch("/ENG6806/originalprojects/newnovelcuriosity/newnovel.json");
-        if (!response.ok) throw new Error("Network response was not ok");
-        jsonData = await response.json();
-        displayedBooks = getRandomBooks(jsonData, 10);
-        displayBooks(displayedBooks);
-    } catch (error) {
-        console.error("There was a problem with the fetch operation:", error);
+    async function fetchJsonData() {
+        try {
+            const response = await fetch("/ENG6806/originalprojects/newnovelcuriosity/newnovel.json");
+            if (!response.ok) throw new Error("Network response was not ok");
+            jsonData = await response.json();
+            displayedBooks = getRandomBooks(jsonData, 10);
+            displayBooks(displayedBooks);
+        } catch (error) {
+            console.error("There was a problem with the fetch operation:", error);
+        }
     }
-}
 
-// Generate random books
-function getRandomBooks(jsonData, count) {
-    const books = [
-        ...jsonData.Proto_New_Novel_Precursors_to_the_Movement_Before_1948.map(book => ({ ...book, genre: "Proto-New Novel" })),
-        ...jsonData.New_Novel_Core_Works_of_the_Movement_1948_1965.Key_Authors.map(book => ({ ...book, genre: "New Novel Core Works" })),
-        ...jsonData.New_Novel_Core_Works_of_the_Movement_1948_1965.Other_Authors_Aligning_with_the_Movement.map(book => ({ ...book, genre: "New Novel Core Works" })),
-        ...jsonData.Post_New_Novel_Influenced_by_the_Movement_1966_Present.map(book => ({ ...book, genre: "Post-New Novel" }))
-    ].filter(book => !allRatedBooks.has(book.title));
-    return books.sort(() => 0.5 - Math.random()).slice(0, count);
-}
+    // Generate random books
+    function getRandomBooks(jsonData, count) {
+        const books = [
+            ...jsonData.Proto_New_Novel_Precursors_to_the_Movement_Before_1948.map(book => ({ ...book, genre: "Proto-New Novel" })),
+            ...jsonData.New_Novel_Core_Works_of_the_Movement_1948_1965.Key_Authors.map(book => ({ ...book, genre: "New Novel Core Works" })),
+            ...jsonData.New_Novel_Core_Works_of_the_Movement_1948_1965.Other_Authors_Aligning_with_the_Movement.map(book => ({ ...book, genre: "New Novel Core Works" })),
+            ...jsonData.Post_New_Novel_Influenced_by_the_Movement_1966_Present.map(book => ({ ...book, genre: "Post-New Novel" }))
+        ].filter(book => !allRatedBooks.has(book.title));
+        return books.sort(() => 0.5 - Math.random()).slice(0, count);
+    }
 
-// Display books for rating
-function displayBooks(books) {
-    const bookList = document.getElementById("book-list");
-    bookList.innerHTML = "";
-    books.forEach((book, index) => {
-        const bookContainer = document.createElement("div");
-        bookContainer.className = "book-container";
+    // Display books for rating
+    function displayBooks(books) {
+        const bookList = document.getElementById("book-list");
+        if (!bookList) return; // Check if element exists before proceeding
+        bookList.innerHTML = "";
+        books.forEach((book, index) => {
+            const bookContainer = document.createElement("div");
+            bookContainer.className = "book-container";
 
-        const bookTitle = document.createElement("div");
-        bookTitle.className = "book-title";
-        bookTitle.textContent = `${book.title} by ${book.author} (${book.year}, ${book.country})`;
+            const bookTitle = document.createElement("div");
+            bookTitle.className = "book-title";
+            bookTitle.textContent = `${book.title} by ${book.author} (${book.year}, ${book.country})`;
 
-        const ratingOptions = document.createElement("div");
-        ratingOptions.className = "rating-options";
-        [1, 2, 3, 4, 5].forEach(rating => {
-            const label = document.createElement("label");
-            const input = document.createElement("input");
-            input.type = "radio";
-            input.name = `rating-${index}`;
-            input.value = rating;
-            label.appendChild(input);
-            label.appendChild(document.createTextNode(rating));
-            ratingOptions.appendChild(label);
+            const ratingOptions = document.createElement("div");
+            ratingOptions.className = "rating-options";
+            [1, 2, 3, 4, 5].forEach(rating => {
+                const label = document.createElement("label");
+                const input = document.createElement("input");
+                input.type = "radio";
+                input.name = `rating-${index}`;
+                input.value = rating;
+                label.appendChild(input);
+                label.appendChild(document.createTextNode(rating));
+                ratingOptions.appendChild(label);
+            });
+
+            const notReadLabel = document.createElement("label");
+            const notReadInput = document.createElement("input");
+            notReadInput.type = "radio";
+            notReadInput.name = `rating-${index}`;
+            notReadInput.value = "not-read";
+            notReadLabel.appendChild(notReadInput);
+            notReadLabel.appendChild(document.createTextNode("Haven't read it"));
+            ratingOptions.appendChild(notReadLabel);
+
+            bookContainer.appendChild(bookTitle);
+            bookContainer.appendChild(ratingOptions);
+            bookList.appendChild(bookContainer);
         });
+    }
 
-        const notReadLabel = document.createElement("label");
-        const notReadInput = document.createElement("input");
-        notReadInput.type = "radio";
-        notReadInput.name = `rating-${index}`;
-        notReadInput.value = "not-read";
-        notReadLabel.appendChild(notReadInput);
-        notReadLabel.appendChild(document.createTextNode("Haven't read it"));
-        ratingOptions.appendChild(notReadLabel);
+    // Initialize JSON data and buttons
+    fetchJsonData();
 
-        bookContainer.appendChild(bookTitle);
-        bookContainer.appendChild(ratingOptions);
-        bookList.appendChild(bookContainer);
-    });
-}
-
-// Initialize JSON data and buttons
-fetchJsonData();
-
-document.getElementById("submit-button").addEventListener("click", handleRatingsSubmission);
-document.getElementById("more-books-button").addEventListener("click", handleMoreBooks);
-document.getElementById("proceed-button").addEventListener("click", displayRecommendations);
+    const submitButton = document.getElementById("submit-button");
+    if (submitButton) submitButton.addEventListener("click", handleRatingsSubmission);
+    const moreBooksButton = document.getElementById("more-books-button");
+    if (moreBooksButton) moreBooksButton.addEventListener("click", handleMoreBooks);
+    const proceedButton = document.getElementById("proceed-button");
+    if (proceedButton) proceedButton.addEventListener("click", displayRecommendations);
+});
