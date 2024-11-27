@@ -20,7 +20,11 @@ function setup() {
 }
 
 function draw() {
-    background(img);
+    if (img) {
+        background(img);
+    } else {
+        background(255); // Fallback if image fails to load
+    }
     displayCoordinates();
     displayStanzasRead();
     displayRevealedMessages();
@@ -48,7 +52,7 @@ function displayCoordinates() {
 
 function displayStanzasRead() {
     fill(0);
-    text(`Stanzas Read: ${stanzasRead} / ${totalInteractions}`, width - 150, 30);
+    text(`Stanzas Read: ${stanzasRead} / ${totalInteractions}`, 10, 30);
 }
 
 function displayRevealedMessages() {
