@@ -31,14 +31,14 @@ function draw() {
     displayStanzasRead();
     displayRevealedMessages();
 
-    // Define interactive zones
+    // Define interactive zones - adjusted to fit within the canvas of 800x800
     if (mouseX > 50 && mouseX < 150 && mouseY > 300 && mouseY < 400) { // Bird
         cursor('pointer');
     } else if (mouseX > 200 && mouseX < 400 && mouseY > 500 && mouseY < 600) { // Shore
         cursor('pointer');
-    } else if (mouseX > 600 && mouseX < 800 && mouseY > 700 && mouseY < 800) { // Waves
+    } else if (mouseX > 600 && mouseX < 700 && mouseY > 600 && mouseY < 700) { // Waves
         cursor('pointer');
-    } else if (mouseX > 800 && mouseX < 900 && mouseY > 100 && mouseY < 300) { // Building
+    } else if (mouseX > 700 && mouseX < 800 && mouseY > 100 && mouseY < 300) { // Building
         cursor('pointer');
     } else if (mouseX > 400 && mouseX < 500 && mouseY > 100 && mouseY < 200) { // Smoke Plumes
         cursor('pointer');
@@ -82,7 +82,7 @@ function mousePressed() {
         }
     }
     // Interactive zone 3: Waves
-    else if (mouseX > 600 && mouseX < 800 && mouseY > 700 && mouseY < 800) {
+    else if (mouseX > 600 && mouseX < 700 && mouseY > 600 && mouseY < 700) {
         if (!revealedMessages.includes("The waves crash with a rhythmic persistence.")) {
             revealedMessages.push("The waves crash with a rhythmic persistence.");
             interactions++;
@@ -90,7 +90,7 @@ function mousePressed() {
         }
     }
     // Interactive zone 4: Building
-    else if (mouseX > 800 && mouseX < 900 && mouseY > 100 && mouseY < 300) {
+    else if (mouseX > 700 && mouseX < 800 && mouseY > 100 && mouseY < 300) {
         if (!revealedMessages.includes("The building stands tall, weathered by time.")) {
             revealedMessages.push("The building stands tall, weathered by time.");
             interactions++;
@@ -123,5 +123,5 @@ function endGame() {
     }
 }
 
-// Ensure no code is left unclosed
+// Remove unnecessary DOMContentLoaded wrapper, and the unclosed code comment.
 console.log('Script loaded successfully');
