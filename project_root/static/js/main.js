@@ -103,3 +103,111 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Function to load a component into a specific element
+function loadComponent(filePath, elementId) {
+    fetch(filePath)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById(elementId).innerHTML = data;
+        })
+        .catch(error => {
+            console.error(`Error loading ${filePath}:`, error);
+        });
+}
+
+// Load components
+document.addEventListener("DOMContentLoaded", () => {
+    loadComponent("/ENG6806/banner.html", "banner-container");
+    loadComponent("/ENG6806/navbar.html", "navbar-container");
+    loadComponent("/ENG6806/footer.html", "footer-container");
+});
+
+// Fetch JSON data for books
+let jsonData;
+let ratedBooksCount = 0;
+let totalBooksRated = 0;
+let genreRatings = {
+    "Proto-New Novel": 0,
+    "New Novel Core Works": 0,
+    "Post-New Novel": 0
+};
+let topAuthors = [];
+let topGenres = [];
+let displayedBooks = [];
+let allRatedBooks = new Set();
+
+async function fetchJsonData() {
+    try {
+        const response = await fetch("/ENG6806/originalprojects/newnovelcuriosity/newnovel.json");
+        if (!response.ok) throw new Error("Network response was not ok");
+        jsonData = await response.json();
+        displayedBooks = getRandomBooks(jsonData, 10);
+        displayBooks(displayedBooks);
+    } catch (error) {
+        console.error("There was a problem with the fetch operation:", error);
+    }
+}
+
+// Generate random books
+function getRandomBooks(jsonData, count) {
+    const books = [
+        ...jsonData.Proto_New_Novel_Precursors_to_the_Movement_Before_1948.map(book => ({ ...book, genre: "Proto-New Novel" })),
+        ...jsonData.New_Novel_Core_Works_of_the_Movement_1948_1965.Key_Authors.map(book => ({ ...book, genre: "New Novel Core Works" })),
+        ...jsonData.New_Novel_Core_Works_of_the_Movement_1948_1965.Other_Authors_Aligning_with_the_Movement.map(book => ({ ...book, genre: "New Novel Core Works" })),
+        ...jsonData.Post_New_Novel_Influenced_by_the_Movement_1966_Present.map(book => ({ ...book, genre: "Post-New Novel" }))
+    ].filter(book => !allRatedBooks.has(book.title));
+    return books.sort(() => 0.5 - Math.random()).slice(0, count);
+}
+
+// Display books for rating
+function displayBooks(books) {
+    const bookList = document.getElementById("book-list");
+    bookList.innerHTML = "";
+    books.forEach((book, index) => {
+        const bookContainer = document.createElement("div");
+        bookContainer.className = "book-container";
+
+        const bookTitle = document.createElement("div");
+        bookTitle.className = "book-title";
+        bookTitle.textContent = `${book.title} by ${book.author} (${book.year}, ${book.country})`;
+
+        const ratingOptions = document.createElement("div");
+        ratingOptions.className = "rating-options";
+        [1, 2, 3, 4, 5].forEach(rating => {
+            const label = document.createElement("label");
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = `rating-${index}`;
+            input.value = rating;
+            label.appendChild(input);
+            label.appendChild(document.createTextNode(rating));
+            ratingOptions.appendChild(label);
+        });
+
+        const notReadLabel = document.createElement("label");
+        const notReadInput = document.createElement("input");
+        notReadInput.type = "radio";
+        notReadInput.name = `rating-${index}`;
+        notReadInput.value = "not-read";
+        notReadLabel.appendChild(notReadInput);
+        notReadLabel.appendChild(document.createTextNode("Haven't read it"));
+        ratingOptions.appendChild(notReadLabel);
+
+        bookContainer.appendChild(bookTitle);
+        bookContainer.appendChild(ratingOptions);
+        bookList.appendChild(bookContainer);
+    });
+}
+
+// Initialize JSON data and buttons
+fetchJsonData();
+
+document.getElementById("submit-button").addEventListener("click", handleRatingsSubmission);
+document.getElementById("more-books-button").addEventListener("click", handleMoreBooks);
+document.getElementById("proceed-button").addEventListener("click", displayRecommendations);
