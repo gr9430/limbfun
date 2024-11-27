@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meaningful Images</title>
-  <link rel="stylesheet" href="/ENG6806/project_root/static/css/style.css">
+  https://github.com/gr9430/ENG6806/blob/main/project_root/static/css/style.css
 </head>
 <body>
   <!-- Navigation Bar -->
@@ -17,26 +17,69 @@
       <li><a href="mailto:glenn.ritchey@ucf.edu"><b>Contact</b></a></li>
     </ul>
   </nav>
+
   <div class="container">
     <h1><b>Meaningful Images</b>: A Reflection on my Artistic Practices in Conversation with ChatGPT</h1>
+    <section>
+      <!-- Carousel Section -->
+      <div class="carousel-container">
+        <!-- Left Button -->
+        <button class="carousel-btn left" onclick="prevImage()">&#10094;</button>
+  
+        <!-- Image Wrapper -->
+        <div class="carousel-wrapper">
+          <img src="/ENG6806/project_root/static/images/carousel_one/1.png" alt="Image 1" class="carousel-image active">
+          <img src="/ENG6806/project_root/static/images/carousel_one/2.png" alt="Image 2" class="carousel-image">
+          <img src="/ENG6806/project_root/static/images/carousel_one/3.png" alt="Image 3" class="carousel-image">
+          <img src="/ENG6806/project_root/static/images/carousel_one/4.png" alt="Image 4" class="carousel-image">
+          <img src="/ENG6806/project_root/static/images/carousel_one/5.png" alt="Image 5" class="carousel-image">
+          <img src="/ENG6806/project_root/static/images/carousel_one/6.png" alt="Image 6" class="carousel-image">
+          <img src="/ENG6806/project_root/static/images/carousel_one/7.png" alt="Image 7" class="carousel-image">
+          <img src="/ENG6806/project_root/static/images/carousel_one/8.png" alt="Image 8" class="carousel-image">
+        </div>
+  
+        <!-- Right Button -->
+        <button class="carousel-btn right" onclick="nextImage()">&#10095;</button>
+      </div>
+      <!-- End of Carousel Section -->
+      </section>
     <p>
         Not to sound melodramatic, but this project marks a pivotal moment in my academic and artistic journey, where I began to move away from a strictly medieval Irish studies focus and toward a broader engagement with digital humanities, visual culture, and accessible pedagogy. Through this exercise, I used generative AI to explore the complexities of translating images across mediums, reflecting on how these practices intersect with my evolving research goals.
     </p>
+
     <p>
         The project was inspired by Joanna Zylinska's The Perception Machine, which repositions photography as a hybrid event deeply embedded in cultural production and surveillance. This reframing resonated with my own experiences as an artist and academic as I felt compelled to interrogate how my creative practices intersect with theory. It prompted me to critically engage with generative AI as a tool for both artistic expression and scholarly exploration, leading me to examine how these technologies disrupt traditional hierarchies of production and access. That is, I do not think Chat GPT revealed anything new to me about my practice, but allowed me the space to organize my thoughts around my pre-academic artistic pursuits and to bounce around ideas about how I articulate them.
     </p>
-    <p>
-        By attempting to generate photorealistic counterparts to my original abstract artworks, I explored the limitations and possibilities of AI systems. The iterative process revealed the importance of human intervention in shaping outputs that carry meaning beyond the algorithm’s default patterns. Reflecting on this, I drew connections between the formalistic irony in Jean Rollin's cinematic project—where generic constraints are subverted to critique social hierarchies—and my own efforts to use generative AI to decentralize traditional academic norms.
-    </p>
-    <p>
-        This project also marked the beginning of my transition from a narrow focus on medieval Irish studies to a broader interdisciplinary approach that seems more aligned to my art work and cultural interests before I began pursuing academia. My work now is increasingly engaging with digital humanities, media studies, and pedagogy, encouraging me to be more social with academics and creators operating outside academia to emphasize critical making and accessible practices. For instance, I used AI tools to address a student’s needs, demonstrating how digital tools can be harnessed to create more inclusive learning environments. I also have been working on experimental literary projects using the ideas I picked up through my practices within this project.
-    </p>
-    <p>
-      The project also forced me to grapple with the failures inherent in creative processes, whether in the novel I abandoned or in the imperfections of AI-generated video. These failures became a productive space for reflection, allowing me to reconsider the limitations and possibilities of generative tools in shaping narratives. I feel my reflections here align with Zylinska’s critique of Silicon Valley’s hypercapitalist narratives and her acknowledgment of the biases embedded in AI technologies, which I see as both a challenge and an opportunity for future research.
-    </p>
-    <p>
-        Dr. Salter’s feedback encouraged further experimentation with form and highlighted the relevance of my approach to ongoing conversations in digital humanities and media studies. They praised my connections between Zylinska, Herzog, and Rollin and suggested exploring the phenomenon of social media bait AI imagery as a potential research paper. This affirmation helped solidify my decision to begin shifting my research focus, aligning my already-established creative and academic practices with new interdisciplinary horizons.
-    </p>
   </div>
+
+  <!-- JavaScript -->
+  <script>
+    let currentIndex = 0;
+
+    function showImage(index) {
+      const images = document.querySelectorAll('.carousel-image');
+      images.forEach((img, i) => {
+        img.classList.remove('active'); // Remove "active" from all images
+        if (i === index) {
+          img.classList.add('active'); // Add "active" to the current image
+        }
+      });
+    }
+
+    function prevImage() {
+      const images = document.querySelectorAll('.carousel-image');
+      currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+      showImage(currentIndex);
+    }
+
+    function nextImage() {
+      const images = document.querySelectorAll('.carousel-image');
+      currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+      showImage(currentIndex);
+    }
+
+    // Show the first image on page load
+    showImage(currentIndex);
+  </script>
 </body>
 </html>
