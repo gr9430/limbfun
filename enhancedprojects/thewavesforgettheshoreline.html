@@ -63,7 +63,8 @@
   <script>
     // Function to load a component into a specific element
     function loadComponent(filePath, elementId) {
-      fetch(filePath)
+      const correctedPath = filePath.startsWith("/") ? filePath : `../${filePath}`;
+      fetch(correctedPath)
         .then(response => {
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -74,8 +75,8 @@
           document.getElementById(elementId).innerHTML = data;
         })
         .catch(error => {
-          console.error(`Error loading ${filePath}:`, error);
-          document.getElementById(elementId).innerHTML = `<p>Failed to load ${filePath}. Please try again later.</p>`;
+          console.error(`Error loading ${correctedPath}:`, error);
+          document.getElementById(elementId).innerHTML = `<p>Failed to load ${correctedPath}. Please try again later.</p>`;
         });
     }
 
@@ -165,9 +166,9 @@ a world remade in silence.
     // Start typing animation and load components
     document.addEventListener("DOMContentLoaded", () => {
       // Adjust paths for components
-      loadComponent("../banner.html", "banner-container"); // Points to the parent directory
-      loadComponent("../navbar.html", "navbar-container");
-      loadComponent("../footer.html", "footer-container");
+      loadComponent("ENG6806/banner.html", "banner-container");
+      loadComponent("ENG6806/navbar.html", "navbar-container");
+      loadComponent("ENG6806/footer.html", "footer-container");
       typeTitle();
     });
   </script>
