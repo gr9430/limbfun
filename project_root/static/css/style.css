@@ -13,162 +13,108 @@ body {
   margin: 0; /* Remove default browser margin */
 }
 
-/* === Banner Image Styles === */
-.banner {
+/* === Navigation Bar === */
+.navbar {
+  background-color: #000000; /* Black background */
+  color: #FFFFFF; /* White text */
+  padding: 1em;
   width: 100%;
-  height: auto;
-  max-height: 400px;
-  object-fit: cover;
-}
-
-/* Banner Text Overlay */
-.banner-overlay {
-  position: absolute;
+  position: sticky; /* Sticky at the top */
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
-  font-size: 2rem;
-  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent black overlay */
-  text-align: center;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* Subtle shadow */
 }
 
-/* Dropdown Menu */
+.navbar ul {
+  list-style: none; /* Remove default list styling */
+  display: flex;
+  justify-content: flex-start; /* Align items to the left */
+  gap: 20px; /* Add space between main links */
+  padding: 0;
+  margin: 0;
+}
+
+.navbar li {
+  position: relative; /* Relative positioning for dropdowns */
+}
+
+/* Main Navigation Links */
+.navbar a {
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 10px 15px;
+  font-weight: bold;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.navbar a:hover {
+  background-color: #333333; /* Highlight background on hover */
+  border-radius: 4px; /* Rounded edges for hover effect */
+}
+
+/* === Dropdown Menu Styles === */
 .dropdown-menu {
   display: none; /* Hidden by default */
   position: absolute;
-  top: 100%; /* Position below the parent link */
+  top: 100%; /* Position below parent link */
   left: 0;
-  background-color: #111111; /* Dark background for dropdown */
+  background-color: #111111; /* Dark background */
   padding: 10px 0;
   list-style: none;
-  min-width: 200px; /* Minimum width for dropdown */
+  min-width: 200px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   border-radius: 5px; /* Rounded edges */
+  z-index: 1000; /* Ensure dropdown appears on top */
 }
 
-/* Style for dropdown items */
+/* Style for Dropdown Items */
 .dropdown-menu li {
   margin: 0;
 }
 
-/* Links in dropdown */
 .dropdown-menu li a {
-  display: block; /* Make links fill the width */
-  padding: 10px 15px; /* Add space around links */
+  display: block; /* Full-width clickable links */
+  padding: 10px 15px;
   color: #FFFFFF; /* White text */
   text-decoration: none;
 }
 
-/* Hover effect for dropdown items */
 .dropdown-menu li a:hover {
   background-color: #555555; /* Highlight on hover */
 }
 
-/* Nested Dropdown Menu */
+/* Nested Dropdowns */
 .dropdown-menu .dropdown-menu {
+  display: none; /* Hidden by default */
   position: absolute;
   top: 0;
-  left: 100%; /* Position next to the parent dropdown */
-  margin-left: 5px; /* Add spacing for clarity */
+  left: 100%; /* Position next to parent dropdown */
+  margin-left: 5px;
 }
 
-/* Show dropdown on hover */
+/* Show Dropdowns on Hover */
 .navbar li:hover > .dropdown-menu {
-  display: block; /* Display dropdown */
+  display: block; /* Show dropdown */
 }
 
-/* Responsive Dropdown (Stacked for small screens) */
+.dropdown-menu li:hover > .dropdown-menu {
+  display: block; /* Show nested dropdown */
+}
+
+/* === Responsive Design === */
 @media (max-width: 768px) {
   .navbar ul {
-    flex-direction: column; /* Stack items vertically */
+    flex-direction: column; /* Stack main links vertically */
+    gap: 0; /* Remove spacing between stacked items */
   }
 
   .dropdown-menu {
     position: static; /* Allow dropdown to expand naturally */
+    box-shadow: none; /* Remove shadow for stacked view */
   }
 
   .dropdown-menu .dropdown-menu {
     position: static;
     margin-left: 0; /* Remove spacing for nested items */
   }
-}
-
-/* Containers */
-.container {
-  max-width: 800px; /* Adjust the width as needed */
-  margin: 40px auto; /* Center containers */
-  padding: 25px;
-  background-color: #111111; /* Slightly lighter dark background */
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 10px;
-  background-color: #111111;
-  color: #ffffff;
-  font-size: 14px;
-}
-
-/* Carousel Styling */
-.carousel-container {
-  position: relative;
-  width: 100%; /* Adjust the width of the carousel */
-  max-width: 800px; /* Optional: limit maximum width */
-  margin: 20px auto; /* Center the carousel */
-  overflow: hidden; /* Hide overflow for smooth transitions */
-  border-radius: 10px; /* Rounded corners */
-}
-
-.carousel-wrapper {
-  display: flex; /* Use flexbox for horizontal layout */
-  transition: transform 0.5s ease-in-out; /* Smooth slide effect */
-  width: 100%; /* Ensure the wrapper takes full width */
-}
-
-.carousel-image {
-  min-width: 100%; /* Each image takes up full carousel width */
-  display: none; /* Hide all images initially */
-  object-fit: cover; /* Ensure images scale properly */
-}
-
-.carousel-image.active {
-  display: block; /* Show only the active image */
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Back-to-Top Button */
-.back-to-top {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 10px 15px;
-  background-color: #333333;
-  color: #ffffff;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 16px;
-  display: none; /* Initially hidden */
-  z-index: 1000;
-}
-
-.back-to-top:hover {
-  background-color: #555555;
 }
