@@ -4,24 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple P5.js Game</title>
-    <link rel="stylesheet" href="../../static/css/style.css"><!-- Corrected CSS path -->
+    <link rel="stylesheet" href="../../static/css/style.css"> <!-- Corrected CSS path -->
     <link rel="icon" href="data:,">
 </head>
 <body>
     <!-- Global elements -->
-    <header id="banner">Banner Placeholder</header>
-    <nav id="navbar">Navbar Placeholder</nav>
+    <header id="banner" class="banner">Banner Placeholder</header>
+    <nav id="navbar" class="navbar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#game">Game</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
 
-    <!-- Canvas for the game -->
-    <div id="canvas-container"></div>
+    <!-- Game Container -->
+    <div class="container" id="game-container">
+        <div id="canvas-container"></div>
+    </div>
     
-    <footer id="footer">Footer Placeholder</footer>
+    <!-- Footer -->
+    <footer id="footer" class="footer">
+        Footer Placeholder
+    </footer>
 
     <!-- Load P5.js library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <!-- Load the game-specific JavaScript -->
-    <script src="wavesgame/waves.js"></script> <!-- Corrected JS path -->
+    <script src="js/waves.js"></script> <!-- Corrected JS path -->
     <!-- Load global JavaScript for site functionality -->
-   <script src="../../static/js/main.js"> <!-- Corrected JS path -->
+    <script src="../../static/js/main.js"></script> <!-- Corrected JS path -->
 </body>
 </html>
