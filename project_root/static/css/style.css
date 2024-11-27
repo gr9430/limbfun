@@ -1,5 +1,4 @@
 /* Global Styles */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -38,21 +37,6 @@ body {
   text-align: center;
 }
 
-/* Alignment for Header Outside Container */
-.aligned-header {
-  max-width: 800px; /* Align with container width */
-  margin: 40px auto; /* Center it horizontally with spacing */
-  padding: 0 25px; /* Match the padding of the container */
-  text-align: left; /* Left-align text */
-}
-
-.aligned-header h1 {
-  font-size: 2.5rem; /* Adjust font size for emphasis */
-  color: #ffffff; /* White text */
-  text-align: left; /* Ensure alignment */
-  margin-bottom: 20px;
-}
-
 /* Navigation Bar */
 .navbar {
   background-color: #000000; /* Black background */
@@ -60,7 +44,6 @@ body {
   padding: 1em;
   text-align: center; /* Center aligns the navbar items */
   width: 100%;
-  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* Adds a subtle shadow for separation */
   position: sticky;
   top: 0; /* Makes navbar sticky at the top */
   z-index: 1000;
@@ -88,10 +71,8 @@ body {
 }
 
 .navbar a:hover, .navbar a:focus {
-  color: #cccccc; /* Light gray text on hover */
   background-color: #333333; /* Adds a subtle background highlight on hover */
   border-radius: 4px; /* Rounds the edges of the hover effect */
-  outline: none;
 }
 
 /* Dropdown Styles */
@@ -108,23 +89,18 @@ body {
   border-radius: 5px; /* Rounded edges */
 }
 
-.navbar .dropdown-menu li {
-  margin: 0;
-}
-
-.navbar .dropdown-menu li a {
-  display: block; /* Make links fill the width */
-  padding: 10px 15px;
-  color: #FFFFFF; /* White text */
-}
-
-.navbar .dropdown-menu li a:hover {
-  background-color: #555555; /* Highlight on hover */
-}
-
-/* Show dropdown on hover */
 .navbar li:hover .dropdown-menu {
   display: block; /* Display the dropdown */
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 15px;
+  color: #FFFFFF;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #555555; /* Highlight on hover */
 }
 
 /* Responsive Dropdown */
@@ -150,6 +126,15 @@ body {
   background-color: #111111; /* Slightly lighter dark background */
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #111111;
+  color: #ffffff;
+  font-size: 14px;
 }
 
 /* Carousel Styling */
@@ -188,124 +173,6 @@ body {
   }
 }
 
-/* Carousel Buttons */
-.carousel-btn {
-  position: absolute;
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Adjust for exact centering */
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-  color: white; /* White arrow color */
-  border: none;
-  font-size: 2rem; /* Large arrow size */
-  cursor: pointer;
-  padding: 10px 15px; /* Button padding */
-  border-radius: 50%; /* Round buttons */
-  z-index: 10; /* Place buttons on top */
-  transition: background-color 0.3s ease; /* Smooth hover effect */
-}
-
-.carousel-btn:hover {
-  background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
-}
-
-.carousel-btn.left {
-  left: 10px; /* Position on the left */
-}
-
-.carousel-btn.right {
-  right: 10px; /* Position on the right */
-}
-
-/* Fullscreen Overlay */
-.fullscreen-overlay {
-  display: none; /* Initially hide the overlay */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw; /* Fullscreen width */
-  height: 100vh; /* Fullscreen height */
-  background-color: rgba(0, 0, 0, 0.8); /* Dark transparent background */
-  justify-content: center; /* Center the image */
-  align-items: center;
-  z-index: 1000;
-}
-
-.fullscreen-overlay img {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
-}
-
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: #ffffff; /* White headers */
-}
-
-p {
-  margin-bottom: 15px;
-  color: #dddddd; /* Light gray text for better contrast */
-}
-
-a {
-  color: #337ab7; /* Blue text for links */
-  text-decoration: none;
-}
-
-a:hover {
-  color: #23527c; /* Darker blue text on hover */
-}
-
-blockquote {
-  background-color: #111111; /* Dark background for quotes */
-  border-left: 4px solid #cccccc; /* Subtle border for quotes */
-  padding: 20px;
-  margin: 20px 0;
-  font-size: 18px;
-  font-style: italic;
-}
-
-blockquote p {
-  margin-bottom: 10px;
-}
-
-cite {
-  font-size: 16px;
-  font-style: normal;
-  color: #cccccc;
-  display: block;
-  margin-top: 10px;
-}
-
-/* Buttons */
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #ffffff; /* White text */
-  background-color: #333333; /* Dark gray button */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-button:hover {
-  background-color: #555555; /* Slightly lighter gray on hover */
-  transform: scale(1.05); /* Slightly enlarge button on hover */
-}
-
-#output {
-  margin-top: 20px;
-  font-size: 18px;
-  color: #f9f9f9;
-  padding: 10px;
-  background-color: #222222; /* Background for output text */
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
-}
-
 /* Back-to-Top Button */
 .back-to-top {
   position: fixed;
@@ -318,26 +185,10 @@ button:hover {
   border-radius: 50%;
   cursor: pointer;
   font-size: 16px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   display: none; /* Initially hidden */
   z-index: 1000;
 }
 
 .back-to-top:hover {
   background-color: #555555;
-}
-
-@media (max-width: 768px) {
-  .back-to-top {
-    padding: 8px 12px;
-    font-size: 14px;
-  }
-}
-
-footer {
-  text-align: center;
-  padding: 10px;
-  background-color: #111111;
-  color: #ffffff;
-  font-size: 14px;
 }
