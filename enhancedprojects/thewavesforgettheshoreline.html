@@ -22,10 +22,10 @@
     .poem-container {
       max-width: 800px;
       padding: 20px;
-      background-color: #111111;
+      background-color: #000000;
       border-radius: 5px;
-      border: 1px solid #ffffff;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      border: 1px solid #000000;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       margin-top: 20px;
     }
 
@@ -44,13 +44,41 @@
   </style>
 </head>
 <body>
+  <!-- Placeholder for Banner -->
+  <div id="banner-container">Loading banner...</div>
+
+  <!-- Placeholder for Navbar -->
+  <div id="navbar-container">Loading navbar...</div>
+
   <!-- Poem Container -->
   <div class="poem-container">
     <h1 id="poem-title" class="poem-title"></h1>
     <div id="poem-text" class="poem-body"></div>
   </div>
 
+  <!-- Placeholder for Footer -->
+  <div id="footer-container">Loading footer...</div>
+
+  <!-- JavaScript -->
   <script>
+    // Function to load a component into a specific element
+    function loadComponent(filePath, elementId) {
+      fetch(filePath)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.text();
+        })
+        .then(data => {
+          document.getElementById(elementId).innerHTML = data;
+        })
+        .catch(error => {
+          console.error(`Error loading ${filePath}:`, error);
+          document.getElementById(elementId).innerHTML = `<p>Failed to load ${filePath}. Please try again later.</p>`;
+        });
+    }
+
     // Poem text and title
     const poemTitle = "The Waves Forget the Shoreline";
     const poemBody = `here, before the smoke painted the sky
@@ -113,7 +141,6 @@ a world remade in silence.
     let titleIndex = 0;
     let bodyIndex = 0;
 
-    // Type the title
     function typeTitle() {
       const titleElement = document.getElementById("poem-title");
       if (titleIndex < poemTitle.length) {
@@ -125,7 +152,6 @@ a world remade in silence.
       }
     }
 
-    // Type the poem body
     function typeBody() {
       const bodyElement = document.getElementById("poem-text");
       if (bodyIndex < poemBody.length) {
@@ -136,8 +162,11 @@ a world remade in silence.
       }
     }
 
-    // Start typing animation on DOM load
+    // Start typing animation and load components
     document.addEventListener("DOMContentLoaded", () => {
+      loadComponent("banner.html", "banner-container");
+      loadComponent("navbar.html", "navbar-container");
+      loadComponent("footer.html", "footer-container");
       typeTitle();
     });
   </script>
