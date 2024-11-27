@@ -1,5 +1,5 @@
 let img;
-let score = 0;
+let stanzasRead = 0;
 let interactions = 0;
 const totalInteractions = 5; // Number of interactive zones
 let revealedMessages = [];
@@ -22,7 +22,7 @@ function setup() {
 function draw() {
     background(img);
     displayCoordinates();
-    displayScore();
+    displayStanzasRead();
     displayRevealedMessages();
 
     // Define interactive zones
@@ -44,6 +44,12 @@ function draw() {
 function displayCoordinates() {
     fill(0);
     text(`X: ${mouseX}, Y: ${mouseY}`, 10, height - 10);
+}
+
+function displayStanzasRead() {
+    fill(0);
+    text(`Stanzas Read: ${stanzasRead} / ${totalInteractions}`, width - 150, 30);
+}
 
 function displayRevealedMessages() {
     fill(0);
@@ -58,7 +64,7 @@ function mousePressed() {
         if (!revealedMessages.includes("The bird sings softly, echoing over the waves.")) {
             revealedMessages.push("The bird sings softly, echoing over the waves.");
             interactions++;
-            score += 10;
+            stanzasRead++;
         }
     }
     // Interactive zone 2: Shore
@@ -66,7 +72,7 @@ function mousePressed() {
         if (!revealedMessages.includes("The shore glimmers under the fading sunlight.")) {
             revealedMessages.push("The shore glimmers under the fading sunlight.");
             interactions++;
-            score += 10;
+            stanzasRead++;
         }
     }
     // Interactive zone 3: Waves
@@ -74,7 +80,7 @@ function mousePressed() {
         if (!revealedMessages.includes("The waves crash with a rhythmic persistence.")) {
             revealedMessages.push("The waves crash with a rhythmic persistence.");
             interactions++;
-            score += 10;
+            stanzasRead++;
         }
     }
     // Interactive zone 4: Building
@@ -82,7 +88,7 @@ function mousePressed() {
         if (!revealedMessages.includes("The building stands tall, weathered by time.")) {
             revealedMessages.push("The building stands tall, weathered by time.");
             interactions++;
-            score += 10;
+            stanzasRead++;
         }
     }
     // Interactive zone 5: Smoke Plumes
@@ -90,7 +96,7 @@ function mousePressed() {
         if (!revealedMessages.includes("Smoke plumes rise, blurring into the sky.")) {
             revealedMessages.push("Smoke plumes rise, blurring into the sky.");
             interactions++;
-            score += 10;
+            stanzasRead++;
         }
     }
 
@@ -104,7 +110,7 @@ function endGame() {
     fill(0);
     textSize(32);
     textAlign(CENTER, CENTER);
-    if (score >= 50) {
+    if (stanzasRead >= totalInteractions) {
         text("You have unveiled all the secrets of the scene.", width / 2, height / 2);
     } else {
         text("The story remains incomplete. Try again.", width / 2, height / 2);
