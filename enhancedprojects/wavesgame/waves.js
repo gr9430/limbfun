@@ -112,4 +112,3 @@ function endGame() {
         text("The story remains incomplete. Try again.", width / 2, height / 2);
     }
 }
-
