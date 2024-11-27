@@ -335,3 +335,10 @@ button:hover {
 .back-to-top:hover {
   background-color: #555555;
 }
+
+#canvas-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
