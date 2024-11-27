@@ -48,12 +48,11 @@ body {
   padding: 0;
   display: flex;
   justify-content: center; /* Align links in the center */
-  align-items: center; /* Vertically align links */
   gap: 20px; /* Space between each link */
 }
 
 .navbar li {
-  margin: 0; /* Removed margin to rely solely on flex gap */
+  position: relative; /* Position for dropdown functionality */
 }
 
 .navbar a {
@@ -68,6 +67,54 @@ body {
   color: #cccccc; /* Light gray text on hover */
   background-color: #333333; /* Adds a subtle background highlight on hover */
   border-radius: 4px; /* Rounds the edges of the hover effect */
+}
+
+/* Dropdown Styles */
+.navbar .dropdown-menu {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 100%; /* Position below the parent link */
+  left: 0;
+  background-color: #111111; /* Dark background for dropdown */
+  padding: 10px 0;
+  list-style: none;
+  min-width: 200px; /* Minimum width for dropdown */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  border-radius: 5px; /* Rounded edges */
+}
+
+.navbar .dropdown-menu li {
+  margin: 0;
+}
+
+.navbar .dropdown-menu li a {
+  display: block; /* Make links fill the width */
+  padding: 10px 15px;
+  color: #FFFFFF; /* White text */
+}
+
+.navbar .dropdown-menu li a:hover {
+  background-color: #555555; /* Highlight on hover */
+}
+
+/* Show dropdown on hover */
+.navbar li:hover .dropdown-menu {
+  display: block; /* Display the dropdown */
+}
+
+/* Responsive Dropdown (Optional for smaller screens) */
+@media (max-width: 768px) {
+  .navbar ul {
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  .navbar li {
+    width: 100%;
+  }
+
+  .navbar .dropdown-menu {
+    position: static; /* Change positioning for smaller screens */
+  }
 }
 
 /* Containers */
