@@ -37,46 +37,8 @@ body {
   text-align: center;
 }
 
-/* Navigation Bar */
-.navbar {
-  background-color: #000000; /* Black background */
-  color: #FFFFFF; /* White text */
-  padding: 1em;
-  text-align: center; /* Center aligns the navbar items */
-  width: 100%;
-  position: sticky;
-  top: 0; /* Makes navbar sticky at the top */
-  z-index: 1000;
-}
-
-.navbar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center; /* Align links in the center */
-  gap: 20px; /* Space between each link */
-}
-
-.navbar li {
-  position: relative; /* Position for dropdown functionality */
-}
-
-.navbar a {
-  color: #FFFFFF; /* White text */
-  text-decoration: none;
-  font-weight: bold; /* Makes the links bold without using <b> tag */
-  padding: 10px 15px; /* Adds padding to make links more clickable */
-  transition: color 0.2s ease, background-color 0.2s ease; /* Smooth transition for hover effect */
-}
-
-.navbar a:hover, .navbar a:focus {
-  background-color: #333333; /* Adds a subtle background highlight on hover */
-  border-radius: 4px; /* Rounds the edges of the hover effect */
-}
-
-/* Dropdown Styles */
-.navbar .dropdown-menu {
+/* Dropdown Menu */
+.dropdown-menu {
   display: none; /* Hidden by default */
   position: absolute;
   top: 100%; /* Position below the parent link */
@@ -89,32 +51,50 @@ body {
   border-radius: 5px; /* Rounded edges */
 }
 
-.navbar li:hover .dropdown-menu {
-  display: block; /* Display the dropdown */
+/* Style for dropdown items */
+.dropdown-menu li {
+  margin: 0;
 }
 
+/* Links in dropdown */
 .dropdown-menu li a {
-  display: block;
-  padding: 10px 15px;
-  color: #FFFFFF;
+  display: block; /* Make links fill the width */
+  padding: 10px 15px; /* Add space around links */
+  color: #FFFFFF; /* White text */
+  text-decoration: none;
 }
 
+/* Hover effect for dropdown items */
 .dropdown-menu li a:hover {
   background-color: #555555; /* Highlight on hover */
 }
 
-/* Responsive Dropdown */
+/* Nested Dropdown Menu */
+.dropdown-menu .dropdown-menu {
+  position: absolute;
+  top: 0;
+  left: 100%; /* Position next to the parent dropdown */
+  margin-left: 5px; /* Add spacing for clarity */
+}
+
+/* Show dropdown on hover */
+.navbar li:hover > .dropdown-menu {
+  display: block; /* Display dropdown */
+}
+
+/* Responsive Dropdown (Stacked for small screens) */
 @media (max-width: 768px) {
   .navbar ul {
     flex-direction: column; /* Stack items vertically */
   }
 
-  .navbar li {
-    width: 100%;
+  .dropdown-menu {
+    position: static; /* Allow dropdown to expand naturally */
   }
 
-  .navbar .dropdown-menu {
-    position: static; /* Change positioning for smaller screens */
+  .dropdown-menu .dropdown-menu {
+    position: static;
+    margin-left: 0; /* Remove spacing for nested items */
   }
 }
 
