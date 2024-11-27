@@ -6,11 +6,11 @@
   <title>The Waves Forget the Shoreline</title>
   <link rel="stylesheet" href="/ENG6806/project_root/static/css/style.css">
   <style>
+    /* Page-specific styles */
     body {
       font-family: 'Open Sans', sans-serif;
       background-color: #000000; /* Black background */
       color: #ffffff; /* White text */
-      line-height: 1.6;
       margin: 0;
       padding: 20px;
       display: flex;
@@ -26,20 +26,20 @@
       border-radius: 5px;
       border: 1px solid #ffffff;
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-      line-height: 1.4;
       margin-top: 20px;
     }
 
     .poem-title {
       font-weight: bold;
       font-size: 1.5em;
-      text-align: left;
+      text-align: center;
       margin-bottom: 20px;
     }
 
     .poem-body {
       white-space: pre-wrap;
       font-size: 16px;
+      line-height: 1.6;
     }
   </style>
 </head>
@@ -51,9 +51,9 @@
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const poemTitle = "The Waves Forget the Shoreline";
-      const poemBody = `here, before the smoke painted the sky
+    // Poem text and title
+    const poemTitle = "The Waves Forget the Shoreline";
+    const poemBody = `here, before the smoke painted the sky
 with shadows, before stone towers rose
 to watch over the sand like sentinels.
 No room remains for the sea’s slow song—
@@ -109,35 +109,35 @@ a world remade in silence.
       \\_   \\
       \`----'`;
 
-      let titleIndex = 0;
-      let bodyIndex = 0;
+    // Typing logic
+    let titleIndex = 0;
+    let bodyIndex = 0;
 
-      function getTypingDelay(char) {
-        if (/[.,—\n]/.test(char)) return Math.random() * 300 + 300; // Pause after punctuation
-        if (Math.random() < 0.15) return Math.random() * 300 + 300; // Occasional long pauses
-        return Math.random() * 100 + 100; // Standard typing speed
+    // Type the title
+    function typeTitle() {
+      const titleElement = document.getElementById("poem-title");
+      if (titleIndex < poemTitle.length) {
+        titleElement.innerHTML += poemTitle.charAt(titleIndex);
+        titleIndex++;
+        setTimeout(typeTitle, 100); // Adjust typing speed for title
+      } else {
+        setTimeout(typeBody, 500); // Wait before starting the body
       }
+    }
 
-      function typeTitle() {
-        const container = document.getElementById("poem-title");
-        if (titleIndex < poemTitle.length) {
-          container.innerHTML += poemTitle.charAt(titleIndex++);
-          setTimeout(typeTitle, getTypingDelay(poemTitle.charAt(titleIndex - 1)));
-        } else {
-          setTimeout(typePoem, 700); // Short pause before typing the poem
-        }
+    // Type the poem body
+    function typeBody() {
+      const bodyElement = document.getElementById("poem-text");
+      if (bodyIndex < poemBody.length) {
+        const char = poemBody.charAt(bodyIndex);
+        bodyElement.innerHTML += char === "\n" ? "<br>" : char;
+        bodyIndex++;
+        setTimeout(typeBody, char === "," || char === "." ? 300 : 100); // Pause for punctuation
       }
+    }
 
-      function typePoem() {
-        const container = document.getElementById("poem-text");
-        if (bodyIndex < poemBody.length) {
-          const char = poemBody.charAt(bodyIndex++);
-          container.innerHTML += char === "\n" ? "<br>" : char;
-          setTimeout(typePoem, getTypingDelay(char));
-        }
-      }
-
-      // Start the typing animation
+    // Start typing animation on DOM load
+    document.addEventListener("DOMContentLoaded", () => {
       typeTitle();
     });
   </script>
