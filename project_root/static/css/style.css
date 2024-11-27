@@ -21,21 +21,6 @@ body {
   object-fit: cover;
 }
 
-.banner-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
-  font-size: 2rem;
-  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent black overlay */
-  text-align: center;
-}
-
 /* Alignment for Header Outside Container */
 .aligned-header {
   max-width: 800px;
