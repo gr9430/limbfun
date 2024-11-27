@@ -1,57 +1,59 @@
-fetch("navbar.html")
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.text();
-    })
-    .then(data => {
-        document.getElementById("navbar").innerHTML = data;
-    })
-    .catch(error => {
-        console.error("Error loading navbar:", error);
-    });
+// Navbar Loader with LocalStorage Cache
+const navbarCacheKey = "cachedNavbar";
+
+const cachedNavbar = localStorage.getItem(navbarCacheKey);
+if (cachedNavbar) {
+    document.getElementById("navbar").innerHTML = cachedNavbar;
+} else {
+    fetch("https://gr9430.github.io/ENG6806/navbar.html")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById("navbar").innerHTML = data;
+            localStorage.setItem(navbarCacheKey, data);
+        })
+        .catch(error => {
+            console.error("Error loading navbar:", error);
+        });
+}
 
 // Carousel Functionality
-let currentIndex = 0; // Index of the currently visible image
-let isThrottled = false; // Throttle state for navigation buttons
+let currentIndex = 0;
+let isThrottled = false;
 
-// Function to show the image at the specified index
 function showImage(index) {
     const images = document.querySelectorAll('.carousel-image');
+    if (!images.length) return; // Guard clause for empty NodeList
     images.forEach((img, i) => {
-        img.classList.remove('active');
-        if (i === index) {
-            img.classList.add('active');
-        }
+        img.classList.toggle('active', i === index);
     });
 }
 
-// Function to navigate to the previous image
 function prevImage() {
-    if (isThrottled) return; // Prevent action if throttled
+    if (isThrottled) return;
     isThrottled = true;
     const images = document.querySelectorAll('.carousel-image');
     currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
     showImage(currentIndex);
-    setTimeout(() => (isThrottled = false), 500); // Throttle duration matches transition time
+    setTimeout(() => (isThrottled = false), 500);
 }
 
-// Function to navigate to the next image
 function nextImage() {
-    if (isThrottled) return; // Prevent action if throttled
+    if (isThrottled) return;
     isThrottled = true;
     const images = document.querySelectorAll('.carousel-image');
     currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
     showImage(currentIndex);
-    setTimeout(() => (isThrottled = false), 500); // Throttle duration matches transition time
+    setTimeout(() => (isThrottled = false), 500);
 }
 
-// Initial setup: Show the first image on page load
 document.addEventListener('DOMContentLoaded', () => {
     showImage(currentIndex);
 
-    // Fullscreen functionality
     const overlay = document.querySelector('.fullscreen-overlay');
     const overlayImg = overlay?.querySelector('img');
 
@@ -64,38 +66,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Close fullscreen when clicking outside the image
     overlay?.addEventListener('click', () => {
         overlay.style.display = 'none';
     });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") prevImage();
+        if (event.key === "ArrowRight") nextImage();
+        if (event.key === "Escape" && overlay?.style.display === "flex") {
+            overlay.style.display = "none";
+        }
+    });
 });
 
-// Paragraph Generator Functionality
+// Paragraph Generator
 const generateBtn = document.getElementById('generateBtn');
 const output = document.getElementById('output');
 
 if (generateBtn && output) {
-    generateBtn.addEventListener('click', () => {
+    generateBtn.addEventListener('click', async () => {
         const apiURL = "https://recapitating-massive.onrender.com/generate_paragraph?num_sentences=10";
         output.innerText = "Loading...";
-
-        fetch(apiURL)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then((data) => {
-                if (data.paragraph) {
-                    output.innerText = data.paragraph;
-                } else {
-                    output.innerText = "Error: No paragraph generated.";
-                }
-            })
-            .catch((error) => {
-                console.error("Fetch Error:", error);
-                output.innerText = `Error: ${error.message}`;
-            });
+        try {
+            const response = await fetch(apiURL);
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+            const data = await response.json();
+            output.innerText = data.paragraph || "Error: Unable to generate a paragraph.";
+        } catch (error) {
+            console.error("Fetch Error:", error);
+            output.innerText = `Error: ${error.message}`;
+        }
     });
 }
