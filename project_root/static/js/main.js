@@ -1,6 +1,9 @@
 // Function to load a component into a specific element
 function loadComponent(filePath, elementId) {
-    fetch(filePath)
+    const isRootPath = window.location.pathname.includes("enhancedprojects");
+    const resolvedPath = isRootPath ? `../${filePath}` : filePath;
+
+    fetch(resolvedPath)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -11,15 +14,15 @@ function loadComponent(filePath, elementId) {
             document.getElementById(elementId).innerHTML = data;
         })
         .catch(error => {
-            console.error(`Error loading ${filePath}:`, error);
+            console.error(`Error loading ${resolvedPath}:`, error);
         });
 }
 
 // Load the banner, navbar, and footer
 document.addEventListener("DOMContentLoaded", () => {
-    loadComponent("banner.html", "banner-container");
-    loadComponent("navbar.html", "navbar-container");
-    loadComponent("footer.html", "footer-container");
+    loadComponent("ENG6806/banner.html", "banner-container");
+    loadComponent("ENG6806/navbar.html", "navbar-container");
+    loadComponent("ENG6806/footer.html", "footer-container");
 });
 
 // Carousel Functionality
@@ -102,4 +105,45 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+});
+
+// Typing logic for the poem
+let titleIndex = 0;
+let bodyIndex = 0;
+const poemTitle = "The Waves Forget the Shoreline";
+const poemBody = `here, before the smoke painted the sky
+with shadows, before stone towers rose
+to watch over the sand like sentinels.
+No room remains for the sea’s slow song—
+edges cutting across the sky, blind
+to the waves.
+
+Paths carve where sand once shifted
+beneath unsteady feet. Iron holds firm,
+sharp lines drawn into the earth,
+a geometry leading forward.
+The weight of time falls in rhythm,
+not like waves that forget what they touch.`;
+
+function typeTitle() {
+    const titleElement = document.getElementById("poem-title");
+    if (titleIndex < poemTitle.length) {
+        titleElement.innerHTML += poemTitle.charAt(titleIndex++);
+        setTimeout(typeTitle, 100);
+    } else {
+        setTimeout(typeBody, 500);
+    }
+}
+
+function typeBody() {
+    const bodyElement = document.getElementById("poem-text");
+    if (bodyIndex < poemBody.length) {
+        const char = poemBody.charAt(bodyIndex++);
+        bodyElement.innerHTML += char === "\n" ? "<br>" : char;
+        setTimeout(typeBody, char === "," || char === "." ? 300 : 100);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    typeTitle();
 });
