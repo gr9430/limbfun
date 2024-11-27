@@ -24,8 +24,8 @@
       padding: 20px;
       background-color: #000000;
       border-radius: 5px;
-      border: 1px solid #000000;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border: 1px solid #ffffff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
       margin-top: 20px;
     }
 
@@ -136,6 +136,7 @@ a world remade in silence.
      <    \\    
       \\_   \\
       \`----'`;
+
     // Typing logic
     let titleIndex = 0;
     let bodyIndex = 0;
@@ -163,14 +164,13 @@ a world remade in silence.
 
     // Start typing animation and load components
     document.addEventListener("DOMContentLoaded", () => {
-      loadComponent("./banner.html", "banner-container");
-      loadComponent("./navbar.html", "navbar-container");
-      loadComponent("./footer.html", "footer-container");
+      loadComponent("../banner.html", "banner-container");
+      loadComponent("../navbar.html", "navbar-container");
+      loadComponent("../footer.html", "footer-container");
       typeTitle();
     });
   </script>
-    <!-- Link to the JavaScript File -->
+  <!-- Link to the JavaScript File -->
   <script src="/ENG6806/project_root/static/js/main.js"></script>
-
 </body>
 </html>
