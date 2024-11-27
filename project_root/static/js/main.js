@@ -29,6 +29,23 @@ function nextImage() {
 // Initial setup: Show the first image on page load
 document.addEventListener('DOMContentLoaded', () => {
     showImage(currentIndex);
+
+    // Add click event to each carousel image to enable fullscreen mode
+    const images = document.querySelectorAll('.carousel-image');
+    const overlay = document.querySelector('.fullscreen-overlay');
+    const overlayImg = overlay.querySelector('img');
+
+    images.forEach(img => {
+        img.addEventListener('click', () => {
+            overlay.style.display = 'flex'; // Show the overlay
+            overlayImg.src = img.src; // Set the overlay image source
+        });
+    });
+
+    // Add click event to the overlay to close fullscreen view
+    overlay.addEventListener('click', () => {
+        overlay.style.display = 'none'; // Hide the overlay
+    });
 });
 
 // Paragraph Generator Functionality

@@ -18,15 +18,16 @@
     </ul>
   </nav>
 
+  <!-- Main Container -->
   <div class="container">
     <h1><b>Meaningful Images</b>: A Reflection on my Artistic Practices in Conversation with ChatGPT</h1>
-    <section>
-      <!-- Carousel Section -->
-      <div class="carousel-container">
-        <!-- Left Button -->
-        <button class="carousel-btn left" onclick="prevImage()">&#10094;</button>
-  
-        <!-- Image Wrapper -->
+    
+    <!-- Carousel Section -->
+    <div class="carousel-container">
+      <!-- Left Button -->
+      <button class="carousel-btn left" onclick="prevImage()">&#10094;</button>
+
+      <!-- Image Wrapper -->
         <div class="carousel-wrapper">
           <img src="/ENG6806/project_root/static/images/carousel_one/1.png" alt="Image 1" class="carousel-image active">
           <img src="/ENG6806/project_root/static/images/carousel_one/2.png" alt="Image 2" class="carousel-image">
@@ -45,12 +46,11 @@
           <img src="/ENG6806/project_root/static/images/carousel_one/15.png" alt="Image 15" class="carousel-image">
 
         </div>
-  
-        <!-- Right Button -->
-        <button class="carousel-btn right" onclick="nextImage()">&#10095;</button>
-      </div>
-      <!-- End of Carousel Section -->
-      </section>
+
+      <!-- Right Button -->
+      <button class="carousel-btn right" onclick="nextImage()">&#10095;</button>
+    </div>
+          </section>
     <p>
         Not to sound melodramatic, but this project marks a pivotal moment in my academic and artistic journey, where I began to move away from a strictly medieval Irish studies focus and toward a broader engagement with digital humanities, visual culture, and accessible pedagogy. Through this exercise, I used generative AI to explore the complexities of translating images across mediums, reflecting on how these practices intersect with my evolving research goals.
     </p>
@@ -68,34 +68,12 @@
     </pr>
   </div>
 
+  <!-- Fullscreen Image Overlay -->
+  <div class="fullscreen-overlay">
+    <img src="" alt="Fullscreen Image">
+  </div>
+
   <!-- JavaScript -->
-  <script>
-    let currentIndex = 0;
-
-    function showImage(index) {
-      const images = document.querySelectorAll('.carousel-image');
-      images.forEach((img, i) => {
-        img.classList.remove('active'); // Remove "active" from all images
-        if (i === index) {
-          img.classList.add('active'); // Add "active" to the current image
-        }
-      });
-    }
-
-    function prevImage() {
-      const images = document.querySelectorAll('.carousel-image');
-      currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
-      showImage(currentIndex);
-    }
-
-    function nextImage() {
-      const images = document.querySelectorAll('.carousel-image');
-      currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
-      showImage(currentIndex);
-    }
-
-    // Show the first image on page load
-    showImage(currentIndex);
-  </script>
+  <script src="/ENG6806/project_root/static/js/carousel-paragraph.js"></script>
 </body>
 </html>
