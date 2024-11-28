@@ -82,14 +82,20 @@ function highlightZone(x1, y1, x2, y2) {
 function displayStanzasRead() {
     fill(0);
     textSize(16);
-    text(`Stanzas Read: ${stanzasRead} / ${totalInteractions}`, 10, 30);
+    text(`Stanzas Completed: ${stanzasRead} / ${totalInteractions}`, 10, 30);
 }
 
 function displayRevealedMessages() {
     fill(0);
     textSize(14);
+    let yOffset = 100;
     for (let i = 0; i < revealedMessages.length; i++) {
-        text(revealedMessages[i], 50, 100 + i * 30);
+        let lines = revealedMessages[i].split('\n');
+        for (let j = 0; j < lines.length; j++) {
+            text(lines[j], 50, yOffset);
+            yOffset += 20;
+        }
+        yOffset += 10; // Add extra space between stanzas
     }
 }
 
