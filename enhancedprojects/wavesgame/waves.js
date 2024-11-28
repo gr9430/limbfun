@@ -12,7 +12,6 @@ function preload() {
 }
 
 function setup() {
-    console.log('Starting setup...');
     let canvas = createCanvas(800, 800);
     canvas.parent('canvas-container');
     canvas.style('max-width', '100%');
@@ -32,16 +31,16 @@ function draw() {
     displayStanzasRead();
     displayRevealedMessages();
 
-    // Define interactive zones - adjusted to fit within the canvas of 800x800
-    if (mouseX > 50 && mouseX < 150 && mouseY > 300 && mouseY < 400) { // Bird
+    // Define interactive zones
+    if (mouseX > 50 && mouseX < 150 && mouseY > 300 && mouseY < 400) {
         cursor('pointer');
-    } else if (mouseX > 200 && mouseX < 400 && mouseY > 500 && mouseY < 600) { // Shore
+    } else if (mouseX > 200 && mouseX < 400 && mouseY > 500 && mouseY < 600) {
         cursor('pointer');
-    } else if (mouseX > 600 && mouseX < 700 && mouseY > 600 && mouseY < 700) { // Waves
+    } else if (mouseX > 600 && mouseX < 700 && mouseY > 600 && mouseY < 700) {
         cursor('pointer');
-    } else if (mouseX > 700 && mouseX < 800 && mouseY > 100 && mouseY < 300) { // Building
+    } else if (mouseX > 700 && mouseX < 800 && mouseY > 100 && mouseY < 300) {
         cursor('pointer');
-    } else if (mouseX > 400 && mouseX < 500 && mouseY > 100 && mouseY < 200) { // Smoke Plumes
+    } else if (mouseX > 400 && mouseX < 500 && mouseY > 100 && mouseY < 200) {
         cursor('pointer');
     } else {
         cursor('default');
@@ -66,49 +65,16 @@ function displayRevealedMessages() {
 }
 
 function mousePressed() {
-    // Interactive zones with messages
-    if (mouseX > 50 && mouseX < 150 && mouseY > 300 && mouseY < 400) { // Bird
+    console.log("Mouse pressed at:", mouseX, mouseY); // Debugging click events
+    if (mouseX > 50 && mouseX < 150 && mouseY > 300 && mouseY < 400) {
         if (!revealedMessages.includes("The bird sings softly, echoing over the waves.")) {
             revealedMessages.push("The bird sings softly, echoing over the waves.");
             interactions++;
             stanzasRead++;
         }
-    } else if (mouseX > 200 && mouseX < 400 && mouseY > 500 && mouseY < 600) { // Shore
-        if (!revealedMessages.includes("The shore glimmers under the fading sunlight.")) {
-            revealedMessages.push("The shore glimmers under the fading sunlight.");
-            interactions++;
-            stanzasRead++;
-        }
-    } else if (mouseX > 600 && mouseX < 700 && mouseY > 600 && mouseY < 700) { // Waves
-        if (!revealedMessages.includes("The waves crash with a rhythmic persistence.")) {
-            revealedMessages.push("The waves crash with a rhythmic persistence.");
-            interactions++;
-            stanzasRead++;
-        }
-    } else if (mouseX > 700 && mouseX < 800 && mouseY > 100 && mouseY < 300) { // Building
-        if (!revealedMessages.includes("The building stands tall, weathered by time.")) {
-            revealedMessages.push("The building stands tall, weathered by time.");
-            interactions++;
-            stanzasRead++;
-        }
-    } else if (mouseX > 400 && mouseX < 500 && mouseY > 100 && mouseY < 200) { // Smoke Plumes
-        if (!revealedMessages.includes("Smoke plumes rise, blurring into the sky.")) {
-            revealedMessages.push("Smoke plumes rise, blurring into the sky.");
-            interactions++;
-            stanzasRead++;
-        }
     }
+    // Define other zones similarly...
 
-    function mousePressed() {
-    console.log("Mouse pressed at:", mouseX, mouseY); // Debugging click events
-    // Rest of your click logic...
-}
-
-if (mouseX > 50 && mouseX < 150 && mouseY > 300 && mouseY < 400) {
-    // Bird zone - adjust coordinates if needed
-}    
-    
-    // Check if all interactions are complete
     if (interactions >= totalInteractions) {
         endGame();
     }
@@ -125,10 +91,10 @@ function endGame() {
     }
 }
 
-console.log('Script loaded successfully');
-
-// Ensure P5.js knows about these functions
+// Expose functions to P5.js
 window.preload = preload;
 window.setup = setup;
 window.draw = draw;
 window.mousePressed = mousePressed;
+
+console.log('Script loaded successfully');
