@@ -31,42 +31,56 @@ function draw() {
         // Calculate scaling to fit within the canvas while maintaining aspect ratio
         let aspectRatio = imgWidth / imgHeight;
         let canvasAspectRatio = width / height;
+        let newWidth, newHeight, xOffset, yOffset;
 
         if (aspectRatio > canvasAspectRatio) {
             // Fit by width
-            let newWidth = width;
-            let newHeight = newWidth / aspectRatio;
-            image(img, 0, (height - newHeight) / 2, newWidth, newHeight);
+            newWidth = width;
+            newHeight = newWidth / aspectRatio;
+            xOffset = 0;
+            yOffset = (height - newHeight) / 2;
         } else {
             // Fit by height
-            let newHeight = height;
-            let newWidth = newHeight * aspectRatio;
-            image(img, (width - newWidth) / 2, 0, newWidth, newHeight);
+            newHeight = height;
+            newWidth = newHeight * aspectRatio;
+            xOffset = (width - newWidth) / 2;
+            yOffset = 0;
         }
+
+        // Draw the scaled image
+        image(img, xOffset, yOffset, newWidth, newHeight);
+
+        // Calculate the scaling factors to adjust mouse coordinates
+        let xScale = newWidth / imgWidth;
+        let yScale = newHeight / imgHeight;
+
+        // Adjusted mouse coordinates for scaled image
+        let adjustedMouseX = (mouseX - xOffset) / xScale;
+        let adjustedMouseY = (mouseY - yOffset) / yScale;
+
+        // Define interactive zones based on adjusted coordinates
+        if (adjustedMouseX > 50 && adjustedMouseX < 150 && adjustedMouseY > 300 && adjustedMouseY < 400) { // Bird
+            cursor('pointer');
+        } else if (adjustedMouseX > 200 && adjustedMouseX < 400 && adjustedMouseY > 500 && adjustedMouseY < 600) { // Shore
+            cursor('pointer');
+        } else if (adjustedMouseX > 600 && adjustedMouseX < 700 && adjustedMouseY > 600 && adjustedMouseY < 700) { // Waves
+            cursor('pointer');
+        } else if (adjustedMouseX > 700 && adjustedMouseX < 800 && adjustedMouseY > 100 && adjustedMouseY < 300) { // Building
+            cursor('pointer');
+        } else if (adjustedMouseX > 400 && adjustedMouseX < 500 && adjustedMouseY > 100 && adjustedMouseY < 200) { // Smoke Plumes
+            cursor('pointer');
+        } else {
+            cursor('default');
+        }
+
+        // Display information on canvas
+        displayCoordinates();
+        displayStanzasRead();
+        displayRevealedMessages();
     } else {
         background(255); // Fallback if image fails to load
     }
-    displayCoordinates();
-    displayStanzasRead();
-    displayRevealedMessages();
-
-    // Define interactive zones - adjusted to fit within the canvas of 800x800
-    if (mouseX > 50 && mouseX < 150 && mouseY > 300 && mouseY < 400) { // Bird
-        cursor('pointer');
-    } else if (mouseX > 200 && mouseX < 400 && mouseY > 500 && mouseY < 600) { // Shore
-        cursor('pointer');
-    } else if (mouseX > 600 && mouseX < 700 && mouseY > 600 && mouseY < 700) { // Waves
-        cursor('pointer');
-    } else if (mouseX > 700 && mouseX < 800 && mouseY > 100 && mouseY < 300) { // Building
-        cursor('pointer');
-    } else if (mouseX > 400 && mouseX < 500 && mouseY > 100 && mouseY < 200) { // Smoke Plumes
-        cursor('pointer');
-    } else {
-        cursor('default');
-    }
 }
-
-
 
 function displayCoordinates() {
     // Draw a white rectangle to improve the visibility of coordinates
@@ -92,32 +106,60 @@ function displayRevealedMessages() {
 }
 
 function mousePressed() {
+    // Calculate scaling factors again to match the drawn image
+    let imgWidth = img.width;
+    let imgHeight = img.height;
+    let aspectRatio = imgWidth / imgHeight;
+    let canvasAspectRatio = width / height;
+    let newWidth, newHeight, xOffset, yOffset;
+
+    if (aspectRatio > canvasAspectRatio) {
+        // Fit by width
+        newWidth = width;
+        newHeight = newWidth / aspectRatio;
+        xOffset = 0;
+        yOffset = (height - newHeight) / 2;
+    } else {
+        // Fit by height
+        newHeight = height;
+        newWidth = newHeight * aspectRatio;
+        xOffset = (width - newWidth) / 2;
+        yOffset = 0;
+    }
+
+    let xScale = newWidth / imgWidth;
+    let yScale = newHeight / imgHeight;
+
+    // Adjust mouse position
+    let adjustedMouseX = (mouseX - xOffset) / xScale;
+    let adjustedMouseY = (mouseY - yOffset) / yScale;
+
     // Interactive zones with messages
-    if (mouseX > 50 && mouseX < 150 && mouseY > 300 && mouseY < 400) { // Bird
+    if (adjustedMouseX > 50 && adjustedMouseX < 150 && adjustedMouseY > 300 && adjustedMouseY < 400) { // Bird
         if (!revealedMessages.includes("The bird sings softly, echoing over the waves.")) {
             revealedMessages.push("The bird sings softly, echoing over the waves.");
             interactions++;
             stanzasRead++;
         }
-    } else if (mouseX > 200 && mouseX < 400 && mouseY > 500 && mouseY < 600) { // Shore
+    } else if (adjustedMouseX > 200 && adjustedMouseX < 400 && adjustedMouseY > 500 && adjustedMouseY < 600) { // Shore
         if (!revealedMessages.includes("The shore glimmers under the fading sunlight.")) {
             revealedMessages.push("The shore glimmers under the fading sunlight.");
             interactions++;
             stanzasRead++;
         }
-    } else if (mouseX > 600 && mouseX < 700 && mouseY > 600 && mouseY < 700) { // Waves
+    } else if (adjustedMouseX > 600 && adjustedMouseX < 700 && adjustedMouseY > 600 && adjustedMouseY < 700) { // Waves
         if (!revealedMessages.includes("The waves crash with a rhythmic persistence.")) {
             revealedMessages.push("The waves crash with a rhythmic persistence.");
             interactions++;
             stanzasRead++;
         }
-    } else if (mouseX > 700 && mouseX < 800 && mouseY > 100 && mouseY < 300) { // Building
+    } else if (adjustedMouseX > 700 && adjustedMouseX < 800 && adjustedMouseY > 100 && adjustedMouseY < 300) { // Building
         if (!revealedMessages.includes("The building stands tall, weathered by time.")) {
             revealedMessages.push("The building stands tall, weathered by time.");
             interactions++;
             stanzasRead++;
         }
-    } else if (mouseX > 400 && mouseX < 500 && mouseY > 100 && mouseY < 200) { // Smoke Plumes
+    } else if (adjustedMouseX > 400 && adjustedMouseX < 500 && adjustedMouseY > 100 && adjustedMouseY < 200) { // Smoke Plumes
         if (!revealedMessages.includes("Smoke plumes rise, blurring into the sky.")) {
             revealedMessages.push("Smoke plumes rise, blurring into the sky.");
             interactions++;
