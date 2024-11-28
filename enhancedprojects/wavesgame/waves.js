@@ -24,19 +24,33 @@ function setup() {
 
 function draw() {
     if (img) {
-        background(img);
+        background(255); // Clear the background to white before drawing the image
+        let imgWidth = img.width;
+        let imgHeight = img.height;
+
+        // Calculate scaling to fit within the canvas while maintaining aspect ratio
+        let aspectRatio = imgWidth / imgHeight;
+        let canvasAspectRatio = width / height;
+
+        if (aspectRatio > canvasAspectRatio) {
+            // Fit by width
+            let newWidth = width;
+            let newHeight = newWidth / aspectRatio;
+            image(img, 0, (height - newHeight) / 2, newWidth, newHeight);
+        } else {
+            // Fit by height
+            let newHeight = height;
+            let newWidth = newHeight * aspectRatio;
+            image(img, (width - newWidth) / 2, 0, newWidth, newHeight);
+        }
     } else {
         background(255); // Fallback if image fails to load
     }
-    
-    // Debugging line to log mouse coordinates
-    console.log(`Mouse Coordinates: X=${mouseX}, Y=${mouseY}`);
-
     displayCoordinates();
     displayStanzasRead();
     displayRevealedMessages();
 
-    // Define interactive zones
+    // Define interactive zones - adjusted to fit within the canvas of 800x800
     if (mouseX > 50 && mouseX < 150 && mouseY > 300 && mouseY < 400) { // Bird
         cursor('pointer');
     } else if (mouseX > 200 && mouseX < 400 && mouseY > 500 && mouseY < 600) { // Shore
@@ -51,6 +65,7 @@ function draw() {
         cursor('default');
     }
 }
+
 
 
 function displayCoordinates() {
