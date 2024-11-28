@@ -13,8 +13,10 @@ function preload() {
 
 function setup() {
     console.log('Starting setup...');
-    let canvas = createCanvas(1000, 1000); // Set canvas to original 1000x1000 size
+    let canvas = createCanvas(1000, 1000); // Canvas is now 1000x1000 to match image
     canvas.parent('canvas-container');
+    canvas.style('max-width', '100%');
+    canvas.style('height', 'auto');
     textAlign(LEFT, BOTTOM);
     textSize(16);
     console.log('Setup completed');
@@ -23,48 +25,49 @@ function setup() {
 function draw() {
     if (img) {
         background(255); // Clear the background to white before drawing the image
-        image(img, 0, 0, width, height); // Draw the image at the full canvas size
+        image(img, 0, 0, width, height);
     } else {
         background(255); // Fallback if image fails to load
     }
+
     displayCoordinates();
     displayStanzasRead();
     displayRevealedMessages();
 
-    // Draw semi-transparent rectangle to highlight hovered area
-    drawHighlightZone();
+    // Define interactive zones based on provided points
+    if (isWithinZone(mouseX, mouseY, 115, 770, 218, 845)) { // Bird
+        cursor('pointer');
+        highlightZone(115, 770, 218, 845);
+    } else if (isWithinZone(mouseX, mouseY, 465, 470, 955, 735)) { // Waves
+        cursor('pointer');
+        highlightZone(465, 470, 955, 735);
+    } else if (isWithinZone(mouseX, mouseY, 125, 75, 420, 740)) { // Building
+        cursor('pointer');
+        highlightZone(125, 75, 420, 740);
+    } else if (isWithinZone(mouseX, mouseY, 640, 5, 955, 325)) { // Plume
+        cursor('pointer');
+        highlightZone(640, 5, 955, 325);
+    } else {
+        cursor('default');
+    }
 }
 
-function drawHighlightZone() {
-    noFill();
-    stroke(100, 100, 100, 100); // Light grey stroke
+function isWithinZone(x, y, x1, y1, x2, y2) {
+    // Checks if the mouse is within the given rectangular zone
+    return x >= x1 && x <= x2 && y >= y1 && y <= y2;
+}
 
-    // Define interactive zones
-    let zones = [
-        { x: 50, y: 300, w: 100, h: 100, message: "The bird sings softly, echoing over the waves." },  // Bird
-        { x: 200, y: 500, w: 200, h: 100, message: "The shore glimmers under the fading sunlight." },   // Shore
-        { x: 600, y: 600, w: 100, h: 100, message: "The waves crash with a rhythmic persistence." },    // Waves
-        { x: 700, y: 100, w: 100, h: 200, message: "The building stands tall, weathered by time." },    // Building
-        { x: 400, y: 100, w: 100, h: 100, message: "Smoke plumes rise, blurring into the sky." }        // Smoke Plumes
-    ];
-
-    for (let zone of zones) {
-        // Check if mouse is inside zone
-        if (mouseX > zone.x && mouseX < zone.x + zone.w && mouseY > zone.y && mouseY < zone.y + zone.h) {
-            cursor('pointer');
-            fill(200, 200, 200, 100); // Light grey with 40% opacity
-            noStroke();
-            rect(zone.x, zone.y, zone.w, zone.h); // Draw the semi-transparent highlight
-        } else {
-            cursor('default');
-        }
-    }
+function highlightZone(x1, y1, x2, y2) {
+    // Draws a semi-transparent rectangle to highlight an interactive zone
+    fill(200, 200, 200, 100); // Light grey color with 40% opacity
+    noStroke();
+    rect(x1, y1, x2 - x1, y2 - y1);
 }
 
 function displayCoordinates() {
     // Draw a white rectangle to improve the visibility of coordinates
     fill(255);
-    rect(0, height - 30, 150, 30); // Slightly increased width for more space
+    rect(0, height - 30, 150, 30);
 
     // Draw mouse coordinates
     fill(0);
@@ -85,22 +88,30 @@ function displayRevealedMessages() {
 }
 
 function mousePressed() {
-    // Define interactive zones with messages
-    let zones = [
-        { x: 50, y: 300, w: 100, h: 100, message: "The bird sings softly, echoing over the waves." },  // Bird
-        { x: 200, y: 500, w: 200, h: 100, message: "The shore glimmers under the fading sunlight." },   // Shore
-        { x: 600, y: 600, w: 100, h: 100, message: "The waves crash with a rhythmic persistence." },    // Waves
-        { x: 700, y: 100, w: 100, h: 200, message: "The building stands tall, weathered by time." },    // Building
-        { x: 400, y: 100, w: 100, h: 100, message: "Smoke plumes rise, blurring into the sky." }        // Smoke Plumes
-    ];
-
-    for (let zone of zones) {
-        if (mouseX > zone.x && mouseX < zone.x + zone.w && mouseY > zone.y && mouseY < zone.y + zone.h) {
-            if (!revealedMessages.includes(zone.message)) {
-                revealedMessages.push(zone.message);
-                interactions++;
-                stanzasRead++;
-            }
+    // Interactive zones with messages
+    if (isWithinZone(mouseX, mouseY, 115, 770, 218, 845)) { // Bird
+        if (!revealedMessages.includes("The bird sings softly, echoing over the waves.")) {
+            revealedMessages.push("The bird sings softly, echoing over the waves.");
+            interactions++;
+            stanzasRead++;
+        }
+    } else if (isWithinZone(mouseX, mouseY, 465, 470, 955, 735)) { // Waves
+        if (!revealedMessages.includes("The waves crash with a rhythmic persistence.")) {
+            revealedMessages.push("The waves crash with a rhythmic persistence.");
+            interactions++;
+            stanzasRead++;
+        }
+    } else if (isWithinZone(mouseX, mouseY, 125, 75, 420, 740)) { // Building
+        if (!revealedMessages.includes("The building stands tall, weathered by time.")) {
+            revealedMessages.push("The building stands tall, weathered by time.");
+            interactions++;
+            stanzasRead++;
+        }
+    } else if (isWithinZone(mouseX, mouseY, 640, 5, 955, 325)) { // Plume
+        if (!revealedMessages.includes("Smoke plumes rise, blurring into the sky.")) {
+            revealedMessages.push("Smoke plumes rise, blurring into the sky.");
+            interactions++;
+            stanzasRead++;
         }
     }
 
