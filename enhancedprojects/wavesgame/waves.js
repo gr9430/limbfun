@@ -14,7 +14,7 @@ function preload() {
 function setup() {
     console.log('Starting setup...');
     let canvas = createCanvas(1000, 1000); // Canvas is now 1000x1000 to match image
-    canvas.parent('canvas-container');
+    canvas.parent('canvas-container'); // Ensure container exists in HTML
     canvas.style('max-width', '100%');
     canvas.style('height', 'auto');
     textAlign(LEFT, BOTTOM);
@@ -30,7 +30,6 @@ function draw() {
         background(255); // Fallback if image fails to load
     }
 
-    displayCoordinates();
     displayStanzasRead();
     displayRevealedMessages();
 
@@ -65,17 +64,6 @@ function highlightZone(x1, y1, x2, y2) {
     fill(200, 200, 200, 100); // Light grey color with 40% opacity
     noStroke();
     rect(x1, y1, x2 - x1, y2 - y1);
-}
-
-function displayCoordinates() {
-    // Draw a white rectangle to improve the visibility of coordinates
-    fill(255);
-    rect(0, height - 30, 150, 30);
-
-    // Draw mouse coordinates
-    fill(0);
-    textSize(14);
-    text(`X: ${mouseX}, Y: ${mouseY}`, 10, height - 10);
 }
 
 function displayStanzasRead() {
