@@ -13,13 +13,18 @@ function preload() {
 
 function setup() {
     console.log('Starting setup...');
-    let canvas = createCanvas(1000, 1000); // Canvas is now 1000x1000 to match image
+    let canvas = createCanvas(1000, 1000);
     canvas.parent('canvas-container');
     canvas.style('max-width', '100%');
     canvas.style('height', 'auto');
     textAlign(LEFT, BOTTOM);
     textSize(16);
     console.log('Setup completed');
+
+    // Create a button to end the poem early
+    let submitButton = createButton("Finish Poem");
+    submitButton.mousePressed(endGame);
+    submitButton.parent('button-container'); // Assign button to a container below the canvas
 }
 
 function draw() {
@@ -30,15 +35,13 @@ function draw() {
         background(255); // Fallback if image fails to load
     }
 
-    displayCoordinates();
     displayStanzasRead();
-    displayRevealedMessages();
 
     // Define interactive zones based on provided points
     if (isWithinZone(mouseX, mouseY, 115, 770, 218, 845)) { // Bird
         cursor('pointer');
         highlightZone(115, 770, 218, 845);
-    } else if (isWithinZone(mouseX, mouseY, 225, 750, 500, 910)) { // Shore (Updated coordinates)
+    } else if (isWithinZone(mouseX, mouseY, 225, 750, 500, 910)) { // Shore
         cursor('pointer');
         highlightZone(225, 750, 500, 910);
     } else if (isWithinZone(mouseX, mouseY, 465, 470, 955, 735)) { // Waves
@@ -56,26 +59,13 @@ function draw() {
 }
 
 function isWithinZone(x, y, x1, y1, x2, y2) {
-    // Checks if the mouse is within the given rectangular zone
     return x >= x1 && x <= x2 && y >= y1 && y <= y2;
 }
 
 function highlightZone(x1, y1, x2, y2) {
-    // Draws a semi-transparent rectangle to highlight an interactive zone
     fill(200, 200, 200, 100); // Light grey color with 40% opacity
     noStroke();
     rect(x1, y1, x2 - x1, y2 - y1);
-}
-
-function displayCoordinates() {
-    // Draw a white rectangle to improve the visibility of coordinates
-    fill(255);
-    rect(0, height - 30, 150, 30);
-
-    // Draw mouse coordinates
-    fill(0);
-    textSize(14);
-    text(`X: ${mouseX}, Y: ${mouseY}`, 10, height - 10);
 }
 
 function displayStanzasRead() {
@@ -84,10 +74,16 @@ function displayStanzasRead() {
 }
 
 function displayRevealedMessages() {
-    fill(0);
-    for (let i = 0; i < revealedMessages.length; i++) {
-        text(revealedMessages[i], 50, 50 + i * 30);
-    }
+    // Clear the current revealed messages display
+    const messageContainer = document.getElementById('message-container');
+    messageContainer.innerHTML = '';
+
+    // Display each revealed message in the container
+    revealedMessages.forEach(message => {
+        const messageElement = document.createElement('p');
+        messageElement.innerText = message;
+        messageContainer.appendChild(messageElement);
+    });
 }
 
 function mousePressed() {
@@ -98,7 +94,7 @@ function mousePressed() {
             interactions++;
             stanzasRead++;
         }
-    } else if (isWithinZone(mouseX, mouseY, 225, 750, 500, 910)) { // Shore (Updated coordinates)
+    } else if (isWithinZone(mouseX, mouseY, 225, 750, 500, 910)) { // Shore
         if (!revealedMessages.includes("The shore glimmers under the fading sunlight.")) {
             revealedMessages.push("The shore glimmers under the fading sunlight.");
             interactions++;
@@ -124,6 +120,8 @@ function mousePressed() {
         }
     }
 
+    displayRevealedMessages();
+
     // Check if all interactions are complete
     if (interactions >= totalInteractions) {
         endGame();
@@ -131,14 +129,16 @@ function mousePressed() {
 }
 
 function endGame() {
-    fill(0);
-    textSize(32);
-    textAlign(CENTER, CENTER);
+    // Display a completion message
+    const messageContainer = document.getElementById('message-container');
+    const completionMessage = document.createElement('p');
+    completionMessage.style.fontWeight = 'bold';
     if (stanzasRead >= totalInteractions) {
-        text("You have unveiled all the secrets of the scene.", width / 2, height / 2);
+        completionMessage.innerText = "You have unveiled all the secrets of the scene.";
     } else {
-        text("The story remains incomplete. Try again.", width / 2, height / 2);
+        completionMessage.innerText = "The story remains incomplete. Try again.";
     }
+    messageContainer.appendChild(completionMessage);
 }
 
 // Assign p5.js functions to window object
