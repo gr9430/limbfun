@@ -368,9 +368,10 @@ canvas {
 
 /* Game Specific Styling */
 #game-container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 25px;
+        max-width: 1000px;
+    margin: 0 auto; /* Center the container */
+    padding: 0; /* Remove extra padding if not needed */
+    height: auto; /* Let height adjust based on content */
     background-color: #111111; /* Matching container color with the rest of the site */
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
@@ -386,7 +387,4 @@ canvas {
     box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
 }
 
-html, body {
-    height: 100%;
-    overflow: hidden; /* Prevents scrolling caused by overflow */
-}
+
