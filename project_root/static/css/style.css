@@ -377,6 +377,16 @@ button:hover {
     overflow: hidden; /* Ensure no overflow from the canvas */
 }
 
+#canvas-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+
 canvas {
     max-width: 100%;
     height: auto;
