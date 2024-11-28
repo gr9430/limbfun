@@ -30,6 +30,15 @@ function draw() {
         background(255); // Fallback if image fails to load
     }
 
+    // Draw the permanent title and starting line
+    fill(0);
+    textSize(24);
+    textAlign(CENTER, TOP);
+    text("The Waves Forget the Structure", width / 2, 20);
+    textSize(18);
+    textAlign(LEFT, TOP);
+    text("here,", 50, 60);
+
     displayStanzasRead();
     displayRevealedMessages();
 
@@ -72,13 +81,15 @@ function highlightZone(x1, y1, x2, y2) {
 
 function displayStanzasRead() {
     fill(0);
+    textSize(16);
     text(`Stanzas Read: ${stanzasRead} / ${totalInteractions}`, 10, 30);
 }
 
 function displayRevealedMessages() {
     fill(0);
+    textSize(14);
     for (let i = 0; i < revealedMessages.length; i++) {
-        text(revealedMessages[i], 50, 50 + i * 30);
+        text(revealedMessages[i], 50, 100 + i * 30);
     }
 }
 
@@ -86,32 +97,32 @@ function mousePressed() {
     console.log(`Mouse pressed at X: ${mouseX}, Y: ${mouseY}`);
     // Interactive zones with messages
     if (isWithinZone(mouseX, mouseY, 115, 770, 218, 845)) { // Bird
-        if (!revealedMessages.includes("The bird sings softly, echoing over the waves.")) {
-            revealedMessages.push("The bird sings softly, echoing over the waves.");
+        if (!revealedMessages.includes("before the smoke painted the sky\nwith shadows, before stone towers rose\nto watch over the sand like sentinels.\nNo room remains for the sea’s slow song—\nedges cutting across the sky, blind\nto the waves.")) {
+            revealedMessages.push("before the smoke painted the sky\nwith shadows, before stone towers rose\nto watch over the sand like sentinels.\nNo room remains for the sea’s slow song—\nedges cutting across the sky, blind\nto the waves.");
             interactions++;
             stanzasRead++;
         }
     } else if (isWithinZone(mouseX, mouseY, 225, 750, 500, 910)) { // Shore (Updated coordinates)
-        if (!revealedMessages.includes("The shore glimmers under the fading sunlight.")) {
-            revealedMessages.push("The shore glimmers under the fading sunlight.");
+        if (!revealedMessages.includes("paths carve where sand once shifted\nbeneath unsteady feet. Iron holds firm,\nsharp lines drawn into the earth,\na geometry leading forward.\nThe weight of time falls in rhythm,\nnot like waves that forget what they touch.")) {
+            revealedMessages.push("paths carve where sand once shifted\nbeneath unsteady feet. Iron holds firm,\nsharp lines drawn into the earth,\na geometry leading forward.\nThe weight of time falls in rhythm,\nnot like waves that forget what they touch.");
             interactions++;
             stanzasRead++;
         }
     } else if (isWithinZone(mouseX, mouseY, 465, 470, 955, 735)) { // Waves
-        if (!revealedMessages.includes("The waves crash with a rhythmic persistence.")) {
-            revealedMessages.push("The waves crash with a rhythmic persistence.");
+        if (!revealedMessages.includes("the first sound of waves breaking on the shore,\nthe pull of the tide soft as breath,\nsmall hands once reached for shells as if to hold the sea.\nNow the wind moves like a thought, caught\nbetween the spaces where light once fell freely.\nThe air carries only shadows now—\na world remade in silence.")) {
+            revealedMessages.push("the first sound of waves breaking on the shore,\nthe pull of the tide soft as breath,\nsmall hands once reached for shells as if to hold the sea.\nNow the wind moves like a thought, caught\nbetween the spaces where light once fell freely.\nThe air carries only shadows now—\na world remade in silence.");
             interactions++;
             stanzasRead++;
         }
     } else if (isWithinZone(mouseX, mouseY, 125, 75, 420, 740)) { // Building
-        if (!revealedMessages.includes("The building stands tall, weathered by time.")) {
-            revealedMessages.push("The building stands tall, weathered by time.");
+        if (!revealedMessages.includes("towers rise to be followed, engines hum\nin hours marked by invisible hands.\nWheels spin in the air,\nthe hum surrounds,\ncarrying a rhythm only steel can hear.")) {
+            revealedMessages.push("towers rise to be followed, engines hum\nin hours marked by invisible hands.\nWheels spin in the air,\nthe hum surrounds,\ncarrying a rhythm only steel can hear.");
             interactions++;
             stanzasRead++;
         }
     } else if (isWithinZone(mouseX, mouseY, 640, 5, 955, 325)) { // Plume
-        if (!revealedMessages.includes("Smoke plumes rise, blurring into the sky.")) {
-            revealedMessages.push("Smoke plumes rise, blurring into the sky.");
+        if (!revealedMessages.includes("clocks replace the pulse of the shore,\neyes shifting toward rising smoke,\ntoward fires held behind doors, where light bends\nagainst walls built of stone and air grows heavy.\nFeet forget the softness beneath them—\nnow the sky is laced with shadows,\nand the wind carries only whispers\nthrough spaces drawn by hands dreaming of steel.")) {
+            revealedMessages.push("clocks replace the pulse of the shore,\neyes shifting toward rising smoke,\ntoward fires held behind doors, where light bends\nagainst walls built of stone and air grows heavy.\nFeet forget the softness beneath them—\nnow the sky is laced with shadows,\nand the wind carries only whispers\nthrough spaces drawn by hands dreaming of steel.");
             interactions++;
             stanzasRead++;
         }
