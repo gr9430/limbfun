@@ -1,50 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Waves Forget the Structure</title>
-    <link rel="icon" href="data:,">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Poem Game</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <link rel="stylesheet" href="/ENG6806/project_root/static/css/style.css">
 </head>
 <body>
-    <!-- Placeholder for Banner -->
-    <div id="banner-container"></div>
+  <!-- Placeholder for Banner -->
+  <div id="banner-container"></div>
 
-    <!-- Placeholder for Navbar -->
-    <div id="navbar-container"></div>
+  <!-- Placeholder for Navbar -->
+  <div id="navbar-container"></div>
 
-    <!-- Game Container -->
-    <div id="game-container">
-        <!-- Canvas for the game -->
-        <div id="canvas-container"></div>
-    </div>
+  <!-- Game Container -->
+  <div id="game-container">
+    <div id="canvas-container"></div>
+  </div>
 
-    <!-- Placeholder for Footer -->
-    <div id="footer-container"></div>
+  <!-- Button to Finish the Poem Early -->
+  <div id="button-container" style="text-align: center; margin-top: 20px;">
+    <!-- Button will be added here by JavaScript -->
+  </div>
 
-    <!-- Load CSS dynamically -->
-    <script>
-        // Load CSS using JavaScript
-        function loadCSS(filePath) {
-            const link = document.createElement("link");
-            link.rel = "stylesheet";
-            link.href = filePath;
-            link.type = "text/css";
-            link.onload = () => console.log(`CSS Loaded: ${filePath}`);
-            link.onerror = () => console.error(`Failed to load CSS: ${filePath}`);
-            document.head.appendChild(link);
-        }
+  <!-- Message Display Container -->
+  <div id="message-container" style="margin-top: 20px; padding: 15px; background-color: #f0f0f0; border-radius: 5px;">
+    <!-- Messages will be displayed here -->
+  </div>
 
-        document.addEventListener("DOMContentLoaded", function() {
-            loadCSS("/ENG6806/project_root/static/css/style.css"); // Correct path to your CSS
-        });
-    </script>
+  <!-- Footer Placeholder -->
+  <div id="footer-container"></div>
 
-    <!-- Load P5.js library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <!-- Load global JavaScript for site functionality -->
-    <script src="/ENG6806/project_root/static/js/main.js"></script>
-    <!-- Load the game-specific JavaScript -->
-    <script src="/ENG6806/enhancedprojects/wavesgame/waves.js"></script>
+  <!-- Load Custom JavaScript -->
+  <script src="/ENG6806/project_root/static/js/waves.js"></script>
 </body>
 </html>
