@@ -3,8 +3,6 @@ let stanzasRead = 0;
 let interactions = 0;
 const totalInteractions = 5; // Number of interactive zones
 let revealedMessages = [];
-let imgWidth, imgHeight, scaledWidth, scaledHeight;
-let offsetX, offsetY;
 
 function preload() {
     img = loadImage('https://gr9430.github.io/ENG6806/enhancedprojects/wavesgame/images/canvas.jpg',
@@ -15,10 +13,8 @@ function preload() {
 
 function setup() {
     console.log('Starting setup...');
-    let canvas = createCanvas(800, 1000); // Increased height for more space
+    let canvas = createCanvas(1000, 1000); // Set canvas to original 1000x1000 size
     canvas.parent('canvas-container');
-    canvas.style('max-width', '100%');
-    canvas.style('height', 'auto');
     textAlign(LEFT, BOTTOM);
     textSize(16);
     console.log('Setup completed');
@@ -27,45 +23,23 @@ function setup() {
 function draw() {
     if (img) {
         background(255); // Clear the background to white before drawing the image
-        imgWidth = img.width;
-        imgHeight = img.height;
-
-        // Calculate scaling to fit within the canvas while maintaining aspect ratio
-        let aspectRatio = imgWidth / imgHeight;
-        let canvasAspectRatio = width / height;
-
-        if (aspectRatio > canvasAspectRatio) {
-            // Fit by width
-            scaledWidth = width;
-            scaledHeight = scaledWidth / aspectRatio;
-            offsetX = 0;
-            offsetY = (height - scaledHeight) / 2;
-            image(img, offsetX, offsetY, scaledWidth, scaledHeight);
-        } else {
-            // Fit by height
-            scaledHeight = height;
-            scaledWidth = scaledHeight * aspectRatio;
-            offsetX = (width - scaledWidth) / 2;
-            offsetY = 0;
-            image(img, offsetX, offsetY, scaledWidth, scaledHeight);
-        }
-
-        // Draw semi-transparent rectangle to highlight hovered area
-        drawHighlightZone();
-
+        image(img, 0, 0, width, height); // Draw the image at the full canvas size
     } else {
         background(255); // Fallback if image fails to load
     }
     displayCoordinates();
     displayStanzasRead();
     displayRevealedMessages();
+
+    // Draw semi-transparent rectangle to highlight hovered area
+    drawHighlightZone();
 }
 
 function drawHighlightZone() {
     noFill();
     stroke(100, 100, 100, 100); // Light grey stroke
 
-    // Define interactive zones, adjusted to the scaled size
+    // Define interactive zones
     let zones = [
         { x: 50, y: 300, w: 100, h: 100, message: "The bird sings softly, echoing over the waves." },  // Bird
         { x: 200, y: 500, w: 200, h: 100, message: "The shore glimmers under the fading sunlight." },   // Shore
@@ -75,18 +49,12 @@ function drawHighlightZone() {
     ];
 
     for (let zone of zones) {
-        // Adjust zone coordinates to image scaling
-        let adjX = offsetX + (zone.x / imgWidth) * scaledWidth;
-        let adjY = offsetY + (zone.y / imgHeight) * scaledHeight;
-        let adjW = (zone.w / imgWidth) * scaledWidth;
-        let adjH = (zone.h / imgHeight) * scaledHeight;
-
         // Check if mouse is inside zone
-        if (mouseX > adjX && mouseX < adjX + adjW && mouseY > adjY && mouseY < adjY + adjH) {
+        if (mouseX > zone.x && mouseX < zone.x + zone.w && mouseY > zone.y && mouseY < zone.y + zone.h) {
             cursor('pointer');
             fill(200, 200, 200, 100); // Light grey with 40% opacity
             noStroke();
-            rect(adjX, adjY, adjW, adjH); // Draw the semi-transparent highlight
+            rect(zone.x, zone.y, zone.w, zone.h); // Draw the semi-transparent highlight
         } else {
             cursor('default');
         }
@@ -117,7 +85,7 @@ function displayRevealedMessages() {
 }
 
 function mousePressed() {
-    // Define interactive zones with messages, adjusted to the scaled size
+    // Define interactive zones with messages
     let zones = [
         { x: 50, y: 300, w: 100, h: 100, message: "The bird sings softly, echoing over the waves." },  // Bird
         { x: 200, y: 500, w: 200, h: 100, message: "The shore glimmers under the fading sunlight." },   // Shore
@@ -127,13 +95,7 @@ function mousePressed() {
     ];
 
     for (let zone of zones) {
-        // Adjust zone coordinates to image scaling
-        let adjX = offsetX + (zone.x / imgWidth) * scaledWidth;
-        let adjY = offsetY + (zone.y / imgHeight) * scaledHeight;
-        let adjW = (zone.w / imgWidth) * scaledWidth;
-        let adjH = (zone.h / imgHeight) * scaledHeight;
-
-        if (mouseX > adjX && mouseX < adjX + adjW && mouseY > adjY && mouseY < adjY + adjH) {
+        if (mouseX > zone.x && mouseX < zone.x + zone.w && mouseY > zone.y && mouseY < zone.y + zone.h) {
             if (!revealedMessages.includes(zone.message)) {
                 revealedMessages.push(zone.message);
                 interactions++;
