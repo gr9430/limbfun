@@ -124,13 +124,13 @@ function mousePressed() {
 }
 
 function endGame() {
-    fill(0);
-    textSize(32);
-    textAlign(CENTER, CENTER);
-    if (stanzasRead >= totalInteractions) {
-        text("You have unveiled all the secrets of the scene.", width / 2, height / 2);
-    } else {
-        text("The story remains incomplete. Try again.", width / 2, height / 2);
+    // Show a pop-up alert to indicate the game is complete
+    alert("Interaction complete. Enjoy your poem!");
+
+    // Alternatively, you can add a custom message to the DOM instead of using alert()
+    const messageContainer = document.getElementById("message-container");
+    if (messageContainer) {
+        messageContainer.innerHTML = "<h2>Interaction complete. Enjoy your poem!</h2>";
     }
 }
 
