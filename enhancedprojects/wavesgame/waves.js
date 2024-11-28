@@ -86,16 +86,14 @@ function displayStanzasRead() {
 }
 
 function displayRevealedMessages() {
-    fill(0);
-    textSize(14);
-    let yOffset = 100;
-    for (let i = 0; i < revealedMessages.length; i++) {
-        let lines = revealedMessages[i].split('\n');
-        for (let j = 0; j < lines.length; j++) {
-            text(lines[j], 50, yOffset);
-            yOffset += 20;
+    const messageContainer = document.getElementById("message-container");
+    if (messageContainer) {
+        messageContainer.innerHTML = ""; // Clear previous messages
+        for (let i = 0; i < revealedMessages.length; i++) {
+            let paragraph = document.createElement("p");
+            paragraph.textContent = revealedMessages[i];
+            messageContainer.appendChild(paragraph);
         }
-        yOffset += 10; // Add extra space between stanzas
     }
 }
 
