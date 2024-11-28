@@ -62,7 +62,7 @@ function draw() {
         highlightedZone = null;
 
         // Define interactive zones based on adjusted coordinates
-        if (adjustedMouseX > 50 && adjustedMouseX < 150 && adjustedMouseY > 300 && adjustedMouseY < 400) { // Bird
+        if (adjustedMouseX > 98 && adjustedMouseX < 172 && adjustedMouseY > 716 && adjustedMouseY < 776) { // Bird
             cursor('pointer');
             highlightedZone = { x: 50 * xScale + xOffset, y: 300 * yScale + yOffset, w: 100 * xScale, h: 100 * yScale };
         } else if (adjustedMouseX > 200 && adjustedMouseX < 400 && adjustedMouseY > 500 && adjustedMouseY < 600) { // Shore
@@ -149,7 +149,7 @@ function mousePressed() {
     let adjustedMouseY = (mouseY - yOffset) / yScale;
 
     // Interactive zones with messages
-    if (adjustedMouseX > 50 && adjustedMouseX < 150 && adjustedMouseY > 300 && adjustedMouseY < 400) { // Bird
+    if (adjustedMouseX > 98 && adjustedMouseX < 172 && adjustedMouseY > 716 && adjustedMouseY < 776) { // Bird
         if (!revealedMessages.includes("The bird sings softly, echoing over the waves.")) {
             revealedMessages.push("The bird sings softly, echoing over the waves.");
             interactions++;
