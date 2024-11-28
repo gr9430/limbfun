@@ -388,6 +388,23 @@ canvas {
     box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
 }
 
+#two-column-container {
+  display: flex;
+  max-width: 1200px; /* Adjust to fit your needs */
+  margin: 0 auto;
+  gap: 20px;
+}
+
+#canvas-container {
+  flex: 1;
+}
+
+#message-container {
+  flex: 1;
+  color: black; /* Ensures the text is visible */
+}
+
+
 #navbar-container:empty,
 #footer-container:empty {
     display: none; /* Hide empty navbar or footer */
