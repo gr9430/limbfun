@@ -3,7 +3,8 @@ let stanzasRead = 0;
 let interactions = 0;
 const totalInteractions = 5; // Number of interactive zones
 let revealedMessages = [];
-let highlightedZone = null; // Stores the currently highlighted zone
+let imgWidth, imgHeight, scaledWidth, scaledHeight;
+let offsetX, offsetY;
 
 function preload() {
     img = loadImage('https://gr9430.github.io/ENG6806/enhancedprojects/wavesgame/images/canvas.jpg',
@@ -26,80 +27,76 @@ function setup() {
 function draw() {
     if (img) {
         background(255); // Clear the background to white before drawing the image
-        let imgWidth = img.width;
-        let imgHeight = img.height;
+        imgWidth = img.width;
+        imgHeight = img.height;
 
         // Calculate scaling to fit within the canvas while maintaining aspect ratio
         let aspectRatio = imgWidth / imgHeight;
         let canvasAspectRatio = width / height;
-        let newWidth, newHeight, xOffset, yOffset;
 
         if (aspectRatio > canvasAspectRatio) {
             // Fit by width
-            newWidth = width;
-            newHeight = newWidth / aspectRatio;
-            xOffset = 0;
-            yOffset = (height - newHeight) / 2;
+            scaledWidth = width;
+            scaledHeight = scaledWidth / aspectRatio;
+            offsetX = 0;
+            offsetY = (height - scaledHeight) / 2;
+            image(img, offsetX, offsetY, scaledWidth, scaledHeight);
         } else {
             // Fit by height
-            newHeight = height;
-            newWidth = newHeight * aspectRatio;
-            xOffset = (width - newWidth) / 2;
-            yOffset = 0;
+            scaledHeight = height;
+            scaledWidth = scaledHeight * aspectRatio;
+            offsetX = (width - scaledWidth) / 2;
+            offsetY = 0;
+            image(img, offsetX, offsetY, scaledWidth, scaledHeight);
         }
 
-        // Draw the scaled image
-        image(img, xOffset, yOffset, newWidth, newHeight);
+        // Draw semi-transparent rectangle to highlight hovered area
+        drawHighlightZone();
 
-        // Calculate the scaling factors to adjust mouse coordinates
-        let xScale = newWidth / imgWidth;
-        let yScale = newHeight / imgHeight;
+    } else {
+        background(255); // Fallback if image fails to load
+    }
+    displayCoordinates();
+    displayStanzasRead();
+    displayRevealedMessages();
+}
 
-        // Adjusted mouse coordinates for scaled image
-        let adjustedMouseX = (mouseX - xOffset) / xScale;
-        let adjustedMouseY = (mouseY - yOffset) / yScale;
+function drawHighlightZone() {
+    noFill();
+    stroke(100, 100, 100, 100); // Light grey stroke
 
-        highlightedZone = null;
+    // Define interactive zones, adjusted to the scaled size
+    let zones = [
+        { x: 50, y: 300, w: 100, h: 100, message: "The bird sings softly, echoing over the waves." },  // Bird
+        { x: 200, y: 500, w: 200, h: 100, message: "The shore glimmers under the fading sunlight." },   // Shore
+        { x: 600, y: 600, w: 100, h: 100, message: "The waves crash with a rhythmic persistence." },    // Waves
+        { x: 700, y: 100, w: 100, h: 200, message: "The building stands tall, weathered by time." },    // Building
+        { x: 400, y: 100, w: 100, h: 100, message: "Smoke plumes rise, blurring into the sky." }        // Smoke Plumes
+    ];
 
-        // Define interactive zones based on adjusted coordinates
-        if (adjustedMouseX > 98 && adjustedMouseX < 172 && adjustedMouseY > 716 && adjustedMouseY < 776) { // Bird
+    for (let zone of zones) {
+        // Adjust zone coordinates to image scaling
+        let adjX = offsetX + (zone.x / imgWidth) * scaledWidth;
+        let adjY = offsetY + (zone.y / imgHeight) * scaledHeight;
+        let adjW = (zone.w / imgWidth) * scaledWidth;
+        let adjH = (zone.h / imgHeight) * scaledHeight;
+
+        // Check if mouse is inside zone
+        if (mouseX > adjX && mouseX < adjX + adjW && mouseY > adjY && mouseY < adjY + adjH) {
             cursor('pointer');
-            highlightedZone = { x: 50 * xScale + xOffset, y: 300 * yScale + yOffset, w: 100 * xScale, h: 100 * yScale };
-        } else if (adjustedMouseX > 200 && adjustedMouseX < 400 && adjustedMouseY > 500 && adjustedMouseY < 600) { // Shore
-            cursor('pointer');
-            highlightedZone = { x: 200 * xScale + xOffset, y: 500 * yScale + yOffset, w: 200 * xScale, h: 100 * yScale };
-        } else if (adjustedMouseX > 600 && adjustedMouseX < 700 && adjustedMouseY > 600 && adjustedMouseY < 700) { // Waves
-            cursor('pointer');
-            highlightedZone = { x: 600 * xScale + xOffset, y: 600 * yScale + yOffset, w: 100 * xScale, h: 100 * yScale };
-        } else if (adjustedMouseX > 700 && adjustedMouseX < 800 && adjustedMouseY > 100 && adjustedMouseY < 300) { // Building
-            cursor('pointer');
-            highlightedZone = { x: 700 * xScale + xOffset, y: 100 * yScale + yOffset, w: 100 * xScale, h: 200 * yScale };
-        } else if (adjustedMouseX > 400 && adjustedMouseX < 500 && adjustedMouseY > 100 && adjustedMouseY < 200) { // Smoke Plumes
-            cursor('pointer');
-            highlightedZone = { x: 400 * xScale + xOffset, y: 100 * yScale + yOffset, w: 100 * xScale, h: 100 * yScale };
+            fill(200, 200, 200, 100); // Light grey with 40% opacity
+            noStroke();
+            rect(adjX, adjY, adjW, adjH); // Draw the semi-transparent highlight
         } else {
             cursor('default');
         }
-
-        // Draw highlighted zone if applicable
-        if (highlightedZone) {
-            fill(200, 200, 200, 100); // Light grey color with 40% opacity
-            rect(highlightedZone.x, highlightedZone.y, highlightedZone.w, highlightedZone.h);
-        }
-
-        // Display information on canvas
-        displayCoordinates();
-        displayStanzasRead();
-        displayRevealedMessages();
-    } else {
-        background(255); // Fallback if image fails to load
     }
 }
 
 function displayCoordinates() {
     // Draw a white rectangle to improve the visibility of coordinates
     fill(255);
-    rect(0, height - 30, 120, 30); // Slightly increased width for more space
+    rect(0, height - 30, 150, 30); // Slightly increased width for more space
 
     // Draw mouse coordinates
     fill(0);
@@ -120,64 +117,28 @@ function displayRevealedMessages() {
 }
 
 function mousePressed() {
-    // Calculate scaling factors again to match the drawn image
-    let imgWidth = img.width;
-    let imgHeight = img.height;
-    let aspectRatio = imgWidth / imgHeight;
-    let canvasAspectRatio = width / height;
-    let newWidth, newHeight, xOffset, yOffset;
+    // Define interactive zones with messages, adjusted to the scaled size
+    let zones = [
+        { x: 50, y: 300, w: 100, h: 100, message: "The bird sings softly, echoing over the waves." },  // Bird
+        { x: 200, y: 500, w: 200, h: 100, message: "The shore glimmers under the fading sunlight." },   // Shore
+        { x: 600, y: 600, w: 100, h: 100, message: "The waves crash with a rhythmic persistence." },    // Waves
+        { x: 700, y: 100, w: 100, h: 200, message: "The building stands tall, weathered by time." },    // Building
+        { x: 400, y: 100, w: 100, h: 100, message: "Smoke plumes rise, blurring into the sky." }        // Smoke Plumes
+    ];
 
-    if (aspectRatio > canvasAspectRatio) {
-        // Fit by width
-        newWidth = width;
-        newHeight = newWidth / aspectRatio;
-        xOffset = 0;
-        yOffset = (height - newHeight) / 2;
-    } else {
-        // Fit by height
-        newHeight = height;
-        newWidth = newHeight * aspectRatio;
-        xOffset = (width - newWidth) / 2;
-        yOffset = 0;
-    }
+    for (let zone of zones) {
+        // Adjust zone coordinates to image scaling
+        let adjX = offsetX + (zone.x / imgWidth) * scaledWidth;
+        let adjY = offsetY + (zone.y / imgHeight) * scaledHeight;
+        let adjW = (zone.w / imgWidth) * scaledWidth;
+        let adjH = (zone.h / imgHeight) * scaledHeight;
 
-    let xScale = newWidth / imgWidth;
-    let yScale = newHeight / imgHeight;
-
-    // Adjust mouse position
-    let adjustedMouseX = (mouseX - xOffset) / xScale;
-    let adjustedMouseY = (mouseY - yOffset) / yScale;
-
-    // Interactive zones with messages
-    if (adjustedMouseX > 98 && adjustedMouseX < 172 && adjustedMouseY > 716 && adjustedMouseY < 776) { // Bird
-        if (!revealedMessages.includes("The bird sings softly, echoing over the waves.")) {
-            revealedMessages.push("The bird sings softly, echoing over the waves.");
-            interactions++;
-            stanzasRead++;
-        }
-    } else if (adjustedMouseX > 200 && adjustedMouseX < 400 && adjustedMouseY > 500 && adjustedMouseY < 600) { // Shore
-        if (!revealedMessages.includes("The shore glimmers under the fading sunlight.")) {
-            revealedMessages.push("The shore glimmers under the fading sunlight.");
-            interactions++;
-            stanzasRead++;
-        }
-    } else if (adjustedMouseX > 600 && adjustedMouseX < 700 && adjustedMouseY > 600 && adjustedMouseY < 700) { // Waves
-        if (!revealedMessages.includes("The waves crash with a rhythmic persistence.")) {
-            revealedMessages.push("The waves crash with a rhythmic persistence.");
-            interactions++;
-            stanzasRead++;
-        }
-    } else if (adjustedMouseX > 700 && adjustedMouseX < 800 && adjustedMouseY > 100 && adjustedMouseY < 300) { // Building
-        if (!revealedMessages.includes("The building stands tall, weathered by time.")) {
-            revealedMessages.push("The building stands tall, weathered by time.");
-            interactions++;
-            stanzasRead++;
-        }
-    } else if (adjustedMouseX > 400 && adjustedMouseX < 500 && adjustedMouseY > 100 && adjustedMouseY < 200) { // Smoke Plumes
-        if (!revealedMessages.includes("Smoke plumes rise, blurring into the sky.")) {
-            revealedMessages.push("Smoke plumes rise, blurring into the sky.");
-            interactions++;
-            stanzasRead++;
+        if (mouseX > adjX && mouseX < adjX + adjW && mouseY > adjY && mouseY < adjY + adjH) {
+            if (!revealedMessages.includes(zone.message)) {
+                revealedMessages.push(zone.message);
+                interactions++;
+                stanzasRead++;
+            }
         }
     }
 
