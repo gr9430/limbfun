@@ -86,8 +86,20 @@ function mousePressed() {
     console.log(`Mouse pressed at X: ${mouseX}, Y: ${mouseY}`);
     // Interactive zones with messages
     if (isWithinZone(mouseX, mouseY, 115, 770, 218, 845)) { // Bird
-        if (!revealedMessages.includes("The bird sings softly, echoing over the waves.")) {
-            revealedMessages.push("The bird sings softly, echoing over the waves.");
+        if (!revealedMessages.includes("The first sound of waves breaking on the shore,
+the pull of the tide soft as breath,
+small hands once reached for shells as if to hold the sea.
+Now the wind moves like a thought, caught
+between the spaces where light once fell freely.
+The air carries only shadows now—
+a world remade in silence.")) {
+            revealedMessages.push("The first sound of waves breaking on the shore,
+the pull of the tide soft as breath,
+small hands once reached for shells as if to hold the sea.
+Now the wind moves like a thought, caught
+between the spaces where light once fell freely.
+The air carries only shadows now—
+a world remade in silence.");
             interactions++;
             stanzasRead++;
         }
