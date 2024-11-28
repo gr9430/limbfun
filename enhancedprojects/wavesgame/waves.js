@@ -99,6 +99,7 @@ function displayRevealedMessages() {
             let paragraph = document.createElement("p");
             paragraph.textContent = revealedMessages[i];
             paragraph.style.color = "black"; // Set text color to black
+            paragraph.style.fontSize = "18px"; // Increase font size for better readability
             messageContainer.appendChild(paragraph);
         }
     }
@@ -155,12 +156,16 @@ function endGame() {
         endMessage.style.color = "white"; // White text
         endMessage.style.padding = "15px";
         endMessage.style.borderRadius = "5px";
+        endMessage.style.fontSize = "22px"; // Increase font size for better visibility
         messageContainer.appendChild(endMessage);
 
         // Add a reset button
         let resetButton = document.createElement("button");
         resetButton.textContent = "Reset";
         resetButton.style.marginTop = "10px";
+        resetButton.style.padding = "10px";
+        resetButton.style.fontSize = "16px";
+        resetButton.style.cursor = "pointer";
         resetButton.onclick = resetGame;
         endMessage.appendChild(resetButton);
     }
