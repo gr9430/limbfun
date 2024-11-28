@@ -4,6 +4,7 @@ let interactions = 0;
 const totalInteractions = 5; // Number of interactive zones
 let revealedMessages = [];
 
+// Load image for the canvas
 function preload() {
     img = loadImage('https://gr9430.github.io/ENG6806/enhancedprojects/wavesgame/images/canvas.jpg',
         () => console.log('Image loaded successfully'),
@@ -11,61 +12,73 @@ function preload() {
     );
 }
 
+// Setup the canvas and DOM elements
 function setup() {
     console.log('Starting setup...');
     let canvas = createCanvas(1000, 1000);
     canvas.parent('canvas-container');
-    canvas.style('max-width', '100%');
-    canvas.style('height', 'auto');
     textAlign(LEFT, BOTTOM);
     textSize(16);
     console.log('Setup completed');
 
-    // Create a button to end the poem early
-    let submitButton = createButton("Finish Poem");
-    submitButton.mousePressed(endGame);
-    submitButton.parent('button-container'); // Assign button to a container below the canvas
+    // Create the button for early poem submission
+    let button = createButton('Finish Poem');
+    button.parent('button-container');
+    button.mousePressed(endGame);
+    console.log('Button created');
 }
 
 function draw() {
     if (img) {
+        // Draw background image and adjust to fit within canvas while maintaining aspect ratio
         background(255); // Clear the background to white before drawing the image
-        image(img, 0, 0, width, height);
+        let imgWidth = img.width;
+        let imgHeight = img.height;
+
+        // Calculate scaling to fit within the canvas while maintaining aspect ratio
+        let aspectRatio = imgWidth / imgHeight;
+        let canvasAspectRatio = width / height;
+
+        if (aspectRatio > canvasAspectRatio) {
+            // Fit by width
+            let newWidth = width;
+            let newHeight = newWidth / aspectRatio;
+            image(img, 0, (height - newHeight) / 2, newWidth, newHeight);
+        } else {
+            // Fit by height
+            let newHeight = height;
+            let newWidth = newHeight * aspectRatio;
+            image(img, (width - newWidth) / 2, 0, newWidth, newHeight);
+        }
     } else {
         background(255); // Fallback if image fails to load
     }
 
     displayStanzasRead();
+    displayRevealedMessages();
 
-    // Define interactive zones based on provided points
-    if (isWithinZone(mouseX, mouseY, 115, 770, 218, 845)) { // Bird
+    // Highlight zones with a light grey rectangle (40% opacity) if mouse is hovering over
+    fill(100, 100, 100, 100); // Light grey, 40% opacity
+
+    // Define interactive zones and set cursor
+    if (mouseX > 115 && mouseX < 218 && mouseY > 770 && mouseY < 845) { // Bird
+        rect(115, 770, 103, 75);
         cursor('pointer');
-        highlightZone(115, 770, 218, 845);
-    } else if (isWithinZone(mouseX, mouseY, 225, 750, 500, 910)) { // Shore
+    } else if (mouseX > 225 && mouseX < 500 && mouseY > 750 && mouseY < 910) { // Shore
+        rect(225, 750, 275, 160);
         cursor('pointer');
-        highlightZone(225, 750, 500, 910);
-    } else if (isWithinZone(mouseX, mouseY, 465, 470, 955, 735)) { // Waves
+    } else if (mouseX > 465 && mouseX < 955 && mouseY > 470 && mouseY < 735) { // Waves
+        rect(465, 470, 490, 265);
         cursor('pointer');
-        highlightZone(465, 470, 955, 735);
-    } else if (isWithinZone(mouseX, mouseY, 125, 75, 420, 740)) { // Building
+    } else if (mouseX > 125 && mouseX < 420 && mouseY > 75 && mouseY < 740) { // Building
+        rect(125, 75, 295, 665);
         cursor('pointer');
-        highlightZone(125, 75, 420, 740);
-    } else if (isWithinZone(mouseX, mouseY, 640, 5, 955, 325)) { // Plume
+    } else if (mouseX > 640 && mouseX < 955 && mouseY > 5 && mouseY < 325) { // Smoke Plumes
+        rect(640, 5, 315, 320);
         cursor('pointer');
-        highlightZone(640, 5, 955, 325);
     } else {
         cursor('default');
     }
-}
-
-function isWithinZone(x, y, x1, y1, x2, y2) {
-    return x >= x1 && x <= x2 && y >= y1 && y <= y2;
-}
-
-function highlightZone(x1, y1, x2, y2) {
-    fill(200, 200, 200, 100); // Light grey color with 40% opacity
-    noStroke();
-    rect(x1, y1, x2 - x1, y2 - y1);
 }
 
 function displayStanzasRead() {
@@ -74,53 +87,45 @@ function displayStanzasRead() {
 }
 
 function displayRevealedMessages() {
-    // Clear the current revealed messages display
-    const messageContainer = document.getElementById('message-container');
-    messageContainer.innerHTML = '';
-
-    // Display each revealed message in the container
-    revealedMessages.forEach(message => {
-        const messageElement = document.createElement('p');
-        messageElement.innerText = message;
-        messageContainer.appendChild(messageElement);
-    });
+    fill(0);
+    for (let i = 0; i < revealedMessages.length; i++) {
+        text(revealedMessages[i], 50, 50 + i * 30);
+    }
 }
 
 function mousePressed() {
     // Interactive zones with messages
-    if (isWithinZone(mouseX, mouseY, 115, 770, 218, 845)) { // Bird
+    if (mouseX > 115 && mouseX < 218 && mouseY > 770 && mouseY < 845) { // Bird
         if (!revealedMessages.includes("The bird sings softly, echoing over the waves.")) {
             revealedMessages.push("The bird sings softly, echoing over the waves.");
             interactions++;
             stanzasRead++;
         }
-    } else if (isWithinZone(mouseX, mouseY, 225, 750, 500, 910)) { // Shore
+    } else if (mouseX > 225 && mouseX < 500 && mouseY > 750 && mouseY < 910) { // Shore
         if (!revealedMessages.includes("The shore glimmers under the fading sunlight.")) {
             revealedMessages.push("The shore glimmers under the fading sunlight.");
             interactions++;
             stanzasRead++;
         }
-    } else if (isWithinZone(mouseX, mouseY, 465, 470, 955, 735)) { // Waves
+    } else if (mouseX > 465 && mouseX < 955 && mouseY > 470 && mouseY < 735) { // Waves
         if (!revealedMessages.includes("The waves crash with a rhythmic persistence.")) {
             revealedMessages.push("The waves crash with a rhythmic persistence.");
             interactions++;
             stanzasRead++;
         }
-    } else if (isWithinZone(mouseX, mouseY, 125, 75, 420, 740)) { // Building
+    } else if (mouseX > 125 && mouseX < 420 && mouseY > 75 && mouseY < 740) { // Building
         if (!revealedMessages.includes("The building stands tall, weathered by time.")) {
             revealedMessages.push("The building stands tall, weathered by time.");
             interactions++;
             stanzasRead++;
         }
-    } else if (isWithinZone(mouseX, mouseY, 640, 5, 955, 325)) { // Plume
+    } else if (mouseX > 640 && mouseX < 955 && mouseY > 5 && mouseY < 325) { // Smoke Plumes
         if (!revealedMessages.includes("Smoke plumes rise, blurring into the sky.")) {
             revealedMessages.push("Smoke plumes rise, blurring into the sky.");
             interactions++;
             stanzasRead++;
         }
     }
-
-    displayRevealedMessages();
 
     // Check if all interactions are complete
     if (interactions >= totalInteractions) {
@@ -129,16 +134,14 @@ function mousePressed() {
 }
 
 function endGame() {
-    // Display a completion message
-    const messageContainer = document.getElementById('message-container');
-    const completionMessage = document.createElement('p');
-    completionMessage.style.fontWeight = 'bold';
+    fill(0);
+    textSize(32);
+    textAlign(CENTER, CENTER);
     if (stanzasRead >= totalInteractions) {
-        completionMessage.innerText = "You have unveiled all the secrets of the scene.";
+        text("You have unveiled all the secrets of the scene.", width / 2, height / 2);
     } else {
-        completionMessage.innerText = "The story remains incomplete. Try again.";
+        text("The story remains incomplete. Try again.", width / 2, height / 2);
     }
-    messageContainer.appendChild(completionMessage);
 }
 
 // Assign p5.js functions to window object
