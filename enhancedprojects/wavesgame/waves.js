@@ -26,14 +26,12 @@ function setup() {
     if (messageContainer) {
         let title = document.createElement("h1");
         title.textContent = "The Waves Forget the Structure";
-        title.style.color = "black";
-        title.style.marginBottom = "10px"; // Add margin for spacing
+        title.className = "message-title"; // Added class for consistency with CSS styling
         messageContainer.appendChild(title);
 
         let openingLine = document.createElement("p");
         openingLine.textContent = "here,";
-        openingLine.style.color = "black";
-        openingLine.style.fontSize = "18px"; // Increase font size
+        openingLine.className = "message-opening-line"; // Added class for consistency with CSS styling
         messageContainer.appendChild(openingLine);
     }
 }
@@ -95,9 +93,7 @@ function displayRevealedMessages() {
         for (let i = 0; i < revealedMessages.length; i++) {
             let paragraph = document.createElement("p");
             paragraph.textContent = revealedMessages[i];
-            paragraph.style.color = "black"; // Set text color to black
-            paragraph.style.fontSize = "18px"; // Increase font size for better readability
-            paragraph.style.marginBottom = "10px"; // Add spacing between stanzas
+            paragraph.className = "message-stanza"; // Added class for consistency with CSS styling
             messageContainer.appendChild(paragraph);
         }
     }
@@ -149,20 +145,13 @@ function endGame() {
     if (messageContainer) {
         let endMessage = document.createElement("div");
         endMessage.innerHTML = "<h2>Interaction complete. Enjoy your poem!</h2>";
-        endMessage.style.backgroundColor = "#333333"; // Dark grey background
-        endMessage.style.color = "white"; // White text
-        endMessage.style.padding = "15px";
-        endMessage.style.borderRadius = "5px";
-        endMessage.style.fontSize = "22px"; // Increase font size for better visibility
+        endMessage.className = "end-message"; // Added class for consistency with CSS styling
         messageContainer.appendChild(endMessage);
 
         // Add a reset button
         let resetButton = document.createElement("button");
         resetButton.textContent = "Reset";
-        resetButton.style.marginTop = "10px";
-        resetButton.style.padding = "10px";
-        resetButton.style.fontSize = "16px";
-        resetButton.style.cursor = "pointer";
+        resetButton.className = "reset-button"; // Added class for consistency with CSS styling
         resetButton.onclick = resetGame;
         endMessage.appendChild(resetButton);
     }
