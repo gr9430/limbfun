@@ -44,7 +44,7 @@ function draw() {
         background(255); // Fallback if image fails to load
     }
 
-    displayStanzasRead();
+    displayStanzasCompleted();
     displayRevealedMessages();
 
     // Define interactive zones based on provided points
@@ -84,7 +84,7 @@ function highlightZone(x1, y1, x2, y2) {
     rect(x1, y1, x2 - x1, y2 - y1);
 }
 
-function displayStanzasRead() {
+function displayStanzasCompleted() {
     fill(0);
     textSize(16);
     text(`Stanzas Completed: ${stanzasRead} / ${totalInteractions}`, 10, 30);
@@ -147,7 +147,9 @@ function mousePressed() {
 
 function endGame() {
     // Show a pop-up alert to indicate the game is complete
-    alert("Interaction complete. Enjoy your poem!");
+    if (!window.hasNavigated) {
+        alert("Interaction complete. Enjoy your poem!");
+    }
 
     // Alternatively, you can add a custom message to the DOM instead of using alert()
     const messageContainer = document.getElementById("message-container");
@@ -161,5 +163,10 @@ window.preload = preload;
 window.setup = setup;
 window.draw = draw;
 window.mousePressed = mousePressed;
+
+// Track if the user has navigated to prevent alert on page navigation
+window.addEventListener("beforeunload", () => {
+    window.hasNavigated = true;
+});
 
 console.log('Script loaded successfully');
