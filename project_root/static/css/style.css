@@ -353,13 +353,17 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    margin: 20px auto; /* Adds space around the container */
-    padding: 10px; /* Optional, provides some space inside the container */
-    height: auto; /* Ensure height adapts to the canvas size */
-    overflow: hidden; /* Prevents overflow */
-    background-color: #f0f0f0; /* Light background color for better contrast */
-    border: 2px solid #000; /* Optional border for visibility */
+    margin: 20px auto; /* Centers the container */
+    padding: 10px; /* Optional, to add space inside */
+    height: auto; /* Makes height flexible */
+    background-color: #f0f0f0; /* Light background for contrast */
+    border: 2px solid #000; /* Border for better visibility */
+}
+
+canvas {
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    border: 2px solid #ffffff; /* Optional: adds a border to canvas */
 }
 
 /* Game Specific Styling */
