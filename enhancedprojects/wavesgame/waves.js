@@ -38,6 +38,9 @@ function draw() {
     if (isWithinZone(mouseX, mouseY, 115, 770, 218, 845)) { // Bird
         cursor('pointer');
         highlightZone(115, 770, 218, 845);
+    } else if (isWithinZone(mouseX, mouseY, 225, 750, 500, 910)) { // Shore (Updated coordinates)
+        cursor('pointer');
+        highlightZone(225, 750, 500, 910);
     } else if (isWithinZone(mouseX, mouseY, 465, 470, 955, 735)) { // Waves
         cursor('pointer');
         highlightZone(465, 470, 955, 735);
@@ -92,6 +95,12 @@ function mousePressed() {
     if (isWithinZone(mouseX, mouseY, 115, 770, 218, 845)) { // Bird
         if (!revealedMessages.includes("The bird sings softly, echoing over the waves.")) {
             revealedMessages.push("The bird sings softly, echoing over the waves.");
+            interactions++;
+            stanzasRead++;
+        }
+    } else if (isWithinZone(mouseX, mouseY, 225, 750, 500, 910)) { // Shore (Updated coordinates)
+        if (!revealedMessages.includes("The shore glimmers under the fading sunlight.")) {
+            revealedMessages.push("The shore glimmers under the fading sunlight.");
             interactions++;
             stanzasRead++;
         }
