@@ -99,6 +99,15 @@ function mousePressed() {
         }
     }
 
+    function mousePressed() {
+    console.log("Mouse pressed at:", mouseX, mouseY); // Debugging click events
+    // Rest of your click logic...
+}
+
+if (mouseX > 50 && mouseX < 150 && mouseY > 300 && mouseY < 400) {
+    // Bird zone - adjust coordinates if needed
+}    
+    
     // Check if all interactions are complete
     if (interactions >= totalInteractions) {
         endGame();
