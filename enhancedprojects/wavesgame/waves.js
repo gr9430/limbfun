@@ -20,6 +20,20 @@ function setup() {
     textAlign(LEFT, BOTTOM);
     textSize(16);
     console.log('Setup completed');
+
+    // Move title and opening line to container
+    const messageContainer = document.getElementById("message-container");
+    if (messageContainer) {
+        let title = document.createElement("h1");
+        title.textContent = "The Waves Forget the Structure";
+        title.style.color = "black";
+        messageContainer.appendChild(title);
+
+        let openingLine = document.createElement("p");
+        openingLine.textContent = "here,";
+        openingLine.style.color = "black";
+        messageContainer.appendChild(openingLine);
+    }
 }
 
 function draw() {
@@ -29,15 +43,6 @@ function draw() {
     } else {
         background(255); // Fallback if image fails to load
     }
-
-    // Draw the permanent title and starting line
-    fill(0);
-    textSize(24);
-    textAlign(CENTER, TOP);
-    text("The Waves Forget the Structure", width / 2, 20);
-    textSize(18);
-    textAlign(LEFT, TOP);
-    text("here,", 50, 60);
 
     displayStanzasRead();
     displayRevealedMessages();
@@ -88,7 +93,8 @@ function displayStanzasRead() {
 function displayRevealedMessages() {
     const messageContainer = document.getElementById("message-container");
     if (messageContainer) {
-        messageContainer.innerHTML = ""; // Clear previous messages
+        // Clear previous messages, but keep the title and opening line
+        messageContainer.innerHTML = messageContainer.querySelector("h1").outerHTML + messageContainer.querySelector("p").outerHTML;
         for (let i = 0; i < revealedMessages.length; i++) {
             let paragraph = document.createElement("p");
             paragraph.textContent = revealedMessages[i];
@@ -146,7 +152,7 @@ function endGame() {
     // Alternatively, you can add a custom message to the DOM instead of using alert()
     const messageContainer = document.getElementById("message-container");
     if (messageContainer) {
-        messageContainer.innerHTML = "<h2>Interaction complete. Enjoy your poem!</h2>";
+        messageContainer.innerHTML += "<h2>Interaction complete. Enjoy your poem!</h2>";
     }
 }
 
