@@ -13,7 +13,7 @@ function preload() {
 
 function setup() {
     console.log('Starting setup...');
-    let canvas = createCanvas(800, 800);
+    let canvas = createCanvas(800, 1000); // Increased height for more space
     canvas.parent('canvas-container');
     canvas.style('max-width', '100%');
     canvas.style('height', 'auto');
@@ -28,11 +28,15 @@ function draw() {
     } else {
         background(255); // Fallback if image fails to load
     }
+    
+    // Debugging line to log mouse coordinates
+    console.log(`Mouse Coordinates: X=${mouseX}, Y=${mouseY}`);
+
     displayCoordinates();
     displayStanzasRead();
     displayRevealedMessages();
 
-    // Define interactive zones - adjusted to fit within the canvas of 800x800
+    // Define interactive zones
     if (mouseX > 50 && mouseX < 150 && mouseY > 300 && mouseY < 400) { // Bird
         cursor('pointer');
     } else if (mouseX > 200 && mouseX < 400 && mouseY > 500 && mouseY < 600) { // Shore
@@ -48,10 +52,12 @@ function draw() {
     }
 }
 
+
 function displayCoordinates() {
-    // Draw white rectangle to improve visibility of coordinates
+    // Draw a white rectangle to improve the visibility of coordinates
     fill(255);
-    rect(0, height - 30, 100, 30);
+    rect(0, height - 30, 120, 30); // Slightly increased width for more space
+
     // Draw mouse coordinates
     fill(0);
     textSize(14);
