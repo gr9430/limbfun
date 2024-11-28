@@ -3,7 +3,6 @@ let stanzasRead = 0;
 let interactions = 0;
 const totalInteractions = 5; // Number of interactive zones
 let revealedMessages = [];
-let gameCompleted = false;
 
 function preload() {
     img = loadImage('https://gr9430.github.io/ENG6806/enhancedprojects/wavesgame/images/canvas.jpg',
@@ -49,29 +48,23 @@ function draw() {
     displayRevealedMessages();
 
     // Define interactive zones based on provided points
-    if (!gameCompleted) {
-        if (isWithinZone(mouseX, mouseY, 115, 770, 218, 845)) { // Bird
-            cursor('pointer');
-            highlightZone(115, 770, 218, 845);
-        } else if (isWithinZone(mouseX, mouseY, 225, 750, 500, 910)) { // Shore (Updated coordinates)
-            cursor('pointer');
-            highlightZone(225, 750, 500, 910);
-        } else if (isWithinZone(mouseX, mouseY, 465, 470, 955, 735)) { // Waves
-            cursor('pointer');
-            highlightZone(465, 470, 955, 735);
-        } else if (isWithinZone(mouseX, mouseY, 125, 75, 420, 740)) { // Building
-            cursor('pointer');
-            highlightZone(125, 75, 420, 740);
-        } else if (isWithinZone(mouseX, mouseY, 640, 5, 955, 325)) { // Plume
-            cursor('pointer');
-            highlightZone(640, 5, 955, 325);
-        } else {
-            cursor('default');
-        }
-    }
-
-    if (gameCompleted) {
-        displayCompletionMessage();
+    if (isWithinZone(mouseX, mouseY, 115, 770, 218, 845)) { // Bird
+        cursor('pointer');
+        highlightZone(115, 770, 218, 845);
+    } else if (isWithinZone(mouseX, mouseY, 225, 750, 500, 910)) { // Shore (Updated coordinates)
+        cursor('pointer');
+        highlightZone(225, 750, 500, 910);
+    } else if (isWithinZone(mouseX, mouseY, 465, 470, 955, 735)) { // Waves
+        cursor('pointer');
+        highlightZone(465, 470, 955, 735);
+    } else if (isWithinZone(mouseX, mouseY, 125, 75, 420, 740)) { // Building
+        cursor('pointer');
+        highlightZone(125, 75, 420, 740);
+    } else if (isWithinZone(mouseX, mouseY, 640, 5, 955, 325)) { // Plume
+        cursor('pointer');
+        highlightZone(640, 5, 955, 325);
+    } else {
+        cursor('default');
     }
 }
 
@@ -93,7 +86,7 @@ function highlightZone(x1, y1, x2, y2) {
 
 function displayStanzasCompleted() {
     fill(0);
-    textSize(16);
+    textSize(20); // Increased text size for better visibility
     text(`Stanzas Completed: ${stanzasRead} / ${totalInteractions}`, 10, 30);
 }
 
@@ -113,11 +106,6 @@ function displayRevealedMessages() {
 
 function mousePressed() {
     console.log(`Mouse pressed at X: ${mouseX}, Y: ${mouseY}`);
-
-    if (gameCompleted) {
-        return; // Prevent further interaction after the game is complete
-    }
-
     // Interactive zones with messages
     if (isWithinZone(mouseX, mouseY, 115, 770, 218, 845)) { // Bird
         if (!revealedMessages.includes("before the smoke painted the sky\nwith shadows, before stone towers rose\nto watch over the sand like sentinels.\nNo room remains for the sea’s slow song—\nedges cutting across the sky, blind\nto the waves.")) {
@@ -125,7 +113,7 @@ function mousePressed() {
             interactions++;
             stanzasRead++;
         }
-    } else if (isWithinZone(mouseX, mouseY, 225, 750, 500, 910)) { // Shore
+    } else if (isWithinZone(mouseX, mouseY, 225, 750, 500, 910)) { // Shore (Updated coordinates)
         if (!revealedMessages.includes("paths carve where sand once shifted\nbeneath unsteady feet. Iron holds firm,\nsharp lines drawn into the earth,\na geometry leading forward.\nThe weight of time falls in rhythm,\nnot like waves that forget what they touch.")) {
             revealedMessages.push("paths carve where sand once shifted\nbeneath unsteady feet. Iron holds firm,\nsharp lines drawn into the earth,\na geometry leading forward.\nThe weight of time falls in rhythm,\nnot like waves that forget what they touch.");
             interactions++;
@@ -153,16 +141,41 @@ function mousePressed() {
 
     // Check if all interactions are complete
     if (interactions >= totalInteractions) {
-        gameCompleted = true; // Set game as complete
+        endGame();
     }
 }
 
-function displayCompletionMessage() {
-    // Draw the completion message on the canvas
-    fill(0);
-    textSize(32);
-    textAlign(CENTER, CENTER);
-    text("Interaction complete. Enjoy your poem!", width / 2, height / 2);
+function endGame() {
+    // Add a custom message to the DOM
+    const messageContainer = document.getElementById("message-container");
+    if (messageContainer) {
+        let endMessage = document.createElement("div");
+        endMessage.innerHTML = "<h2>Interaction complete. Enjoy your poem!</h2>";
+        endMessage.style.backgroundColor = "#333333"; // Dark grey background
+        endMessage.style.color = "white"; // White text
+        endMessage.style.padding = "15px";
+        endMessage.style.borderRadius = "5px";
+        messageContainer.appendChild(endMessage);
+
+        // Add a reset button
+        let resetButton = document.createElement("button");
+        resetButton.textContent = "Reset";
+        resetButton.style.marginTop = "10px";
+        resetButton.onclick = resetGame;
+        endMessage.appendChild(resetButton);
+    }
+}
+
+function resetGame() {
+    stanzasRead = 0;
+    interactions = 0;
+    revealedMessages = [];
+    const messageContainer = document.getElementById("message-container");
+    if (messageContainer) {
+        // Clear all messages except the title and opening line
+        messageContainer.innerHTML = messageContainer.querySelector("h1").outerHTML + messageContainer.querySelector("p").outerHTML;
+    }
+    loop(); // Restart the p5.js draw loop if it was stopped
 }
 
 // Assign p5.js functions to window object
@@ -170,5 +183,10 @@ window.preload = preload;
 window.setup = setup;
 window.draw = draw;
 window.mousePressed = mousePressed;
+
+// Track if the user has navigated to prevent alert on page navigation
+window.addEventListener("beforeunload", () => {
+    window.hasNavigated = true;
+});
 
 console.log('Script loaded successfully');
