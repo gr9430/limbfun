@@ -3,6 +3,7 @@ let stanzasRead = 0;
 let interactions = 0;
 const totalInteractions = 5; // Number of interactive zones
 let revealedMessages = [];
+let highlightedZone = null; // Stores the currently highlighted zone
 
 function preload() {
     img = loadImage('https://gr9430.github.io/ENG6806/enhancedprojects/wavesgame/images/canvas.jpg',
@@ -58,19 +59,32 @@ function draw() {
         let adjustedMouseX = (mouseX - xOffset) / xScale;
         let adjustedMouseY = (mouseY - yOffset) / yScale;
 
+        highlightedZone = null;
+
         // Define interactive zones based on adjusted coordinates
         if (adjustedMouseX > 50 && adjustedMouseX < 150 && adjustedMouseY > 300 && adjustedMouseY < 400) { // Bird
             cursor('pointer');
+            highlightedZone = { x: 50 * xScale + xOffset, y: 300 * yScale + yOffset, w: 100 * xScale, h: 100 * yScale };
         } else if (adjustedMouseX > 200 && adjustedMouseX < 400 && adjustedMouseY > 500 && adjustedMouseY < 600) { // Shore
             cursor('pointer');
+            highlightedZone = { x: 200 * xScale + xOffset, y: 500 * yScale + yOffset, w: 200 * xScale, h: 100 * yScale };
         } else if (adjustedMouseX > 600 && adjustedMouseX < 700 && adjustedMouseY > 600 && adjustedMouseY < 700) { // Waves
             cursor('pointer');
+            highlightedZone = { x: 600 * xScale + xOffset, y: 600 * yScale + yOffset, w: 100 * xScale, h: 100 * yScale };
         } else if (adjustedMouseX > 700 && adjustedMouseX < 800 && adjustedMouseY > 100 && adjustedMouseY < 300) { // Building
             cursor('pointer');
+            highlightedZone = { x: 700 * xScale + xOffset, y: 100 * yScale + yOffset, w: 100 * xScale, h: 200 * yScale };
         } else if (adjustedMouseX > 400 && adjustedMouseX < 500 && adjustedMouseY > 100 && adjustedMouseY < 200) { // Smoke Plumes
             cursor('pointer');
+            highlightedZone = { x: 400 * xScale + xOffset, y: 100 * yScale + yOffset, w: 100 * xScale, h: 100 * yScale };
         } else {
             cursor('default');
+        }
+
+        // Draw highlighted zone if applicable
+        if (highlightedZone) {
+            fill(200, 200, 200, 100); // Light grey color with 40% opacity
+            rect(highlightedZone.x, highlightedZone.y, highlightedZone.w, highlightedZone.h);
         }
 
         // Display information on canvas
