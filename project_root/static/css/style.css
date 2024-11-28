@@ -350,33 +350,45 @@ button:hover {
   background-color: #555555;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-}
-
 #canvas-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
-    padding: 0;
-    height: 100vh; /* Set to viewport height */
-    overflow: hidden;
+    margin: 20px auto; /* Centers the container */
+    padding: 10px; /* Optional, to add space inside */
+    height: auto; /* Makes height flexible */
+    background-color: #f0f0f0; /* Light background for contrast */
+    border: 2px solid #000; /* Border for better visibility */
 }
 
+canvas {
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    border: 2px solid #ffffff; /* Optional: adds a border to canvas */
+}
+
+/* Game Specific Styling */
 #game-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0;
-    height: auto;
-    overflow: hidden;
+        max-width: 1000px;
+    margin: 0 auto; /* Center the container */
+    padding: 0; /* Remove extra padding if not needed */
+    height: auto; /* Let height adjust based on content */
+    background-color: #111111; /* Matching container color with the rest of the site */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#footer-container:empty,
-#navbar-container:empty {
-    display: none; /* Hide the containers if they are empty */
+canvas {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #ffffff; /* Add border if desired */
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+#navbar-container:empty,
+#footer-container:empty {
+    display: none; /* Hide empty navbar or footer */
 }
