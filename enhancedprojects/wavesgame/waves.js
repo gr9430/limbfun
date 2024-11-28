@@ -117,3 +117,9 @@ function endGame() {
 }
 
 console.log('Script loaded successfully');
+
+// Ensure P5.js knows about these functions
+window.preload = preload;
+window.setup = setup;
+window.draw = draw;
+window.mousePressed = mousePressed;
