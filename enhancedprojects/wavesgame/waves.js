@@ -92,6 +92,7 @@ function displayRevealedMessages() {
         for (let i = 0; i < revealedMessages.length; i++) {
             let paragraph = document.createElement("p");
             paragraph.textContent = revealedMessages[i];
+            paragraph.style.color = "black"; // Set text color to black
             messageContainer.appendChild(paragraph);
         }
     }
