@@ -27,11 +27,13 @@ function setup() {
         let title = document.createElement("h1");
         title.textContent = "The Waves Forget the Structure";
         title.style.color = "black";
+        title.style.marginBottom = "10px"; // Add margin for spacing
         messageContainer.appendChild(title);
 
         let openingLine = document.createElement("p");
         openingLine.textContent = "here,";
         openingLine.style.color = "black";
+        openingLine.style.fontSize = "18px"; // Increase font size
         messageContainer.appendChild(openingLine);
     }
 }
@@ -69,12 +71,7 @@ function draw() {
 }
 
 function isWithinZone(x, y, x1, y1, x2, y2) {
-    // Checks if the mouse is within the given rectangular zone
-    const withinZone = x >= x1 && x <= x2 && y >= y1 && y <= y2;
-    if (withinZone) {
-        console.log(`Mouse is within zone (${x1}, ${y1}, ${x2}, ${y2})`);
-    }
-    return withinZone;
+    return x >= x1 && x <= x2 && y >= y1 && y <= y2;
 }
 
 function highlightZone(x1, y1, x2, y2) {
@@ -100,13 +97,13 @@ function displayRevealedMessages() {
             paragraph.textContent = revealedMessages[i];
             paragraph.style.color = "black"; // Set text color to black
             paragraph.style.fontSize = "18px"; // Increase font size for better readability
+            paragraph.style.marginBottom = "10px"; // Add spacing between stanzas
             messageContainer.appendChild(paragraph);
         }
     }
 }
 
 function mousePressed() {
-    console.log(`Mouse pressed at X: ${mouseX}, Y: ${mouseY}`);
     // Interactive zones with messages
     if (isWithinZone(mouseX, mouseY, 115, 770, 218, 845)) { // Bird
         if (!revealedMessages.includes("before the smoke painted the sky\nwith shadows, before stone towers rose\nto watch over the sand like sentinels.\nNo room remains for the sea’s slow song—\nedges cutting across the sky, blind\nto the waves.")) {
