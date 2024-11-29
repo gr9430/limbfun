@@ -24,6 +24,7 @@ function setup() {
     // Move title and opening line to container
     const messageContainer = document.getElementById("message-container");
     if (messageContainer) {
+        messageContainer.style.backgroundColor = "#000000"; // Set background color to black
         let title = document.createElement("h1");
         title.textContent = "The Waves Forget the Structure";
         title.className = "message-title"; // Added class for consistency with CSS styling
