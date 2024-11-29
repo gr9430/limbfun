@@ -178,6 +178,13 @@ body {
     padding-left: 10px;
 }
 
+    
+/* Fix the container to ensure content doesn't overflow */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    
 /* Updated #canvas-container and #message-container for Game Layout */
 #canvas-container {
     display: flex;
