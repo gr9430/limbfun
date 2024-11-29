@@ -9,6 +9,146 @@ body {
     line-height: 1.6;
 }
 
+/* === Banner Image Styles === */
+.banner {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+}
+
+/* Alignment for Header Outside Container */
+.aligned-header {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 25px;
+  text-align: left;
+}
+
+.aligned-header h1 {
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+/* Updated Navbar and Dropdown Styles to Fix Submenu Disappearing Issue */
+/* Navigation Bar */
+
+.navbar {
+  background-color: #000000;
+  color: #FFFFFF;
+  padding: 1em;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  position: relative; /* Added for proper submenu positioning */
+}
+
+.navbar li {
+  position: relative;
+}
+
+.navbar a {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 15px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.navbar a:hover,
+.navbar a:focus {
+  color: #cccccc;
+  background-color: #333333;
+  border-radius: 4px;
+  outline: none;
+}
+
+/* Dropdown Styles */
+.navbar .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #111111;
+  padding: 10px 0;
+  list-style: none;
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.navbar .dropdown-menu li {
+  margin: 0;
+  position: relative; /* Added for nested dropdown positioning */
+}
+
+.navbar .dropdown-menu li a {
+  display: block;
+  padding: 10px 15px;
+  color: #FFFFFF;
+}
+
+.navbar .dropdown-menu li a:hover {
+  background-color: #555555;
+}
+
+/* Show dropdown on hover, keeping it visible while navigating submenus */
+.navbar li:hover > .dropdown-menu,
+.navbar li:focus-within > .dropdown-menu {
+  display: block;
+}
+
+/* Nested Dropdown Menu */
+
+.navbar .dropdown-menu .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: -2px; /* Remove gap between parent and child dropdown */
+  background-color: #222222; /* Slightly darker for nested menus */
+  z-index: 1001; /* Ensure it's above the parent dropdown */
+}
+
+.navbar .dropdown-menu li:hover > .dropdown-menu,
+.navbar .dropdown-menu li:focus-within > .dropdown-menu {
+  display: block;
+}
+
+/* Responsive Dropdown */
+@media (max-width: 768px) {
+  .navbar ul {
+
+    flex-direction: column;
+  }
+  .navbar li {
+    width: 100%;
+  }
+
+  .navbar .dropdown-menu {
+    position: static;
+  }
+
+  .navbar .dropdown-menu .dropdown-menu {
+    position: static;
+    margin-left: 0;
+  }
+
 /* Containers */
 .container, #two-column-container {
     max-width: 1200px; /* Ensure both single and double-column containers have the same width */
