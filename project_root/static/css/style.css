@@ -417,3 +417,36 @@ canvas {
 #footer-container:empty {
     display: none; /* Hide empty navbar or footer */
 }
+
+/* Styles for Two-Column Layout */
+#two-column-container {
+    display: flex;
+    flex-direction: row; /* Arrange columns horizontally */
+    max-width: 1200px; /* Adjust to fit your needs */
+    margin: 40px auto; /* Center the container */
+    gap: 20px; /* Add space between columns */
+    padding: 20px;
+    background-color: #111111; /* Match the rest of the site */
+    border-radius: 5px; /* Optional for rounded edges */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Add some shadow */
+}
+
+.column {
+    flex: 1; /* Each column takes up equal width */
+    color: #dddddd; /* Set text color for better readability */
+}
+
+.column-left {
+    padding-right: 10px;
+}
+
+.column-right {
+    padding-left: 10px;
+}
+
+/* Fix the container to ensure content doesn't overflow */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
