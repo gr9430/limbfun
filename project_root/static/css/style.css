@@ -3,432 +3,26 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #000000; /* Black background */
+    color: #ffffff; /* White text */
+    line-height: 1.6;
 }
-
-
-body {
-  font-family: 'Open Sans', sans-serif;
-  background-color: #000000; /* Black background */
-  color: #ffffff; /* White text */
-  line-height: 1.6;
-  margin: 0; /* Remove default browser margin */
-}
-
-/* === Banner Image Styles === */
-.banner {
-  width: 100%;
-  height: auto;
-  max-height: 400px;
-  object-fit: cover;
-}
-
-
-/* Alignment for Header Outside Container */
-.aligned-header {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 0 25px;
-  text-align: left;
-}
-
-.aligned-header h1 {
-  font-size: 2.5rem;
-  color: #ffffff;
-  text-align: left;
-  margin-bottom: 20px;
-}
-
-/* Updated Navbar and Dropdown Styles to Fix Submenu Disappearing Issue */
-
-/* Navigation Bar */
-.navbar {
-  background-color: #000000;
-  color: #FFFFFF;
-  padding: 1em;
-  text-align: center;
-  width: 100%;
-  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.navbar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  position: relative; /* Added for proper submenu positioning */
-}
-
-.navbar li {
-  position: relative;
-}
-
-.navbar a {
-  color: #FFFFFF;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 10px 15px;
-  transition: color 0.2s ease, background-color 0.2s ease;
-}
-
-.navbar a:hover,
-.navbar a:focus {
-  color: #cccccc;
-  background-color: #333333;
-  border-radius: 4px;
-  outline: none;
-}
-
-/* Dropdown Styles */
-.navbar .dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #111111;
-  padding: 10px 0;
-  list-style: none;
-  min-width: 200px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  z-index: 1000;
-}
-
-.navbar .dropdown-menu li {
-  margin: 0;
-  position: relative; /* Added for nested dropdown positioning */
-}
-
-.navbar .dropdown-menu li a {
-  display: block;
-  padding: 10px 15px;
-  color: #FFFFFF;
-}
-
-.navbar .dropdown-menu li a:hover {
-  background-color: #555555;
-}
-
-/* Show dropdown on hover, keeping it visible while navigating submenus */
-.navbar li:hover > .dropdown-menu,
-.navbar li:focus-within > .dropdown-menu {
-  display: block;
-}
-
-/* Nested Dropdown Menu */
-.navbar .dropdown-menu .dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  margin-left: -2px; /* Remove gap between parent and child dropdown */
-  background-color: #222222; /* Slightly darker for nested menus */
-  z-index: 1001; /* Ensure it's above the parent dropdown */
-}
-
-.navbar .dropdown-menu li:hover > .dropdown-menu,
-.navbar .dropdown-menu li:focus-within > .dropdown-menu {
-  display: block;
-}
-
-/* Responsive Dropdown */
-@media (max-width: 768px) {
-  .navbar ul {
-    flex-direction: column;
-  }
-
-  .navbar li {
-    width: 100%;
-  }
-
-  .navbar .dropdown-menu {
-    position: static;
-  }
-
-  .navbar .dropdown-menu .dropdown-menu {
-    position: static;
-    margin-left: 0;
-  }
-}
-
 
 /* Containers */
-.container {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 25px;
-  background-color: #111111;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-}
-/* Video Container */
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
-}
-video {
-    max-width: 100%;
-    height: auto;
+.container, #two-column-container {
+    max-width: 1200px; /* Ensure both single and double-column containers have the same width */
+    margin: 40px auto; /* Center the container and provide vertical spacing */
+    padding: 20px; /* Provide consistent padding for both single and double columns */
+    background-color: #111111; /* Match the rest of the site */
+    border-radius: 5px; /* Optional for rounded edges */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Add shadow for consistency */
 }
 
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 10px;
-  background-color: #111111;
-  color: #ffffff;
-  font-size: 14px;
-}
-
-/* Carousel Styling */
-.carousel-container {
-  position: relative;
-  width: 100%;
-  max-width: 800px;
-  margin: 20px auto;
-  overflow: hidden;
-  border-radius: 10px;
-}
-
-.carousel-wrapper {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  width: 100%;
-}
-
-.carousel-image {
-  min-width: 100%;
-  display: none;
-  object-fit: cover;
-}
-
-.carousel-image.active {
-  display: block;
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Carousel Buttons */
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  padding: 10px 15px;
-  border-radius: 50%;
-  z-index: 10;
-  transition: background-color 0.3s ease;
-}
-
-.carousel-btn:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.carousel-btn.left {
-  left: 10px;
-}
-
-.carousel-btn.right {
-  right: 10px;
-}
-
-/* Fullscreen Overlay */
-.fullscreen-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.fullscreen-overlay img {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
-}
-
-/* Typography */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: #ffffff;
-}
-
-p {
-  margin-bottom: 15px;
-  color: #dddddd;
-}
-
-a {
-  color: #337ab7;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #23527c;
-}
-
-blockquote {
-  background-color: #111111;
-  border-left: 4px solid #cccccc;
-  padding: 20px;
-  margin: 20px 0;
-  font-size: 18px;
-  font-style: italic;
-}
-
-blockquote p {
-  margin-bottom: 10px;
-}
-
-cite {
-  font-size: 16px;
-  font-style: normal;
-  color: #cccccc;
-  display: block;
-  margin-top: 10px;
-}
-
-/* Buttons */
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #ffffff;
-  background-color: #333333;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-button:hover {
-  background-color: #555555;
-  transform: scale(1.05);
-}
-
-/* Back-to-Top Button */
-.back-to-top {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 10px 15px;
-  background-color: #333333;
-  color: #ffffff;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 16px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-  display: none;
-  z-index: 1000;
-}
-
-.back-to-top:hover {
-  background-color: #555555;
-}
-
-#canvas-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px auto; /* Centers the container */
-    padding: 10px; /* Optional, to add space inside */
-    height: auto; /* Makes height flexible */
-    background-color: #f0f0f0; /* Light background for contrast */
-    border: 2px solid #000; /* Border for better visibility */
-}
-
-canvas {
-    max-width: 100%;
-    height: auto; /* Maintain aspect ratio */
-    border: 2px solid #ffffff; /* Optional: adds a border to canvas */
-}
-
-/* Game Specific Styling */
-#game-container {
-        max-width: 1000px;
-    margin: 0 auto; /* Center the container */
-    padding: 0; /* Remove extra padding if not needed */
-    height: auto; /* Let height adjust based on content */
-    background-color: #111111; /* Matching container color with the rest of the site */
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-canvas {
-    max-width: 100%;
-    height: auto;
-    border: 2px solid #ffffff; /* Add border if desired */
-    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
-}
-
-#two-column-container {
-  display: flex;
-  max-width: 1200px; /* Adjust to fit your needs */
-  margin: 0 auto;
-  gap: 20px;
-}
-
-#canvas-container {
-  flex: 1;
-}
-
-#message-container {
-  flex: 1;
-  color: black; /* Ensures the text is visible */
-}
-
-
-#navbar-container:empty,
-#footer-container:empty {
-    display: none; /* Hide empty navbar or footer */
-}
-
-/* Styles for Two-Column Layout */
 #two-column-container {
     display: flex;
     flex-direction: row; /* Arrange columns horizontally */
-    max-width: 1200px; /* Adjust to fit your needs */
-    margin: 40px auto; /* Center the container */
     gap: 20px; /* Add space between columns */
-    padding: 20px;
-    background-color: #111111; /* Match the rest of the site */
-    border-radius: 5px; /* Optional for rounded edges */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Add some shadow */
 }
 
 .column {
@@ -444,9 +38,69 @@ canvas {
     padding-left: 10px;
 }
 
-/* Fix the container to ensure content doesn't overflow */
-img {
-    max-width: 100%;
-    height: auto;
+/* Updated #canvas-container and #message-container for Game Layout */
+#canvas-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1; /* Ensure it takes equal width in two-column layout */
+    margin: 20px auto; /* Centers the container */
+    padding: 10px; /* Optional, to add space inside */
+    height: auto; /* Makes height flexible */
+    background-color: #111111; /* Updated background to match site */
+    border: 2px solid #ffffff; /* Border for better visibility */
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+#message-container {
+    flex: 1; /* Ensure it takes equal width in two-column layout */
+    color: #ffffff; /* White text to make it visible on black background */
+    background-color: #111111; /* Set the background color to match */
+    padding: 20px; /* Padding for readability */
+    border-radius: 5px; /* Rounded edges */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Add shadow for consistency */
+}
+
+/* Game Specific Styling */
+#game-container {
+    max-width: 1000px;
+    margin: 0 auto; /* Center the container */
+    padding: 0; /* Remove extra padding if not needed */
+    height: auto; /* Let height adjust based on content */
+    background-color: #111111; /* Matching container color with the rest of the site */
     border-radius: 5px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #ffffff; /* Ensure consistent color for headings */
+}
+
+p {
+    margin-bottom: 15px;
+    color: #dddddd; /* Light grey for readability on black background */
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #333333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #555555;
+    transform: scale(1.05);
 }
