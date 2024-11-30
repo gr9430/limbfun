@@ -61,11 +61,16 @@ if (typeof allRatedBooks === 'undefined') {
                 return;
             }
     
-            // Show only the current image
+            console.log(`Showing image at index ${index}`); // Debugging log
+    
+            // Hide all images except the one with the current index
             images.forEach((img, i) => {
                 img.classList.toggle('active', i === index);
-                img.style.opacity = i === index ? '1' : '0';
-                img.style.transition = 'opacity 0.5s ease-in-out'; // Smooth transition
+                if (i === index) {
+                    img.style.opacity = '1';
+                } else {
+                    img.style.opacity = '0';
+                }
             });
         }
     
@@ -93,15 +98,14 @@ if (typeof allRatedBooks === 'undefined') {
         document.querySelector('.carousel-btn.right')?.addEventListener('click', nextImage);
     
         // Automatic carousel (Optional)
-        setInterval(nextImage, 5000); // Change images every 10 seconds
+        setInterval(nextImage, 5000); // Change images every 5 seconds
     }
     
     // Ensure this function runs once the DOM is ready
     document.addEventListener("DOMContentLoaded", () => {
         initializeCarousel();
     });
-    
-
+   
     // Navbar dropdown menu handling.
     function initializeNavbarDropdown() {
         document.querySelectorAll('.navbar li').forEach(item => {

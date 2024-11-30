@@ -306,17 +306,19 @@ footer {
 
 /* Individual Carousel Images */
 .carousel-image {
-    position: absolute;
+    position: absolute; /* Stack all images on top of each other */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     opacity: 0; /* Hidden by default */
     transition: opacity 0.5s ease-in-out;
+    z-index: 1; /* Ensure they are stacked properly */
 }
 
 .carousel-image.active {
     opacity: 1; /* Visible only when active */
+    z-index: 2; /* Bring the active image in front */
 }
 
 /* Carousel Buttons */
