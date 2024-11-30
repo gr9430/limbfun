@@ -285,3 +285,46 @@ footer {
     font-size: 14px;              /* Adjust font size if needed */
     box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.1); /* Optional: Add shadow for depth */
 }
+
+/*Carousel Stuff*/
+.carousel-container {
+    position: relative;
+    max-width: 100%;
+    margin: 20px auto;
+    overflow: hidden;
+  }
+  
+  .carousel-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .carousel-image {
+    min-width: 100%;
+    transition: opacity 0.5s ease;
+    opacity: 0;
+  }
+  
+  .carousel-image.active {
+    opacity: 1;
+  }
+  
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .carousel-btn.left {
+    left: 0;
+  }
+  
+  .carousel-btn.right {
+    right: 0;
+  }
+  

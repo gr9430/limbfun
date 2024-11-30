@@ -5,26 +5,23 @@ if (typeof allRatedBooks === 'undefined') {
 
 (function() {
     // Function to load a component into a specific element.
-    function loadComponent(filePath, elementId) {
-        fetch(filePath)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                console.log(`Loading component from ${filePath} into #${elementId}`);
-                return response.text();
-            })
-            .then(data => {
-                const element = document.getElementById(elementId);
-                if (element) {
-                    element.innerHTML = data;
-                } else {
-                    console.error(`Element with ID '${elementId}' not found.`);
-                }
-            })
-            .catch(error => {
-                console.error(`Error loading ${filePath}:`, error);
-            });
+    async function loadComponent(filePath, elementId) {
+        try {
+            const response = await fetch(filePath);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            console.log(`Loading component from ${filePath} into #${elementId}`);
+            const data = await response.text();
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.innerHTML = data;
+            } else {
+                console.error(`Element with ID '${elementId}' not found.`);
+            }
+        } catch (error) {
+            console.error(`Error loading ${filePath}:`, error);
+        }
     }
 
     // Function to load a CSS file dynamically.
@@ -212,16 +209,16 @@ if (typeof allRatedBooks === 'undefined') {
     }
 
     // Load components, initialize features, and load CSS once DOM is fully loaded.
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", async () => {
         // Load reusable components into the page.
-        loadComponent("/ENG6806/banner.html", "banner-container");
-        loadComponent("/ENG6806/navbar.html", "navbar-container");
-        loadComponent("/ENG6806/footer.html", "footer-container");
+        await loadComponent("/ENG6806/banner.html", "banner-container");
+        await loadComponent("/ENG6806/navbar.html", "navbar-container");
+        await loadComponent("/ENG6806/footer.html", "footer-container");
 
         // Load the CSS dynamically.
         loadCSS("/ENG6806/project_root/static/css/style.css");
 
-        // Initialize features.
+        // Initialize features only after components are loaded.
         initializeCarousel();
         initializeNavbarDropdown();
         initializeParagraphGenerator();
