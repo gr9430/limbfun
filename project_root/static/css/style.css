@@ -301,9 +301,10 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Ensures aspect ratio is preserved while scaling the image to fit inside the container */
+    object-fit: cover; /* Ensures aspect ratio is preserved while covering the container */
     opacity: 0; /* Hidden by default */
     transition: opacity 0.5s ease-in-out;
+    cursor: pointer; /* Indicate that the image is clickable */
 }
 
 .carousel-image.active {
@@ -372,4 +373,9 @@ footer {
 .close:hover,
 .close:focus {
     color: #bbbbbb;
+}
+
+/* Additional Modal Styling to Prevent Last Image from Appearing Outside the Carousel */
+.carousel-wrapper img {
+    display: block;
 }
