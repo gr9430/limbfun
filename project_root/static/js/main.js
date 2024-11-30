@@ -89,6 +89,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    document.addEventListener("DOMContentLoaded", () => {
+        loadComponent("/ENG6806/banner.html", "banner-container");
+        loadComponent("/ENG6806/navbar.html", "navbar-container");
+        loadComponent("/ENG6806/footer.html", "footer-container");
+    
+        // Other scripts to initialize the carousel, etc.
+    });
+    
+
     // Paragraph Generator
     const generateBtn = document.getElementById('generateBtn');
     const output = document.getElementById('output');
