@@ -37,7 +37,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* Navbar and Dropdown Styles*/
+/* Navbar and Dropdown Styles */
 .navbar {
     background-color: #000000;
     color: #FFFFFF;
@@ -273,7 +273,7 @@ footer {
     box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.1); /* Optional: Add shadow for depth */
 }
 
-/*Carousel Stuff*/
+/* Carousel Stuff */
 /* Carousel Container Styles */
 .carousel-container {
     position: relative;
