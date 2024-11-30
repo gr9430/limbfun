@@ -53,48 +53,54 @@ if (typeof allRatedBooks === 'undefined') {
     // Define initializeCarousel globally to be accessible.
     function initializeCarousel() {
         let currentIndex = 0;
-
+    
         function showImage(index) {
             const images = document.querySelectorAll('.carousel-image');
             if (!images.length) {
                 console.error('No images found for the carousel.');
                 return;
             }
-
-            console.log(`Showing image at index ${index}`); // Debugging log
+    
+            // Show only the current image
             images.forEach((img, i) => {
                 img.classList.toggle('active', i === index);
                 img.style.opacity = i === index ? '1' : '0';
                 img.style.transition = 'opacity 0.5s ease-in-out'; // Smooth transition
             });
         }
-
+    
         function prevImage() {
             const images = document.querySelectorAll('.carousel-image');
             if (images.length === 0) return;
-
+    
             currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
             showImage(currentIndex);
         }
-
+    
         function nextImage() {
             const images = document.querySelectorAll('.carousel-image');
             if (images.length === 0) return;
-
+    
             currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
             showImage(currentIndex);
         }
-
+    
         // Initial load
         showImage(currentIndex);
-
+    
         // Carousel button handlers
         document.querySelector('.carousel-btn.left')?.addEventListener('click', prevImage);
         document.querySelector('.carousel-btn.right')?.addEventListener('click', nextImage);
-
+    
         // Automatic carousel (Optional)
-        setInterval(nextImage, 5000); // Change images every 5 seconds
+        setInterval(nextImage, 5000); // Change images every 10 seconds
     }
+    
+    // Ensure this function runs once the DOM is ready
+    document.addEventListener("DOMContentLoaded", () => {
+        initializeCarousel();
+    });
+    
 
     // Navbar dropdown menu handling.
     function initializeNavbarDropdown() {
