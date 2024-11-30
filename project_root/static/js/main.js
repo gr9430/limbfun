@@ -141,6 +141,8 @@ function initializeParagraphGenerator() {
 }
 
 // JSON Data Fetch and Book Display Functionality
+let allRatedBooks = new Set(); // Ensure allRatedBooks is defined properly
+
 async function fetchJsonData() {
     try {
         const response = await fetch("/ENG6806/originalprojects/newnovelcuriosity/newnovel.json");
