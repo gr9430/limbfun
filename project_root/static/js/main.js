@@ -69,7 +69,10 @@ if (typeof allRatedBooks === 'undefined') {
     
         function prevImage() {
             const images = document.querySelectorAll('.carousel-image');
-            if (images.length === 0) return;
+            if (images.length === 0) {
+                console.error('No images available for the carousel.');
+                return;
+            }
     
             currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
             showImage(currentIndex);
@@ -77,7 +80,10 @@ if (typeof allRatedBooks === 'undefined') {
     
         function nextImage() {
             const images = document.querySelectorAll('.carousel-image');
-            if (images.length === 0) return;
+            if (images.length === 0) {
+                console.error('No images available for the carousel.');
+                return;
+            }
     
             currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
             showImage(currentIndex);
@@ -93,17 +99,7 @@ if (typeof allRatedBooks === 'undefined') {
         // Automatic carousel (Optional)
         setInterval(nextImage, 5000); // Change images every 5 seconds
     }
-    
-    document.addEventListener("DOMContentLoaded", () => {
-        initializeCarousel();
-    });
-    
-    
-    // Ensure this function runs once the DOM is ready
-    document.addEventListener("DOMContentLoaded", () => {
-        initializeCarousel();
-    });
-   
+
     // Navbar dropdown menu handling.
     function initializeNavbarDropdown() {
         document.querySelectorAll('.navbar li').forEach(item => {
@@ -207,6 +203,51 @@ if (typeof allRatedBooks === 'undefined') {
         });
     }
 
+    // Event listener for modal image handling.
+    document.addEventListener("DOMContentLoaded", () => {
+        // Select all carousel images
+        const images = document.querySelectorAll('.carousel-image');
+
+        // Modal Elements
+        const modal = document.getElementById('image-modal');
+        const modalImg = document.getElementById('modal-image');
+        const closeModal = document.querySelector('.close');
+
+        if (!images.length) {
+            console.error('No images found for the modal functionality.');
+        }
+
+        // Event listener to open modal when image is clicked
+        images.forEach(image => {
+            image.addEventListener('click', () => {
+                if (modal && modalImg) {
+                    modal.style.display = 'block';
+                    modalImg.src = image.src;
+                } else {
+                    console.error('Modal elements are not available in the DOM.');
+                }
+            });
+        });
+
+        // Event listener to close modal
+        if (closeModal) {
+            closeModal.addEventListener('click', () => {
+                if (modal) modal.style.display = 'none';
+            });
+        } else {
+            console.error('Close button not found in the modal.');
+        }
+
+        // Event listener to close modal when clicking outside the image
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+    });
+
     // Load components, initialize features, and load CSS once DOM is fully loaded.
     document.addEventListener("DOMContentLoaded", async () => {
         // Load reusable components into the page.
@@ -226,35 +267,4 @@ if (typeof allRatedBooks === 'undefined') {
         initializeParagraphGenerator();
         fetchJsonData();
     });
-
 })();
-
-document.addEventListener("DOMContentLoaded", () => {
-    // Select all carousel images
-    const images = document.querySelectorAll('.carousel-image');
-
-    // Modal Elements
-    const modal = document.getElementById('image-modal');
-    const modalImg = document.getElementById('modal-image');
-    const closeModal = document.querySelector('.close');
-
-    // Event listener to open modal when image is clicked
-    images.forEach(image => {
-        image.addEventListener('click', () => {
-            modal.style.display = 'block';
-            modalImg.src = image.src;
-        });
-    });
-
-    // Event listener to close modal
-    closeModal.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
-
-    // Event listener to close modal when clicking outside the image
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
-});
