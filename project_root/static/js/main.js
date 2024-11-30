@@ -3,7 +3,7 @@ if (typeof allRatedBooks === 'undefined') {
     var allRatedBooks = new Set();
 }
 
-(function() {
+(function () {
     // Function to load a component into a specific element.
     async function loadComponent(filePath, elementId) {
         try {
@@ -33,6 +33,19 @@ if (typeof allRatedBooks === 'undefined') {
             link.type = "text/css";
             link.onload = () => console.log(`CSS Loaded: ${filePath}`);
             link.onerror = () => console.error(`Failed to load CSS: ${filePath}`);
+            document.head.appendChild(link);
+        }
+    }
+
+    // Function to dynamically load the favicon
+    function loadFavicon(filePath) {
+        if (!document.querySelector(`link[rel="icon"]`)) {
+            const link = document.createElement('link');
+            link.rel = 'icon';
+            link.href = filePath;
+            link.type = 'image/x-icon';
+            link.onload = () => console.log(`Favicon Loaded: ${filePath}`);
+            link.onerror = () => console.error(`Failed to load favicon: ${filePath}`);
             document.head.appendChild(link);
         }
     }
@@ -195,6 +208,9 @@ if (typeof allRatedBooks === 'undefined') {
 
         // Load the CSS dynamically.
         loadCSS("/ENG6806/project_root/static/css/style.css");
+
+        // Load the favicon dynamically.
+        loadFavicon("/ENG6806/project_root/static/images/favicon.ico");
 
         // Initialize features only after components are loaded.
         initializeCarousel();
