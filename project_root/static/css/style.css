@@ -299,20 +299,22 @@ footer {
   /* Carousel Wrapper to hold all images */
   .carousel-wrapper {
     display: flex;
-    transition: transform 0.5s ease-in-out;
-  }
+    width: 65%;
+    overflow: hidden; /* Prevents overflowing of images */
+}
   
   /* Individual Carousel Images */
   .carousel-image {
-    min-width: 100%;
-    opacity: 0; /* Images start off as hidden */
-    transition: opacity 0.5s ease-in-out; /* Smooth opacity transition */
-  }
-  
-  .carousel-image.active {
-    opacity: 1; /* Only active image is visible */
-  }
-  
+    min-width: 65%;
+    height: auto;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-image.active {
+    opacity: 1; /* Visible only when active */
+}
+
   /* Carousel Buttons */
   .carousel-btn {
     position: absolute;
