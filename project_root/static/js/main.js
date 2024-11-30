@@ -1,7 +1,7 @@
 // Define 'allRatedBooks' at the top to avoid re-declaration errors.
-let allRatedBooks = new Set(); // Ensure allRatedBooks is defined properly
+let allRatedBooks = new Set(); // Ensure 'allRatedBooks' is defined only once globally.
 
-// Function to load a component into a specific element
+// Function to load a component into a specific element.
 function loadComponent(filePath, elementId) {
     fetch(filePath)
         .then(response => {
@@ -24,18 +24,20 @@ function loadComponent(filePath, elementId) {
         });
 }
 
-// Function to load a CSS file dynamically
+// Function to load a CSS file dynamically.
 function loadCSS(filePath) {
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = filePath;
-    link.type = "text/css";
-    link.onload = () => console.log(`CSS Loaded: ${filePath}`);
-    link.onerror = () => console.error(`Failed to load CSS: ${filePath}`);
-    document.head.appendChild(link);
+    if (!document.querySelector(`link[href="${filePath}"]`)) {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = filePath;
+        link.type = "text/css";
+        link.onload = () => console.log(`CSS Loaded: ${filePath}`);
+        link.onerror = () => console.error(`Failed to load CSS: ${filePath}`);
+        document.head.appendChild(link);
+    }
 }
 
-// Carousel functionality setup
+// Carousel functionality setup.
 function initializeCarousel() {
     let currentIndex = 0;
     let isThrottled = false;
@@ -45,7 +47,7 @@ function initializeCarousel() {
         if (!images.length) return;
         images.forEach((img, i) => {
             img.classList.toggle('active', i === index);
-            img.setAttribute('aria-hidden', i !== index); // Accessibility
+            img.setAttribute('aria-hidden', i !== index); // Accessibility.
         });
     }
 
@@ -77,7 +79,7 @@ function initializeCarousel() {
             if (overlay && overlayImg) {
                 overlay.style.display = 'flex';
                 overlayImg.src = img.src;
-                document.body.style.overflow = 'hidden'; // Disable scrolling
+                document.body.style.overflow = 'hidden'; // Disable scrolling.
             }
         });
     });
@@ -85,7 +87,7 @@ function initializeCarousel() {
     if (overlay) {
         overlay.addEventListener('click', () => {
             overlay.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
+            document.body.style.overflow = 'auto'; // Re-enable scrolling.
         });
     }
 
@@ -94,16 +96,16 @@ function initializeCarousel() {
         if (event.key === "ArrowRight") nextImage();
         if (event.key === "Escape" && overlay?.style.display === "flex") {
             overlay.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
+            document.body.style.overflow = 'auto'; // Re-enable scrolling.
         }
     });
 
-    // Carousel buttons to navigate images
+    // Carousel buttons to navigate images.
     document.querySelector('.carousel-btn.left')?.addEventListener('click', prevImage);
     document.querySelector('.carousel-btn.right')?.addEventListener('click', nextImage);
 }
 
-// Navbar dropdown menu handling
+// Navbar dropdown menu handling.
 function initializeNavbarDropdown() {
     document.querySelectorAll('.navbar li').forEach(item => {
         item.addEventListener('mouseenter', () => {
@@ -121,7 +123,7 @@ function initializeNavbarDropdown() {
     });
 }
 
-// Paragraph Generator Functionality
+// Paragraph Generator Functionality.
 function initializeParagraphGenerator() {
     const generateBtn = document.getElementById('generateBtn');
     const output = document.getElementById('output');
@@ -143,7 +145,7 @@ function initializeParagraphGenerator() {
     }
 }
 
-// JSON Data Fetch and Book Display Functionality
+// JSON Data Fetch and Book Display Functionality.
 async function fetchJsonData() {
     try {
         const response = await fetch("/ENG6806/originalprojects/newnovelcuriosity/newnovel.json");
@@ -206,17 +208,17 @@ function displayBooks(books) {
     });
 }
 
-// Load components, initialize features, and load CSS once DOM is fully loaded
+// Load components, initialize features, and load CSS once DOM is fully loaded.
 document.addEventListener("DOMContentLoaded", () => {
-    // Load reusable components into the page
+    // Load reusable components into the page.
     loadComponent("/ENG6806/banner.html", "banner-container");
     loadComponent("/ENG6806/navbar.html", "navbar-container");
     loadComponent("/ENG6806/footer.html", "footer-container");
 
-    // Load the CSS dynamically
+    // Load the CSS dynamically.
     loadCSS("/ENG6806/project_root/static/css/style.css");
 
-    // Initialize features
+    // Initialize features.
     initializeCarousel();
     initializeNavbarDropdown();
     initializeParagraphGenerator();
