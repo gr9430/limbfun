@@ -37,8 +37,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* Updated Navbar and Dropdown Styles to Fix Submenu Disappearing Issue */
-/* Navigation Bar */
+/* Navbar and Dropdown Styles*/
 .navbar {
     background-color: #000000;
     color: #FFFFFF;
@@ -260,4 +259,16 @@ button {
 button:hover {
     background-color: #555555;
     transform: scale(1.05);
+}
+
+footer {
+    display: flex;                /* Use flexbox for easy centering */
+    justify-content: center;      /* Center content horizontally */
+    align-items: center;          /* Center content vertically */
+    text-align: center;           /* Ensure text is centered */
+    padding: 20px;                /* Add padding for visual spacing */
+    background-color: #111111;    /* Dark background color for contrast */
+    color: #ffffff;               /* White text for visibility */
+    font-size: 14px;              /* Adjust font size if needed */
+    box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.1); /* Optional: Add shadow for depth */
 }
