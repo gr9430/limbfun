@@ -201,3 +201,18 @@ function loadCSS(filePath) {
 document.addEventListener("DOMContentLoaded", function() {
     loadCSS("/ENG6806/project_root/static/css/style.css"); // Correct path to your CSS
 });
+
+document.querySelectorAll('.navbar li').forEach(item => {
+    item.addEventListener('mouseenter', () => {
+        const dropdown = item.querySelector('.dropdown-menu');
+        if (dropdown) {
+            dropdown.style.display = 'block';
+        }
+    });
+    item.addEventListener('mouseleave', () => {
+        const dropdown = item.querySelector('.dropdown-menu');
+        if (dropdown) {
+            dropdown.style.display = 'none';
+        }
+    });
+});
