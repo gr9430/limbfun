@@ -148,8 +148,8 @@ async function fetchJsonData() {
     try {
         const response = await fetch("/ENG6806/originalprojects/newnovelcuriosity/newnovel.json");
         if (!response.ok) throw new Error("Network response was not ok");
-        jsonData = await response.json();
-        displayedBooks = getRandomBooks(jsonData, 10);
+        const jsonData = await response.json();
+        const displayedBooks = getRandomBooks(jsonData, 10);
         displayBooks(displayedBooks);
     } catch (error) {
         console.error("There was a problem with the fetch operation:", error);
@@ -221,12 +221,4 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeNavbarDropdown();
     initializeParagraphGenerator();
     fetchJsonData();
-
-    // Attach event listeners for book rating buttons
-    const submitButton = document.getElementById("submit-button");
-    if (submitButton) submitButton.addEventListener("click", handleRatingsSubmission);
-    const moreBooksButton = document.getElementById("more-books-button");
-    if (moreBooksButton) moreBooksButton.addEventListener("click", handleMoreBooks);
-    const proceedButton = document.getElementById("proceed-button");
-    if (proceedButton) proceedButton.addEventListener("click", displayRecommendations);
 });
