@@ -1,24 +1,26 @@
 // Function to load a component into a specific element
 function loadComponent(filePath, elementId) {
-    fetch(filePath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            console.log(`Loading component from ${filePath} into #${elementId}`);
-            return response.text();
-        })
-        .then(data => {
-            const element = document.getElementById(elementId);
-            if (element) {
-                element.innerHTML = data;
-            } else {
-                console.error(`Element with ID '${elementId}' not found.`);
-            }
-        })
-        .catch(error => {
-            console.error(`Error loading ${filePath}:`, error);
-        });
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch(filePath)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                console.log(`Loading component from ${filePath} into #${elementId}`);
+                return response.text();
+            })
+            .then(data => {
+                const element = document.getElementById(elementId);
+                if (element) {
+                    element.innerHTML = data;
+                } else {
+                    console.error(`Element with ID '${elementId}' not found.`);
+                }
+            })
+            .catch(error => {
+                console.error(`Error loading ${filePath}:`, error);
+            });
+    });
 }
 
 // Load components once DOM is fully loaded
