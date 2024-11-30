@@ -301,7 +301,7 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures aspect ratio is preserved while covering the container */
+    object-fit: contain; /* Ensures aspect ratio is preserved while scaling the image to fit inside the container */
     opacity: 0; /* Hidden by default */
     transition: opacity 0.5s ease-in-out;
 }
