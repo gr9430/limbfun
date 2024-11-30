@@ -1,3 +1,6 @@
+// Define 'allRatedBooks' at the top to avoid re-declaration errors.
+let allRatedBooks = new Set(); // Ensure allRatedBooks is defined properly
+
 // Function to load a component into a specific element
 function loadComponent(filePath, elementId) {
     fetch(filePath)
@@ -141,8 +144,6 @@ function initializeParagraphGenerator() {
 }
 
 // JSON Data Fetch and Book Display Functionality
-let allRatedBooks = new Set(); // Ensure allRatedBooks is defined properly
-
 async function fetchJsonData() {
     try {
         const response = await fetch("/ENG6806/originalprojects/newnovelcuriosity/newnovel.json");
