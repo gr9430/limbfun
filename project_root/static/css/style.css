@@ -335,3 +335,41 @@ footer {
 .carousel-btn:hover {
     background-color: rgba(0, 0, 0, 0.7);
 }
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2000; /* On top of other content */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.9); /* Black with opacity */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px; /* Optional: rounded edges */
+    transition: transform 0.3s ease-in-out;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbbbbb;
+}

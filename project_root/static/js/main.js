@@ -228,3 +228,33 @@ if (typeof allRatedBooks === 'undefined') {
     });
 
 })();
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Select all carousel images
+    const images = document.querySelectorAll('.carousel-image');
+
+    // Modal Elements
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-image');
+    const closeModal = document.querySelector('.close');
+
+    // Event listener to open modal when image is clicked
+    images.forEach(image => {
+        image.addEventListener('click', () => {
+            modal.style.display = 'block';
+            modalImg.src = image.src;
+        });
+    });
+
+    // Event listener to close modal
+    closeModal.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    // Event listener to close modal when clicking outside the image
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
