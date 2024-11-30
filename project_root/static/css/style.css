@@ -341,7 +341,7 @@ footer {
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 2000; /* On top of other content */
+    z-index: 3000; /* Ensure modal appears above all other elements */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -377,5 +377,5 @@ footer {
 
 /* Additional Modal Styling to Prevent Last Image from Appearing Outside the Carousel */
 .carousel-wrapper img {
-    display: block;
+    display: none;
 }
