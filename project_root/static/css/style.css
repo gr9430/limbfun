@@ -287,28 +287,33 @@ footer {
 }
 
 /*Carousel Stuff*/
+/* Carousel Container Styles */
 .carousel-container {
     position: relative;
     max-width: 100%;
     margin: 20px auto;
     overflow: hidden;
+    border-radius: 10px;
   }
   
+  /* Carousel Wrapper to hold all images */
   .carousel-wrapper {
     display: flex;
     transition: transform 0.5s ease-in-out;
   }
   
+  /* Individual Carousel Images */
   .carousel-image {
     min-width: 100%;
-    transition: opacity 0.5s ease;
-    opacity: 0;
+    opacity: 0; /* Images start off as hidden */
+    transition: opacity 0.5s ease-in-out; /* Smooth opacity transition */
   }
   
   .carousel-image.active {
-    opacity: 1;
+    opacity: 1; /* Only active image is visible */
   }
   
+  /* Carousel Buttons */
   .carousel-btn {
     position: absolute;
     top: 50%;
@@ -318,13 +323,19 @@ footer {
     border: none;
     padding: 10px;
     cursor: pointer;
+    z-index: 1000;
   }
   
   .carousel-btn.left {
-    left: 0;
+    left: 10px;
   }
   
   .carousel-btn.right {
-    right: 0;
+    right: 10px;
+  }
+  
+  /* Optional Styling for Carousel Buttons on Hover */
+  .carousel-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
   }
   

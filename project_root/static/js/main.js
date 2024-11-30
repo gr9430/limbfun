@@ -37,74 +37,55 @@ if (typeof allRatedBooks === 'undefined') {
         }
     }
 
-    // Carousel functionality setup.
-    function initializeCarousel() {
-        let currentIndex = 0;
-        let isThrottled = false;
-
-        function showImage(index) {
+    (function() {
+        function initializeCarousel() {
+          let currentIndex = 0;
+      
+          function showImage(index) {
             const images = document.querySelectorAll('.carousel-image');
             if (!images.length) return;
+      
+            // Loop through all images, making sure only the current one is visible
             images.forEach((img, i) => {
-                img.classList.toggle('active', i === index);
-                img.setAttribute('aria-hidden', i !== index); // Accessibility.
+              img.classList.toggle('active', i === index);
+              img.style.opacity = i === index ? '1' : '0';
+              img.style.transition = 'opacity 0.5s ease-in-out'; // Smooth transition
             });
-        }
-
-        function prevImage() {
-            if (isThrottled) return;
-            isThrottled = true;
+          }
+      
+          function prevImage() {
             const images = document.querySelectorAll('.carousel-image');
+            if (images.length === 0) return;
+      
             currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
             showImage(currentIndex);
-            setTimeout(() => (isThrottled = false), 500);
-        }
-
-        function nextImage() {
-            if (isThrottled) return;
-            isThrottled = true;
+          }
+      
+          function nextImage() {
             const images = document.querySelectorAll('.carousel-image');
+            if (images.length === 0) return;
+      
             currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
             showImage(currentIndex);
-            setTimeout(() => (isThrottled = false), 500);
+          }
+      
+          // Initial load
+          showImage(currentIndex);
+      
+          // Carousel button handlers
+          document.querySelector('.carousel-btn.left')?.addEventListener('click', prevImage);
+          document.querySelector('.carousel-btn.right')?.addEventListener('click', nextImage);
+      
+          // Automatic carousel (Optional)
+          setInterval(nextImage, 5000); // Change images every 5 seconds
         }
-
-        showImage(currentIndex);
-
-        const overlay = document.querySelector('.fullscreen-overlay');
-        const overlayImg = overlay?.querySelector('img');
-
-        document.querySelectorAll('.carousel-image').forEach((img) => {
-            img.addEventListener('click', () => {
-                if (overlay && overlayImg) {
-                    overlay.style.display = 'flex';
-                    overlayImg.src = img.src;
-                    document.body.style.overflow = 'hidden'; // Disable scrolling.
-                }
-            });
+      
+        // Initialize the Carousel when DOM is ready
+        document.addEventListener("DOMContentLoaded", () => {
+          initializeCarousel();
         });
-
-        if (overlay) {
-            overlay.addEventListener('click', () => {
-                overlay.style.display = 'none';
-                document.body.style.overflow = 'auto'; // Re-enable scrolling.
-            });
-        }
-
-        document.addEventListener("keydown", (event) => {
-            if (event.key === "ArrowLeft") prevImage();
-            if (event.key === "ArrowRight") nextImage();
-            if (event.key === "Escape" && overlay?.style.display === "flex") {
-                overlay.style.display = 'none';
-                document.body.style.overflow = 'auto'; // Re-enable scrolling.
-            }
-        });
-
-        // Carousel buttons to navigate images.
-        document.querySelector('.carousel-btn.left')?.addEventListener('click', prevImage);
-        document.querySelector('.carousel-btn.right')?.addEventListener('click', nextImage);
-    }
-
+      })();
+      
     // Navbar dropdown menu handling.
     function initializeNavbarDropdown() {
         document.querySelectorAll('.navbar li').forEach(item => {
