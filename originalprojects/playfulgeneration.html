@@ -4,18 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Playful Generation</title>
-  <script src="/ENG6806/project_root/static/js/main.js"></script>
+  <script src="/ENG6806/project_root/static/js/main.js" defer></script> <!-- Add defer attribute -->
 </head>
 <body>
-
   <!-- Main Container -->
   <div class="container">
     <h1><b>Playful Generation</b>: Yes, AI: An Auto-Zine Reflection on Zylinska and AWG INC.
-        </h1>
-    
+    </h1>
+
+    <!-- Navbar Container -->
+    <div id="navbar-container"></div>
+
+    <!-- Banner Container -->
+    <div id="banner-container"></div>
+
     <!-- Carousel Section -->
     <div class="carousel-container">
-      <!-- Left Button -->
+      <!-- Carousel Left Button -->
       <button class="carousel-btn left" onclick="prevImage()">&#10094;</button>
 
       <!-- Image Wrapper -->
@@ -53,61 +58,16 @@
     AI’s inability to replicate the nuances of my design style underscores its limitations as a creative partner. As Zylinska notes, AI often operates under an "illusion of sentience," raising questions about agency and authenticity. Through this zine, I reflect on my own artistic history and values, examining how generative tools can amplify creativity while challenging traditional notions of authorship and labor. The project serves as a critique of AI as a surrogate for creativity and a proposal for its potential as a collaborative medium.
 </p> 
 </div>
- <!-- Fullscreen Image Overlay -->
- <div class="fullscreen-overlay">
-  <img src="" alt="Fullscreen Image">
-</div>
+   <!-- Footer Container -->
+   <div id="footer-container"></div>
 
-<!-- JavaScript -->
-<script>
-  let currentIndex = 0;
+   <!-- Fullscreen Image Overlay -->
+   <div class="fullscreen-overlay">
+     <img src="" alt="Fullscreen Image">
+   </div>
 
-  function showImage(index) {
-    const images = document.querySelectorAll('.carousel-image');
-    images.forEach((img, i) => {
-      img.classList.remove('active'); // Remove "active" from all images
-      if (i === index) {
-        img.classList.add('active'); // Add "active" to the current image
-      }
-    });
-  }
-
-  function prevImage() {
-    const images = document.querySelectorAll('.carousel-image');
-    currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
-    showImage(currentIndex);
-  }
-
-  function nextImage() {
-    const images = document.querySelectorAll('.carousel-image');
-    currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
-    showImage(currentIndex);
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    showImage(currentIndex);
-
-    // Fullscreen functionality
-    const images = document.querySelectorAll('.carousel-image');
-    const overlay = document.querySelector('.fullscreen-overlay');
-    const overlayImg = overlay.querySelector('img');
-
-    images.forEach(img => {
-      img.addEventListener('click', () => {
-        overlay.style.display = 'flex';
-        overlayImg.src = img.src;
-      });
-    });
-
-    overlay.addEventListener('click', () => {
-      overlay.style.display = 'none';
-    });
-  });
-</script>
-  <!-- Placeholder for Footer -->
-  <div id="footer-container"></div>
-
-  <!-- Link to the JavaScript File -->
-  <script src="/ENG6806/project_root/static/js/main.js"></script>
+   <!-- Link to the JavaScript File -->
+   <script src="/ENG6806/project_root/static/js/main.js" defer></script> <!-- Include this at the end with defer -->
+ </div>
 </body>
 </html>
