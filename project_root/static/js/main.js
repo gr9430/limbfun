@@ -48,7 +48,7 @@ function initializeNavBar() {
 }
 
 // Carousel Functionality
-let currentIndex = 0;
+let currentIndex = 0; // Declared only once
 let isThrottled = false;
 
 function initializeCarousel() {
