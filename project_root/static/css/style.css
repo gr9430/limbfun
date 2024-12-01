@@ -299,18 +299,17 @@ footer {
     display: flex;
     justify-content: center;
 }
-  
-  /* Carousel Images Wrapper */
-  .carousel-wrapper {
+
+/* Carousel Images Wrapper */
+.carousel-wrapper {
     display: flex;
-    transition: transform 0.5s ease-in-out; /* Smooth transition */
+    transition: transform 0.5s ease-in-out;
 }
-  
-  /* Individual Images */
-  .carousel-image {
-    width: 45%;
+
+/* Individual Images */
+.carousel-image {
+    width: 45%; /* Ensure images take the full width of the container */
     height: auto;
-    display: none; /* Initially hide all images */
 }
 
 /* Carousel Buttons */
@@ -334,7 +333,7 @@ footer {
 .carousel-btn.right {
     right: 10px;
 }
-  
+
 /* Fullscreen overlay for image */
 .fullscreen-overlay {
     display: none;
