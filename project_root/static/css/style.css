@@ -222,14 +222,46 @@ img {
 }
 
 .survey-container {
-    max-width: 800px; /* Limit the width of the container */
-    margin: 20px auto; /* Center the container */
-    padding: 20px; /* Add some padding inside the container */
-    border: 1px solid #ccc; /* Add a light border around the container */
-    border-radius: 10px; /* Round the corners */
-    background-color: #111111; /* Light background for readability */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #111111;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+#book-list {
+    margin-bottom: 20px; /* Add space below book list */
+}
+
+.book-container {
+    margin-bottom: 15px; /* Add space between each book container */
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Optional: add a light border to separate each book */
+}
+
+#progress-bar-container {
+    margin-bottom: 20px; /* Add space below progress bar container */
+}
+
+button {
+    display: block; /* Ensure each button is on a separate line */
+    margin: 10px 0; /* Add space above and below each button */
+}
+
+#rating-summary {
+    margin-top: 20px;
+}
+
+#top-genres {
+    margin-top: 20px;
+}
+
+#recommendation {
+    margin-top: 20px;
+}
+
 
 /* Game Specific Styling */
 #game-container {
