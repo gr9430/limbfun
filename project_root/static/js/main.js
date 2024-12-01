@@ -1,4 +1,4 @@
-\// Function to initialize navbar dropdown functionality
+// Function to initialize navbar dropdown functionality
 function initializeNavBar() {
     const navBarElement = document.getElementById("navbar-container");
     if (navBarElement) {
@@ -125,6 +125,7 @@ function loadCSS(filePath) {
 
 // Initialize everything once DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
+    initializeNavBar(); // Added navbar dropdown initialization
     initializeCarousel(); // Initialize carousel functionality
     initializeParagraphGenerator(); // Initialize paragraph generator
     fetchJsonData(); // Fetch book data
