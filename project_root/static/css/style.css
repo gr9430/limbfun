@@ -295,16 +295,17 @@ footer {
 .carousel-container {
     position: relative;
     width: 600px; /* Adjust as needed */
-    overflow: hidden;
+    margin: 0 auto; /* Center the container */
+    overflow: hidden; /* Hide images that are not active */
 }
 
 .carousel-wrapper {
-    display: flex;
+    display: flex; /* Align all images in a row */
     transition: transform 0.5s ease-in-out;
 }
 
 .carousel-image {
-    width: 100%;
+    width: 100%; /* Ensure each image takes up the full container width */
     flex-shrink: 0;
 }
 
@@ -365,7 +366,7 @@ footer {
 }
 /* Additional Modal Styling to Prevent Last Image from Appearing Outside the Carousel */
 .carousel-wrapper img {
-    display: none;
+    display: block;
 }
 video {
   width: 100%; /* Takes up the entire width of the container */

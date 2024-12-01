@@ -16,7 +16,8 @@ function initializeCarousel() {
             currentIndex = totalImages - 1; // Loop to end
         }
 
-        const offset = -currentIndex * 100;
+        // Calculate offset to slide images horizontally
+        const offset = -currentIndex * 100; // Move wrapper to show the current image
         carouselWrapper.style.transform = `translateX(${offset}%)`;
     }
 
