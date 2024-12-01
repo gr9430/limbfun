@@ -16,6 +16,10 @@ if (typeof allRatedBooks === 'undefined') {
             const element = document.getElementById(elementId);
             if (element) {
                 element.innerHTML = data;
+
+                // Load favicon and CSS after the component is loaded
+                loadFavicon("project_root/static/assets/favicon.ico");
+                loadCSS("project_root/static/css/style.css");
             } else {
                 console.error(`Element with ID '${elementId}' not found.`);
             }
@@ -34,6 +38,20 @@ if (typeof allRatedBooks === 'undefined') {
             link.type = "text/css";
             link.onload = () => console.log(`CSS Loaded: ${filePath}`);
             link.onerror = () => console.error(`Failed to load CSS: ${filePath}`);
+            document.head.appendChild(link);
+        }
+    }
+
+    // Function to load a favicon dynamically.
+    function loadFavicon(filePath) {
+        // Avoid reloading the same favicon.
+        if (!document.querySelector(`link[rel="icon"][href="${filePath}"]`)) {
+            const link = document.createElement("link");
+            link.rel = "icon";
+            link.href = filePath;
+            link.type = "image/x-icon";
+            link.onload = () => console.log(`Favicon Loaded: ${filePath}`);
+            link.onerror = () => console.error(`Failed to load favicon: ${filePath}`);
             document.head.appendChild(link);
         }
     }
@@ -176,8 +194,9 @@ if (typeof allRatedBooks === 'undefined') {
         await loadComponent("/ENG6806/navbar.html", "navbar-container");
         await loadComponent("/ENG6806/footer.html", "footer-container");
 
-        // Load the CSS dynamically.
-        loadCSS("/ENG6806/project_root/static/css/style.css"); // Make sure this matches your folder structure.
+        // Load the CSS and favicon dynamically.
+        loadFavicon("/ENG6806/favicon.ico");
+        loadCSS("project_root/static/css/style.css");
 
         // Initialize features only after components are loaded.
         initializeCarousel();
