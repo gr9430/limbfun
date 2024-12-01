@@ -305,7 +305,7 @@ footer {
   
   /* Individual Images */
   .carousel-image {
-    width: 65%;
+    width: 45%;
     height: auto;
     display: none; /* Initially hide all images */
 }
