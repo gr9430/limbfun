@@ -89,21 +89,22 @@ let allRatedBooks = new Set();
 
 // Function to fetch JSON data from an external file
 function fetchJsonData() {
-   fetch('new_novel.json')
-       .then(response => {
-           if (!response.ok) {
-               throw new Error("Network response was not ok " + response.statusText);
-           }
-           return response.json();
-       })
-       .then(data => {
-           jsonData = data;
-           displayedBooks = getRandomBooks(jsonData, 10);
-           displayBooks(displayedBooks);
-       })
-       .catch(error => {
-           console.error("There was a problem with the fetch operation:", error);
-       });
+  fetch('https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/newnovel.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Network response was not ok " + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        jsonData = data;
+        displayedBooks = getRandomBooks(jsonData, 10);
+        displayBooks(displayedBooks);
+    })
+    .catch(error => {
+    console.error("There was a problem with the fetch operation:", error);
+    document.getElementById("book-list").innerHTML = "<p>Sorry, there was an error loading the book data. Please try again later.</p>";
+});
 }
 
 // Function to get random books excluding already rated books
