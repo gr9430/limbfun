@@ -38,51 +38,78 @@ body {
 }
 
 /* Navbar and Dropdown Styles */
+/* Navbar and Dropdown Styles */
 .navbar ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
     display: flex;
-  }
-  
-  .navbar ul li {
+    background-color: #333; /* Add a background color to the navbar */
+}
+
+.navbar ul li {
     position: relative;
     margin-right: 20px;
-  }
-  
-  .navbar ul li a {
+}
+
+.navbar ul li a {
     text-decoration: none;
-    padding: 10px;
+    padding: 10px 15px;
     display: block;
-  }
-  
-  /* Dropdown styling */
-  .dropdown-menu {
-    display: none;
+    color: #fff; /* White text for visibility */
+    transition: background-color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    background-color: #555; /* Darken background on hover */
+}
+
+/* Dropdown styling */
+.dropdown-menu {
+    display: none; /* Initially hide the dropdown */
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #fff;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    background-color: #333; /* Dropdown matches navbar color */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     list-style-type: none;
     padding: 0;
     margin: 0;
-  }
-  
-  .dropdown-menu li {
+    z-index: 1000; /* Ensures dropdown stays above other elements */
+}
+
+.dropdown-menu li {
     width: 200px; /* Set a width for the dropdown items */
-  }
-  
-  .dropdown-menu li a {
+}
+
+.dropdown-menu li a {
     padding: 10px;
     display: block;
-    color: #000; /* Set link color */
-  }
-  
-  /* Show dropdown on hover */
-  .navbar ul li:hover .dropdown-menu {
-    display: block;
-  }
+    color: #fff; /* Set link color */
+    text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #444; /* Add hover effect for dropdown items */
+}
+
+/* Show dropdown on hover */
+.navbar ul li:hover > .dropdown-menu {
+    display: block; /* Show the dropdown when hovering over parent item */
+}
+
+/* Fix Navbar Responsiveness */
+.navbar {
+    flex-wrap: wrap; /* Allows navbar items to wrap to next line if needed */
+}
+
+.navbar ul {
+    flex-direction: row; /* Arrange list items horizontally */
+}
+
+.navbar ul li {
+    margin-right: 15px; /* Space between list items */
+}
   
 /* Containers */
 .container,
