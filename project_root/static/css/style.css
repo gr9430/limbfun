@@ -294,43 +294,45 @@ footer {
 .carousel-container {
     position: relative;
     width: 100%;
-    max-width: 600px; /* Adjust size as necessary */
-    margin: 0 auto;
     overflow: hidden;
-  }
+}
   
   /* Carousel Images Wrapper */
   .carousel-wrapper {
     display: flex;
-    transition: transform 0.5s ease-in-out;
-  }
+    transition: transform 0.5s ease;
+}
   
   /* Individual Images */
   .carousel-image {
     width: 100%;
     height: auto;
-  }
-  
+    display: none; /* Initially hide all images */
+}
+
+.carousel-image.active {
+    display: block; /* Only show the active image */
+}
+
   /* Buttons */
   .carousel-btn {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
     padding: 10px;
-  }
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
   
-  .carousel-btn.left {
+.carousel-btn.left {
     left: 10px;
-  }
-  
-  .carousel-btn.right {
+}
+
+.carousel-btn.right {
     right: 10px;
-  }
+}
   
 /* Fullscreen overlay for image */
 .fullscreen-overlay {
