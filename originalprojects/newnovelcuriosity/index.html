@@ -248,7 +248,7 @@ function displayRecommendations() {
    }
 
    // Fallback: If no books found matching both authors and genres, try matching either top authors or genres
-   if (recommendedBooks.length === 0) {
+   if (recommendedBooks.length < 3) {
        topAuthors.forEach(author => {
            const allBooks = [
                ...jsonData.Proto_New_Novel_Precursors_to_the_Movement_Before_1948,
@@ -261,7 +261,7 @@ function displayRecommendations() {
        });
 
        // If still no books, match by top genres alone
-       if (recommendedBooks.length === 0) {
+       if (recommendedBooks.length < 3) {
            topGenres.forEach(genre => {
                const allBooks = [
                    ...jsonData.Proto_New_Novel_Precursors_to_the_Movement_Before_1948,
@@ -278,9 +278,12 @@ function displayRecommendations() {
    // Remove duplicates from the recommended books
    recommendedBooks = [...new Set(recommendedBooks)];
 
+   // Limit recommendations to a maximum of 3 books
+   recommendedBooks = recommendedBooks.slice(0, 3);
+
    if (recommendedBooks.length > 0) {
        recommendationsDiv.textContent = "Recommended books based on your top-rated authors and genres:";
-       recommendedBooks.slice(0, 3).forEach(book => {  // Limit to 3 recommendations
+       recommendedBooks.forEach(book => {
            const bookContainer = document.createElement("div");
            bookContainer.className = "book-container";
            bookContainer.textContent = `${book.title} by ${book.author} (${book.year}, ${book.country})`;
