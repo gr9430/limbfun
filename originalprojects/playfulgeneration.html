@@ -6,7 +6,6 @@
   <title>Playful Generation</title>
 
   <link rel="icon" href="/ENG6806/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="/ENG6806/project_root/static/css/style.css">
 
   <script src="/ENG6806/project_root/static/js/main.js" defer></script>
 </head>
@@ -16,32 +15,34 @@
 
   <div id="navbar-container"></div>
 
-  <div class="container">
-    <h1><b>Playful Generation</b>:<br>Yes, AI: An Auto-Zine Reflection on Zylinska and AWG INC.</h1>
+  <div class="carousel-container">
 
-    <div class="carousel-container">
+    <button class="carousel-btn left" aria-label="Previous slide">&#10094;</button>
 
-      <button class="carousel-btn left">&#10094;</button>
-
-      <div class="carousel-wrapper">
-        <img src="/ENG6806/project_root/static/images/carousel_two/1.jpg" alt="Image 1" class="carousel-image" loading="lazy">
-        <img src="/ENG6806/project_root/static/images/carousel_two/2.jpg" alt="Image 2" class="carousel-image" loading="lazy">
-        <img src="/ENG6806/project_root/static/images/carousel_two/3.jpg" alt="Image 3" class="carousel-image" loading="lazy">
-        <img src="/ENG6806/project_root/static/images/carousel_two/4.jpg" alt="Image 4" class="carousel-image" loading="lazy">
-        <img src="/ENG6806/project_root/static/images/carousel_two/5.jpg" alt="Image 5" class="carousel-image" loading="lazy">
-        <img src="/ENG6806/project_root/static/images/carousel_two/6.jpg" alt="Image 6" class="carousel-image" loading="lazy">
-        <img src="/ENG6806/project_root/static/images/carousel_two/7.jpg" alt="Image 7" class="carousel-image" loading="lazy">
-        <img src="/ENG6806/project_root/static/images/carousel_two/8.jpg" alt="Image 8" class="carousel-image" loading="lazy">
-      </div>
-
-      <button class="carousel-btn right">&#10095;</button>
+    <div class="carousel-wrapper">
+      <img src="/ENG6806/project_root/static/images/carousel_two/1.jpg" alt="AI-generated artwork representing media transformation - Image 1" class="carousel-image" loading="lazy">
+      <img src="/ENG6806/project_root/static/images/carousel_two/2.jpg" alt="Image 2" class="carousel-image" loading="lazy">
+      <img src="/ENG6806/project_root/static/images/carousel_two/3.jpg" alt="Image 3" class="carousel-image" loading="lazy">
+      <img src="/ENG6806/project_root/static/images/carousel_two/4.jpg" alt="Image 4" class="carousel-image" loading="lazy">
+      <img src="/ENG6806/project_root/static/images/carousel_two/5.jpg" alt="Image 5" class="carousel-image" loading="lazy">
+      <img src="/ENG6806/project_root/static/images/carousel_two/6.jpg" alt="Image 6" class="carousel-image" loading="lazy">
+      <img src="/ENG6806/project_root/static/images/carousel_two/7.jpg" alt="Image 7" class="carousel-image" loading="lazy">
+      <img src="/ENG6806/project_root/static/images/carousel_two/8.jpg" alt="Image 8" class="carousel-image" loading="lazy">
     </div>
 
-<!-- Image Modal -->
-<div id="image-modal" class="modal">
-  <span class="close">&times;</span>
-  <img class="modal-content" id="modal-image">
-</div>
+    <button class="carousel-btn right" aria-label="Next slide">&#10095;</button>
+  </div>
+
+  <!-- Image Modal -->
+  <div id="image-modal" class="modal" role="dialog" aria-labelledby="modal-image-description">
+    <span class="close" aria-label="Close">&times;</span>
+    <img class="modal-content" id="modal-image" alt="Expanded carousel image">
+  </div>
+
+  <div class="aligned-header">
+    <b>Playful Generation</b>: <i>Yes, AI: An Auto-Zine Reflection on Zylinska and AWG INC</i>
+  </div>
+
 
     <div class="aligned-header">
       <b>Playful Generation</b>: <i>Yes, AI: An Auto-Zine Reflection on Zylinska and AWG INC</i>
