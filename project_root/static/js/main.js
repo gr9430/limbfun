@@ -202,4 +202,16 @@ if (typeof allRatedBooks === 'undefined') {
 
         // Load reusable components into the page.
         await loadComponent("/ENG6806/banner.html", "banner-container");
-        await loadComponent("/ENG680
+        await loadComponent("/ENG6806/navbar.html", "navbar-container");
+        await loadComponent("/ENG6806/footer.html", "footer-container");
+
+        // Load the CSS and favicon dynamically.
+        loadFavicon("project_root/static/assets/favicon.ico");
+        loadCSS("/ENG6806/project_root/static/css/style.css");
+
+        // Initialize features only after components are loaded.
+        initializeCarousel();
+        initializeNavbarDropdown();
+        fetchJsonData();
+    });
+})();
