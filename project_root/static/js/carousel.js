@@ -19,15 +19,15 @@ function initializeCarousel() {
         if (index >= totalImages) currentIndex = 0; // Loop to start
         else if (index < 0) currentIndex = totalImages - 1; // Loop to end
     
-        const imageWidth = carouselWrapper.clientWidth / totalImages;
-        const offset = -currentIndex * imageWidth; // Move wrapper to show the current image
-        carouselWrapper.style.transform = `translateX(${offset}px)`;
+        const offset = -currentIndex * 100; // Move wrapper to show the current image
+        carouselWrapper.style.transform = `translateX(${offset}%)`;
     
-        // Hide all images and show the current one
+        // Update active class for images
         images.forEach((img, i) => {
             img.classList.toggle('active', i === currentIndex);
         });
     }
+    
    
     // Show the initial image
     showImage(currentIndex);

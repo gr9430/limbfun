@@ -292,26 +292,28 @@ footer {
 
 /* Carousel Container */
 .carousel-container {
-    position: relative; 
-    max-width: 600px; /* Set a fixed or max width depending on your needs */
-    margin: 0 auto; /* Centers the carousel container */
-    overflow: hidden; /* Hide anything that overflows */
+    position: relative;
+    max-width: 600px; /* Set to your desired width */
+    margin: 0 auto; /* Centers the carousel */
+    overflow: hidden;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 /* Carousel Images Wrapper */
 .carousel-wrapper {
-    display: flex;
-    transition: transform 0.3s ease-in-out;
-    width: calc(100% * 8);
-}
+    .carousel-wrapper {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        width: 800%; /* 100% multiplied by the number of images */
+    }    
 
 /* Individual Images */
 .carousel-image {
-    width: 100%; /* Ensure images take the full width of the container */
-    height: auto;
-    display: block;
+    width: 100%; /* Ensures the image takes up the full width of its container */
+    height: auto; /* Maintains the aspect ratio */
+    display: block; /* Removes any extra space below the image */
 }
 
 /* Carousel Buttons */
