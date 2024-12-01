@@ -8,6 +8,26 @@
     <link rel="stylesheet" href="/ENG6806/project_root/static/css/style.css">
     <!-- Favicon -->
     <link rel="icon" href="/ENG6806/favicon.ico">
+    <style>
+        .book-container {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd; /* Optional: add a light border to separate each book */
+            background-color: #ffffff; /* Optional: light background for each book item */
+        }
+
+        .book-cover {
+            max-width: 100px; /* Controls the size of the book covers */
+            height: auto; /* Maintain aspect ratio */
+            margin-right: 15px; /* Space between the image and the text */
+        }
+
+        .book-title, .book-description {
+            margin-bottom: 10px; /* Adds spacing between text elements */
+        }
+    </style>
 </head>
 <body>
 
@@ -126,189 +146,68 @@ function getRandomBooks(jsonData, count) {
 
 // Function to display books with rating options
 function displayBooks(books) {
-   const bookList = document.getElementById("book-list");
-   bookList.innerHTML = "";
-   books.forEach((book, index) => {
-       const bookContainer = document.createElement("div");
-       bookContainer.className = "book-container";
+    const bookList = document.getElementById("book-list");
+    bookList.innerHTML = "";
 
-       const bookTitle = document.createElement("div");
-       bookTitle.className = "book-title";
-       bookTitle.textContent = `${book.title} by ${book.author} (${book.year}, ${book.country})`;
+    books.forEach((book, index) => {
+        const bookContainer = document.createElement("div");
+        bookContainer.className = "book-container";
 
-       const bookDescription = document.createElement("div");
-       bookDescription.textContent = book.description;
+        // Create an image element for the book cover
+        const bookImage = document.createElement("img");
+        bookImage.className = "book-cover";
+        bookImage.src = book.image;
+        bookImage.alt = `Cover of ${book.title}`;
+        bookImage.style.width = "100px";  // Adjust size as needed
+        bookImage.style.height = "auto";
+        bookImage.style.marginRight = "15px";  // Space between image and text
 
-       const ratingOptions = document.createElement("div");
-       ratingOptions.className = "rating-options";
-       [1, 2, 3, 4, 5].forEach(rating => {
-           const label = document.createElement("label");
-           const input = document.createElement("input");
-           input.type = "radio";
-           input.name = `rating-${index}`;
-           input.value = rating;
-           label.appendChild(input);
-           label.appendChild(document.createTextNode(rating));
-           ratingOptions.appendChild(label);
-       });
-       const notReadLabel = document.createElement("label");
-       const notReadInput = document.createElement("input");
-       notReadInput.type = "radio";
-       notReadInput.name = `rating-${index}`;
-       notReadInput.value = "not-read";
-       notReadLabel.appendChild(notReadInput);
-       notReadLabel.appendChild(document.createTextNode("Haven't read it"));
-       ratingOptions.appendChild(notReadLabel);
+        const bookInfoContainer = document.createElement("div");
+        bookInfoContainer.className = "book-info-container";
 
-       bookContainer.appendChild(bookTitle);
-       bookContainer.appendChild(bookDescription);
-       bookContainer.appendChild(ratingOptions);
-       bookList.appendChild(bookContainer);
-   });
+        const bookTitle = document.createElement("div");
+        bookTitle.className = "book-title";
+        bookTitle.textContent = `${book.title} by ${book.author} (${book.year}, ${book.country})`;
+
+        const bookDescription = document.createElement("div");
+        bookDescription.className = "book-description";
+        bookDescription.textContent = book.description;
+
+        const ratingOptions = document.createElement("div");
+        ratingOptions.className = "rating-options";
+        [1, 2, 3, 4, 5].forEach(rating => {
+            const label = document.createElement("label");
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = `rating-${index}`;
+            input.value = rating;
+            label.appendChild(input);
+            label.appendChild(document.createTextNode(rating));
+            ratingOptions.appendChild(label);
+        });
+        const notReadLabel = document.createElement("label");
+        const notReadInput = document.createElement("input");
+        notReadInput.type = "radio";
+        notReadInput.name = `rating-${index}`;
+        notReadInput.value = "not-read";
+        notReadLabel.appendChild(notReadInput);
+        notReadLabel.appendChild(document.createTextNode("Haven't read it"));
+        ratingOptions.appendChild(notReadLabel);
+
+        // Append book info elements to bookInfoContainer
+        bookInfoContainer.appendChild(bookTitle);
+        bookInfoContainer.appendChild(bookDescription);
+        bookInfoContainer.appendChild(ratingOptions);
+
+        // Append the book cover image and book info container to the main book container
+        bookContainer.appendChild(bookImage);
+        bookContainer.appendChild(bookInfoContainer);
+
+        bookList.appendChild(bookContainer);
+    });
 }
 
-// Function to handle ratings submission
-function handleRatingsSubmission() {
-   const ratings = document.querySelectorAll("input[type='radio']:checked");
-   ratedBooksCount = 0;
-   const authorRatings = {};
-
-   ratings.forEach(rating => {
-       if (rating.value !== "not-read") {
-           ratedBooksCount++;
-           const bookIndex = parseInt(rating.name.split("-")[1]);
-           const book = displayedBooks[bookIndex];
-           const genre = book.genre;
-           const author = book.author;
-
-           allRatedBooks.add(book.title);
-
-           if (parseInt(rating.value) >= 3) {
-               genreRatings[genre]++;
-               authorRatings[author] = (authorRatings[author] || 0) + 1;
-           }
-       }
-   });
-
-   totalBooksRated += ratedBooksCount;
-
-   // Determine top authors and top genres
-   topAuthors = Object.entries(authorRatings).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([author]) => author);
-   topGenres = Object.entries(genreRatings).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([genre]) => genre);
-
-   updateProgressBar();
-   displayRatingSummary();
-   displayTopGenres();
-   toggleButtons();
-}
-
-// Function to update progress bar
-function updateProgressBar() {
-   const progressBar = document.getElementById("progress-bar");
-   const progressPercentage = (totalBooksRated / 20) * 100;
-   progressBar.style.width = `${progressPercentage}%`;
-   progressBar.textContent = `${Math.min(progressPercentage, 100)}%`;
-}
-
-// Function to display rating summary
-function displayRatingSummary() {
-   const ratingSummary = document.getElementById("rating-summary");
-   ratingSummary.textContent = `You have rated ${totalBooksRated} books.`;
-}
-
-// Function to display top three genres
-function displayTopGenres() {
-   const sortedGenres = Object.entries(genreRatings).sort((a, b) => b[1] - a[1]);
-   const topGenresText = sortedGenres.slice(0, 3).map(([genre, count]) => `${genre}: ${count} likes`).join(", ");
-   const topGenresDiv = document.getElementById("top-genres");
-   topGenresDiv.textContent = `Top genres based on your ratings: ${topGenresText}`;
-}
-
-// Function to display book recommendations based on top authors and genres
-function displayRecommendations() {
-   const recommendationsDiv = document.getElementById("recommendation");
-   recommendationsDiv.innerHTML = "";
-
-   let recommendedBooks = [];
-
-   // Recommend books from top authors and top genres that haven't been rated yet
-   if (topAuthors.length > 0 && topGenres.length > 0) {
-       topAuthors.forEach(author => {
-           const allBooks = [
-               ...jsonData.Proto_New_Novel_Precursors_to_the_Movement_Before_1948,
-               ...jsonData.New_Novel_Core_Works_of_the_Movement_1948_1965.Key_Authors,
-               ...jsonData.New_Novel_Core_Works_of_the_Movement_1948_1965.Other_Authors_Aligning_with_the_Movement,
-               ...jsonData.Post_New_Novel_Influenced_by_the_Movement_1966_Present
-           ];
-           const authorBooks = allBooks.filter(book => 
-               book.author === author && !allRatedBooks.has(book.title) && topGenres.includes(book.genre)
-           );
-           recommendedBooks.push(...authorBooks);
-       });
-   }
-
-   // Fallback: If no books found matching both authors and genres, try matching either top authors or genres
-   if (recommendedBooks.length < 3) {
-       topAuthors.forEach(author => {
-           const allBooks = [
-               ...jsonData.Proto_New_Novel_Precursors_to_the_Movement_Before_1948,
-               ...jsonData.New_Novel_Core_Works_of_the_Movement_1948_1965.Key_Authors,
-               ...jsonData.New_Novel_Core_Works_of_the_Movement_1948_1965.Other_Authors_Aligning_with_the_Movement,
-               ...jsonData.Post_New_Novel_Influenced_by_the_Movement_1966_Present
-           ];
-           const authorBooks = allBooks.filter(book => book.author === author && !allRatedBooks.has(book.title));
-           recommendedBooks.push(...authorBooks);
-       });
-
-       // If still no books, match by top genres alone
-       if (recommendedBooks.length < 3) {
-           topGenres.forEach(genre => {
-               const allBooks = [
-                   ...jsonData.Proto_New_Novel_Precursors_to_the_Movement_Before_1948,
-                   ...jsonData.New_Novel_Core_Works_of_the_Movement_1948_1965.Key_Authors,
-                   ...jsonData.New_Novel_Core_Works_of_the_Movement_1948_1965.Other_Authors_Aligning_with_the_Movement,
-                   ...jsonData.Post_New_Novel_Influenced_by_the_Movement_1966_Present
-               ];
-               const genreBooks = allBooks.filter(book => book.genre === genre && !allRatedBooks.has(book.title));
-               recommendedBooks.push(...genreBooks);
-           });
-       }
-   }
-
-   // Remove duplicates from the recommended books
-   recommendedBooks = [...new Set(recommendedBooks)];
-
-   // Limit recommendations to a maximum of 3 books
-   recommendedBooks = recommendedBooks.slice(0, 3);
-
-   if (recommendedBooks.length > 0) {
-       recommendationsDiv.textContent = "Recommended books based on your top-rated authors and genres:";
-       recommendedBooks.forEach(book => {
-           const bookContainer = document.createElement("div");
-           bookContainer.className = "book-container";
-           bookContainer.textContent = `${book.title} by ${book.author} (${book.year}, ${book.country})`;
-           recommendationsDiv.appendChild(bookContainer);
-       });
-   } else {
-       recommendationsDiv.textContent = "No recommendations available. Please rate more books.";
-   }
-}
-
-// Function to toggle buttons after rating submission
-function toggleButtons() {
-   document.getElementById("submit-button").style.display = "none";
-   document.getElementById("more-books-button").style.display = "inline-block";
-   document.getElementById("proceed-button").style.display = "inline-block";
-}
-
-// Function to handle rating more books
-function handleMoreBooks() {
-   displayedBooks = getRandomBooks(jsonData, 10);
-   displayBooks(displayedBooks);
-   document.getElementById("submit-button").style.display = "inline-block";
-   document.getElementById("more-books-button").style.display = "none";
-   document.getElementById("proceed-button").style.display = "none";
-}
+// Add your existing functions here (handleRatingsSubmission, updateProgressBar, displayRatingSummary, displayTopGenres, displayRecommendations, toggleButtons, handleMoreBooks)
 
 // Fetch JSON data and initialize page
 fetchJsonData();

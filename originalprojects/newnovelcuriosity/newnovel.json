@@ -1,56 +1,332 @@
 {
     "Proto_New_Novel_Precursors_to_the_Movement_Before_1948": [
-        { "title": "The Life and Opinions of Tristram Shandy, Gentleman", "author": "Laurence Sterne", "year": "1759-1767", "country": "UK", "description": "A pioneering work of metafiction and narrative experimentation that influenced later literary movements." },
-        { "title": "Swann's Way", "author": "Marcel Proust", "year": 1913, "country": "France", "description": "The beginning of Proust's exploration of memory and consciousness, serving as an inspiration for the introspective style of the New Novel." },
-        { "title": "Ulysses", "author": "James Joyce", "year": 1922, "country": "Ireland", "description": "A seminal modernist novel, featuring stream of consciousness and narrative experimentation." },
-        { "title": "To the Lighthouse", "author": "Virginia Woolf", "year": 1927, "country": "UK", "description": "A highly introspective work that influenced the interior focus of the New Novel." },
-        { "title": "The Sound and the Fury", "author": "William Faulkner", "year": 1929, "country": "USA", "description": "A multi-perspective narrative focused on fragmented time and unreliable narrators." },
-        { "title": "The Man Without Qualities", "author": "Robert Musil", "year": "1930-1943", "country": "Austria", "description": "An unfinished work that uses introspection and a fragmented narrative to explore societal decline." },
-        { "title": "The Waves", "author": "Virginia Woolf", "year": 1931, "country": "UK", "description": "An experimental narrative structure focusing on six characters’ inner voices over time." },
-        { "title": "Man's Fate", "author": "André Malraux", "year": 1933, "country": "France", "description": "A philosophical novel with a disjointed narrative that reflects early existentialism." },
-        { "title": "Nausea", "author": "Jean-Paul Sartre", "year": 1938, "country": "France", "description": "A novel that questions reality and consciousness, prefiguring the existential themes of the New Novel." },
-        { "title": "Tropisms", "author": "Nathalie Sarraute", "year": 1939, "country": "France", "description": "A series of vignettes capturing fleeting psychological movements." },
-        { "title": "The Stranger", "author": "Albert Camus", "year": 1942, "country": "France", "description": "The detached narrative style helped lay the groundwork for the emotionally neutral tone of the New Novel." },
-        { "title": "Aurélien", "author": "Louis Aragon", "year": 1944, "country": "France", "description": "A psychological romance exploring inner conflicts and fleeting emotions." },
-        { "title": "The Enchanters", "author": "Régine Robin", "year": 1945, "country": "France", "description": "A complex portrayal of emotional entanglement that shifts between multiple points of view." },
-        { "title": "Entre les actes", "author": "Virginia Woolf", "year": 1941, "country": "UK", "description": "An introspective story that foreshadows the New Novel’s focus on fragmented experience." },
-        { "title": "The Plague", "author": "Albert Camus", "year": 1947, "country": "France", "description": "Blends philosophical inquiry with narrative detachment, similar to the New Novel’s themes." }
+        { 
+            "title": "The Life and Opinions of Tristram Shandy, Gentleman", 
+            "author": "Laurence Sterne", 
+            "year": "1759-1767", 
+            "country": "UK", 
+            "description": "A pioneering work of metafiction and narrative experimentation that influenced later literary movements.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/sterne.jpg"
+        },
+        { 
+            "title": "Swann's Way", 
+            "author": "Marcel Proust", 
+            "year": 1913, 
+            "country": "France", 
+            "description": "The beginning of Proust's exploration of memory and consciousness, serving as an inspiration for the introspective style of the New Novel.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/swann.jpg"
+        },
+        { 
+            "title": "Ulysses", 
+            "author": "James Joyce", 
+            "year": 1922, 
+            "country": "Ireland", 
+            "description": "A seminal modernist novel, featuring stream of consciousness and narrative experimentation.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/ulysses.jpg"
+        },
+        { 
+            "title": "To the Lighthouse", 
+            "author": "Virginia Woolf", 
+            "year": 1927, 
+            "country": "UK", 
+            "description": "A highly introspective work that influenced the interior focus of the New Novel.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/lighthouse.jpg"
+        },
+        { 
+            "title": "The Sound and the Fury", 
+            "author": "William Faulkner", 
+            "year": 1929, 
+            "country": "USA", 
+            "description": "A multi-perspective narrative focused on fragmented time and unreliable narrators.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/soundandfury.jpg"
+        },
+        { 
+            "title": "The Man Without Qualities", 
+            "author": "Robert Musil", 
+            "year": "1930-1943", 
+            "country": "Austria", 
+            "description": "An unfinished work that uses introspection and a fragmented narrative to explore societal decline.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/manwoqualities.jpg"
+        },
+        { 
+            "title": "The Waves", 
+            "author": "Virginia Woolf", 
+            "year": 1931, 
+            "country": "UK", 
+            "description": "An experimental narrative structure focusing on six characters’ inner voices over time.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/waves.jpg"
+        },
+        { 
+            "title": "Man's Fate", 
+            "author": "André Malraux", 
+            "year": 1933, 
+            "country": "France", 
+            "description": "A philosophical novel with a disjointed narrative that reflects early existentialism.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/mansfate.jpg"
+        },
+        { 
+            "title": "Nausea", 
+            "author": "Jean-Paul Sartre", 
+            "year": 1938, 
+            "country": "France", 
+            "description": "A novel that questions reality and consciousness, prefiguring the existential themes of the New Novel.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/nausea.jpg"
+        },
+        { 
+            "title": "Tropisms", 
+            "author": "Nathalie Sarraute", 
+            "year": 1939, 
+            "country": "France", 
+            "description": "A series of vignettes capturing fleeting psychological movements.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/tropisms.jpg"
+        },
+        { 
+            "title": "The Stranger", 
+            "author": "Albert Camus", 
+            "year": 1942, 
+            "country": "France", 
+            "description": "The detached narrative style helped lay the groundwork for the emotionally neutral tone of the New Novel.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/stranger.jpg"
+        },
+        { 
+            "title": "Aurélien", 
+            "author": "Louis Aragon", 
+            "year": 1944, 
+            "country": "France", 
+            "description": "A psychological romance exploring inner conflicts and fleeting emotions.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/aurelien.jpg"
+        },
+        { 
+            "title": "Between the Acts", 
+            "author": "Virginia Woolf", 
+            "year": 1941, 
+            "country": "UK", 
+            "description": "An introspective story that foreshadows the New Novel’s focus on fragmented experience. In Woolf's last novel, the action takes place on one summer's day at a country house in the heart of England, where the villagers are presenting their annual pageant. A lyrical, moving valedictory.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/acts.jpg"
+        },
+        { 
+            "title": "The Plague", 
+            "author": "Albert Camus", 
+            "year": 1947, 
+            "country": "France", 
+            "description": "Blends philosophical inquiry with narrative detachment, similar to the New Novel’s themes.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/plague.jpg"
+        }
     ],
     "New_Novel_Core_Works_of_the_Movement_1948_1965": {
         "Key_Authors": [
-            { "title": "Portrait d’un inconnu", "author": "Nathalie Sarraute", "year": 1948, "country": "France", "description": "A novel that exemplifies Sarraute's focus on the subconscious and psychological realism." },
-            { "title": "Les Gommes", "author": "Alain Robbe-Grillet", "year": 1953, "country": "France", "description": "A detective story that challenges traditional narrative structure and causality." },
-            { "title": "Le Voyeur", "author": "Alain Robbe-Grillet", "year": 1955, "country": "France", "description": "Features a detached examination of human behavior and perception." },
-            { "title": "La Jalousie", "author": "Alain Robbe-Grillet", "year": 1957, "country": "France", "description": "An intensely descriptive work emphasizing the breakdown of traditional storytelling." },
-            { "title": "L'Herbe", "author": "Claude Simon", "year": 1958, "country": "France", "description": "Combines flashbacks and stream-of-consciousness techniques to reflect on memory." },
-            { "title": "Doubles Reflux", "author": "Claude Simon", "year": 1958, "country": "France", "description": "A non-linear narrative focusing on subjective experiences and memory." },
-            { "title": "Le Planétarium", "author": "Nathalie Sarraute", "year": 1959, "country": "France", "description": "Explores the microcosms of the mind through fragmented narrative techniques." },
-            { "title": "Dans le labyrinthe", "author": "Alain Robbe-Grillet", "year": 1959, "country": "France", "description": "Examines fragmented reality and time through a non-linear narrative." },
-            { "title": "The Flanders Road", "author": "Claude Simon", "year": 1960, "country": "France", "description": "Uses shifting perspectives and non-linear time to recount war." }
+            { 
+                "title": "Portrait of a Man Unknown", 
+                "author": "Nathalie Sarraute", 
+                "year": 1948, 
+                "country": "France", 
+                "description": "A novel that exemplifies Sarraute's focus on the subconscious and psychological realism.",
+                "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/portrait.jpg"
+            },
+            { 
+                "title": "The Erasers", 
+                "author": "Alain Robbe-Grillet", 
+                "year": 1953, 
+                "country": "France", 
+                "description": "A detective story that challenges traditional narrative structure and causality.",
+                "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/erasers.jpg"
+            },
+            { 
+                "title": "The Voyeur", 
+                "author": "Alain Robbe-Grillet", 
+                "year": 1955, 
+                "country": "France", 
+                "description": "Features a detached examination of human behavior and perception.",
+                "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/voyeur.jpg"
+            },
+            { 
+                "title": "Jealousy", 
+                "author": "Alain Robbe-Grillet", 
+                "year": 1957, 
+                "country": "France", 
+                "description": "An intensely descriptive work emphasizing the breakdown of traditional storytelling.",
+                "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/robbe-grillet.jpg"
+            },
+            { 
+                "title": "The Grass", 
+                "author": "Claude Simon", 
+                "year": 1958, 
+                "country": "France", 
+                "description": "Combines flashbacks and stream-of-consciousness techniques to reflect on memory.",
+                "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/.jpg"
+            },
+            { 
+                "title": "Triptych", 
+                "author": "Claude Simon", 
+                "year": 1973, 
+                "country": "France", 
+                "description": "novel that weaves together three seemingly disparate narratives: a World War I battle, a family’s history, and a contemporary story of a man’s search for his missing brother. Through non-linear storytelling and fragmented narrative structures, Simon explores the interconnectedness of human experiences, the cyclical nature of time, and the ways in which individuals are shaped by their family histories and cultural contexts.",
+                "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/triptych.jpg"
+            },
+            { 
+                "title": "The Planetarium", 
+                "author": "Nathalie Sarraute", 
+                "year": 1959, 
+                "country": "France", 
+                "description": "Explores the microcosms of the mind through fragmented narrative techniques.",
+                "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/planetarium.jpg"
+            },
+            { 
+                "title": "In the Labyrinth", 
+                "author": "Alain Robbe-Grillet", 
+                "year": 1959, 
+                "country": "France", 
+                "description": "Examines fragmented reality and time through a non-linear narrative.",
+                "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/robbe-grillet.jpg"
+            },
+            { 
+                "title": "The Flanders Road", 
+                "author": "Claude Simon", 
+                "year": 1960, 
+                "country": "France", 
+                "description": "Uses shifting perspectives and non-linear time to recount war.",
+                "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/flanders.jpg"
+            }
         ],
         "Other_Authors_Aligning_with_the_Movement": [
-            { "title": "Malone Dies", "author": "Samuel Beckett", "year": 1951, "country": "Ireland", "description": "Part of Beckett’s trilogy, the narrative dissects subjectivity and pushes linguistic minimalism." },
-            { "title": "L'Emploi du temps", "author": "Michel Butor", "year": 1956, "country": "France", "description": "Centers on dislocated time and subjective perception." },
-            { "title": "La Modification", "author": "Michel Butor", "year": 1957, "country": "France", "description": "An introspective monologue told in the second person." },
-            { "title": "Moderato Cantabile", "author": "Marguerite Duras", "year": 1958, "country": "France", "description": "A story that deconstructs language and conventional romance." },
-            { "title": "Des Forêts", "author": "Claude Ollier", "year": 1960, "country": "France", "description": "Examines shifting landscapes of the mind with a focus on descriptive intensity." },
-            { "title": "L'Inquisitoire", "author": "Robert Pinget", "year": 1962, "country": "France", "description": "A question-and-answer narrative exploring hidden depths of the human psyche." },
-            { "title": "Pour un Nouveau Roman", "author": "Alain Robbe-Grillet", "year": 1963, "country": "France", "description": "A manifesto outlining the theoretical underpinnings of the New Novel." },
-            { "title": "La Maison de rendez-vous", "author": "Alain Robbe-Grillet", "year": 1965, "country": "France", "description": "A cryptic story where setting takes precedence over plot." },
-            { "title": "Les Choses", "author": "Georges Perec", "year": 1965, "country": "France", "description": "A critique of consumer culture told in detached, observational prose." },
-            { "title": "Le Condottiere", "author": "Georges Perec", "year": 2012, "country": "France", "description": "Examines an art forger’s inner conflicts through a fragmented narrative." }
+            { 
+                "title": "Malone Dies", 
+                "author": "Samuel Beckett", 
+                "year": 1951, 
+                "country": "Ireland", 
+                "description": "Part of Beckett’s trilogy, the narrative dissects subjectivity and pushes linguistic minimalism.",
+                "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/malone.jpg"
+            },
+            { 
+                "title": "Passing Time", 
+                "author": "Michel Butor", 
+                "year": 1956, 
+                "country": "France", 
+                "description": "Centers on dislocated time and subjective perception.",
+                "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/passing.png"
+            },
+            { 
+                "title": "Changing Track", 
+                "author": "Michel Butor", 
+                "year": 1957, 
+                "country": "France", 
+                "description": "An introspective monologue told in the second person.",
+                "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/changingtrack.jpg"
+            },
+            { 
+                "title": "Moderato Cantabile", 
+                "author": "Marguerite Duras", 
+                "year": 1958, 
+                "country": "France", 
+                "description": "A story that deconstructs language and conventional romance.",
+                "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/Moderato Cantabile.jpg"
+            },
+            { 
+                "title": "The Inquisitory", 
+                "author": "Robert Pinget", 
+                "year": 1962, 
+                "country": "France", 
+                "description": "A question-and-answer narrative exploring hidden depths of the human psyche.",
+                "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/The Inquisitory.jpg"
+            },
+            { 
+                "title": "For a New Novel: Essays on Fiction", 
+                "author": "Alain Robbe-Grillet", 
+                "year": 1963, 
+                "country": "France", 
+                "description": "A manifesto outlining the theoretical underpinnings of the New Novel.",
+                "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/newnovel.jpg"
+            },
+            { 
+                "title": "La Maison de Rendez-Vous", 
+                "author": "Alain Robbe-Grillet", 
+                "year": 1965, 
+                "country": "France", 
+                "description": "A cryptic story where setting takes precedence over plot.",
+                "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/lamaison.jpg"
+            },
+            { 
+                "title": "Things: A Story of the Sixties", 
+                "author": "Georges Perec", 
+                "year": 1965, 
+                "country": "France", 
+                "description": "A critique of consumer culture told in detached, observational prose.",
+                "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/things.jpg"
+            },
+            { 
+                "title": "Portrait of a Man Known as Il Condottiere", 
+                "author": "Georges Perec", 
+                "year": 2012, 
+                "country": "France", 
+                "description": "Examines an art forger’s inner conflicts through a fragmented narrative.",
+                "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/condottiere.jpg"
+            }
         ]
     },
     "Post_New_Novel_Influenced_by_the_Movement_1966_Present": [
-        { "title": "Histoire", "author": "Claude Simon", "year": 1967, "country": "France", "description": "A poetic dissection of memory and history with fragmented storytelling." },
-        { "title": "Tombeau pour cinq cent mille soldats", "author": "Pierre Guyotat", "year": 1967, "country": "France", "description": "A brutal, fragmented story emphasizing the absurdity of war." },
-        { "title": "Une Femme douce", "author": "Georges Simenon", "year": 1969, "country": "Belgium", "description": "An examination of a woman’s inner life before her suicide." },
-        { "title": "Projet pour une révolution à New York", "author": "Alain Robbe-Grillet", "year": 1970, "country": "France", "description": "An experimental narrative intertwining erotica and surreal imagery." },
-        { "title": "India Song", "author": "Marguerite Duras", "year": 1973, "country": "France", "description": "A narrative with overlapping voices, reflecting on the distance between past and present." },
-        { "title": "Rue des Boutiques Obscures", "author": "Patrick Modiano", "year": 1978, "country": "France", "description": "A detective story that explores memory and identity in a dreamlike narrative." },
-        { "title": "La Vie mode d'emploi", "author": "Georges Perec", "year": 1978, "country": "France", "description": "A novel structured like a puzzle, reflecting on how narratives intertwine and build." },
-        { "title": "The Book of Disquiet", "author": "Fernando Pessoa", "year": 1982, "country": "Portugal", "description": "A fragmented collection of reflections on identity and existence." },
-        { "title": "L'Amant", "author": "Marguerite Duras", "year": 1984, "country": "France", "description": "A quasi-autobiographical story that breaks with linear storytelling." },
-        { "title": "White Noise", "author": "Don DeLillo", "year": 1985, "country": "USA", "description": "Examines consumer culture and language with a detached, postmodern sensibility." }
+        { 
+            "title": "Tomb for 500,000 Soldiers", 
+            "author": "Pierre Guyotat", 
+            "year": 1967, 
+            "country": "France", 
+            "description": "A brutal, fragmented story emphasizing the absurdity of war.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/500000.jpg"
+        },
+        { 
+            "title": "Project for a Revolution in New York", 
+            "author": "Alain Robbe-Grillet", 
+            "year": 1970, 
+            "country": "France", 
+            "description": "An experimental narrative intertwining erotica and surreal imagery.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/project.jpg"
+        },
+        { 
+            "title": "India Song", 
+            "author": "Marguerite Duras", 
+            "year": 1973, 
+            "country": "France", 
+            "description": "A narrative with overlapping voices, reflecting on the distance between past and present.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/india.jpg"
+        },
+        { 
+            "title": "Missing Person", 
+            "author": "Patrick Modiano", 
+            "year": 1978, 
+            "country": "France", 
+            "description": "A detective story that explores memory and identity in a dreamlike narrative.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/missingperson.jpg"
+        },
+        { 
+            "title": "Life: A User's Manual", 
+            "author": "Georges Perec", 
+            "year": 1978, 
+            "country": "France", 
+            "description": "A novel structured like a puzzle, reflecting on how narratives intertwine and build.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/life.jpg"
+        },
+        { 
+            "title": "The Book of Disquiet", 
+            "author": "Fernando Pessoa", 
+            "year": 1982, 
+            "country": "Portugal", 
+            "description": "A fragmented collection of reflections on identity and existence.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/disquiet.jpg"
+        },
+        { 
+            "title": "The Lover", 
+            "author": "Marguerite Duras", 
+            "year": 1984, 
+            "country": "France", 
+            "description": "A quasi-autobiographical story that breaks with linear storytelling.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/thelover.jpg"
+        },
+        { 
+            "title": "White Noise", 
+            "author": "Don DeLillo", 
+            "year": 1985, 
+            "country": "USA", 
+            "description": "Examines consumer culture and language with a detached, postmodern sensibility.",
+            "image": "https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/images/whitenoise.jpg"
+        }
     ]
 }
