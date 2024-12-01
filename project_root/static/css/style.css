@@ -292,15 +292,18 @@ footer {
 
 /* Carousel Container */
 .carousel-container {
-    position: relative;
-    width: 100%;
+    position: relative; 
+    max-width: 600px; /* Set a fixed or max width depending on your needs */
+    margin: 0 auto; /* Centers the carousel container */
     overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
   
   /* Carousel Images Wrapper */
   .carousel-wrapper {
     display: flex;
-    transition: transform 0.3s ease-in-out; /* Smooth transition */
+    transition: transform 0.5s ease-in-out; /* Smooth transition */
 }
   
   /* Individual Images */
@@ -310,26 +313,20 @@ footer {
     display: none; /* Initially hide all images */
 }
 
-.carousel-image.active {
-    display: block; /* Only show the active image */
-}
-
-.carousel-image:not(.active) {
-    display: none;
-}
-
-/* Buttons */
-  .carousel-btn {
+/* Carousel Buttons */
+.carousel-btn {
     position: absolute;
     top: 50%;
+    transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    padding: 10px;
-    font-size: 18px;
     border: none;
+    font-size: 2rem;
     cursor: pointer;
+    padding: 10px;
+    z-index: 1000; /* Ensure buttons stay above other elements */
 }
-  
+
 .carousel-btn.left {
     left: 10px;
 }
