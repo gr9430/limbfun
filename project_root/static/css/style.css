@@ -14,29 +14,6 @@ body {
     line-height: 1.6;
 }
 
-/* === Banner Image Styles === */
-.banner {
-    width: 100%;
-    height: auto;
-    max-height: 400px;
-    object-fit: cover;
-}
-
-/* Alignment for Header Outside Container */
-.aligned-header {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 0 25px;
-    text-align: left;
-}
-
-.aligned-header h1 {
-    font-size: 2.5rem;
-    color: #ffffff;
-    text-align: left;
-    margin-bottom: 20px;
-}
-
 /* Navbar and Dropdown Styles */
 .navbar {
     background-color: #000000;
@@ -47,7 +24,7 @@ body {
     box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
     position: sticky;
     top: 0;
-    z-index: 2000; /* Increased to ensure it is above other elements */
+    z-index: 3000; /* Increased to ensure it is above other elements */
 }
 
 .navbar ul {
@@ -58,10 +35,11 @@ body {
     justify-content: center;
     gap: 20px;
     position: relative; /* Added for proper submenu positioning */
+    z-index: 3000; /* Ensure the navbar itself stays on top */
 }
 
 .navbar li {
-    position: relative;
+    position: relative; /* Set relative for dropdown positioning */
 }
 
 .navbar a {
@@ -70,6 +48,7 @@ body {
     font-weight: bold;
     padding: 10px 15px;
     transition: color 0.2s ease, background-color 0.2s ease;
+    display: inline-block; /* Ensure padding area is clickable */
 }
 
 .navbar a:hover,
@@ -82,7 +61,8 @@ body {
 
 /* Dropdown Styles */
 .navbar .dropdown-menu {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
     position: absolute;
     top: 100%;
     left: 0;
@@ -92,7 +72,8 @@ body {
     min-width: 200px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    z-index: 1000;
+    z-index: 4000; /* Increased to ensure it stays above other elements */
+    transition: visibility 0s, opacity 0.2s ease-in-out;
 }
 
 .navbar .dropdown-menu li {
@@ -113,23 +94,27 @@ body {
 /* Show dropdown on hover, keeping it visible while navigating submenus */
 .navbar li:hover > .dropdown-menu,
 .navbar li:focus-within > .dropdown-menu {
-    display: block;
+    visibility: visible;
+    opacity: 1;
 }
 
 /* Nested Dropdown Menu */
 .navbar .dropdown-menu .dropdown-menu {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
     position: absolute;
     top: 0;
     left: 100%;
     margin-left: -2px; /* Remove gap between parent and child dropdown */
     background-color: #222222; /* Slightly darker for nested menus */
-    z-index: 1001; /* Ensure it's above the parent dropdown */
+    z-index: 5000; /* Ensure it's above the parent dropdown */
+    transition: visibility 0s, opacity 0.2s ease-in-out;
 }
 
 .navbar .dropdown-menu li:hover > .dropdown-menu,
 .navbar .dropdown-menu li:focus-within > .dropdown-menu {
-    display: block;
+    visibility: visible;
+    opacity: 1;
 }
 
 /* Responsive Dropdown */
@@ -152,162 +137,38 @@ body {
     }
 }
 
-/* Containers */
-.container,
-#two-column-container {
-    max-width: 1200px; /* Ensure both single and double-column containers have the same width */
-    margin: 40px auto; /* Center the container and provide vertical spacing */
-    padding: 20px; /* Provide consistent padding for both single and double columns */
-    background-color: #111111; /* Match the rest of the site */
-    border-radius: 5px; /* Optional for rounded edges */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Add shadow for consistency */
-}
+/* === Carousel Styles === */
 
-#two-column-container {
-    display: flex;
-    flex-direction: row; /* Arrange columns horizontally */
-    gap: 20px; /* Add space between columns */
-}
-
-.column {
-    flex: 1; /* Each column takes up equal width */
-    color: #dddddd; /* Set text color for better readability */
-}
-
-.column-left {
-    padding-right: 10px;
-}
-
-.column-right {
-    padding-left: 10px;
-}
-
-/* Fix the container to ensure content doesn't overflow */
-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-/* Updated #canvas-container and #message-container for Game Layout */
-#canvas-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1; /* Ensure it takes equal width in two-column layout */
-    margin: 20px auto; /* Centers the container */
-    padding: 10px; /* Optional, to add space inside */
-    height: auto; /* Makes height flexible */
-    background-color: #111111; /* Updated background to match site */
-    border: 2px solid #ffffff; /* Border for better visibility */
-    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
-}
-
-#message-container {
-    flex: 1; /* Ensure it takes equal width in two-column layout */
-    color: #ffffff; /* White text to make it visible on black background */
-    background-color: #111111; /* Set the background color to match */
-    padding: 20px; /* Padding for readability */
-    border-radius: 5px; /* Rounded edges */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Add shadow for consistency */
-}
-
-/* Game Specific Styling */
-#game-container {
-    max-width: 1000px;
-    margin: 0 auto; /* Center the container */
-    padding: 0; /* Remove extra padding if not needed */
-    height: auto; /* Let height adjust based on content */
-    background-color: #111111; /* Matching container color with the rest of the site */
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Typography */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #ffffff; /* Ensure consistent color for headings */
-}
-
-p {
-    margin-bottom: 15px;
-    color: #dddddd; /* Light grey for readability on black background */
-}
-
-/* Buttons */
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #333333;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-button:hover {
-    background-color: #555555;
-    transform: scale(1.05);
-}
-
-footer {
-    display: flex;                /* Use flexbox for easy centering */
-    justify-content: center;      /* Center content horizontally */
-    align-items: center;          /* Center content vertically */
-    text-align: center;           /* Ensure text is centered */
-    padding: 20px;                /* Add padding for visual spacing */
-    background-color: #111111;    /* Dark background color for contrast */
-    color: #ffffff;               /* White text for visibility */
-    font-size: 14px;              /* Adjust font size if needed */
-    box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.1); /* Optional: Add shadow for depth */
-}
-
-/* Carousel Stuff */
-/* Carousel Container Styles */
+/* Carousel Container */
 .carousel-container {
     position: relative;
     width: 100%;
     max-width: 1200px; /* Optional: set a maximum width */
     margin: 20px auto;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 10px; /* Optional rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Carousel Wrapper to maintain a consistent aspect ratio */
+/* Carousel Wrapper */
 .carousel-wrapper {
-    position: relative; /* Necessary for absolute positioning of child images */
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* Smooth transition effect */
     width: 100%;
-    padding-top: 56.25%; /* This maintains a 16:9 aspect ratio. Adjust as needed for other ratios */
-    overflow: hidden;
-    margin: 0 auto; /* Centers the carousel container */
 }
 
 /* Individual Carousel Images */
 .carousel-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures aspect ratio is preserved while covering the container */
-    opacity: 0; /* Hidden by default */
+    min-width: 100%;
+    height: auto;
+    object-fit: cover; /* Ensure images maintain aspect ratio */
+    cursor: pointer;
     transition: opacity 0.5s ease-in-out;
-    cursor: pointer; /* Indicate that the image is clickable */
+    opacity: 0;
 }
 
 .carousel-image.active {
-    opacity: 1; /* Visible only when active */
+    opacity: 1;
 }
 
 /* Carousel Buttons */
@@ -324,6 +185,10 @@ footer {
     transition: background-color 0.3s ease;
 }
 
+.carousel-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
 .carousel-btn.left {
     left: 10px;
 }
@@ -332,5 +197,57 @@ footer {
     right: 10px;
 }
 
-/* Optional Styling for Carousel Buttons on Hover */
-.carousel-btn
+/* Dots for Carousel Navigation */
+.carousel-dots {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.carousel-dots button {
+    border: none;
+    background-color: #555555;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-dots button.active {
+    background-color: #ffffff;
+}
+
+/* Carousel Fullscreen Overlay (for zooming into images) */
+.fullscreen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 5000; /* High z-index to ensure it stays above all elements */
+}
+
+.fullscreen-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    cursor: pointer; /* Indicate that the image is clickable to close */
+}
+
+/* Responsive Carousel Styles */
+@media (max-width: 768px) {
+    .carousel-container {
+        max-width: 100%;
+    }
+
+    .carousel-btn {
+        padding: 5px;
+    }
+}
