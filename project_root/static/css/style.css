@@ -250,8 +250,8 @@ h6 {
 p {
     margin-bottom: 15px;
     color: #dddddd; /* Light grey for readability on black background */
-    font-size: 18px; /* Set the font size for all paragraphs */
-    line-height: 1.6; /* Add line height for readability */
+    font-size: 16px; /* Set the font size for all paragraphs */
+    line-height: 1.5; /* Add line height for readability */
     column-count: initial !important;
     column-width: initial !important;
     float: none !important;
