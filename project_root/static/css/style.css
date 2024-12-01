@@ -290,7 +290,6 @@ footer {
     width: 100%;
     padding-top: 56.25%; /* This maintains a 16:9 aspect ratio. Adjust as needed for other ratios */
     overflow: hidden;
-    max-height: 600px; /* Optional: Set a max height to prevent it from becoming too large */
     margin: 0 auto; /* Centers the carousel container */
 }
 
@@ -322,6 +321,7 @@ footer {
     padding: 10px;
     cursor: pointer;
     z-index: 1000;
+    transition: background-color 0.3s ease;
 }
 
 .carousel-btn.left {
@@ -333,49 +333,4 @@ footer {
 }
 
 /* Optional Styling for Carousel Buttons on Hover */
-.carousel-btn:hover {
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-/* Modal Styles */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 3000; /* Ensure modal appears above all other elements */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.9); /* Black with opacity */
-}
-
-.modal-content {
-    margin: auto;
-    display: block;
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 10px; /* Optional: rounded edges */
-    transition: transform 0.3s ease-in-out;
-}
-
-.close {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #ffffff;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-.close:hover,
-.close:focus {
-    color: #bbbbbb;
-}
-
-/* Additional Modal Styling to Prevent Last Image from Appearing Outside the Carousel */
-.carousel-wrapper img {
-    display: none;
-}
+.carousel-btn
