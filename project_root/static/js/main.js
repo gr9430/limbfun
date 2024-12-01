@@ -220,8 +220,3 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchJsonData();
     loadCSS("/ENG6806/project_root/static/css/style.css");
 });
-
-let currentIndex = 0; // Declared only once
-
-// Somewhere later in the code, reuse without redeclaration
-currentIndex = 1; // Correct way to update the value
