@@ -290,51 +290,48 @@ footer {
     box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.1); /* Optional: Add shadow for depth */
 }
 
-/* General container settings */
+/* Carousel Container */
 .carousel-container {
-    position: relative; /* Relative positioning for buttons and images */
-    width: 80%; /* Adjust to set a consistent width for the carousel */
-    max-width: 800px; /* Prevent the carousel from getting too wide */
-    margin: 0 auto; /* Center the carousel horizontally on the page */
-    overflow: hidden; /* Prevent content from overflowing */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional for aesthetics */
-}
-
-/* Image Wrapper */
-.carousel-wrapper {
-    display: flex; /* Display images in a row */
-    transition: transform 0.5s ease-in-out; /* Smooth transition */
-}
-
-/* Carousel images */
-.carousel-image {
-    width: 100%; /* Images should fill the width of the container */
-    flex-shrink: 0; /* Prevent images from shrinking */
-    max-height: 500px; /* Set a max height to prevent oversized images */
-    object-fit: cover; /* Ensure images do not stretch */
-}
-
-/* Button styling for navigation */
-.carousel-btn {
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* Adjust size as necessary */
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  
+  /* Carousel Images Wrapper */
+  .carousel-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  /* Individual Images */
+  .carousel-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Buttons */
+  .carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
+    font-size: 2rem;
     cursor: pointer;
     padding: 10px;
-    z-index: 1;
-}
-
-.carousel-btn.left {
+  }
+  
+  .carousel-btn.left {
     left: 10px;
-}
-
-.carousel-btn.right {
+  }
+  
+  .carousel-btn.right {
     right: 10px;
-}
-
+  }
+  
 /* Fullscreen overlay for image */
 .fullscreen-overlay {
     display: none;
