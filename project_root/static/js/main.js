@@ -1,29 +1,4 @@
-// Function to load a component into a specific element
-function loadComponent(filePath, elementId, callback = null) {
-    fetch(filePath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.text();
-        })
-        .then(data => {
-            const element = document.getElementById(elementId);
-            if (element) {
-                element.innerHTML = data;
-                if (callback) {
-                    callback(); // Call callback if provided, for additional initialization
-                }
-            } else {
-                console.error(`Element with ID '${elementId}' not found.`);
-            }
-        })
-        .catch(error => {
-            console.error(`Error loading ${filePath}:`, error);
-        });
-}
-
-// Function to initialize navbar dropdown functionality
+\// Function to initialize navbar dropdown functionality
 function initializeNavBar() {
     const navBarElement = document.getElementById("navbar-container");
     if (navBarElement) {
@@ -150,9 +125,6 @@ function loadCSS(filePath) {
 
 // Initialize everything once DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-    loadComponent("/ENG6806/banner.html", "banner-container");
-    loadComponent("/ENG6806/navbar.html", "navbar-container", initializeNavBar);
-    loadComponent("/ENG6806/footer.html", "footer-container");
     initializeCarousel(); // Initialize carousel functionality
     initializeParagraphGenerator(); // Initialize paragraph generator
     fetchJsonData(); // Fetch book data
