@@ -1,151 +1,150 @@
-// Ensure 'allRatedBooks' is only defined once globally and not redefined later.
-if (typeof allRatedBooks === 'undefined') {
-    var allRatedBooks = new Set();
-}
-
-(function () {
-    // Function to load a component into a specific element.
-    async function loadComponent(filePath, elementId) {
-        try {
-            const response = await fetch(filePath);
+// Function to load a component into a specific element
+function loadComponent(filePath, elementId) {
+    fetch(filePath)
+        .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
             console.log(`Loading component from ${filePath} into #${elementId}`);
-            const data = await response.text();
+            return response.text();
+        })
+        .then(data => {
             const element = document.getElementById(elementId);
             if (element) {
                 element.innerHTML = data;
-
-                // Load favicon and CSS after the component is loaded
-                loadFavicon("project_root/static/assets/favicon.ico");
-                loadCSS("/ENG6806/project_root/static/css/style.css");
             } else {
                 console.error(`Element with ID '${elementId}' not found.`);
             }
-        } catch (error) {
+        })
+        .catch(error => {
             console.error(`Error loading ${filePath}:`, error);
-        }
-    }
-
-    // Function to load a CSS file dynamically.
-    function loadCSS(filePath) {
-        // Avoid reloading the same CSS file.
-        if (!document.querySelector(`link[href="${filePath}"]`)) {
-            const link = document.createElement("link");
-            link.rel = "stylesheet";
-            link.href = filePath;
-            link.type = "text/css";
-            link.onload = () => console.log(`CSS Loaded: ${filePath}`);
-            link.onerror = () => console.error(`Failed to load CSS: ${filePath}`);
-            document.head.appendChild(link);
-        }
-    }
-
-    // Function to load a favicon dynamically.
-    function loadFavicon(filePath) {
-        // Avoid reloading the same favicon.
-        if (!document.querySelector(`link[rel="icon"][href="${filePath}"]`)) {
-            const link = document.createElement("link");
-            link.rel = "icon";
-            link.href = filePath;
-            link.type = "image/x-icon";
-            link.onload = () => console.log(`Favicon Loaded: ${filePath}`);
-            link.onerror = () => console.error(`Failed to load favicon: ${filePath}`);
-            document.head.appendChild(link);
-        }
-    }
-
-    // Define initializeCarousel globally to be accessible.
-    function initializeCarousel() {
-        let currentIndex = 0;
-    
-        function showImage(index) {
-            const images = document.querySelectorAll('.carousel-image');
-            if (!images.length) {
-                console.error('No images found for the carousel.');
-                return;
-            }
-        
-            console.log('Showing image index:', index); // Debugging line
-        
-            // Show only the current image
-            images.forEach((img, i) => {
-                img.classList.toggle('active', i === index);
-            });
-        }
-          
-        function prevImage() {
-            const images = document.querySelectorAll('.carousel-image');
-            if (images.length === 0) {
-                console.error('No images available for the carousel.');
-                return;
-            }
-    
-            currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
-            showImage(currentIndex);
-        }
-    
-        function nextImage() {
-            const images = document.querySelectorAll('.carousel-image');
-            if (images.length === 0) {
-                console.error('No images available for the carousel.');
-                return;
-            }
-    
-            currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
-            showImage(currentIndex);
-        }
-    
-        // Initial load
-        showImage(currentIndex);
-    
-        // Carousel button handlers
-        const leftBtn = document.querySelector('.carousel-btn.left');
-        const rightBtn = document.querySelector('.carousel-btn.right');
-
-        if (leftBtn && rightBtn) {
-            leftBtn.addEventListener('click', prevImage);
-            rightBtn.addEventListener('click', nextImage);
-        } else {
-            console.error('Carousel buttons not found.');
-        }
-    
-        // Automatic carousel (Optional)
-        setInterval(nextImage, 5000); // Change images every 5 seconds
-    }
-
-    // Navbar dropdown menu handling.
-    function initializeNavbarDropdown() {
-        document.querySelectorAll('.navbar li').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                const dropdown = item.querySelector('.dropdown-menu');
-                if (dropdown) {
-                    dropdown.style.display = 'block';
+        });
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch(filePath)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-            });
-            item.addEventListener('mouseleave', () => {
-                const dropdown = item.querySelector('.dropdown-menu');
-                if (dropdown) {
-                    dropdown.style.display = 'none';
+                console.log(`Loading component from ${filePath} into #${elementId}`);
+                return response.text();
+            })
+            .then(data => {
+                const element = document.getElementById(elementId);
+                if (element) {
+                    element.innerHTML = data;
+                } else {
+                    console.error(`Element with ID '${elementId}' not found.`);
                 }
+            })
+            .catch(error => {
+                console.error(`Error loading ${filePath}:`, error);
             });
+    });
+}
+
+// Load components once DOM is fully loaded
+document.addEventListener("DOMContentLoaded", () => {
+    loadComponent("/ENG6806/banner.html", "banner-container");
+    loadComponent("/ENG6806/navbar.html", "navbar-container");
+    loadComponent("/ENG6806/footer.html", "footer-container");
+
+    // Carousel Functionality
+    let currentIndex = 0;
+    let isThrottled = false;
+
+    function showImage(index) {
+        const images = document.querySelectorAll('.carousel-image');
+        if (!images.length) return;
+        images.forEach((img, i) => {
+            img.classList.toggle('active', i === index);
+            img.setAttribute('aria-hidden', i !== index); // Accessibility
         });
     }
 
-    // JSON Data Fetch and Book Display Functionality.
+    function prevImage() {
+        if (isThrottled) return;
+        isThrottled = true;
+        const images = document.querySelectorAll('.carousel-image');
+        currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+        showImage(currentIndex);
+        setTimeout(() => (isThrottled = false), 500);
+    }
+
+    function nextImage() {
+        if (isThrottled) return;
+        isThrottled = true;
+        const images = document.querySelectorAll('.carousel-image');
+        currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+        showImage(currentIndex);
+        setTimeout(() => (isThrottled = false), 500);
+    }
+
+    showImage(currentIndex);
+
+    const overlay = document.querySelector('.fullscreen-overlay');
+    const overlayImg = overlay?.querySelector('img');
+
+    document.querySelectorAll('.carousel-image').forEach((img) => {
+        img.addEventListener('click', () => {
+            if (overlay && overlayImg) {
+                overlay.style.display = 'flex';
+                overlayImg.src = img.src;
+                document.body.style.overflow = 'hidden'; // Disable scrolling
+            }
+        });
+    });
+
+    overlay?.addEventListener('click', () => {
+        overlay.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Re-enable scrolling
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") prevImage();
+        if (event.key === "ArrowRight") nextImage();
+        if (event.key === "Escape" && overlay?.style.display === "flex") {
+            overlay.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+    });
+
+    // Paragraph Generator
+    const generateBtn = document.getElementById('generateBtn');
+    const output = document.getElementById('output');
+
+    if (generateBtn && output) {
+        generateBtn.addEventListener('click', async () => {
+            const apiURL = "https://recapitating-massive.onrender.com/generate_paragraph?num_sentences=10";
+            output.innerText = "Loading...";
+            try {
+                const response = await fetch(apiURL);
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                const data = await response.json();
+                output.innerText = data.paragraph || "Error: Unable to generate a paragraph.";
+            } catch (error) {
+                console.error("Fetch Error:", error);
+                output.innerText = `Error: Unable to connect to the server. Please try again later.`;
+            }
+        });
+    }
+
+    // Fetch JSON data for books
+    let jsonData;
+    let allRatedBooks = new Set();
+
     async function fetchJsonData() {
         try {
             const response = await fetch("/ENG6806/originalprojects/newnovelcuriosity/newnovel.json");
             if (!response.ok) throw new Error("Network response was not ok");
-            const jsonData = await response.json();
-            const displayedBooks = getRandomBooks(jsonData, 10);
+            jsonData = await response.json();
+            displayedBooks = getRandomBooks(jsonData, 10);
             displayBooks(displayedBooks);
         } catch (error) {
             console.error("There was a problem with the fetch operation:", error);
         }
     }
 
+    // Generate random books
     function getRandomBooks(jsonData, count) {
         const books = [
             ...jsonData.Proto_New_Novel_Precursors_to_the_Movement_Before_1948.map(book => ({ ...book, genre: "Proto-New Novel" })),
@@ -156,9 +155,10 @@ if (typeof allRatedBooks === 'undefined') {
         return books.sort(() => 0.5 - Math.random()).slice(0, count);
     }
 
+    // Display books for rating
     function displayBooks(books) {
         const bookList = document.getElementById("book-list");
-        if (!bookList) return;
+        if (!bookList) return; // Check if element exists before proceeding
         bookList.innerHTML = "";
         books.forEach((book, index) => {
             const bookContainer = document.createElement("div");
@@ -196,22 +196,44 @@ if (typeof allRatedBooks === 'undefined') {
         });
     }
 
-    // Load components, initialize features, and load CSS once DOM is fully loaded.
-    document.addEventListener("DOMContentLoaded", async () => {
-        console.log("DOM fully loaded and parsed");
+    // Initialize JSON data and buttons
+    fetchJsonData();
 
-        // Load reusable components into the page.
-        await loadComponent("/ENG6806/banner.html", "banner-container");
-        await loadComponent("/ENG6806/navbar.html", "navbar-container");
-        await loadComponent("/ENG6806/footer.html", "footer-container");
+    const submitButton = document.getElementById("submit-button");
+    if (submitButton) submitButton.addEventListener("click", handleRatingsSubmission);
+    const moreBooksButton = document.getElementById("more-books-button");
+    if (moreBooksButton) moreBooksButton.addEventListener("click", handleMoreBooks);
+    const proceedButton = document.getElementById("proceed-button");
+    if (proceedButton) proceedButton.addEventListener("click", displayRecommendations);
+});
 
-        // Load the CSS and favicon dynamically.
-        loadFavicon("project_root/static/assets/favicon.ico");
-        loadCSS("/ENG6806/project_root/static/css/style.css");
+// Function to load a CSS file dynamically
+function loadCSS(filePath) {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = filePath;
+    link.type = "text/css";
+    link.onload = () => console.log(`CSS Loaded: ${filePath}`);
+    link.onerror = () => console.error(`Failed to load CSS: ${filePath}`);
+    document.head.appendChild(link);
+}
 
-        // Initialize features only after components are loaded.
-        initializeCarousel();
-        initializeNavbarDropdown();
-        fetchJsonData();
+// Load the CSS once DOM is ready
+document.addEventListener("DOMContentLoaded", function() {
+    loadCSS("/ENG6806/project_root/static/css/style.css"); // Correct path to your CSS
+});
+
+document.querySelectorAll('.navbar li').forEach(item => {
+    item.addEventListener('mouseenter', () => {
+        const dropdown = item.querySelector('.dropdown-menu');
+        if (dropdown) {
+            dropdown.style.display = 'block';
+        }
     });
-})();
+    item.addEventListener('mouseleave', () => {
+        const dropdown = item.querySelector('.dropdown-menu');
+        if (dropdown) {
+            dropdown.style.display = 'none';
+        }
+    });
+});
