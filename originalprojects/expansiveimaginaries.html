@@ -4,7 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Expansive Imaginaries</title>
-<script src="/ENG6806/project_root/static/js/main.js"></script>
+  <script src="/ENG6806/project_root/static/js/main.js"></script>
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    video {
+      width: 80%;
+      height: auto; /* This ensures the aspect ratio is maintained */
+      max-width: 1280px; /* Adjust as per your requirements */
+    }
+  </style>
 </head>
 <body>
   <!-- Placeholder for Banner -->
@@ -15,9 +28,9 @@
 
   <!-- Link to the JavaScript File -->
   <script src="/ENG6806/project_root/static/js/main.js"></script>
-     <!-- Load CSS dynamically -->
+  
+  <!-- Load CSS dynamically -->
   <script>
-      // Load CSS using JavaScript if necessary (redundant if link is already added in the <head>)
       function loadCSS(filePath) {
           const link = document.createElement("link");
           link.rel = "stylesheet";
@@ -28,52 +41,34 @@
           document.head.appendChild(link);
       }
       document.addEventListener("DOMContentLoaded", function() {
-          loadCSS("/ENG6806/project_root/static/css/style.css"); // Ensure the path is correct
+          loadCSS("/ENG6806/project_root/static/css/style.css");
       });
   </script>
+
   <section>
-               <div class="container">
-  <h1><b>Expansive Imaginaries</b>: Rethinking Visual Media and Research Trajectories through Generative Video and My Failed Experimental Novel
-</h1>             
-               </div>
+    <div class="container">
+      <h1><b>Expansive Imaginaries</b>: Rethinking Visual Media and Research Trajectories through Generative Video and My Failed Experimental Novel</h1>
+    </div>
   </section>
-    <section>
-           <div class="container">
-      <video controls width="640" height="360">
+
+  <section>
+    <div class="container">
+      <video controls>
         <source src="/ENG6806/project_root/static/videos/LikeAMountainofSleep.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
-           </div>
-    </section>
-     <div class="container">
-</p>
-<p>
-The conceptual starting point for this project was my abandoned experimental novel called <i>Like a Mountain of Sleep</i>, which I revisited as a foundation for creating a series of generative videos. Using RunwayML, I aimed to replicate the novel’s disjointed and fragmented narrative style through visual storytelling, experimenting with techniques like “narrative dislocation” and “soft focus” inspired by filmmakers such as Jean Rollin, Alain Robbe-Grillet, and Marguerite Duras.
-</p>
-<p>
-These experiments allowed me to explore how AI can create surreal, dreamlike narratives that challenge conventional storytelling modes as the novel was never meant to be like a book, but like a film.
-</p>
-<p>
-The work also drew heavily from Joanna Zylinska’s <i>The Perception Machine</i>, particularly her concept of AUTO-FOTO-KINO, which redefines the boundaries between still and moving images. Zylinska’s insights into the hybrid nature of digital media and the democratization of image manipulation inspired me to approach generative video as both an artistic and critical medium. I used Zylinska’s framing to investigate how generative tools can break down traditional hierarchies of storytelling, paralleling my evolving research interests in decentralizing academic and cultural narratives.
-</p>
-<p>
-The project also forced me to grapple with the failures inherent in creative processes, whether in the novel I abandoned or in the imperfections of AI-generated video. These failures became a productive space for reflection, allowing me to reconsider the limitations and possibilities of generative tools in shaping narratives. I feel my reflections here align with Zylinska’s critique of Silicon Valley’s hypercapitalist narratives and her acknowledgment of the biases embedded in AI technologies, which I see as both a challenge and an opportunity for future research.
-</p>
-<p>
-Dr. Salter’s feedback emphasized the scale and ambition of my experiments, particularly the haunting aesthetic of my generative videos. They encouraged me to explore the interplay of hypercapitalist AI narratives and individual creative agency, aligning with Zylinska’s critique and my own reflections. Their suggestion to examine similar works, such as those featured in Doug Shapiro’s writings or Instagram-based generative experiments, provided valuable resources for expanding my creative and academic work. This affirmation has motivated me to integrate these insights into my teaching and research as I prepare for PhD applications.
-</p>
-<p>
-This project demonstrates my ability to merge creative and critical methodologies. By revisiting my failed novel as a generative video experiment, I connect narrative theory with digital media, aligning with my goal of contributing to digital humanities and experimental storytelling. The themes of hybridity and fragmentation reflect my broader interest in critiquing dominant cultural narratives surrounding creative practices where experimentation is not an aesthetic but praxis. Through generative tools, I explore how digital media can amplify marginalized voices and create non-linear, experimental forms of representation.
-</p>
-<p>
-Revisiting my failed novel and grappling with the limitations of generative tools underscores my commitment to embracing creative failure as a productive space for reflection and innovation. This aligns with my broader academic philosophy of iterative, experimental scholarship. The practical application of generative tools in my teaching—such as adapting assignments for students with learning differences—demonstrates my commitment to fostering equitable and inclusive educational environments.
-</p>
-     </div>
-       <!-- Load global JavaScript for site functionality -->
+    </div>
+  </section>
+
+  <div class="container">
+    <p>The conceptual starting point for this project was my abandoned experimental novel called <i>Like a Mountain of Sleep</i>, which I revisited as a foundation for creating a series of generative videos...</p>
+  </div>
+
+  <!-- Load global JavaScript for site functionality -->
   <script src="/ENG6806/project_root/static/js/main.js"></script>
   <!-- Load the game-specific JavaScript -->
   <script src="/ENG6806/enhancedprojects/wavesgame/waves.js"></script>
-       
+  
   <!-- Placeholder for Footer -->
   <div id="footer-container"></div>
 </body>
