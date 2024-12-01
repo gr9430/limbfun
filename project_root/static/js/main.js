@@ -66,13 +66,15 @@ if (typeof allRatedBooks === 'undefined') {
                 console.error('No images found for the carousel.');
                 return;
             }
-    
+        
+            console.log('Showing image index:', index); // Debugging line
+        
             // Show only the current image
             images.forEach((img, i) => {
                 img.classList.toggle('active', i === index);
             });
         }
-    
+          
         function prevImage() {
             const images = document.querySelectorAll('.carousel-image');
             if (images.length === 0) {
@@ -99,8 +101,15 @@ if (typeof allRatedBooks === 'undefined') {
         showImage(currentIndex);
     
         // Carousel button handlers
-        document.querySelector('.carousel-btn.left')?.addEventListener('click', prevImage);
-        document.querySelector('.carousel-btn.right')?.addEventListener('click', nextImage);
+        const leftBtn = document.querySelector('.carousel-btn.left');
+        const rightBtn = document.querySelector('.carousel-btn.right');
+
+        if (leftBtn && rightBtn) {
+            leftBtn.addEventListener('click', prevImage);
+            rightBtn.addEventListener('click', nextImage);
+        } else {
+            console.error('Carousel buttons not found.');
+        }
     
         // Automatic carousel (Optional)
         setInterval(nextImage, 5000); // Change images every 5 seconds
@@ -189,18 +198,8 @@ if (typeof allRatedBooks === 'undefined') {
 
     // Load components, initialize features, and load CSS once DOM is fully loaded.
     document.addEventListener("DOMContentLoaded", async () => {
+        console.log("DOM fully loaded and parsed");
+
         // Load reusable components into the page.
         await loadComponent("/ENG6806/banner.html", "banner-container");
-        await loadComponent("/ENG6806/navbar.html", "navbar-container");
-        await loadComponent("/ENG6806/footer.html", "footer-container");
-
-        // Load the CSS and favicon dynamically.
-        loadFavicon("project_root/static/assets/favicon.ico");
-        loadCSS("/ENG6806/project_root/static/css/style.css");
-
-        // Initialize features only after components are loaded.
-        initializeCarousel();
-        initializeNavbarDropdown();
-        fetchJsonData();
-    });
-})();
+        await loadComponent("/ENG680
