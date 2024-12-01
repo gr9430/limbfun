@@ -4,23 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Expansive Imaginaries</title>
-  </head>
-<body>
-  <!-- Placeholder for Banner -->
-  <div id="banner-container"></div>
-  <!-- Placeholder for Navbar -->
-  <div id="navbar-container"></div>
-  <div class="container">
+  <script src="/ENG6806/project_root/static/js/main.js"></script>
   <style>
     .container {
       display: flex;
       justify-content: center;
       align-items: center;
     }
+
     .parent-element, p {
       column-count: initial;
       column-width: initial;
     }
+
     video {
       width: 80%;
       height: auto; /* This ensures the aspect ratio is maintained */
@@ -31,13 +27,34 @@
 <body>
   <!-- Placeholder for Banner -->
   <div id="banner-container"></div>
+
   <!-- Placeholder for Navbar -->
   <div id="navbar-container"></div>
+  <!-- Link to the JavaScript File -->
+  <script src="/ENG6806/project_root/static/js/main.js"></script>
+
+  <!-- Load CSS dynamically -->
+  <script>
+      function loadCSS(filePath) {
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = filePath;
+          link.type = "text/css";
+          link.onload = () => console.log(`CSS Loaded: ${filePath}`);
+          link.onerror = () => console.error(`Failed to load CSS: ${filePath}`);
+          document.head.appendChild(link);
+      }
+      document.addEventListener("DOMContentLoaded", function() {
+          loadCSS("/ENG6806/project_root/static/css/style.css");
+      });
+  </script>
+
   <section>
     <div class="container">
       <h1><b>Expansive Imaginaries</b>: Rethinking Visual Media and Research Trajectories through Generative Video and My Failed Experimental Novel</h1>
     </div>
   </section>
+
   <section>
     <div class="container">
       <video controls>
@@ -46,6 +63,7 @@
       </video>
     </div>
   </section>
+
      <div class="container">
 </p>
 <p>
@@ -69,10 +87,12 @@ This project demonstrates my ability to merge creative and critical methodologie
 <p>
 Revisiting my failed novel and grappling with the limitations of generative tools underscores my commitment to embracing creative failure as a productive space for reflection and innovation. This aligns with my broader academic philosophy of iterative, experimental scholarship. The practical application of generative tools in my teaching—such as adapting assignments for students with learning differences—demonstrates my commitment to fostering equitable and inclusive educational environments.
 </p>
- </div>
+     </div>
+       <!-- Load global JavaScript for site functionality -->
+  <script src="/ENG6806/project_root/static/js/main.js"></script>
+  <!-- Load the game-specific JavaScript -->
+  <script src="/ENG6806/enhancedprojects/wavesgame/waves.js"></script>
   <!-- Placeholder for Footer -->
   <div id="footer-container"></div>
-  <!-- Link to the JavaScript File -->
-  <script src="/ENG6806/project_root/static/js/main.js"></script>
 </body>
 </html>
