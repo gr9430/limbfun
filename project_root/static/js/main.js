@@ -177,7 +177,7 @@ if (typeof allRatedBooks === 'undefined') {
         await loadComponent("/ENG6806/footer.html", "footer-container");
 
         // Load the CSS dynamically.
-        loadCSS("project_root/static/css/style.css"); // Make sure this matches your folder structure.
+        loadCSS("/ENG6806/project_root/static/css/style.css"); // Make sure this matches your folder structure.
 
         // Initialize features only after components are loaded.
         initializeCarousel();
