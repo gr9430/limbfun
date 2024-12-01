@@ -250,15 +250,14 @@ h6 {
 p {
     margin-bottom: 15px;
     color: #dddddd; /* Light grey for readability on black background */
-}
-
-p {
-  column-count: initial !important;
-  column-width: initial !important;
-  float: none !important;
-  display: block !important;
-  flex: initial !important;
-  text-align: left !important; /* This will justify the text to the left */
+    font-size: 18px; /* Set the font size for all paragraphs */
+    line-height: 1.6; /* Add line height for readability */
+    column-count: initial !important;
+    column-width: initial !important;
+    float: none !important;
+    display: block !important;
+    flex: initial !important;
+    text-align: left !important; /* Align text to the left */
 }
 
 /* Buttons */
