@@ -26,6 +26,7 @@ if (typeof allRatedBooks === 'undefined') {
 
     // Function to load a CSS file dynamically.
     function loadCSS(filePath) {
+        // Avoid reloading the same CSS file.
         if (!document.querySelector(`link[href="${filePath}"]`)) {
             const link = document.createElement("link");
             link.rel = "stylesheet";
@@ -176,7 +177,7 @@ if (typeof allRatedBooks === 'undefined') {
         await loadComponent("/ENG6806/footer.html", "footer-container");
 
         // Load the CSS dynamically.
-        loadCSS("/ENG6806/project_root/static/css/style.css");
+        loadCSS("project_root/static/css/style.css"); // Make sure this matches your folder structure.
 
         // Initialize features only after components are loaded.
         initializeCarousel();
