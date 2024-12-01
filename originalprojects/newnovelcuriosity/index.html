@@ -264,7 +264,7 @@ function displayTopGenres() {
    topGenresDiv.textContent = `Top genres based on your ratings: ${topGenresText}`;
 }
 
-// Function to display book recommendations based on top authors and genres
+// Function to display book recommendations with images and descriptions
 function displayRecommendations() {
    const recommendationsDiv = document.getElementById("recommendation");
    recommendationsDiv.innerHTML = "";
@@ -326,7 +326,35 @@ function displayRecommendations() {
        recommendedBooks.forEach(book => {
            const bookContainer = document.createElement("div");
            bookContainer.className = "book-container";
-           bookContainer.textContent = `${book.title} by ${book.author} (${book.year}, ${book.country})`;
+
+           // Create an image element for the book cover
+           const bookImage = document.createElement("img");
+           bookImage.className = "book-cover";
+           bookImage.src = book.image || "default_image_path.jpg";  // Set a default image if none is provided
+           bookImage.alt = `Cover of ${book.title}`;
+           bookImage.style.width = "100px";
+           bookImage.style.height = "auto";
+           bookImage.style.marginRight = "15px";
+
+           const bookInfoContainer = document.createElement("div");
+           bookInfoContainer.className = "book-info-container";
+
+           const bookTitle = document.createElement("div");
+           bookTitle.className = "book-title";
+           bookTitle.textContent = `${book.title} by ${book.author} (${book.year}, ${book.country})`;
+
+           const bookDescription = document.createElement("div");
+           bookDescription.className = "book-description";
+           bookDescription.textContent = book.description;
+
+           // Append book info elements to bookInfoContainer
+           bookInfoContainer.appendChild(bookTitle);
+           bookInfoContainer.appendChild(bookDescription);
+
+           // Append the book cover image and book info container to the main book container
+           bookContainer.appendChild(bookImage);
+           bookContainer.appendChild(bookInfoContainer);
+
            recommendationsDiv.appendChild(bookContainer);
        });
    } else {
