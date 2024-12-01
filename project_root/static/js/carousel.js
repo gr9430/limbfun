@@ -48,7 +48,7 @@ if (nextButton) {
         showImage(currentIndex);
     });
 }
-
+}
 // Wait for DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", () => {
     initializeCarousel(); // Initialize carousel functionality
