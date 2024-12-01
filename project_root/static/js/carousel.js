@@ -7,8 +7,6 @@ function initializeCarousel() {
     const prevButton = document.querySelector('.carousel-btn.left');
     const nextButton = document.querySelector('.carousel-btn.right');
     const carouselWrapper = document.querySelector('.carousel-wrapper');
-    const overlay = document.querySelector('.fullscreen-overlay');
-    const overlayImg = overlay?.querySelector('img');
 
     // Function to show image based on currentIndex
     function showImage(index) {
@@ -38,24 +36,6 @@ function initializeCarousel() {
         currentIndex++;
         showImage(currentIndex);
     });
-
-    // Fullscreen functionality for images
-    images.forEach(img => {
-        img.addEventListener('click', () => {
-            if (overlay && overlayImg) {
-                overlay.style.display = 'flex';
-                overlayImg.src = img.src;
-                document.body.style.overflow = 'hidden'; // Disable scrolling
-            }
-        });
-    });
-
-    // Close fullscreen overlay when clicked
-    overlay?.addEventListener('click', () => {
-        overlay.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Re-enable scrolling
-    });
-}
 
 // Wait for DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", () => {

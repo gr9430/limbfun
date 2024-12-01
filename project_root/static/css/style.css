@@ -300,12 +300,12 @@ footer {
   /* Carousel Images Wrapper */
   .carousel-wrapper {
     display: flex;
-    transition: transform 0.5s ease;
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
 }
   
   /* Individual Images */
   .carousel-image {
-    width: 100%;
+    width: 65%;
     height: auto;
     display: none; /* Initially hide all images */
 }
@@ -314,7 +314,11 @@ footer {
     display: block; /* Only show the active image */
 }
 
-  /* Buttons */
+.carousel-image:not(.active) {
+    display: none;
+}
+
+/* Buttons */
   .carousel-btn {
     position: absolute;
     top: 50%;
