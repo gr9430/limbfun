@@ -1,55 +1,39 @@
-// Declare `currentIndex` only once globally
-let currentIndex = 0; // Correct declaration
+let currentIndex = 0;
 
-// Carousel Functionality
 function initializeCarousel() {
     const images = document.querySelectorAll('.carousel-image');
     const prevButton = document.querySelector('.carousel-btn.left');
     const nextButton = document.querySelector('.carousel-btn.right');
     const carouselWrapper = document.querySelector('.carousel-wrapper');
 
-    if (!carouselWrapper || images.length === 0) {
-        console.error("Carousel wrapper or images not found.");
-        return;
-    }
+    const totalImages = images.length;
 
     // Function to show image based on currentIndex
     function showImage(index) {
-        const totalImages = images.length;
-        if (index >= totalImages) currentIndex = 0; // Loop to start
-        else if (index < 0) currentIndex = totalImages - 1; // Loop to end
-    
-        const offset = -currentIndex * 100; // Move wrapper to show the current image
+        if (index >= totalImages) {
+            currentIndex = 0; // Loop back to start
+        } else if (index < 0) {
+            currentIndex = totalImages - 1; // Loop to end
+        }
+
+        const offset = -currentIndex * 100;
         carouselWrapper.style.transform = `translateX(${offset}%)`;
-    
-        // Update active class for images
-        images.forEach((img, i) => {
-            img.classList.toggle('active', i === currentIndex);
-        });
     }
-    
-   
+
     // Show the initial image
     showImage(currentIndex);
 
-// Event listeners for buttons
-if (prevButton) {
+    // Event listeners for buttons
     prevButton.addEventListener('click', () => {
         currentIndex--;
-        console.log("Previous button clicked. Current index:", currentIndex);
+        showImage(currentIndex);
+    });
+
+    nextButton.addEventListener('click', () => {
+        currentIndex++;
         showImage(currentIndex);
     });
 }
 
-if (nextButton) {
-    nextButton.addEventListener('click', () => {
-        currentIndex++;
-        console.log("Next button clicked. Current index:", currentIndex);
-        showImage(currentIndex);
-    });
-}
-}
-// Wait for DOM to be fully loaded
-document.addEventListener("DOMContentLoaded", () => {
-    initializeCarousel(); // Initialize carousel functionality
-});
+// Initialize the carousel when DOM content is fully loaded
+document.addEventListener("DOMContentLoaded", initializeCarousel);
