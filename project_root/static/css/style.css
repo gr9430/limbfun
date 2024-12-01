@@ -57,6 +57,9 @@ body {
     display: flex;
     justify-content: center;
     gap: 20px;
+}    
+
+.navbar li{
     position: relative; /* Added for proper submenu positioning */
 }
 
@@ -92,12 +95,11 @@ body {
     min-width: 200px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    z-index: 1000;
+    z-index: 4000;
 }
 
 .navbar .dropdown-menu li {
     margin: 0;
-    position: relative; /* Added for nested dropdown positioning */
 }
 
 .navbar .dropdown-menu li a {
@@ -124,7 +126,7 @@ body {
     left: 100%;
     margin-left: -2px; /* Remove gap between parent and child dropdown */
     background-color: #222222; /* Slightly darker for nested menus */
-    z-index: 1001; /* Ensure it's above the parent dropdown */
+    z-index: 5000; /* Ensure it's above the parent dropdown */
 }
 
 .navbar .dropdown-menu li:hover > .dropdown-menu,
@@ -136,6 +138,7 @@ body {
 @media (max-width: 768px) {
     .navbar ul {
         flex-direction: column;
+        gap: 10px;
     }
 
     .navbar li {
@@ -144,6 +147,7 @@ body {
 
     .navbar .dropdown-menu {
         position: static;
+        margin: 0;
     }
 
     .navbar .dropdown-menu .dropdown-menu {
@@ -273,7 +277,6 @@ footer {
     box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.1); /* Optional: Add shadow for depth */
 }
 
-/* Carousel Stuff */
 /* Carousel Container Styles */
 .carousel-container {
     position: relative;
@@ -297,10 +300,8 @@ footer {
 /* Individual Carousel Images */
 .carousel-image {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: cover; /* Ensures aspect ratio is preserved while covering the container */
     opacity: 0; /* Hidden by default */
     transition: opacity 0.5s ease-in-out;
@@ -333,7 +334,6 @@ footer {
     right: 10px;
 }
 
-/* Optional Styling for Carousel Buttons on Hover */
 .carousel-btn:hover {
     background-color: rgba(0, 0, 0, 0.7);
 }
