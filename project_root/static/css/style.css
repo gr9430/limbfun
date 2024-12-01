@@ -252,6 +252,15 @@ p {
     color: #dddddd; /* Light grey for readability on black background */
 }
 
+p {
+  column-count: initial !important;
+  column-width: initial !important;
+  float: none !important;
+  display: block !important;
+  flex: initial !important;
+  text-align: left !important; /* This will justify the text to the left */
+}
+
 /* Buttons */
 button {
     padding: 10px 20px;
