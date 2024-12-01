@@ -295,7 +295,7 @@ footer {
     position: relative; 
     max-width: 600px; /* Set a fixed or max width depending on your needs */
     margin: 0 auto; /* Centers the carousel container */
-    overflow: hidden;
+    overflow: hidden; /* Hide anything that overflows */
     display: flex;
     justify-content: center;
 }
@@ -304,6 +304,7 @@ footer {
 .carousel-wrapper {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    width: calc(100% * 8); /* Assuming you have 8 images */
 }
 
 /* Individual Images */
@@ -332,6 +333,14 @@ footer {
 
 .carousel-btn.right {
     right: 10px;
+}
+
+.carousel-image {
+    display: none; /* Hide all images initially */
+}
+
+.carousel-image.active {
+    display: block; /* Show only the active image */
 }
 
 /* Fullscreen overlay for image */
