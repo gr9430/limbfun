@@ -145,8 +145,9 @@
 </head>
 <body>
   <!-- Banner -->
-  <div id="banner-container"></div>
-  <img src="/ENG6806/project_root/static/images/banner.jpg" alt="Banner Image" style="max-width: 100%; height: auto; margin-bottom: 20px;">
+  <div id="banner-container">
+    <img src="/ENG6806/project_root/static/images/banner.jpg" alt="Banner Image" style="max-width: 100%; height: auto; margin-bottom: 20px;">
+  </div>
 
   <!-- Navbar -->
   <div id="navbar-container">
@@ -193,11 +194,10 @@
   <script>
     // Function to load a component into a specific element
     function loadComponent(filePath, elementId) {
-      const correctedPath = filePath.startsWith("/") ? filePath : `../${filePath}`;
-      fetch(correctedPath)
+      fetch(filePath)
         .then(response => {
           if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            throw new Error(`HTTP error! Status: ${response.status} | Path: ${filePath}`);
           }
           return response.text();
         })
@@ -205,8 +205,8 @@
           document.getElementById(elementId).innerHTML = data;
         })
         .catch(error => {
-          console.error(`Error loading ${correctedPath}:`, error);
-          document.getElementById(elementId).innerHTML = `<p>Failed to load ${correctedPath}. Please try again later.</p>`;
+          console.error(`Error loading ${filePath}:`, error);
+          document.getElementById(elementId).innerHTML = `<p>Failed to load ${filePath}. Please try again later.</p>`;
         });
     }
 
@@ -299,9 +299,9 @@ a world remade in silence.
 
     // Start typing animation and load components
     document.addEventListener("DOMContentLoaded", () => {
-      // Adjust paths for components
-      loadComponent("ENG6806/banner.html", "banner-container");
-      loadComponent("ENG6806/navbar.html", "navbar-container");
+      // Load components with correct absolute paths
+      loadComponent("/ENG6806/banner.html", "banner-container");
+      loadComponent("/ENG6806/navbar.html", "navbar-container");
       typeTitle();
     });
   </script>
