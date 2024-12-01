@@ -309,7 +309,7 @@ footer {
 
 /* Individual Images */
 .carousel-image {
-    width: 45%; /* Ensure images take the full width of the container */
+    width: 55%; /* Ensure images take the full width of the container */
     height: auto;
 }
 
