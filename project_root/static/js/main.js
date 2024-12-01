@@ -48,66 +48,46 @@ function initializeNavBar() {
 }
 
 // Carousel Functionality
-let currentIndex = 0; // Declared only once
-let isThrottled = false;
+let currentIndex = 0;
 
-function initializeCarousel() {
-    function showImage(index) {
-        const images = document.querySelectorAll('.carousel-image');
-        if (!images.length) return;
-        images.forEach((img, i) => {
-            img.classList.toggle('active', i === index);
-            img.setAttribute('aria-hidden', i !== index);
-        });
-    }
-
-    function prevImage() {
-        if (isThrottled) return;
-        isThrottled = true;
-        const images = document.querySelectorAll('.carousel-image');
-        currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
-        showImage(currentIndex);
-        setTimeout(() => (isThrottled = false), 500);
-    }
-
-    function nextImage() {
-        if (isThrottled) return;
-        isThrottled = true;
-        const images = document.querySelectorAll('.carousel-image');
-        currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
-        showImage(currentIndex);
-        setTimeout(() => (isThrottled = false), 500);
-    }
-
-    showImage(currentIndex);
-
-    const overlay = document.querySelector('.fullscreen-overlay');
-    const overlayImg = overlay?.querySelector('img');
-
-    document.querySelectorAll('.carousel-image').forEach((img) => {
-        img.addEventListener('click', () => {
-            if (overlay && overlayImg) {
-                overlay.style.display = 'flex';
-                overlayImg.src = img.src;
-                document.body.style.overflow = 'hidden'; // Disable scrolling
-            }
-        });
-    });
-
-    overlay?.addEventListener('click', () => {
-        overlay.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Re-enable scrolling
-    });
-
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "ArrowLeft") prevImage();
-        if (event.key === "ArrowRight") nextImage();
-        if (event.key === "Escape" && overlay?.style.display === "flex") {
-            overlay.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
-        }
-    });
+function showImage(index) {
+  const images = document.querySelectorAll('.carousel-image');
+  images.forEach((img, i) => {
+    img.classList.toggle('active', i === index);
+  });
 }
+
+function prevImage() {
+  const images = document.querySelectorAll('.carousel-image');
+  currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+  showImage(currentIndex);
+}
+
+function nextImage() {
+  const images = document.querySelectorAll('.carousel-image');
+  currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+  showImage(currentIndex);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  showImage(currentIndex);
+
+  // Fullscreen functionality
+  const images = document.querySelectorAll('.carousel-image');
+  const overlay = document.querySelector('.fullscreen-overlay');
+  const overlayImg = overlay.querySelector('img');
+
+  images.forEach(img => {
+    img.addEventListener('click', () => {
+      overlay.style.display = 'flex';
+      overlayImg.src = img.src;
+    });
+  });
+
+  overlay.addEventListener('click', () => {
+    overlay.style.display = 'none';
+  });
+});
 
 // Paragraph Generator Initialization
 function initializeParagraphGenerator() {
