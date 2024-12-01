@@ -20,7 +20,7 @@
   <div id="navbar-container">
     <nav class="navbar">
       <ul>
-        <li><a href="/ENG6806/index.html">Home</a></li> <!-- Absolute path to avoid path confusion -->
+        <li><a href="/ENG6806/index.html">Home</a></li>
         <li>
           <a href="/ENG6806/originalprojects.html">Original Projects</a>
           <ul class="dropdown-menu">
@@ -62,20 +62,23 @@
   <div class="aligned-header">
     <h1>So You're Curious About the New Novel</h1>
   </div>
-  
-  <div id="book-list"></div>
-  <div id="progress-bar-container">
+
+  <!-- Survey Container -->
+  <div id="survey-container" class="survey-container">
+    <div id="book-list"></div>
+    <div id="progress-bar-container">
       <div id="progress-bar">0%</div>
+    </div>
+    
+    <button id="submit-button">Submit Ratings</button>
+    <button id="more-books-button" style="display:none;">Rate More Books</button>
+    <button id="proceed-button" style="display:none;">Proceed with Recommendations</button>
+    
+    <div id="rating-summary" style="margin-top: 20px; font-weight: bold;"></div>
+    <div id="top-genres" style="margin-top: 20px; font-weight: bold;"></div>
+    <div id="recommendation"></div>
   </div>
-  
-  <button id="submit-button">Submit Ratings</button>
-  <button id="more-books-button" style="display:none;">Rate More Books</button>
-  <button id="proceed-button" style="display:none;">Proceed with Recommendations</button>
-  
-  <div id="rating-summary" style="margin-top: 20px; font-weight: bold;"></div>
-  <div id="top-genres" style="margin-top: 20px; font-weight: bold;"></div>
-  <div id="recommendation"></div>
-  
+
   <script>
 let jsonData;
 let ratedBooksCount = 0;
@@ -312,6 +315,8 @@ document.getElementById("submit-button").addEventListener("click", handleRatings
 document.getElementById("more-books-button").addEventListener("click", handleMoreBooks);
 document.getElementById("proceed-button").addEventListener("click", displayRecommendations);
 </script>
+  
+<!-- Footer -->
 <div id="footer-container">
   <footer>
     <p>&copy; 2024 ENG 6806 ePortfolio | Designed and Compiled by Glenn S. Ritchey III, thanks to the help of ChatGPT's intensive labor.</p>
