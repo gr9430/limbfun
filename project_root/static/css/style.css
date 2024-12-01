@@ -221,6 +221,16 @@ img {
   column-width: initial;
 }
 
+.survey-container {
+    max-width: 800px; /* Limit the width of the container */
+    margin: 20px auto; /* Center the container */
+    padding: 20px; /* Add some padding inside the container */
+    border: 1px solid #ccc; /* Add a light border around the container */
+    border-radius: 10px; /* Round the corners */
+    background-color: #f9f9f9; /* Light background for readability */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+}
+
 /* Game Specific Styling */
 #game-container {
     max-width: 1000px;
