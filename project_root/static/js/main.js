@@ -1,17 +1,19 @@
 // Function to load a component into a specific element
-function loadComponent(filePath, elementId) {
+function loadComponent(filePath, elementId, callback = null) {
     fetch(filePath)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            console.log(`Loading component from ${filePath} into #${elementId}`);
             return response.text();
         })
         .then(data => {
             const element = document.getElementById(elementId);
             if (element) {
                 element.innerHTML = data;
+                if (callback) {
+                    callback(); // Call callback if provided, for additional initialization
+                }
             } else {
                 console.error(`Element with ID '${elementId}' not found.`);
             }
@@ -19,45 +21,43 @@ function loadComponent(filePath, elementId) {
         .catch(error => {
             console.error(`Error loading ${filePath}:`, error);
         });
-    document.addEventListener('DOMContentLoaded', function () {
-        fetch(filePath)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                console.log(`Loading component from ${filePath} into #${elementId}`);
-                return response.text();
-            })
-            .then(data => {
-                const element = document.getElementById(elementId);
-                if (element) {
-                    element.innerHTML = data;
-                } else {
-                    console.error(`Element with ID '${elementId}' not found.`);
-                }
-            })
-            .catch(error => {
-                console.error(`Error loading ${filePath}:`, error);
-            });
-    });
 }
 
-// Load components once DOM is fully loaded
-document.addEventListener("DOMContentLoaded", () => {
-    loadComponent("/ENG6806/banner.html", "banner-container");
-    loadComponent("/ENG6806/navbar.html", "navbar-container");
-    loadComponent("/ENG6806/footer.html", "footer-container");
+// Function to initialize navbar dropdown functionality
+function initializeNavBar() {
+    const navBarElement = document.getElementById("navbar-container");
+    if (navBarElement) {
+        navBarElement.addEventListener('mouseover', (e) => {
+            if (e.target.matches('.navbar li')) {
+                const dropdown = e.target.querySelector('.dropdown-menu');
+                if (dropdown) {
+                    dropdown.style.display = 'block';
+                }
+            }
+        });
 
-    // Carousel Functionality
-    let currentIndex = 0;
-    let isThrottled = false;
+        navBarElement.addEventListener('mouseout', (e) => {
+            if (e.target.matches('.navbar li')) {
+                const dropdown = e.target.querySelector('.dropdown-menu');
+                if (dropdown) {
+                    dropdown.style.display = 'none';
+                }
+            }
+        });
+    }
+}
 
+// Carousel Functionality
+let currentIndex = 0;
+let isThrottled = false;
+
+function initializeCarousel() {
     function showImage(index) {
         const images = document.querySelectorAll('.carousel-image');
         if (!images.length) return;
         images.forEach((img, i) => {
             img.classList.toggle('active', i === index);
-            img.setAttribute('aria-hidden', i !== index); // Accessibility
+            img.setAttribute('aria-hidden', i !== index);
         });
     }
 
@@ -107,8 +107,10 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.style.overflow = 'auto'; // Re-enable scrolling
         }
     });
+}
 
-    // Paragraph Generator
+// Paragraph Generator Initialization
+function initializeParagraphGenerator() {
     const generateBtn = document.getElementById('generateBtn');
     const output = document.getElementById('output');
 
@@ -127,87 +129,77 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+}
 
-    // Fetch JSON data for books
-    let jsonData;
-    let allRatedBooks = new Set();
+// Fetch JSON data for books
+let jsonData;
+let allRatedBooks = new Set();
 
-    async function fetchJsonData() {
-        try {
-            const response = await fetch("/ENG6806/originalprojects/newnovelcuriosity/newnovel.json");
-            if (!response.ok) throw new Error("Network response was not ok");
-            jsonData = await response.json();
-            displayedBooks = getRandomBooks(jsonData, 10);
-            displayBooks(displayedBooks);
-        } catch (error) {
-            console.error("There was a problem with the fetch operation:", error);
-        }
+async function fetchJsonData() {
+    try {
+        const response = await fetch("/ENG6806/originalprojects/newnovelcuriosity/newnovel.json");
+        if (!response.ok) throw new Error("Network response was not ok");
+        jsonData = await response.json();
+        const displayedBooks = getRandomBooks(jsonData, 10);
+        displayBooks(displayedBooks);
+    } catch (error) {
+        console.error("There was a problem with the fetch operation:", error);
     }
+}
 
-    // Generate random books
-    function getRandomBooks(jsonData, count) {
-        const books = [
-            ...jsonData.Proto_New_Novel_Precursors_to_the_Movement_Before_1948.map(book => ({ ...book, genre: "Proto-New Novel" })),
-            ...jsonData.New_Novel_Core_Works_of_the_Movement_1948_1965.Key_Authors.map(book => ({ ...book, genre: "New Novel Core Works" })),
-            ...jsonData.New_Novel_Core_Works_of_the_Movement_1948_1965.Other_Authors_Aligning_with_the_Movement.map(book => ({ ...book, genre: "New Novel Core Works" })),
-            ...jsonData.Post_New_Novel_Influenced_by_the_Movement_1966_Present.map(book => ({ ...book, genre: "Post-New Novel" }))
-        ].filter(book => !allRatedBooks.has(book.title));
-        return books.sort(() => 0.5 - Math.random()).slice(0, count);
-    }
+// Generate random books
+function getRandomBooks(jsonData, count) {
+    const books = [
+        ...jsonData.Proto_New_Novel_Precursors_to_the_Movement_Before_1948.map(book => ({ ...book, genre: "Proto-New Novel" })),
+        ...jsonData.New_Novel_Core_Works_of_the_Movement_1948_1965.Key_Authors.map(book => ({ ...book, genre: "New Novel Core Works" })),
+        ...jsonData.New_Novel_Core_Works_of_the_Movement_1948_1965.Other_Authors_Aligning_with_the_Movement.map(book => ({ ...book, genre: "New Novel Core Works" })),
+        ...jsonData.Post_New_Novel_Influenced_by_the_Movement_1966_Present.map(book => ({ ...book, genre: "Post-New Novel" }))
+    ].filter(book => !allRatedBooks.has(book.title));
+    return books.sort(() => 0.5 - Math.random()).slice(0, count);
+}
 
-    // Display books for rating
-    function displayBooks(books) {
-        const bookList = document.getElementById("book-list");
-        if (!bookList) return; // Check if element exists before proceeding
-        bookList.innerHTML = "";
-        books.forEach((book, index) => {
-            const bookContainer = document.createElement("div");
-            bookContainer.className = "book-container";
+// Display books for rating
+function displayBooks(books) {
+    const bookList = document.getElementById("book-list");
+    if (!bookList) return;
+    bookList.innerHTML = "";
+    books.forEach((book, index) => {
+        const bookContainer = document.createElement("div");
+        bookContainer.className = "book-container";
 
-            const bookTitle = document.createElement("div");
-            bookTitle.className = "book-title";
-            bookTitle.textContent = `${book.title} by ${book.author} (${book.year}, ${book.country})`;
+        const bookTitle = document.createElement("div");
+        bookTitle.className = "book-title";
+        bookTitle.textContent = `${book.title} by ${book.author} (${book.year}, ${book.country})`;
 
-            const ratingOptions = document.createElement("div");
-            ratingOptions.className = "rating-options";
-            [1, 2, 3, 4, 5].forEach(rating => {
-                const label = document.createElement("label");
-                const input = document.createElement("input");
-                input.type = "radio";
-                input.name = `rating-${index}`;
-                input.value = rating;
-                label.appendChild(input);
-                label.appendChild(document.createTextNode(rating));
-                ratingOptions.appendChild(label);
-            });
-
-            const notReadLabel = document.createElement("label");
-            const notReadInput = document.createElement("input");
-            notReadInput.type = "radio";
-            notReadInput.name = `rating-${index}`;
-            notReadInput.value = "not-read";
-            notReadLabel.appendChild(notReadInput);
-            notReadLabel.appendChild(document.createTextNode("Haven't read it"));
-            ratingOptions.appendChild(notReadLabel);
-
-            bookContainer.appendChild(bookTitle);
-            bookContainer.appendChild(ratingOptions);
-            bookList.appendChild(bookContainer);
+        const ratingOptions = document.createElement("div");
+        ratingOptions.className = "rating-options";
+        [1, 2, 3, 4, 5].forEach(rating => {
+            const label = document.createElement("label");
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = `rating-${index}`;
+            input.value = rating;
+            label.appendChild(input);
+            label.appendChild(document.createTextNode(rating));
+            ratingOptions.appendChild(label);
         });
-    }
 
-    // Initialize JSON data and buttons
-    fetchJsonData();
+        const notReadLabel = document.createElement("label");
+        const notReadInput = document.createElement("input");
+        notReadInput.type = "radio";
+        notReadInput.name = `rating-${index}`;
+        notReadInput.value = "not-read";
+        notReadLabel.appendChild(notReadInput);
+        notReadLabel.appendChild(document.createTextNode("Haven't read it"));
+        ratingOptions.appendChild(notReadLabel);
 
-    const submitButton = document.getElementById("submit-button");
-    if (submitButton) submitButton.addEventListener("click", handleRatingsSubmission);
-    const moreBooksButton = document.getElementById("more-books-button");
-    if (moreBooksButton) moreBooksButton.addEventListener("click", handleMoreBooks);
-    const proceedButton = document.getElementById("proceed-button");
-    if (proceedButton) proceedButton.addEventListener("click", displayRecommendations);
-});
+        bookContainer.appendChild(bookTitle);
+        bookContainer.appendChild(ratingOptions);
+        bookList.appendChild(bookContainer);
+    });
+}
 
-// Function to load a CSS file dynamically
+// Load the CSS once DOM is ready
 function loadCSS(filePath) {
     const link = document.createElement("link");
     link.rel = "stylesheet";
@@ -218,22 +210,13 @@ function loadCSS(filePath) {
     document.head.appendChild(link);
 }
 
-// Load the CSS once DOM is ready
-document.addEventListener("DOMContentLoaded", function() {
-    loadCSS("/ENG6806/project_root/static/css/style.css"); // Correct path to your CSS
-});
-
-document.querySelectorAll('.navbar li').forEach(item => {
-    item.addEventListener('mouseenter', () => {
-        const dropdown = item.querySelector('.dropdown-menu');
-        if (dropdown) {
-            dropdown.style.display = 'block';
-        }
-    });
-    item.addEventListener('mouseleave', () => {
-        const dropdown = item.querySelector('.dropdown-menu');
-        if (dropdown) {
-            dropdown.style.display = 'none';
-        }
-    });
+// Initialize everything once DOM is fully loaded
+document.addEventListener("DOMContentLoaded", () => {
+    loadComponent("/ENG6806/banner.html", "banner-container");
+    loadComponent("/ENG6806/navbar.html", "navbar-container", initializeNavBar);
+    loadComponent("/ENG6806/footer.html", "footer-container");
+    initializeCarousel();
+    initializeParagraphGenerator();
+    fetchJsonData();
+    loadCSS("/ENG6806/project_root/static/css/style.css");
 });
