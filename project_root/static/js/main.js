@@ -22,6 +22,48 @@ function initializeNavBar() {
     }
 }
 
+// Function to initialize the carousel
+function initializeCarousel() {
+    const carouselContainer = document.querySelector('.carousel-container');
+    if (carouselContainer) {
+        let currentIndex = 0;
+        const items = carouselContainer.querySelectorAll('.carousel-item');
+        const totalItems = items.length;
+
+        if (totalItems > 0) {
+            function showItem(index) {
+                items.forEach((item, i) => {
+                    item.style.display = i === index ? 'block' : 'none';
+                });
+            }
+
+            function nextItem() {
+                currentIndex = (currentIndex + 1) % totalItems;
+                showItem(currentIndex);
+            }
+
+            function previousItem() {
+                currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+                showItem(currentIndex);
+            }
+
+            // Set up buttons for next and previous, if they exist
+            const nextButton = document.querySelector('.carousel-next');
+            const prevButton = document.querySelector('.carousel-prev');
+            if (nextButton && prevButton) {
+                nextButton.addEventListener('click', nextItem);
+                prevButton.addEventListener('click', previousItem);
+            }
+
+            // Automatically start showing the first item
+            showItem(currentIndex);
+
+            // Optionally add auto-rotation (e.g., every 3 seconds)
+            setInterval(nextItem, 3000);
+        }
+    }
+}
+
 // Paragraph Generator Initialization
 function initializeParagraphGenerator() {
     const generateBtn = document.getElementById('generateBtn');
@@ -125,7 +167,7 @@ function loadCSS(filePath) {
 
 // Initialize everything once DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-    initializeNavBar(); // Added navbar dropdown initialization
+    initializeNavBar(); // Initialize navbar dropdown functionality
     initializeCarousel(); // Initialize carousel functionality
     initializeParagraphGenerator(); // Initialize paragraph generator
     fetchJsonData(); // Fetch book data
