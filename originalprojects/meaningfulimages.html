@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meaningful Images</title>
-  <script src="/ENG6806/project_root/static/js/main.js"></script>
+  <script src="/ENG6806/project_root/static/js/main.js" defer></script> <!-- Defer to ensure DOM loads first -->
 </head>
 <body>
 
@@ -57,61 +57,28 @@
       Dr. Salter’s feedback encouraged further experimentation with form and highlighted the relevance of my approach to ongoing conversations in digital humanities and media studies. They praised my connections between Zylinska, Herzog, and Rollin and suggested exploring the phenomenon of social media bait AI imagery as a potential research paper. This affirmation helped solidify my decision to begin shifting my research focus, aligning my already-established creative and academic practices with new interdisciplinary horizons.
     </p>
   </div>
- <!-- Fullscreen Image Overlay -->
- <div class="fullscreen-overlay">
-  <img src="" alt="Fullscreen Image">
-</div>
 
-<!-- JavaScript -->
-<script>
-  let currentIndex = 0;
+  <body>
+  <!-- Placeholder for Banner -->
+  <div id="banner-container"></div>
 
-  function showImage(index) {
-    const images = document.querySelectorAll('.carousel-image');
-    images.forEach((img, i) => {
-      img.classList.remove('active'); // Remove "active" from all images
-      if (i === index) {
-        img.classList.add('active'); // Add "active" to the current image
-      }
-    });
-  }
+  <!-- Placeholder for Navbar -->
+  <div id="navbar-container"></div>
 
-  function prevImage() {
-    const images = document.querySelectorAll('.carousel-image');
-    currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
-    showImage(currentIndex);
-  }
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Your content here -->
+  </div>
 
-  function nextImage() {
-    const images = document.querySelectorAll('.carousel-image');
-    currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
-    showImage(currentIndex);
-  }
+  <!-- Fullscreen Image Overlay -->
+  <div class="fullscreen-overlay">
+    <img src="" alt="Fullscreen Image">
+  </div>
 
-  document.addEventListener('DOMContentLoaded', () => {
-    showImage(currentIndex);
-
-    // Fullscreen functionality
-    const images = document.querySelectorAll('.carousel-image');
-    const overlay = document.querySelector('.fullscreen-overlay');
-    const overlayImg = overlay.querySelector('img');
-
-    images.forEach(img => {
-      img.addEventListener('click', () => {
-        overlay.style.display = 'flex';
-        overlayImg.src = img.src;
-      });
-    });
-
-    overlay.addEventListener('click', () => {
-      overlay.style.display = 'none';
-    });
-  });
-</script>
   <!-- Placeholder for Footer -->
   <div id="footer-container"></div>
 
   <!-- Link to the JavaScript File -->
-  <script src="/ENG6806/project_root/static/js/main.js"></script>
+  <script src="/ENG6806/project_root/static/js/main.js" defer></script> <!-- Added defer to ensure DOM is loaded first -->
 </body>
 </html>
