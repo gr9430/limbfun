@@ -18,33 +18,35 @@ function initializeCarousel() {
         const totalImages = images.length;
         if (index >= totalImages) currentIndex = 0; // Loop to start
         else if (index < 0) currentIndex = totalImages - 1; // Loop to end
-
-        const offset = -currentIndex * images[0].clientWidth; // Calculate offset in pixels
+    
+        const imageWidth = carouselWrapper.clientWidth / totalImages;
+        const offset = -currentIndex * imageWidth; // Move wrapper to show the current image
         carouselWrapper.style.transform = `translateX(${offset}px)`;
-
+    
         // Hide all images and show the current one
         images.forEach((img, i) => {
             img.classList.toggle('active', i === currentIndex);
         });
     }
-
+   
     // Show the initial image
     showImage(currentIndex);
 
-    // Event listeners for buttons
-    if (prevButton) {
-        prevButton.addEventListener('click', () => {
-            currentIndex--;
-            showImage(currentIndex);
-        });
-    }
+// Event listeners for buttons
+if (prevButton) {
+    prevButton.addEventListener('click', () => {
+        currentIndex--;
+        console.log("Previous button clicked. Current index:", currentIndex);
+        showImage(currentIndex);
+    });
+}
 
-    if (nextButton) {
-        nextButton.addEventListener('click', () => {
-            currentIndex++;
-            showImage(currentIndex);
-        });
-    }
+if (nextButton) {
+    nextButton.addEventListener('click', () => {
+        currentIndex++;
+        console.log("Next button clicked. Current index:", currentIndex);
+        showImage(currentIndex);
+    });
 }
 
 // Wait for DOM to be fully loaded
