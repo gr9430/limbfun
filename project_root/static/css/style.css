@@ -389,3 +389,7 @@ footer {
 .carousel-wrapper img {
     display: none;
 }
+video {
+  width: 100%; /* Takes up the entire width of the container */
+  height: auto; /* Maintains aspect ratio */
+}
