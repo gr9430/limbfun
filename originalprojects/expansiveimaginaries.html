@@ -1,70 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Expansive Imaginaries</title>
-  <script src="/ENG6806/project_root/static/js/main.js"></script>
-  
-  <!-- Hard-coding CSS link instead of dynamically loading -->
-  <link rel="stylesheet" href="/ENG6806/project_root/static/css/style.css">
-  <style>
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      display: block; /* Changed to block to prevent multi-column behavior */
-      text-align: center; /* Centers content horizontally */
-      width: 100%;
-    }
-
-    .parent-element, p {
-      column-count: initial;
-      column-width: initial;
-    p {
-      column-count: initial !important;
-      column-width: initial !important;
-      float: none !important;
-      display: block !important;
-      flex: initial !important;
-    }
-    
-    video {
-      width: 80%;
-      height: auto; /* This ensures the aspect ratio is maintained */
-      max-width: 1280px; /* Adjust as per your requirements */
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playful Generation</title>
+   <!-- CSS -->
+   <link rel="stylesheet" href="/ENG6806/project_root/static/css/style.css">
+   <!-- Favicon -->
+   <link rel="icon" href="/ENG6806/favicon.ico">
 </head>
 <body>
-  <!-- Placeholder for Banner -->
-  <div id="banner-container"></div>
 
-  <!-- Placeholder for Navbar -->
-  <div id="navbar-container"></div>
-  <!-- Link to the JavaScript File -->
-  <script src="/ENG6806/project_root/static/js/main.js"></script>
+  <!-- Banner -->
+  <div id="banner-container">
+   <img src="/ENG6806/project_root/static/images/banner.jpg" alt="Banner Image">
+</div>
 
-  <!-- Load CSS dynamically -->
-  <script>
-      function loadCSS(filePath) {
-          const link = document.createElement("link");
-          link.rel = "stylesheet";
-          link.href = filePath;
-          link.type = "text/css";
-          link.onload = () => console.log(`CSS Loaded: ${filePath}`);
-          link.onerror = () => console.error(`Failed to load CSS: ${filePath}`);
-          document.head.appendChild(link);
-      }
-      document.addEventListener("DOMContentLoaded", function() {
-          loadCSS("/ENG6806/project_root/static/css/style.css");
-      });
-  </script>
-  <!-- JavaScript Files -->
-  <script src="/ENG6806/project_root/static/js/main.js"></script>
-  <script src="/ENG6806/enhancedprojects/wavesgame/waves.js"></script>
-
-  <section>
+  <!-- Navbar -->
+  <div id="navbar-container">
+    <nav class="navbar">
+      <ul>
+  <li><a href="/ENG6806/index.html">Home</a></li> <!-- Absolute path to avoid path confusion -->
+        <li>
+          <a href="https://gr9430.github.io/ENG6806/originalprojects.html">Original Projects</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="https://gr9430.github.io/ENG6806/originalprojects.html">Procedural</a>
+              <ul class="dropdown-menu">
+                <li><a href="https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/index.html">New Novel Curiousity</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="https://gr9430.github.io/ENG6806/originalprojects.html">Visual</a>
+              <ul class="dropdown-menu">
+                <li><a href="https://gr9430.github.io/ENG6806/originalprojects/playfulgeneration.html">Playful Generation</a></li>
+                <li><a href="https://gr9430.github.io/ENG6806/originalprojects/meaningfulimages.html">Meaningful Images</a></li>
+                <li><a href="https://gr9430.github.io/ENG6806/originalprojects/expansiveimaginaries.html">Expansive Imaginaries</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="https://gr9430.github.io/ENG6806/originalprojects.html">Textual</a>
+              <ul class="dropdown-menu">
+                <li><a href="https://gr9430.github.io/ENG6806/enhancedprojects/thewavesforgettheshoreline.html">Interface Critique</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="https://gr9430.github.io/ENG6806/enhancedprojects.html">Enhanced Projects</a>
+          <ul class="dropdown-menu">
+            <li><a href="thewavesforgettheshoreline.html">The Waves Forget the Shoreline</a></li>
+            <li><a href="/ENG6806/enhancedprojects/wavesgame.html">The Waves Forget the Structure</a></li>
+          </ul>
+        </li>
+        <li><a href="/ENG6806/flask-app/index.html">Public Humanities Prototype</a></li>
+        <li><a href="mailto:glenn.ritchey@ucf.edu">Contact</a></li>
+      </ul>
+    </nav>  
+  </div>
     <div class="container">
       <h1><b>Expansive Imaginaries</b>: Rethinking Visual Media and Research Trajectories through Generative Video and My Failed Experimental Novel</h1>
     </div>
@@ -102,12 +95,17 @@ This project demonstrates my ability to merge creative and critical methodologie
 <p>
 Revisiting my failed novel and grappling with the limitations of generative tools underscores my commitment to embracing creative failure as a productive space for reflection and innovation. This aligns with my broader academic philosophy of iterative, experimental scholarship. The practical application of generative tools in my teaching—such as adapting assignments for students with learning differences—demonstrates my commitment to fostering equitable and inclusive educational environments.
 </p>
-     </div>
-       <!-- Load global JavaScript for site functionality -->
-  <script src="/ENG6806/project_root/static/js/main.js"></script>
-  <!-- Load the game-specific JavaScript -->
-  <script src="/ENG6806/enhancedprojects/wavesgame/waves.js"></script>
-  <!-- Placeholder for Footer -->
-  <div id="footer-container"></div>
+</div>
+
+<!-- Footer -->
+<div id="footer-container">
+<footer>
+  <p>&copy; 2024 ENG 6806 ePortfolio | Designed and Compiled by Glenn S. Ritchey III, thanks to the help of ChatGPT's intensive labor.</p>
+</footer>
+</div>
+
+<!-- JavaScript -->
+<script src="/ENG6806/project_root/static/js/carousel.js" defer></script> <!-- Ensure JavaScript loads after HTML -->
+
 </body>
 </html>
