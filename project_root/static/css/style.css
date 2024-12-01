@@ -41,7 +41,7 @@ body {
 /* Center the Navbar */
 #navbar-container {
     text-align: center;
-    background-color: #111111;
+    background-color: #000000;
     padding: 15px 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add shadow to the navbar for depth */
 }
