@@ -1,6 +1,3 @@
-// Declare `currentIndex` only once globally
-let currentIndex = 0; // Correct declaration
-
 // Function to load a component into a specific element
 function loadComponent(filePath, elementId, callback = null) {
     fetch(filePath)
