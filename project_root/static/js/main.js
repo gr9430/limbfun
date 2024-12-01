@@ -50,29 +50,30 @@ function initializeNavBar() {
 // Carousel Functionality
 let currentIndex = 0;
 
-function showImage(index) {
-  const images = document.querySelectorAll('.carousel-image');
-  images.forEach((img, i) => {
-    img.classList.toggle('active', i === index);
-  });
-}
+function initializeCarousel() {
+    function showImage(index) {
+        const images = document.querySelectorAll('.carousel-image');
+        images.forEach((img, i) => {
+            img.classList.toggle('active', i === index);
+        });
+    }
 
-function prevImage() {
-  const images = document.querySelectorAll('.carousel-image');
-  currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
-  showImage(currentIndex);
-}
+    function prevImage() {
+        const images = document.querySelectorAll('.carousel-image');
+        currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+        showImage(currentIndex);
+    }
 
-function nextImage() {
-  const images = document.querySelectorAll('.carousel-image');
-  currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
-  showImage(currentIndex);
-}
+    function nextImage() {
+        const images = document.querySelectorAll('.carousel-image');
+        currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+        showImage(currentIndex);
+    }
 
-document.addEventListener('DOMContentLoaded', () => {
-  showImage(currentIndex);
+    // Show the initial image
+    showImage(currentIndex);
 
-// Attach event listeners to the buttons if they exist
+    // Attach event listeners to the buttons if they exist
     const prevButton = document.querySelector('.carousel-btn.left');
     const nextButton = document.querySelector('.carousel-btn.right');
 
@@ -82,9 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (nextButton) {
         nextButton.addEventListener('click', nextImage);
-    }    
+    }
 
-  // Fullscreen functionality
+    // Fullscreen functionality
     const images = document.querySelectorAll('.carousel-image');
     const overlay = document.querySelector('.fullscreen-overlay');
     const overlayImg = overlay?.querySelector('img');
@@ -103,31 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.style.display = 'none';
         document.body.style.overflow = 'auto'; // Re-enable scrolling
     });
-}
-
-// Function to load a component into a specific element
-function loadComponent(filePath, elementId, callback = null) {
-    fetch(filePath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.text();
-        })
-        .then(data => {
-            const element = document.getElementById(elementId);
-            if (element) {
-                element.innerHTML = data;
-                if (callback) {
-                    callback(); // Call callback if provided, for additional initialization
-                }
-            } else {
-                console.error(`Element with ID '${elementId}' not found.`);
-            }
-        })
-        .catch(error => {
-            console.error(`Error loading ${filePath}:`, error);
-        });
 }
 
 // Paragraph Generator Initialization
