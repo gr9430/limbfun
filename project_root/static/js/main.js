@@ -19,7 +19,7 @@ if (typeof allRatedBooks === 'undefined') {
 
                 // Load favicon and CSS after the component is loaded
                 loadFavicon("project_root/static/assets/favicon.ico");
-                loadCSS("project_root/static/css/style.css");
+                loadCSS("/ENG6806/project_root/static/css/style.css");
             } else {
                 console.error(`Element with ID '${elementId}' not found.`);
             }
@@ -187,23 +187,16 @@ if (typeof allRatedBooks === 'undefined') {
         });
     }
 
- // Load components, initialize features, and load CSS once DOM is fully loaded.
-document.addEventListener("DOMContentLoaded", async () => {
-    // Load reusable components into the page.
-    await loadComponent("/ENG6806/banner.html", "banner-container");
-    await loadComponent("/ENG6806/navbar.html", "navbar-container");
-    await loadComponent("/ENG6806/footer.html", "footer-container");
+    // Load components, initialize features, and load CSS once DOM is fully loaded.
+    document.addEventListener("DOMContentLoaded", async () => {
+        // Load reusable components into the page.
+        await loadComponent("/ENG6806/banner.html", "banner-container");
+        await loadComponent("/ENG6806/navbar.html", "navbar-container");
+        await loadComponent("/ENG6806/footer.html", "footer-container");
 
-    // Load the CSS dynamically using the correct path.
-    loadCSS("/ENG6806/project_root/static/css/style.css");
-// Load the favicon dynamically using the correct path.
-    loadFavicon("/ENG6806/favicon.ico");
-
-    // Initialize features only after components are loaded.
-    initializeCarousel();
-    initializeNavbarDropdown();
-    fetchJsonData();
-});
+        // Load the CSS and favicon dynamically.
+        loadFavicon("project_root/static/assets/favicon.ico");
+        loadCSS("/ENG6806/project_root/static/css/style.css");
 
         // Initialize features only after components are loaded.
         initializeCarousel();
