@@ -3,9 +3,7 @@ let stanzasRead = 0;
 let interactions = 0;
 const totalInteractions = 5; // Number of interactive zones
 let revealedMessages = [];
-let resetButton;
 
-// Preload the image
 function preload() {
     img = loadImage(
         'https://gr9430.github.io/ENG6806/enhancedprojects/wavesgame/images/canvas.jpg',
@@ -16,7 +14,6 @@ function preload() {
     );
 }
 
-// Set up the game canvas and message area
 function setup() {
     console.log('Starting setup...');
     let canvasContainer = document.getElementById('canvas-container');
@@ -55,15 +52,8 @@ function setup() {
         openingLine.className = "message-opening-line"; // Added class for consistency with CSS styling
         messageContainer.appendChild(openingLine);
     }
-
-    // Create the reset button but keep it hidden initially
-    resetButton = createButton('Reset Game');
-    resetButton.position(width / 2 - 50, height / 2); // Center the button on the canvas
-    resetButton.mousePressed(resetGame);
-    resetButton.hide(); // Initially hide the reset button
 }
 
-// Draw the canvas and check for interactive zones
 function draw() {
     if (img) {
         background(255);
@@ -94,35 +84,24 @@ function draw() {
     } else {
         cursor('default');
     }
-
-    // Show the reset button when all stanzas are completed
-    if (stanzasRead >= totalInteractions) {
-        resetButton.show(); // Show the reset button
-    } else {
-        resetButton.hide(); // Hide the reset button until the game is complete
-    }
 }
 
-// Check if the mouse is within a defined zone
 function isWithinZone(x, y, x1, y1, x2, y2) {
     return x >= x1 && x <= x2 && y >= y1 && y <= y2;
 }
 
-// Highlight the interactive zone when mouse is hovering
 function highlightZone(x1, y1, x2, y2) {
     fill(200, 200, 200, 100); // Light grey color with 40% opacity
     noStroke();
     rect(x1, y1, x2 - x1, y2 - y1);
 }
 
-// Display the number of completed stanzas
 function displayStanzasCompleted() {
     fill(0);
     textSize(20); // Increased text size for better visibility
     text(`Stanzas Completed: ${stanzasRead} / ${totalInteractions}`, 10, 30);
 }
 
-// Display the revealed messages
 function displayRevealedMessages() {
     const messageContainer = document.getElementById("message-container");
     if (messageContainer) {
@@ -141,20 +120,73 @@ function displayRevealedMessages() {
     }
 }
 
-// Handle mouse click interactions
 function mousePressed() {
-    if (stanzasRead < totalInteractions) {
-        // Update revealed messages and stanzasRead when user interacts
-        revealedMessages.push(`Stanza ${stanzasRead + 1} revealed!`);
+    // Interactive zones with messages
+    if (isWithinZone(mouseX, mouseY, 115, 770, 218, 845)) { // Bird
+        addMessage("before the smoke painted the sky\nwith shadows, before stone towers rose\nto watch over the sand like sentinels.\nNo room remains for the sea’s slow song—\nedges cutting across the sky, blind\nto the waves.");
+    } else if (isWithinZone(mouseX, mouseY, 225, 750, 500, 910)) { // Shore (Updated coordinates)
+        addMessage("paths carve where sand once shifted\nbeneath unsteady feet. Iron holds firm,\nsharp lines drawn into the earth,\na geometry leading forward.\nThe weight of time falls in rhythm,\nnot like waves that forget what they touch.");
+    } else if (isWithinZone(mouseX, mouseY, 465, 470, 955, 735)) { // Waves
+        addMessage("the first sound of waves breaking on the shore,\nthe pull of the tide soft as breath,\nsmall hands once reached for shells as if to hold the sea.\nNow the wind moves like a thought, caught\nbetween the spaces where light once fell freely.\nThe air carries only shadows now—\na world remade in silence.");
+    } else if (isWithinZone(mouseX, mouseY, 125, 75, 420, 740)) { // Building
+        addMessage("towers rise to be followed, engines hum\nin hours marked by invisible hands.\nWheels spin in the air,\nthe hum surrounds,\ncarrying a rhythm only steel can hear.");
+    } else if (isWithinZone(mouseX, mouseY, 640, 5, 955, 325)) { // Plume
+        addMessage("clocks replace the pulse of the shore,\neyes shifting toward rising smoke,\ntoward fires held behind doors, where light bends\nagainst walls built of stone and air grows heavy.\nFeet forget the softness beneath them—\nnow the sky is laced with shadows,\nand the wind carries only whispers\nthrough spaces drawn by hands dreaming of steel.");
+    }
+
+    // Check if all interactions are complete
+    if (interactions >= totalInteractions) {
+        endGame();
+    }
+}
+
+function addMessage(message) {
+    if (!revealedMessages.includes(message)) {
+        revealedMessages.push(message);
+        interactions++;
         stanzasRead++;
     }
 }
 
-// Reset the game
-function resetGame() {
-    stanzasRead = 0; // Reset the number of stanzas
-    interactions = 0; // Reset interactions
-    revealedMessages = []; // Clear revealed messages
-    resetButton.hide(); // Hide the reset button again after resetting
-    // Optionally, you can reset the canvas here if needed
+function endGame() {
+    // Add a custom message to the DOM
+    const messageContainer = document.getElementById("message-container");
+    if (messageContainer) {
+        let endMessage = document.createElement("div");
+        endMessage.innerHTML = "<h2>Interaction complete. Enjoy your poem!</h2>";
+        endMessage.className = "end-message"; // Added class for consistency with CSS styling
+        messageContainer.appendChild(endMessage);
+
+        // Add a reset button
+        let resetButton = document.createElement("button");
+        resetButton.textContent = "Reset";
+        resetButton.className = "reset-button"; // Added class for consistency with CSS styling
+        resetButton.onclick = resetGame;
+        endMessage.appendChild(resetButton);
+    }
 }
+
+function resetGame() {
+    stanzasRead = 0;
+    interactions = 0;
+    revealedMessages = [];
+    const messageContainer = document.getElementById("message-container");
+    if (messageContainer) {
+        // Clear all messages except the title and opening line
+        messageContainer.innerHTML = messageContainer.querySelector("h1").outerHTML + messageContainer.querySelector("p").outerHTML;
+    }
+    loop(); // Restart the p5.js draw loop if it was stopped
+}
+
+// Assign p5.js functions to window object
+window.preload = preload;
+window.setup = setup;
+window.draw = draw;
+window.mousePressed = mousePressed;
+
+// Track if the user has navigated to prevent alert on page navigation
+window.addEventListener("beforeunload", () => {
+    window.hasNavigated = true;
+});
+
+console.log('Script loaded successfully');
