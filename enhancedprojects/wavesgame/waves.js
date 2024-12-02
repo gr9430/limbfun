@@ -25,6 +25,7 @@ function setup() {
         // Set container dimensions to match the canvas dimensions
         canvasContainer.style.width = img.width + 'px';
         canvasContainer.style.height = img.height + 'px';
+        canvasContainer.style.backgroundColor = '#ffffff'; // Set background color to white
 
         canvas.style('max-width', '100%');
         canvas.style('height', 'auto');
