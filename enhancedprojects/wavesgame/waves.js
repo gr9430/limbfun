@@ -13,10 +13,16 @@ function preload() {
 
 function setup() {
     console.log('Starting setup...');
-    let canvas = createCanvas(1000, 1000); // Canvas is now 1000x1000 to match image
-    canvas.parent('canvas-container'); // Ensure container exists in HTML
-    canvas.style('max-width', '100%');
-    canvas.style('height', 'auto');
+    let canvasContainer = document.getElementById('canvas-container');
+    if (canvasContainer) {
+        let canvas = createCanvas(1000, 1000);
+        canvas.parent(canvasContainer);
+        canvas.style('max-width', '100%');
+        canvas.style('height', 'auto');
+    } else {
+        console.error("Canvas container not found");
+    }
+    
     textAlign(LEFT, BOTTOM);
     textSize(16);
     console.log('Setup completed');
@@ -39,29 +45,29 @@ function setup() {
 
 function draw() {
     if (img) {
-        background(255); // Clear the background to white before drawing the image
+        background(255);
         image(img, 0, 0, width, height);
     } else {
-        background(255); // Fallback if image fails to load
+        background(255);
     }
 
     displayStanzasCompleted();
     displayRevealedMessages();
 
-    // Define interactive zones based on provided points
-    if (isWithinZone(mouseX, mouseY, 115, 770, 218, 845)) { // Bird
+    // Define interactive zones
+    if (isWithinZone(mouseX, mouseY, 115, 770, 218, 845)) {
         cursor('pointer');
         highlightZone(115, 770, 218, 845);
-    } else if (isWithinZone(mouseX, mouseY, 225, 750, 500, 910)) { // Shore (Updated coordinates)
+    } else if (isWithinZone(mouseX, mouseY, 225, 750, 500, 910)) {
         cursor('pointer');
         highlightZone(225, 750, 500, 910);
-    } else if (isWithinZone(mouseX, mouseY, 465, 470, 955, 735)) { // Waves
+    } else if (isWithinZone(mouseX, mouseY, 465, 470, 955, 735)) {
         cursor('pointer');
         highlightZone(465, 470, 955, 735);
-    } else if (isWithinZone(mouseX, mouseY, 125, 75, 420, 740)) { // Building
+    } else if (isWithinZone(mouseX, mouseY, 125, 75, 420, 740)) {
         cursor('pointer');
         highlightZone(125, 75, 420, 740);
-    } else if (isWithinZone(mouseX, mouseY, 640, 5, 955, 325)) { // Plume
+    } else if (isWithinZone(mouseX, mouseY, 640, 5, 955, 325)) {
         cursor('pointer');
         highlightZone(640, 5, 955, 325);
     } else {
@@ -74,7 +80,6 @@ function isWithinZone(x, y, x1, y1, x2, y2) {
 }
 
 function highlightZone(x1, y1, x2, y2) {
-    // Draws a semi-transparent rectangle to highlight an interactive zone
     fill(200, 200, 200, 100); // Light grey color with 40% opacity
     noStroke();
     rect(x1, y1, x2 - x1, y2 - y1);
@@ -90,7 +95,11 @@ function displayRevealedMessages() {
     const messageContainer = document.getElementById("message-container");
     if (messageContainer) {
         // Clear previous messages, but keep the title and opening line
-        messageContainer.innerHTML = messageContainer.querySelector("h1").outerHTML + messageContainer.querySelector("p").outerHTML;
+        const titleHTML = messageContainer.querySelector("h1") ? messageContainer.querySelector("h1").outerHTML : "";
+        const openingLineHTML = messageContainer.querySelector("p") ? messageContainer.querySelector("p").outerHTML : "";
+        
+        messageContainer.innerHTML = titleHTML + openingLineHTML;
+
         for (let i = 0; i < revealedMessages.length; i++) {
             let paragraph = document.createElement("p");
             paragraph.textContent = revealedMessages[i];
@@ -103,40 +112,28 @@ function displayRevealedMessages() {
 function mousePressed() {
     // Interactive zones with messages
     if (isWithinZone(mouseX, mouseY, 115, 770, 218, 845)) { // Bird
-        if (!revealedMessages.includes("before the smoke painted the sky\nwith shadows, before stone towers rose\nto watch over the sand like sentinels.\nNo room remains for the sea’s slow song—\nedges cutting across the sky, blind\nto the waves.")) {
-            revealedMessages.push("before the smoke painted the sky\nwith shadows, before stone towers rose\nto watch over the sand like sentinels.\nNo room remains for the sea’s slow song—\nedges cutting across the sky, blind\nto the waves.");
-            interactions++;
-            stanzasRead++;
-        }
+        addMessage("before the smoke painted the sky\nwith shadows, before stone towers rose\nto watch over the sand like sentinels.\nNo room remains for the sea’s slow song—\nedges cutting across the sky, blind\nto the waves.");
     } else if (isWithinZone(mouseX, mouseY, 225, 750, 500, 910)) { // Shore (Updated coordinates)
-        if (!revealedMessages.includes("paths carve where sand once shifted\nbeneath unsteady feet. Iron holds firm,\nsharp lines drawn into the earth,\na geometry leading forward.\nThe weight of time falls in rhythm,\nnot like waves that forget what they touch.")) {
-            revealedMessages.push("paths carve where sand once shifted\nbeneath unsteady feet. Iron holds firm,\nsharp lines drawn into the earth,\na geometry leading forward.\nThe weight of time falls in rhythm,\nnot like waves that forget what they touch.");
-            interactions++;
-            stanzasRead++;
-        }
+        addMessage("paths carve where sand once shifted\nbeneath unsteady feet. Iron holds firm,\nsharp lines drawn into the earth,\na geometry leading forward.\nThe weight of time falls in rhythm,\nnot like waves that forget what they touch.");
     } else if (isWithinZone(mouseX, mouseY, 465, 470, 955, 735)) { // Waves
-        if (!revealedMessages.includes("the first sound of waves breaking on the shore,\nthe pull of the tide soft as breath,\nsmall hands once reached for shells as if to hold the sea.\nNow the wind moves like a thought, caught\nbetween the spaces where light once fell freely.\nThe air carries only shadows now—\na world remade in silence.")) {
-            revealedMessages.push("the first sound of waves breaking on the shore,\nthe pull of the tide soft as breath,\nsmall hands once reached for shells as if to hold the sea.\nNow the wind moves like a thought, caught\nbetween the spaces where light once fell freely.\nThe air carries only shadows now—\na world remade in silence.");
-            interactions++;
-            stanzasRead++;
-        }
+        addMessage("the first sound of waves breaking on the shore,\nthe pull of the tide soft as breath,\nsmall hands once reached for shells as if to hold the sea.\nNow the wind moves like a thought, caught\nbetween the spaces where light once fell freely.\nThe air carries only shadows now—\na world remade in silence.");
     } else if (isWithinZone(mouseX, mouseY, 125, 75, 420, 740)) { // Building
-        if (!revealedMessages.includes("towers rise to be followed, engines hum\nin hours marked by invisible hands.\nWheels spin in the air,\nthe hum surrounds,\ncarrying a rhythm only steel can hear.")) {
-            revealedMessages.push("towers rise to be followed, engines hum\nin hours marked by invisible hands.\nWheels spin in the air,\nthe hum surrounds,\ncarrying a rhythm only steel can hear.");
-            interactions++;
-            stanzasRead++;
-        }
+        addMessage("towers rise to be followed, engines hum\nin hours marked by invisible hands.\nWheels spin in the air,\nthe hum surrounds,\ncarrying a rhythm only steel can hear.");
     } else if (isWithinZone(mouseX, mouseY, 640, 5, 955, 325)) { // Plume
-        if (!revealedMessages.includes("clocks replace the pulse of the shore,\neyes shifting toward rising smoke,\ntoward fires held behind doors, where light bends\nagainst walls built of stone and air grows heavy.\nFeet forget the softness beneath them—\nnow the sky is laced with shadows,\nand the wind carries only whispers\nthrough spaces drawn by hands dreaming of steel.")) {
-            revealedMessages.push("clocks replace the pulse of the shore,\neyes shifting toward rising smoke,\ntoward fires held behind doors, where light bends\nagainst walls built of stone and air grows heavy.\nFeet forget the softness beneath them—\nnow the sky is laced with shadows,\nand the wind carries only whispers\nthrough spaces drawn by hands dreaming of steel.");
-            interactions++;
-            stanzasRead++;
-        }
+        addMessage("clocks replace the pulse of the shore,\neyes shifting toward rising smoke,\ntoward fires held behind doors, where light bends\nagainst walls built of stone and air grows heavy.\nFeet forget the softness beneath them—\nnow the sky is laced with shadows,\nand the wind carries only whispers\nthrough spaces drawn by hands dreaming of steel.");
     }
 
     // Check if all interactions are complete
     if (interactions >= totalInteractions) {
         endGame();
+    }
+}
+
+function addMessage(message) {
+    if (!revealedMessages.includes(message)) {
+        revealedMessages.push(message);
+        interactions++;
+        stanzasRead++;
     }
 }
 
