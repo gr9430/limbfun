@@ -24,7 +24,7 @@ function setup() {
 
         // Set container dimensions to match the canvas dimensions
         canvasContainer.style.width = img.width + 'px';
-        canvasContainer.style.height = img.height + 'px';
+        canvasContainer.style.height = (img.height * 0.75) + 'px';
         canvasContainer.style.backgroundColor = '#ffffff'; // Set background color to white
 
         canvas.style('max-width', '100%');
@@ -40,6 +40,7 @@ function setup() {
     // Move title and opening line to container
     const messageContainer = document.getElementById("message-container");
     if (messageContainer) {
+        messageContainer.style.height = (img.height * 0.75) + 'px';
         messageContainer.style.backgroundColor = "#000000"; // Set background color to black
         let title = document.createElement("h1");
         title.textContent = "The Waves Forget the Structure";
