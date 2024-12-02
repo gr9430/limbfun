@@ -23,16 +23,16 @@
     }
 
     .poem-container {
-    max-width: 600px;
-    width: 100%; /* Make it responsive while keeping max-width */
-    height: 1600px; /* Set a fixed height */
-    padding: 20px;
-    background-color: #000000;
-    border-radius: 5px;
-    border: 1px solid #000000; /* Slightly lighter border to add subtle contrast */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0); /* Adjust shadow to have a lighter feel */
-    margin-top: 20px;
-    overflow: auto; /* Allow scrolling if the content exceeds container height */ 
+      max-width: 800px;
+      width: 100%; /* Make it responsive while keeping max-width */
+      height: 400px; /* Set a fixed height */
+      padding: 20px;
+      background-color: #000000; /* Black background */
+      border-radius: 5px;
+      border: 1px solid #222222; /* Slightly lighter border to add subtle contrast */
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* Adjust shadow to have a lighter feel */
+      margin-top: 20px;
+      overflow: auto; /* Allow scrolling if the content exceeds container height */
     }
 
     .poem-title {
@@ -67,67 +67,28 @@
       }
     }
 
-    /* Navbar styles */
-    .navbar {
-      background-color: #111111; /* Dark gray for contrast against black */
-      padding: 10px;
-      width: 100%;
-    }
-
-    .menu {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .menu > li {
-      margin: 0 15px;
-      position: relative;
-    }
-
-    .menu a {
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    .menu a:hover {
-      color: #00bcd4; /* Accent color for hover effect */
-    }
-
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: #222222; /* Slightly lighter for dropdowns */
-      padding: 10px;
+    /* Additional Content Container Styling */
+    .additional-container {
+      max-width: 800px;
+      padding: 30px;
+      margin-top: 30px;
+      background-color: #1a1a1a; /* A slightly lighter gray to contrast with the poem container */
+      border: 1px solid #222222; /* Slightly lighter border to add subtle contrast */
       border-radius: 5px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* Adjust shadow to have a lighter feel */
     }
 
-    .menu li:hover .dropdown-menu {
-      display: block;
+    .additional-container h1 {
+      font-size: 1.6em;
+      color: #00bcd4; /* Accent color for the heading */
+      margin-bottom: 20px;
     }
 
-    .dropdown-menu li {
-      margin-bottom: 5px;
-    }
-
-    .dropdown-menu li:last-child {
-      margin-bottom: 0;
-    }
-
-    .dropdown-menu a {
-      color: #ffffff;
-      text-decoration: none;
-    }
-
-    .dropdown-menu a:hover {
-      color: #00bcd4; /* Accent color for hover effect */
+    .additional-container p {
+      font-size: 1em;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      color: #e0e0e0; /* Light gray for readability */
     }
 
     /* Footer styles */
@@ -184,6 +145,32 @@
   <div class="poem-container">
     <h1 id="poem-title" class="poem-title"><span id="typing-title"></span><span class="typing-cursor" id="title-cursor"></span></h1>
     <div id="poem-text" class="poem-body"><span id="typing-body"></span><span class="typing-cursor" id="body-cursor" style="display: none;"></span></div>
+  </div>
+
+  <!-- Additional Content Container -->
+  <div class="additional-container">
+    <h1><b>Interface Critique</b>: “The Waves Forget the Shoreline”</h1>
+    <p>
+      This project embodies my engagement with generative AI as an artistic genre, using it not just as a tool but as a medium to critically explore intersections between text, labor, and postcolonial stylization. Inspired by Week 2's exploration of text generation histories and figures like Kamau Brathwaite, I aimed to synthesize poetic aesthetics with digital elements reflective of my broader research interests in decolonial frameworks and experimental literature.
+    </p>
+    <p>
+      My ASCII poem, “The Waves Forget the Shoreline,” draws from my commitment to understanding how digital technologies influence and reflect cultural production, particularly in marginalized spaces. Brathwaite's emphasis on style as a form of anticolonial action resonated with my own practice of merging textual and visual forms to challenge traditional publishing aesthetics. Incorporating ASCII elements allowed me to further complicate the boundaries between text and design, pushing the poem toward a multimodal form that reflects both historical and contemporary approaches to electronic literature.
+    </p>
+    <p>
+      The Week 2 readings and discussions provided a broader lens on how generative systems, like ChatGPT, affirmed my view of AI not as a "lazy" shortcut but as a continuation of experimental traditions that emphasize the importance of human intervention in shaping meaningful outputs. I worked through ten iterations of the poem, refining both its thematic and stylistic alignment to Brathwaite's decolonial ethos and visual innovation.
+    </p>
+    <p>
+      This project also marked the beginning of my transition from a narrow focus on medieval Irish studies to a broader interdisciplinary approach that seems more aligned to my art work and cultural interests before I began pursuing academia. My work now is increasingly engaging with digital humanities, media studies, and pedagogy, encouraging me to be more social with academics and creators operating outside academia to emphasize critical making and accessible practices. For instance, I used AI tools to address a student’s needs, demonstrating how digital tools can be harnessed to create more inclusive learning environments. I also have been working on experimental literary projects using the ideas I picked up through my practices within this project.
+    </p>
+    <p>
+      Dr. Salter’s feedback highlighted the significance of this project to me within the broader context of alternative electronic literature. This acknowledgment reinforced my belief that experimental work from the "margins" can shape and influence mainstream discourse. The ASCII elements I incorporated were praised as an innovative extension of this experimentation, suggesting that my practice aligns with ongoing conversations in the digital humanities.
+    </p>
+    <p>
+      I was so moved by this comment, that I ended up forwarding the Bitstreams chapter to an ENC 1101 student of mine, encouraging him to develop his creative writing to align more with hypertext literature. “The Waves forget the Shoreline” reflects my teaching philosophy of integrating creative practice with critical theory. This project could serve as a model for students to engage with technology critically, using it to interrogate and expand traditional literary forms.
+    </p>
+    <p>
+      Moreover, I started looking at this class as a way to interrogate my past artistic practices, introducing me to critical making. So, this project exemplifies my interest in using digital tools to produce works that critique colonial legacies and highlight alternative literacies. This experience ties directly to my considerations for a PhD focus: how digital technologies intersect with cultural studies and decolonial narratives. By including themes of labor and embedding visual ASCII elements, I connect digital aesthetics with broader questions of material production, tying my creative work to larger research questions about labor, technology, and power—an area I plan to explore further in my PhD studies.
+    </p>
   </div>
 
   <!-- Footer -->
@@ -253,61 +240,47 @@ a world remade in silence.
       \\_   \\
       \`----'`;
 
-// Typing logic
-let titleIndex = 0;
-let bodyIndex = 0;
+    // Typing logic
+    let titleIndex = 0;
+    let bodyIndex = 0;
 
-function typeTitle() {
-  const titleElement = document.getElementById("typing-title");
-
-  if (titleIndex < poemTitle.length) {
-    const char = poemTitle.charAt(titleIndex);
-    titleElement.innerHTML += char;
-
-    titleIndex++;
-
-    // Adding variability to typing speed to simulate carefulness and hesitancy
-    let delay = Math.random() * (200 - 100) + 100; // Random delay between 100ms and 200ms
-
-    if (char === "." || char === "," || char === " " || char === "-") {
-      delay += Math.random() * 500 + 200; // Longer pause for punctuation, spaces, or hyphens
+    function typeTitle() {
+      const titleElement = document.getElementById("typing-title");
+      if (titleIndex < poemTitle.length) {
+        titleElement.innerHTML += poemTitle.charAt(titleIndex);
+        titleIndex++;
+        let delay = Math.random() * (200 - 100) + 100; // Random delay between 100ms and 200ms
+        if (poemTitle.charAt(titleIndex) === '.' || poemTitle.charAt(titleIndex) === ',') {
+          delay += Math.random() * 400; // Longer pauses at punctuation
+        }
+        setTimeout(typeTitle, delay);
+      } else {
+        document.getElementById("title-cursor").style.display = "none";
+        document.getElementById("body-cursor").style.display = "inline";
+        setTimeout(typeBody, 800);
+      }
     }
 
-    setTimeout(typeTitle, delay);
-  } else {
-    document.getElementById("title-cursor").style.display = "none";
-    document.getElementById("body-cursor").style.display = "inline";
-    setTimeout(typeBody, 800); // Slightly longer delay before starting body typing
-  }
-}
-
-function typeBody() {
-  const bodyElement = document.getElementById("typing-body");
-
-  if (bodyIndex < poemBody.length) {
-    const char = poemBody.charAt(bodyIndex);
-    bodyElement.innerHTML += char === "\n" ? "<br>" : char;
-
-    bodyIndex++;
-
-    // Adding variability to typing speed for a human-like effect
-    let delay = Math.random() * (250 - 120) + 120; // Random delay between 120ms and 250ms
-
-    if (char === "." || char === "," || char === " " || char === "-") {
-      delay += Math.random() * 600 + 300; // Longer pause for punctuation, spaces, or hyphens
+    function typeBody() {
+      const bodyElement = document.getElementById("typing-body");
+      if (bodyIndex < poemBody.length) {
+        const char = poemBody.charAt(bodyIndex);
+        bodyElement.innerHTML += char === "\n" ? "<br>" : char;
+        bodyIndex++;
+        let delay = Math.random() * (250 - 120) + 120; // Random delay between 120ms and 250ms
+        if (char === '.' || char === ',' || char === ' ' || char === '-') {
+          delay += Math.random() * 600 + 300; // Longer pause for punctuation, spaces, or hyphens
+        }
+        setTimeout(typeBody, delay);
+      } else {
+        document.getElementById("body-cursor").style.display = "none";
+      }
     }
 
-    setTimeout(typeBody, delay);
-  } else {
-    document.getElementById("body-cursor").style.display = "none";
-  }
-}
-
-// Start typing animation
-document.addEventListener("DOMContentLoaded", () => {
-  typeTitle();
-});
-
+    // Start typing animation
+    document.addEventListener("DOMContentLoaded", () => {
+      typeTitle();
+    });
   </script>
   <!-- Link to the JavaScript File -->
   <script src="/ENG6806/project_root/static/js/main.js"></script>
