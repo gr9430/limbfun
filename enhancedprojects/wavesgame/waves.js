@@ -10,7 +10,7 @@ function preload() {
         () => console.error('Failed to load image')
     );
 }
-
+  
 function setup() {
     console.log('Starting setup...');
     let canvasContainer = document.getElementById('canvas-container');
