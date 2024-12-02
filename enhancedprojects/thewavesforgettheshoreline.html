@@ -23,13 +23,16 @@
     }
 
     .poem-container {
-      max-width: 800px;
-      padding: 20px;
-      background-color: #000000;
-      border-radius: 5px;
-      border: 1px solid #222222; /* Slightly lighter border to add subtle contrast */
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* Adjust shadow to have a lighter feel */
-      margin-top: 20px;
+    max-width: 800px;
+    width: 100%; /* Make it responsive while keeping max-width */
+    height: 400px; /* Set a fixed height */
+    padding: 20px;
+    background-color: #000000;
+    border-radius: 5px;
+    border: 1px solid #222222; /* Slightly lighter border to add subtle contrast */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* Adjust shadow to have a lighter feel */
+    margin-top: 20px;
+    overflow: auto; /* Allow scrolling if the content exceeds container height */ 
     }
 
     .poem-title {
