@@ -192,24 +192,6 @@
 
   <!-- JavaScript -->
   <script>
-    // Function to load a component into a specific element
-    function loadComponent(filePath, elementId) {
-      fetch(filePath)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status} | Path: ${filePath}`);
-          }
-          return response.text();
-        })
-        .then(data => {
-          document.getElementById(elementId).innerHTML = data;
-        })
-        .catch(error => {
-          console.error(`Error loading ${filePath}:`, error);
-          document.getElementById(elementId).innerHTML = `<p>Failed to load ${filePath}. Please try again later.</p>`;
-        });
-    }
-
     // Poem text and title
     const poemTitle = "The Waves Forget the Shoreline";
     const poemBody = `here, before the smoke painted the sky
@@ -297,11 +279,8 @@ a world remade in silence.
       }
     }
 
-    // Start typing animation and load components
+    // Start typing animation
     document.addEventListener("DOMContentLoaded", () => {
-      // Load components with correct absolute paths
-      loadComponent("/ENG6806/banner.html", "banner-container");
-      loadComponent("/ENG6806/navbar.html", "navbar-container");
       typeTitle();
     });
   </script>
