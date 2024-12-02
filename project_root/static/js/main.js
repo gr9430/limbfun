@@ -1,7 +1,9 @@
 // Function to initialize navbar dropdown functionality
 function initializeNavBar() {
     const navBarElement = document.getElementById("navbar-container");
+    
     if (navBarElement) {
+        // For hover functionality (for desktop)
         navBarElement.addEventListener('mouseover', (e) => {
             if (e.target.matches('.navbar li')) {
                 const dropdown = e.target.querySelector('.dropdown-menu');
@@ -17,6 +19,33 @@ function initializeNavBar() {
                 if (dropdown) {
                     dropdown.style.display = 'none';
                 }
+            }
+        });
+
+        // For click functionality (especially useful for mobile devices)
+        const dropdownLinks = document.querySelectorAll('.dropdown > a');
+        
+        dropdownLinks.forEach(dropdownLink => {
+            dropdownLink.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent default link behavior
+                const dropdownMenu = dropdownLink.nextElementSibling;
+
+                // Toggle visibility of the dropdown menu
+                if (dropdownMenu.style.display === 'block') {
+                    dropdownMenu.style.display = 'none';
+                } else {
+                    dropdownMenu.style.display = 'block';
+                }
+            });
+        });
+
+        // Close dropdowns when clicking outside of the menu
+        document.addEventListener('click', (event) => {
+            const isClickInside = event.target.closest('.dropdown');
+            if (!isClickInside) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.style.display = 'none';
+                });
             }
         });
     }
