@@ -5,18 +5,27 @@ const totalInteractions = 5; // Number of interactive zones
 let revealedMessages = [];
 
 function preload() {
-    img = loadImage('https://gr9430.github.io/ENG6806/enhancedprojects/wavesgame/images/canvas.jpg',
-        () => console.log('Image loaded successfully'),
+    img = loadImage(
+        'https://gr9430.github.io/ENG6806/enhancedprojects/wavesgame/images/canvas.jpg',
+        () => {
+            console.log('Image loaded successfully');
+        },
         () => console.error('Failed to load image')
     );
 }
-  
+
 function setup() {
     console.log('Starting setup...');
     let canvasContainer = document.getElementById('canvas-container');
     if (canvasContainer) {
-        let canvas = createCanvas(1000, 1000);
+        // Create the canvas with the dimensions of the image
+        let canvas = createCanvas(img.width, img.height);
         canvas.parent(canvasContainer);
+
+        // Set container dimensions to match the canvas dimensions
+        canvasContainer.style.width = img.width + 'px';
+        canvasContainer.style.height = img.height + 'px';
+
         canvas.style('max-width', '100%');
         canvas.style('height', 'auto');
     } else {

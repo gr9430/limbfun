@@ -178,6 +178,7 @@ img {
     height: auto; /* Adjust the height automatically based on the image */
     border: 2px solid #ffffff;
     box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+    overflow: hidden; /* Prevent image from overflowing */
 }
 
 
