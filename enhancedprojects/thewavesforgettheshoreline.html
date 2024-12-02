@@ -25,12 +25,12 @@
     .poem-container {
     max-width: 600px;
     width: 100%; /* Make it responsive while keeping max-width */
-    height: 1300px; /* Set a fixed height */
+    height: 1600px; /* Set a fixed height */
     padding: 20px;
     background-color: #000000;
     border-radius: 5px;
-    border: 1px solid #222222; /* Slightly lighter border to add subtle contrast */
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* Adjust shadow to have a lighter feel */
+    border: 1px solid #000000; /* Slightly lighter border to add subtle contrast */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0); /* Adjust shadow to have a lighter feel */
     margin-top: 20px;
     overflow: auto; /* Allow scrolling if the content exceeds container height */ 
     }
@@ -253,39 +253,61 @@ a world remade in silence.
       \\_   \\
       \`----'`;
 
-    // Typing logic
-    let titleIndex = 0;
-    let bodyIndex = 0;
+// Typing logic
+let titleIndex = 0;
+let bodyIndex = 0;
 
-    function typeTitle() {
-      const titleElement = document.getElementById("typing-title");
-      if (titleIndex < poemTitle.length) {
-        titleElement.innerHTML += poemTitle.charAt(titleIndex);
-        titleIndex++;
-        setTimeout(typeTitle, 100);
-      } else {
-        document.getElementById("title-cursor").style.display = "none";
-        document.getElementById("body-cursor").style.display = "inline";
-        setTimeout(typeBody, 500);
-      }
+function typeTitle() {
+  const titleElement = document.getElementById("typing-title");
+
+  if (titleIndex < poemTitle.length) {
+    const char = poemTitle.charAt(titleIndex);
+    titleElement.innerHTML += char;
+
+    titleIndex++;
+
+    // Adding variability to typing speed to simulate carefulness and hesitancy
+    let delay = Math.random() * (200 - 100) + 100; // Random delay between 100ms and 200ms
+
+    if (char === "." || char === "," || char === " " || char === "-") {
+      delay += Math.random() * 500 + 200; // Longer pause for punctuation, spaces, or hyphens
     }
 
-    function typeBody() {
-      const bodyElement = document.getElementById("typing-body");
-      if (bodyIndex < poemBody.length) {
-        const char = poemBody.charAt(bodyIndex);
-        bodyElement.innerHTML += char === "\n" ? "<br>" : char;
-        bodyIndex++;
-        setTimeout(typeBody, char === "," || char === "." ? 300 : 100);
-      } else {
-        document.getElementById("body-cursor").style.display = "none";
-      }
+    setTimeout(typeTitle, delay);
+  } else {
+    document.getElementById("title-cursor").style.display = "none";
+    document.getElementById("body-cursor").style.display = "inline";
+    setTimeout(typeBody, 800); // Slightly longer delay before starting body typing
+  }
+}
+
+function typeBody() {
+  const bodyElement = document.getElementById("typing-body");
+
+  if (bodyIndex < poemBody.length) {
+    const char = poemBody.charAt(bodyIndex);
+    bodyElement.innerHTML += char === "\n" ? "<br>" : char;
+
+    bodyIndex++;
+
+    // Adding variability to typing speed for a human-like effect
+    let delay = Math.random() * (250 - 120) + 120; // Random delay between 120ms and 250ms
+
+    if (char === "." || char === "," || char === " " || char === "-") {
+      delay += Math.random() * 600 + 300; // Longer pause for punctuation, spaces, or hyphens
     }
 
-    // Start typing animation
-    document.addEventListener("DOMContentLoaded", () => {
-      typeTitle();
-    });
+    setTimeout(typeBody, delay);
+  } else {
+    document.getElementById("body-cursor").style.display = "none";
+  }
+}
+
+// Start typing animation
+document.addEventListener("DOMContentLoaded", () => {
+  typeTitle();
+});
+
   </script>
   <!-- Link to the JavaScript File -->
   <script src="/ENG6806/project_root/static/js/main.js"></script>
