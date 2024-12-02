@@ -174,14 +174,12 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1; /* Ensure it takes equal width in two-column layout */
-    margin: 20px auto; /* Centers the container */
-    padding: 10px; /* Optional, to add space inside */
-    height: auto; /* Makes height flexible */
-    background-color: #111111; /* Updated background to match site */
-    border: 2px solid #ffffff; /* Border for better visibility */
+    width: auto;  /* Adjust the width automatically based on the image */
+    height: auto; /* Adjust the height automatically based on the image */
+    border: 2px solid #ffffff;
     box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
 }
+
 
 #message-container {
     flex: 1; /* Ensure it takes equal width in two-column layout */
