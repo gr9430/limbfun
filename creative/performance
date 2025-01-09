@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIMBFUN - Performance</title>
+   <!-- CSS -->
+   <link rel="stylesheet" href="/ENG6806/project_root/static/css/style.css">
+   <!-- Favicon -->
+   <link rel="icon" href="/ENG6806/favicon.ico">
+</head>
+<body>
+  <!-- Banner -->
+  <div id="banner-container"></div>
+  <img src="/ENG6806/project_root/static/images/banner.jpg" alt="Banner Image">
+ <!-- Navbar -->
+<div id="navbar-container">
+  <nav class="navbar">
+    <ul class="menu">
+      <li><a href="/ENG6806/index.html">Home</a></li>
+      <li>
+        <a href="#">Original Projects</a>
+        <ul class="dropdown-menu">
+          <li><a href="https://gr9430.github.io/ENG6806/originalprojects/playfulgeneration.html">Playful Generation</a></li>
+          <li><a href="https://gr9430.github.io/ENG6806/originalprojects/meaningfulimages.html">Meaningful Images</a></li>
+          <li><a href="https://gr9430.github.io/ENG6806/originalprojects/expansiveimaginaries.html">Expansive Imaginaries</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Enhanced Projects</a>
+        <ul class="dropdown-menu">
+          <li><a href="https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/index.html">New Novel Curiosity</a></li>
+          <li><a href="https://gr9430.github.io/ENG6806/enhancedprojects/thewavesforgettheshoreline.html">The Waves Forget the Shoreline</a></li>
+          <li><a href="https://gr9430.github.io/ENG6806/enhancedprojects/wavesgame.html">The Waves Forget the Structure</a></li>
+        </ul>
+      </li>
+      <li><a href="/ENG6806/flask-app/index.html">Public Humanities Prototype</a></li>
+      <li><a href="mailto:glenn.ritchey@ucf.edu">Contact</a></li>
+    </ul>
+  </nav>
+</div>
+  <div class="container">
+    <p><h1>Performance-Based Projects</h1>
+     <p> Baking: A Performance-Based Community Project – Self-initiated, 2023 – Present.<p>
+      <br>
+      <p>
+Inspired by the work of artist Bill Drummond, this project explored critical making, community orature, and ephemeral cultural practices through baking scones and making jam upon request. Over the course of 2023, individuals could request scones and jam with a month’s notice, at no cost. Centered around sharing food, the gatherings emphasized oral storytelling and embodied cultural transmission, recalling traditions of orature where cultural memory and social bonds are formed through direct, personal interaction.
+      </p>
+      <p>
+By positioning baking as performance and food preparation as composition, the project bridged theories of composition studies, Old Irish oral traditions, and decolonial practice, critiquing digital dependency and commodification. Like Drummond’s work, it prioritized process over product, fostering communal presence and relationality over mediated interaction.
+      </p>
+      <p>
+Managed all aspects of production, from sourcing ingredients to coordinating requests and facilitating gatherings, with scones and jam distributed exclusively during in-person events.
+      </p>
+    </ul>
+    <h2>Video Projects</h2>
+    <p> <i>Marie, Mon Amour</i> – Self-released, limited VHS run, 2018.
+    </p>
+    <p>
+An experimental short film combining iPhone footage with distorted B-film clips, inspired by 1980s direct-to-video thrillers and avant-garde filmmakers such as Dietmar Brehm, Cecilia Condit, Marguerite Duras, and Alain Robbe-Grillet. The film follows a memory in an off-season beach town searching for a lost lover, with intercut cemetery footage implying a mysterious murder.
+    </p>
+<h3>Screenings</h3>
+<ul>Manes Emporium of Doubt, October 28, 2018, Invited. </ul>
+<ul>Cinematique Theater, 2019 — during the COVID-19 lockdown as a conceptual installation for an empty audience.</ul>
+</p>
+</div>
+ <div id="footer-container">
+    <footer>
+      <p><center><small>&copy; 2025 | Designed and Compiled by Glenn S. Ritchey III with help from ChatGPT.</center></small></p>
+    </footer>
+ </div>
+</body>
+</html>
