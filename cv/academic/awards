@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glenn S. Ritchey III - Awards</title>
+   <!-- CSS -->
+   <link rel="stylesheet" href="/limbfun/project_root/static/css/style.css">
+   <!-- Favicon -->
+   <link rel="icon" href="/ENG6806/favicon.ico">
+</head>
+<body>
+  <!-- Banner -->
+  <div id="banner-container"></div>
+  <img src="/limbfun/project_root/static/images/banner.jpg" alt="Banner Image">
+ <!-- Navbar -->
+<div id="navbar-container">
+  <nav class="navbar">
+    <ul class="menu">
+      <li><a href="/limnbfun/index.html">Home</a></li>
+   <ul class="menu">
+    <li>
+        <a href="#">CV</a>
+        <ul class="dropdown-menu">
+            <li><a href="https://gr9430.github.io/limbfun/cv/academic.html">Academic</a></li>
+            <li>
+                <a href="#">Creative</a>
+                <ul class="dropdown-menu">
+                    <li><a href="https://gr9430.github.io/limbfun/cv/creative/coverage.html">Media Coverage</a></li>
+                    <li><a href="https://gr9430.github.io/limbfun/cv/creative/performance.html">Performances</a></li>
+                    <li><a href="https://gr9430.github.io/limbfun/cv/creative/publications.html">Publications</a></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+      <li>
+        <a href="#">Original Projects</a>
+        <ul class="dropdown-menu">
+          <li><a href="https://gr9430.github.io/ENG6806/originalprojects/playfulgeneration.html">Playful Generation</a></li>
+          <li><a href="https://gr9430.github.io/ENG6806/originalprojects/meaningfulimages.html">Meaningful Images</a></li>
+          <li><a href="https://gr9430.github.io/ENG6806/originalprojects/expansiveimaginaries.html">Expansive Imaginaries</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Enhanced Projects</a>
+        <ul class="dropdown-menu">
+          <li><a href="https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/index.html">New Novel Curiosity</a></li>
+          <li><a href="https://gr9430.github.io/ENG6806/enhancedprojects/thewavesforgettheshoreline.html">The Waves Forget the Shoreline</a></li>
+          <li><a href="https://gr9430.github.io/ENG6806/enhancedprojects/wavesgame.html">The Waves Forget the Structure</a></li>
+        </ul>
+      </li>
+      <li><a href="/ENG6806/flask-app/index.html">Public Humanities Prototype</a></li>
+      <li><a href="mailto:glenn.ritchey@ucf.edu">Contact</a></li>
+    </ul>
+  </nav>
+</div>
+ <h1>Awards and Honors</h1>
+    <p><ul>Graduate Dean’s Fellowship, University of Central Florida, 2023-2024. $5,000.</ul>
+<ul>Graduate Presentation Fellowship, University of Central Florida, Fall 2023. $500. </ul>
+<ul>Patricia Angley Memorial Scholarship, Department of English, University of Central Florida, Fall 2023. $1,000.</ul>
+<ul>Dean’s List, UCF College of Arts and Humanities, Spring 2023. </ul>
+<ul>Excellence in Undergraduate Research, UCF Department of English, Spring 2023. </ul>
+<ul>Outstanding Digital Humanist, UCF Department of English, Spring 2023. </ul>
+<ul>Student Research Grant, Office of Undergraduate Research, University of Central Florida, Spring 2023. $750.</ul>
+<ul>Summer Undergraduate Research Fellowship, Office of Undergraduate Research, University of Central Florida, Summer 2022. $2,000.</ul>
+</div>
+ <div id="footer-container">
+    <footer>
+      <p><center><small>&copy; 2025 | Designed and Compiled by Glenn S. Ritchey III with help from ChatGPT.</center></small></p>
+    </footer>
+ </div>
+</body>
+</html>
