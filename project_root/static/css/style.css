@@ -78,27 +78,23 @@ body {
     transform: translateY(-2px); /* Slight lift on hover to make interaction feel tactile */
 }
 
-/* Dropdown Menu Styling */
+/* Nested Dropdown Menu Styling */
 .dropdown-menu {
     display: none;
     position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #111111; /* Darken dropdown to distinguish it from navbar */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); /* Deeper shadow for dropdown to create separation */
+    background-color: #111111;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
     list-style-type: none;
     padding: 0;
     margin: 0;
     min-width: 200px;
     text-align: left;
-    border-radius: 8px; /* Rounded corners for dropdown */
+    border-radius: 8px;
     z-index: 1000;
 }
 
-/* Styling for Individual Dropdown Items */
 .dropdown-menu li {
-    width: 100%;
+    position: relative; /* Necessary for nesting */
 }
 
 .dropdown-menu li a {
@@ -106,17 +102,25 @@ body {
     color: #ffffff;
     padding: 12px 15px;
     display: block;
-    transition: background-color 0.3s ease, padding-left 0.3s ease; /* Smooth effect for hover changes */
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
 }
 
 .dropdown-menu li a:hover {
-    background-color: #666; /* Slightly lighter color on hover */
-    padding-left: 20px; /* Indent text on hover for a nice interactive effect */
+    background-color: #666;
+    padding-left: 20px;
 }
 
-/* Display Dropdown Menu on Hover */
-.menu > li:hover .dropdown-menu {
+/* Show Primary Dropdown on Hover */
+.menu > li:hover > .dropdown-menu {
     display: block;
+}
+
+/* Show Nested Dropdown on Hover */
+.dropdown-menu li:hover > .dropdown-menu {
+    display: block;
+    top: 0;
+    left: 100%; /* Align nested dropdown to the right */
+    transform: none; /* Remove centering from nested dropdown */
 }
 
 /* Additional Styling for Navbar Responsiveness */
