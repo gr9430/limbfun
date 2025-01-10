@@ -74,11 +74,9 @@
   
   <div class="aligned-header">
     <h1><b>Meaningful Images</b>: A Reflection on my Artistic Practices in Conversation with ChatGPT</h1>
-      <div class="carousel-container">
-           <button class="carousel-btn left" aria-label="Previous slide">&#10094;</button>
-           <div class="carousel-wrapper">
+<div class="image-gallery">
         <img src="/project_root/static/images/carousel_one/1.png" alt="Image 1" class="carousel-image active">
-        <img src=/project_root/static/images/carousel_one/2.png" alt="Image 2" class="carousel-image">
+        <img src="/project_root/static/images/carousel_one/2.png" alt="Image 2" class="carousel-image">
         <img src="/project_root/static/images/carousel_one/3.png" alt="Image 3" class="carousel-image">
         <img src="/project_root/static/images/carousel_one/4.png" alt="Image 4" class="carousel-image">
         <img src="/project_root/static/images/carousel_one/5.png" alt="Image 5" class="carousel-image">
@@ -92,7 +90,6 @@
         <img src="/project_root/static/images/carousel_one/13.png" alt="Image 13" class="carousel-image">
         <img src="/project_root/static/images/carousel_one/14.png" alt="Image 14" class="carousel-image">
         <img src="/project_root/static/images/carousel_one/15.png" alt="Image 15" class="carousel-image">
-       <button class="carousel-btn right" aria-label="Next slide">&#10095;</button>
            </div>
         <div class="container">
           <p>
@@ -120,7 +117,16 @@
 </div>
   
    <!-- JavaScript -->
-   <script src="/ENG6806/project_root/static/js/carousel.js" defer></script> <!-- Ensure JavaScript loads after HTML -->
-  
+   <script src="/project_root/static/js/carousel.js" defer></script> <!-- Ensure JavaScript loads after HTML -->
+
+          <script>
+  $(document).ready(function () {
+    $(".image-gallery").justifiedGallery({
+      rowHeight: 200,
+      margins: 5,
+      captions: true,
+    });
+  });
+</script>
   </body>
   </html>
