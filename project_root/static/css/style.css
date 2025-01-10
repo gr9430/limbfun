@@ -402,17 +402,19 @@ footer {
 
 /* Image Gallery 2*/
 
-    .image-gallery img {
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.image-gallery img {
+  width: 100%;
+  height: auto;
   border-radius: 5px;
-  transition: transform 0.2s;
+  transition: transform 0.3s ease;
 }
 
 .image-gallery img:hover {
   transform: scale(1.05);
-}
-
-}
-video {
-  width: 100%; /* Takes up the entire width of the container */
-  height: auto; /* Maintains aspect ratio */
 }
