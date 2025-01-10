@@ -399,6 +399,18 @@ footer {
 /* Additional Modal Styling to Prevent Last Image from Appearing Outside the Carousel */
 .carousel-wrapper img {
     display: block;
+
+/* Image Gallery 2*/
+
+    .image-gallery img {
+  border-radius: 5px;
+  transition: transform 0.2s;
+}
+
+.image-gallery img:hover {
+  transform: scale(1.05);
+}
+
 }
 video {
   width: 100%; /* Takes up the entire width of the container */
