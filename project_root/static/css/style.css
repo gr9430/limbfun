@@ -142,7 +142,7 @@ body {
     max-width: 1200px; /* Ensure both single and double-column containers have the same width */
     margin: 40px auto; /* Center the container and provide vertical spacing */
     padding: 20px; /* Provide consistent padding for both single and double columns */
-    background-color: #111111; /* Match the rest of the site */
+    background-color: #000000; /* Match the rest of the site */
     border-radius: 5px; /* Optional for rounded edges */
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Add shadow for consistency */
 }
@@ -316,7 +316,7 @@ footer {
     align-items: center;          /* Center content vertically */
     text-align: center;           /* Ensure text is centered */
     padding: 20px;                /* Add padding for visual spacing */
-    background-color: #111111;    /* Dark background color for contrast */
+    background-color: #000000;    /* Dark background color for contrast */
     color: #ffffff;               /* White text for visibility */
     font-size: 14px;              /* Adjust font size if needed */
     box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.1); /* Optional: Add shadow for depth */
