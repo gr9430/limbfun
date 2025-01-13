@@ -6,7 +6,7 @@ let revealedMessages = [];
 
 function preload() {
     img = loadImage(
-        '/mastersprojects/wavesgame/images',
+        '/mastersprojects/wavesgame/images/canvas.jpg',
         () => {
             console.log('Image loaded successfully');
         },
