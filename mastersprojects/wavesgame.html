@@ -4,46 +4,69 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Waves Forget the Structure</title>
-  <!-- CSS -->
-  <link rel="stylesheet" href="/ENG6806/project_root/static/css/style.css">
-  <!-- Favicon -->
-  <link rel="icon" href="/ENG6806/favicon.ico">
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glenn S. Ritchey III ePortfolio</title>
+
+   <link rel="stylesheet" href="https://limb.fun/project_root/static/css/style.css">
+
+   <link rel="icon" href="https://limb.fun/project_root/favicon.ico">
 </head>
 <body>
 
-  <!-- Banner -->
-  <div id="banner-container">
-    <img src="/ENG6806/project_root/static/images/banner.jpg" alt="Banner Image">
-  </div>
+  <div id="banner-container"></div>
+  <img src="http://limb.fun/project_root/static/images/banner.jpg" alt="Banner Image">
 
-  <!-- Navbar -->
-  <div id="navbar-container">
-    <nav class="navbar">
-      <ul class="menu">
-        <li><a href="/ENG6806/index.html">Home</a></li>
-        <li>
-          <a href="#">Original Projects</a>
-          <ul class="dropdown-menu">
-            <li><a href="https://gr9430.github.io/ENG6806/originalprojects/playfulgeneration.html">Playful Generation</a></li>
-            <li><a href="https://gr9430.github.io/ENG6806/originalprojects/meaningfulimages.html">Meaningful Images</a></li>
-            <li><a href="https://gr9430.github.io/ENG6806/originalprojects/expansiveimaginaries.html">Expansive Imaginaries</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">Enhanced Projects</a>
-          <ul class="dropdown-menu">
-            <li><a href="https://gr9430.github.io/ENG6806/originalprojects/newnovelcuriosity/index.html">New Novel Curiosity</a></li>
-            <li><a href="https://gr9430.github.io/ENG6806/enhancedprojects/thewavesforgettheshoreline.html">The Waves Forget the Shoreline</a></li>
-            <li><a href="https://gr9430.github.io/ENG6806/enhancedprojects/wavesgame.html">The Waves Forget the Structure</a></li>
-          </ul>
-        </li>
-        <li><a href="/ENG6806/flask-app/index.html">Public Humanities Prototype</a></li>
-        <li><a href="mailto:glenn.ritchey@ucf.edu">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-
-  <!-- Introduction Content -->
+<div id="navbar-container">
+  <nav class="navbar">
+    <ul class="menu">
+      <li><a href="/index.html">Home</a></li>
+      
+      <li>
+        <a href="#">CV</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Academic</a>
+            <ul class="dropdown-menu">
+              <li><a href="https://limb.fun/cv/academic/experience.html">Experience</a></li>
+              <li><a href="https://limb.fun/cv/academic/research.html">Research</a></li>
+              <li><a href="https://limb.fun/cv/academic/awards.html">Awards</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Creative</a>
+            <ul class="dropdown-menu">
+              <li><a href="https://limb.fun/cv/creative/coverage.html">Media Coverage</a></li>
+              <li><a href="https://limb.fun/cv/creative/performance.html">Performances</a></li>
+              <li><a href="https://limb.fun/cv/creative/publications.html">Publications</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Master's Projects</a>
+        <ul class="dropdown-menu">
+          <li><a href="https://limb.fun/mastersprojects/playfulgeneration.html">Playful Generation</a></li>
+          <li><a href="https://limb.fun/mastersprojects/meaningfulimages.html">Meaningful Images</a></li>
+          <li><a href="https://limb.fun/mastersprojects/expansiveimaginaries.html">Expansive Imaginaries</a></li>
+          <li><a href="https://limb.fun/flask-app/index.html">Recapitating <i>Massive</i></a></li>
+        <li><a href="https://limb.fun/mastersprojects/thewavesforgettheshoreline.html">The Waves Forget the Shoreline</a></li>
+          <li><a href="https://limb.fun/mastersprojects/wavesgame.html">The Waves Forget the Structure</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Contact</a>
+        <ul class="dropdown-menu">
+          <li><a href="mailto:glenn.ritchey@ucf.edu">Academic</a></li>
+          <li><a href="mailto:glenn@limb.fun">Creative</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</div>
+  
   <div class="aligned-header">
     <h1>The Waves Forget the Structure</h1>
   </div>
@@ -56,23 +79,19 @@
     <p>This project generated text through a conversation with ChatGPT, initially implementing ASCII style text to try and 'animate' the poem in consideration of Kamau Braithwaite's work. The text from that poem was then imported into Dall-E in an attempt to align the image output with my own artistic practice.</p>
   </div>
 </section>
-  <!-- Game and Messages Container -->
+
   <div id="two-column-container" style="display: flex; gap: 20px; margin-top: 20px;">
-    <!-- Game Canvas -->
+
     <div id="canvas-container" style="flex: 1; border: 1px solid #ccc; height: 400px;"></div>
     
-    <!-- Message Container -->
     <div id="message-container" style="flex: 1; background-color: #f0f0f0; padding: 15px; border-radius: 5px;"></div>
   </div>
-
- <!-- Footer -->
- <div id="footer-container">
-  <footer>
-    <p><center><small>&copy; 2024 ENG 6806 ePortfolio | Designed and Compiled by Glenn S. Ritchey III, thanks to the help of ChatGPT's intensive labor.</center></small></p>
-  </footer>
+   <div id="footer-container">
+    <footer>
+      <p><center><small>&copy; 2024 Glenn S. Ritchey III ePortfolio | Designed and Compiled with help from ChatGPT.</center></small></p>
+    </footer>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-  <!-- Load Custom JavaScript -->
-  <script src="https://gr9430.github.io/ENG6806/enhancedprojects/wavesgame/waves.js"></script> <!-- Ensure this path is correct -->
+  <script src="/mastersprojects/wavesgame/waves.js"></script>
 </body>
 </html>
